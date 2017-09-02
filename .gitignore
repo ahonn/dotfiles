@@ -1,2 +1,2 @@
-vim/plugged/
+vim/plugged/*
 !vim/plugged/vim-hybrid
