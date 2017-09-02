@@ -32,3 +32,5 @@ for formula in "${formulas[@]}"; do
       brew install $formula
   fi
 done
+
+source scripts/fonts.sh
