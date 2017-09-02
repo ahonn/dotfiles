@@ -1,0 +1,29 @@
+export ZSH=/Users/ahonn/.oh-my-zsh
+
+# Zsh configuration
+ZSH_THEME="ys"
+plugins=(git autojunp osx z git-extras vi-like)
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+export MANPATH="/usr/local/man:$MANPATH"
+
+## PATH
+export PATH=$PATH:/usr/local/bin/
+
+## Language
+export LANG=en_US.UTF-8
+
+## Aliases
+alias zshconfig="vim ~/.zshrc"
+alias dotfiles="vim ~/.dotfiles"
+
+### Go to somewhere
+alias cdc="cd ~/Developer/code"
+alias cdj="cd ~/Developer/code/javaScript"
+alias cdb="cd ~/Developer/code/blog"
+
+### Hexo blog deploy
+alias hexod="hexo clean & hexo g & hexo d"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

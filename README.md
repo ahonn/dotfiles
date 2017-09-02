@@ -1,8 +1,13 @@
-# vimrc
-ahonn's vim configuration
+# dotfiles
+My vim/neovim, zsh, git, and tmux configuration files
 
-### Install
+## Install
 ```
-$ git clone git@github.com:ahonn/vimrc.git
-$ cd vimrc && ./install.sh
+$ git clone https://github.com/ahonn/dotfiles.git ~/.dotfiles
+$ cd ~/.dotfiles && ./install.sh
+```
+
+## Back up your configuration
+```
+$ ./script/backup.sh
 ```
