@@ -65,6 +65,8 @@ endif
     Plug 'othree/html5.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'othree/javascript-libraries-syntax.vim'
+    " Clojure REPL Support
+    Plug 'tpope/vim-fireplace'
 
     " color scheme
     Plug 'w0ng/vim-hybrid'

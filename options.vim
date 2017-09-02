@@ -4,7 +4,7 @@
 
 " Search {{{ "
   set ignorecase
-  set smartcase 
+  set smartcase
   set hlsearch
   set incsearch
 " }}} Search "
@@ -62,7 +62,7 @@
   " Background
   set background=dark
 
-  " Line number 
+  " Line number
   set number
   set relativenumber
 

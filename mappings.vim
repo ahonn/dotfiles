@@ -33,10 +33,6 @@
 
   noremap H ^
   noremap L $
-  nnoremap J G
-  nnoremap K gg
-  vnoremap J G
-  vnoremap K gg
 " }}} Motion "
 
 " Window {{{ "
@@ -47,8 +43,8 @@
   " }}} Window "
 
 " Buffer {{{ "
-  nnoremap ) :bn<Cr>
-  nnoremap ( :bp<Cr>
+  nnoremap J :bn<Cr>
+  nnoremap K :bp<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "
