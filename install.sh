@@ -2,9 +2,9 @@
 
 DOTFILES=$HOME/.dotfiles
 
-echo "Installing dotfiles ..."
+echo "Installing dotfiles..."
 
-echo "Initializing submodule(s) ..."
+echo "Initializing submodule(s)..."
 git submodule update --init --recursive
 
 echo -e "\nCreating symlinks"
@@ -55,3 +55,7 @@ for file in "${VIMFILES[@]}"; do
     ln -s ${VALUE} ${KEY}
   fi
 done
+
+if [ "$(uname)" == "Darwin" ]; then
+  source scripts/brew.sh
+fi
