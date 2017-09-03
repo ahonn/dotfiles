@@ -1,5 +1,5 @@
-export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOMT/.dotfiles
+export ZSH=$DOTFILES/zsh/oh-my-zsh
 
 # Zsh configuration
 ZSH_THEME="ys"

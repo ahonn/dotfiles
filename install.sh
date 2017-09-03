@@ -13,5 +13,3 @@ if [ "$(uname)" == "Darwin" ]; then
   source $DOTFILES/scripts/brew.sh
   source $DOTFILES/scripts/fonts.sh
 fi
-
-source $DOTFILES/scripts/zsh.sh
