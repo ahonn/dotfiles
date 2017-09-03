@@ -1,3 +1,2 @@
 vim/autoload/
-vim/plugged/*
-!vim/plugged/vim-hybrid
+vim/plugged/
