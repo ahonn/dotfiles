@@ -1,8 +1,9 @@
-export ZSH=/Users/ahonn/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+export DOTFILES=$HOMT/.dotfiles
 
 # Zsh configuration
 ZSH_THEME="ys"
-plugins=(git autojunp osx z git-extras vi-like)
+plugins=(git autojunp osx z git-extras)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
