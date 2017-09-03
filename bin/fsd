@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+DOTFILES=$HOME/.dotfiles
+
+cd $HOME
+sudo java -jar $DOTFILES/bin/finalspeed/finalspeed_client.jar
+
