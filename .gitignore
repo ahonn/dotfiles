@@ -1,2 +1,4 @@
 vim/autoload/
 vim/plugged/
+
+!bin/finalspeed/finalspeed_client.jar
