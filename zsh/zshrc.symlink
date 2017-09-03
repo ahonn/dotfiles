@@ -1,30 +1,32 @@
-export DOTFILES=$HOMT/.dotfiles
+export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/oh-my-zsh
 
-# Zsh configuration
+# zsh
 ZSH_THEME="ys"
 plugins=(git autojunp osx z git-extras)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export MANPATH="/usr/local/man:$MANPATH"
-
-## PATH
-export PATH=$PATH:/usr/local/bin/
-
-## Language
+## language
 export LANG=en_US.UTF-8
 
-## Aliases
+# editor
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+# path
+export MANPATH="/usr/local/man:$MANPATH"
+
+export PATH=$DOTFILES/bin:$PATH
+export PATH=/usr/local/bin/:$PATH
+if [[ -d /usr/local/sbin ]]; then
+  export PATH=/usr/local/sbin:$PATH
+fi
+
+# aliases
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="vim ~/.dotfiles"
 
-### Go to somewhere
-alias cdc="cd ~/Developer/code"
-alias cdj="cd ~/Developer/code/javaScript"
-alias cdb="cd ~/Developer/code/blog"
-
-### Hexo blog deploy
 alias hexod="hexo clean & hexo g & hexo d"
 
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

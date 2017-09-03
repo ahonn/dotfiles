@@ -92,7 +92,6 @@ endif
   " FZF
   nnoremap <C-p> :Files<Cr>
   nnoremap <Leader><Leader> :Buffers<cr>
-  let $FZF_DEFAULT_COMMAND= 'ag --ignore node_modules --skip-vcs-ignores -g ""'
 
   " CtrlSF
   nnoremap <C-f> :CtrlSF<Space>

@@ -18,6 +18,7 @@ formulas=(
   node
   nginx
   the_silver_searcher
+  ripgrep
   tmux
   tree
   wget
