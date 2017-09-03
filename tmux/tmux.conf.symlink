@@ -1,0 +1,57 @@
+# basic options
+set -g default-terminal "screen-256color"
+set -g display-time 3000
+set -g history-limit 10000
+set -g base-index 1
+set -g pane-base-index 1
+set -s escape-time 1
+set -g mouse on
+
+# vi mode
+# setw -g mode-keys vi
+
+# easy reload
+bind R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+
+# bind prefix
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# navigate panes with hjkl
+bind ^h select-pane -L
+bind ^j select-pane -D
+bind ^k select-pane -U
+bind ^l select-pane -R
+
+bind L resize-pane -L 10
+bind R resize-pane -R 10
+bind K resize-pane -U 5
+bind J resize-pane -D 5
+
+# split window
+unbind %
+bind - split-window -v
+unbind '"'
+bind | split-window -h
+
+# swap panes
+bind ^u swapp -U
+bind ^d swapp -D
+
+bind q killp
+
+# status bar
+set -g status-bg black
+set -g status-fg white
+
+set -g status-justify centre
+ 
+set -g status-left '#[bg=black,fg=green][#[fg=cyan]#S#[fg=green]]'
+set -g status-left-length 20
+set -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
+
+setw -g automatic-rename on
+setw -g window-status-format '#[dim]#I:#[default]#W#[fg=grey,dim]'
+setw -g window-status-current-format '#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]'
+

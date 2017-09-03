@@ -6,7 +6,7 @@ ZSH_THEME="ys"
 plugins=(git autojunp osx z git-extras)
 source $ZSH/oh-my-zsh.sh
 
-## language
+# language
 export LANG=en_US.UTF-8
 
 # editor
@@ -17,9 +17,7 @@ export GIT_EDITOR='nvim'
 export MANPATH="/usr/local/man:$MANPATH"
 
 export PATH=$DOTFILES/bin:$PATH
-
 export PATH=/usr/local/bin/:$PATH
-
 if [[ -d /usr/local/sbin ]]; then
   export PATH=/usr/local/sbin:$PATH
 fi
