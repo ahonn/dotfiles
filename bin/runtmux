@@ -12,9 +12,8 @@ fi
 
 tmux has-session -t $session
 if [ $? != 0 ]; then
-  tmux new-session -d -s $session -n shell
-  tmux new-window -t $session:2 -n vim 
-  tmux select-window -t $session:1
+  tmux new-session -d -s $session -n editor
+  tmux new-window -t $session -n shell
 fi
 
 tmux attach -t $session

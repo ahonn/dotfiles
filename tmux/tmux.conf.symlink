@@ -5,15 +5,19 @@ set -g display-time 3000
 set -g history-limit 10000
 set -g base-index 1
 set -g pane-base-index 1
-set -s escape-time 0
+set -s escape-time 1
 set -g mouse on
-
-# vi mode
-setw -g mode-keys vi
 
 # easy reload
 unbind r
 bind r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+
+# vi mode
+setw -g mode-keys vi
+
+# notifition
+setw -g monitor-activity off
+set -g visual-activity off
 
 # bind prefix
 unbind C-b
@@ -36,10 +40,10 @@ bind k select-pane -U
 bind l select-pane -R
 
 # resize pane
-bind -r ^k resizep -U 10
-bind -r ^j resizep -D 10
-bind -r ^h resizep -L 10
-bind -r ^l resizep -R 10
+bind -r K resizep -U 10
+bind -r J resizep -D 10
+bind -r H resizep -L 10
+bind -r L resizep -R 10
 
 # swap panes
 bind ^u swapp -U
@@ -57,6 +61,7 @@ set -g pane-active-border-style fg=brightblack
 # message
 set -g message-fg blue
 set -g message-bg default
+set -g message-attr bright
 
 # status bar
 set -g status-justify left
@@ -67,14 +72,15 @@ set -g status-fg white
 
 setw -g window-status-format " #F#I:#W#F "
 setw -g window-status-current-format " #F#I:#W#F "
-setw -g window-status-format "#[bg=brightblue]#[fg=brightblack] #I #[bg=cyan]#[fg=black] #W "
-setw -g window-status-current-format "#[bg=black]#[fg=blue] #I #[bg=cyan]#[fg=black] #W "
-setw -g window-status-current-bg colour0
-setw -g window-status-current-fg colour11
+setw -g window-status-format "#[bg=brightblue]#[fg=brightblack] #I #[bg=black]#[fg=cyan] #W "
+setw -g window-status-current-format "#[bg=brightblack]#[fg=blue] #I #[bg=black]#[fg=cyan] #W "
+
+setw -g window-status-current-bg black
+setw -g window-status-current-fg cyan
 setw -g window-status-current-attr dim
-setw -g window-status-bg green
-setw -g window-status-fg black
-setw -g window-status-attr reverse
+setw -g window-status-bg black
+setw -g window-status-fg cyan
+setw -g window-status-attr dim
 
 set -g status-left-length 20
 set -g status-left '#[bg=black,fg=brightgreen][#[fg=brightblue]#S#[fg=brightgreen]] '
