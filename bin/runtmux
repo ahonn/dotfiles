@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# compatible with zsh
+export DISABLE_AUTO_TITLE="true"
+
+session=Ahonn
+
+if test ! $(which tmux); then
+  echo "Installing tmux..."
+  brew install tmux
+fi
+
+tmux has-session -t $session
+if [ $? != 0 ]; then
+  tmux new-session -d -s $session -n shell
+  tmux new-window -t $session:2 -n vim 
+  tmux select-window -t $session:1
+fi
+
+tmux attach -t $session
+exit

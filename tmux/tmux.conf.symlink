@@ -1,33 +1,27 @@
 # basic options
+set-option -g default-command "reattach-to-user-namespace -l zsh"
 set -g default-terminal "screen-256color"
 set -g display-time 3000
 set -g history-limit 10000
 set -g base-index 1
 set -g pane-base-index 1
-set -s escape-time 1
+set -s escape-time 0
 set -g mouse on
 
 # vi mode
-# setw -g mode-keys vi
+setw -g mode-keys vi
 
 # easy reload
-bind R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+unbind r
+bind r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 
 # bind prefix
 unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
 
-# navigate panes with hjkl
-bind ^h select-pane -L
-bind ^j select-pane -D
-bind ^k select-pane -U
-bind ^l select-pane -R
-
-bind L resize-pane -L 10
-bind R resize-pane -R 10
-bind K resize-pane -U 5
-bind J resize-pane -D 5
+# fast switch windows
+bind C-a last-window
 
 # split window
 unbind %
@@ -35,23 +29,53 @@ bind - split-window -v
 unbind '"'
 bind | split-window -h
 
+# select pane
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# resize pane
+bind -r ^k resizep -U 10
+bind -r ^j resizep -D 10
+bind -r ^h resizep -L 10
+bind -r ^l resizep -R 10
+
 # swap panes
 bind ^u swapp -U
 bind ^d swapp -D
 
+# kill pane & window
 bind q killp
+bind ^q killw
+
+# colorscheme
+# panes
+set -g pane-border-style fg=brightblack
+set -g pane-active-border-style fg=brightblack
+
+# message
+set -g message-fg blue
+set -g message-bg default
 
 # status bar
-set -g status-bg black
+set -g status-justify left
+set -g status-position top
+ 
+set -g status-bg default
 set -g status-fg white
 
-set -g status-justify centre
- 
-set -g status-left '#[bg=black,fg=green][#[fg=cyan]#S#[fg=green]]'
+setw -g window-status-format " #F#I:#W#F "
+setw -g window-status-current-format " #F#I:#W#F "
+setw -g window-status-format "#[bg=brightblue]#[fg=brightblack] #I #[bg=cyan]#[fg=black] #W "
+setw -g window-status-current-format "#[bg=black]#[fg=blue] #I #[bg=cyan]#[fg=black] #W "
+setw -g window-status-current-bg colour0
+setw -g window-status-current-fg colour11
+setw -g window-status-current-attr dim
+setw -g window-status-bg green
+setw -g window-status-fg black
+setw -g window-status-attr reverse
+
 set -g status-left-length 20
-set -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
-
-setw -g automatic-rename on
-setw -g window-status-format '#[dim]#I:#[default]#W#[fg=grey,dim]'
-setw -g window-status-current-format '#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]'
-
+set -g status-left '#[bg=black,fg=brightgreen][#[fg=brightblue]#S#[fg=brightgreen]] '
+set -g status-right '#[fg=brightgreen][#[fg=brightblue]%Y-%m-%d %H:%M#[fg=brightgreen]]'
