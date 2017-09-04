@@ -67,8 +67,8 @@
   set relativenumber
 
   " Status line
-  set laststatus=2
-  " set noshowmode
+  set laststatus=1
+  set noshowmode
 
   " Backup
   set noswapfile
