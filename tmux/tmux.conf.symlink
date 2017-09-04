@@ -72,8 +72,8 @@ set -g status-fg white
 
 setw -g window-status-format " #F#I:#W#F "
 setw -g window-status-current-format " #F#I:#W#F "
-setw -g window-status-format "#[bg=brightblue]#[fg=brightblack] #I #[bg=black]#[fg=cyan] #W "
-setw -g window-status-current-format "#[bg=brightblack]#[fg=blue] #I #[bg=black]#[fg=cyan] #W "
+setw -g window-status-format "#[bg=brightblack]#[fg=blue] #I #[bg=black]#[fg=cyan] #W "
+setw -g window-status-current-format "#[bg=brightblue]#[fg=brightblack] #I #[bg=black]#[fg=cyan] #W "
 
 setw -g window-status-current-bg black
 setw -g window-status-current-fg cyan
