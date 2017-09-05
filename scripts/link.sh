@@ -2,7 +2,7 @@
 
 echo -e "\nCreating symlinks"
 echo "=============================="
-linkables=$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')
+linkables=$(find -H "$DOTFILES" -not -path "$DOTFILES/.undodir/*" -maxdepth 3 -name '*.symlink')
 
 for file in $linkables ; do
   filename=".$(basename $file '.symlink')"
