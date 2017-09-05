@@ -24,6 +24,10 @@ unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
 
+# create window in current path
+unbind c
+bind c new-window -c "#{pane_current_path}"
+
 # fast switch windows
 bind C-a last-window
 
