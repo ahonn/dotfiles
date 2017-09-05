@@ -29,9 +29,9 @@ bind C-a last-window
 
 # split window
 unbind %
-bind - split-window -v
+bind - split-window -v -c '#{pane_current_path}'
 unbind '"'
-bind | split-window -h
+bind | split-window -h -c '#{pane_current_path}'
 
 # select pane
 bind h select-pane -L
