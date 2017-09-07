@@ -24,7 +24,7 @@ fi
 
 # aliases
 alias zshconfig="vim ~/.zshrc"
-alias dotfiles="vim ~/.dotfiles"
+alias dotfiles="cd ~/.dotfiles && vim"
 
 alias hexod="hexo clean & hexo g & hexo d"
 

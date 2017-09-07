@@ -1,5 +1,5 @@
 # basic options
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+set -g default-command "reattach-to-user-namespace -l zsh"
 set -g default-terminal "screen-256color"
 set -g display-time 3000
 set -g history-limit 10000
@@ -11,13 +11,6 @@ set -g mouse on
 # easy reload
 unbind r
 bind r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
-
-# vi mode
-setw -g mode-keys vi
-
-# notifition
-setw -g monitor-activity off
-set -g visual-activity off
 
 # bind prefix
 unbind C-b
@@ -56,6 +49,18 @@ bind ^d swapp -D
 # kill pane & window
 bind q killp
 bind ^q killw
+
+# notifition
+setw -g monitor-activity off
+set -g visual-activity off
+
+# copy mode
+setw -g mode-keys vi
+bind -Tcopy-mode-vi 'v' send -X begin-selection
+bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+bind -Tcopy-mode-vi MouseDrag1Pane send -X begin-selection
+bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
 # colorscheme
 # panes
