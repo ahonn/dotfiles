@@ -58,6 +58,7 @@ set -g visual-activity off
 setw -g mode-keys vi
 bind -Tcopy-mode-vi 'v' send -X begin-selection
 bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+bind -Tcopy-mode-vi Escape send -X cancel
 
 bind -Tcopy-mode-vi MouseDrag1Pane send -X begin-selection
 bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
