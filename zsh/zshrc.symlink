@@ -23,8 +23,12 @@ if [[ -d /usr/local/sbin ]]; then
 fi
 
 # aliases
+alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
+
+# mirror
+export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
