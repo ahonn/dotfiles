@@ -49,8 +49,12 @@
   " Clipboard
   set clipboard+=unnamed
 
-  " session
+  " Session
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
+
+  " Undo
+  set undodir=~/.tmp/undodir
+  set undofile
 
   " Complete
   set wildmenu

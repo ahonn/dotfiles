@@ -47,6 +47,7 @@
 " Buffer {{{ "
   nnoremap K :bn<Cr>
   nnoremap J :bp<Cr>
+  nnoremap <Leader>df :bufdo bd<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "
