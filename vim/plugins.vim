@@ -34,6 +34,7 @@ endif
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'christoomey/vim-tmux-navigator'
 
     " display
     Plug 'Yggdroot/indentLine'
