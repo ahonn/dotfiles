@@ -31,11 +31,6 @@ alias dotfiles="cd ~/.dotfiles && vim"
 # mirror
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 
-# tmux
-if which tmux 2>&1 >/dev/null; then
-  autotmux
-fi
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'

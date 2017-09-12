@@ -20,7 +20,14 @@ bind C-a send-prefix
 # ========== Plugins ========== #
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+
 set -g @plugin 'christoomey/vim-tmux-navigator'
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @resurrect-save-bash-history 'on'
+set -g @resurrect-capture-pane-contents 'on'
+set -g @continuum-restore 'on'
 
 run '$DOTFILES/tmux/plugins/tpm/tpm'
 
@@ -28,6 +35,9 @@ run '$DOTFILES/tmux/plugins/tpm/tpm'
 # create window in current path
 unbind c
 bind c new-window -c "#{pane_current_path}"
+
+# clean screen
+bind C-l send-keys 'C-l'
 
 # fast switch windows
 bind C-a last-window
