@@ -3,7 +3,7 @@ export ZSH=$DOTFILES/zsh/oh-my-zsh
 
 # ========== Zsh ========== #
 ZSH_THEME="ys"
-plugins=(git autojunp osx z git-extras)
+plugins=(git autojump osx z git-extras vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # ========== Language ========== #

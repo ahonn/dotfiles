@@ -10,6 +10,7 @@ echo "=============================="
 
 formulas=(
   macvim
+  autojump
   ack
   fzf
   git
