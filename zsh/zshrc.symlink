@@ -1,19 +1,19 @@
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/oh-my-zsh
 
-# zsh
+# ========== Zsh ========== #
 ZSH_THEME="ys"
 plugins=(git autojunp osx z git-extras)
 source $ZSH/oh-my-zsh.sh
 
-# language
+# ========== Language ========== #
 export LANG=en_US.UTF-8
 
-# editor
+# ========== Editor ========== #
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
-# path
+# ========== Path ========== #
 export MANPATH="/usr/local/man:$MANPATH"
 
 export PATH=$DOTFILES/bin:$PATH
@@ -22,13 +22,19 @@ if [[ -d /usr/local/sbin ]]; then
   export PATH=/usr/local/sbin:$PATH
 fi
 
-# aliases
+# ========== Aliases ========== #
 alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
 
+# ========== Other ========== #
 # mirror
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
+
+# tmux
+if which tmux 2>&1 >/dev/null; then
+  autotmux
+fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
