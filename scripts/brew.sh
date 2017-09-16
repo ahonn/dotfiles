@@ -12,6 +12,7 @@ formulas=(
   macvim
   autojump
   ack
+  ctags
   fzf
   git
   markdown
