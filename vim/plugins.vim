@@ -44,18 +44,21 @@ endif
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'christoomey/vim-tmux-navigator'
 
     " Display
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdcommenter'
     Plug 'heavenshell/vim-jsdoc'
+    Plug 'Chiel92/vim-autoformat'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Valloric/MatchTagAlways'
 
     " Commands
     Plug 'danro/rename.vim'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
 
     " Completion
     Plug 'ervandew/supertab'
@@ -72,6 +75,10 @@ endif
 " }}} Plugins "
 
 " Configure {{{ "
+  " Plugin
+  nnoremap <Leader>pi :PlugInstall<Cr>
+  nnoremap <Leader>pu :PlugUpdate<Cr>
+
   " Colorscheme
   " ===============
   let g:hybrid_custom_term_colors = 1
@@ -168,7 +175,7 @@ endif
   " Display
   " ===============
   "" indentLine
-  nnoremap <Leader>> :IndentLinesToggle<Cr>
+  nnoremap <Leader><Tab> :IndentLinesToggle<Cr>
   let g:indentLine_enabled = 1
 
   "" nerdcommenter
@@ -177,6 +184,10 @@ endif
   "" jsdoc
   nnoremap <Leader>dc :JsDoc<Cr>
   let g:jsdoc_allow_input_prompt = 1
+
+  "" vim-autoformat
+  nnoremap <Leader>af :Autoformat<Cr>
+  autocmd FileType vim let b:autoformat_autoindent=0
 
   " Commands
   " ===============
