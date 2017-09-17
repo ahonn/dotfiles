@@ -147,7 +147,7 @@ endif
     \ 'jsx': 'javascript'
     \ }
   let g:ale_linters = {
-    \ 'javascript': ['eslint'],
+    \ 'javascript': ['eslint']
     \ }
 
   "" ctrlsf
