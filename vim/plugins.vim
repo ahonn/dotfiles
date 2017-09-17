@@ -59,6 +59,7 @@ endif
     Plug 'danro/rename.vim'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
+    Plug 'easymotion/vim-easymotion'
 
     " Completion
     Plug 'ervandew/supertab'
@@ -169,7 +170,8 @@ endif
 
   "" fzf.vim
   nnoremap <C-p> :Files<Cr>
-  nnoremap <Leader><Leader> :Buffers<cr>
+  nnoremap <Leader><Leader> :Buffers<Cr>
+  nnoremap <Leader>l :BLines<Cr>
   nnoremap <Leader>mp :Maps<Cr>
 
   " Display
@@ -191,8 +193,15 @@ endif
 
   " Commands
   " ===============
-  "" rename.vim
-  nnoremap <Leader>rn :Rename
+  "" vim-easymotion
+  nmap f <Plug>(easymotion-prefix)
+  nmap ff <Plug>(easymotion-s)
+  nmap fh <Plug>(easymotion-linebackward)
+  nmap fj <Plug>(easymotion-j)
+  nmap fk <Plug>(easymotion-k)
+  nmap fl <Plug>(easymotion-lineforward)
+  nmap / <Plug>(easymotion-sn)
+  let g:EasyMotion_smartcase = 1
 
   " Completion
   " ===============
