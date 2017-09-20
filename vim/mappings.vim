@@ -33,6 +33,8 @@
 
   noremap H ^
   noremap L $
+  nnoremap J G
+  nnoremap K gg
   vnoremap J G
   vnoremap K gg
 " }}} Motion "
@@ -45,8 +47,8 @@
   " }}} Window "
 
 " Buffer {{{ "
-  nnoremap K :bn<Cr>
-  nnoremap J :bp<Cr>
+  nnoremap ] :bn<Cr>
+  nnoremap [ :bp<Cr>
   nnoremap <Leader>df :bufdo bd<Cr>
 " }}} Buffer "
 

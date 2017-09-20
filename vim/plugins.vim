@@ -54,6 +54,7 @@ endif
     Plug 'Chiel92/vim-autoformat'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Valloric/MatchTagAlways'
+    Plug 'bhurlow/vim-parinfer'
 
     " Commands
     Plug 'danro/rename.vim'
@@ -78,6 +79,7 @@ endif
 " Configure {{{ "
   " Plugin
   nnoremap <Leader>pi :PlugInstall<Cr>
+  nnoremap <Leader>pc :PlugClean<Cr>
   nnoremap <Leader>pu :PlugUpdate<Cr>
 
   " Colorscheme
