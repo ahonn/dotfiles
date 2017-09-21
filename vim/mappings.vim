@@ -11,10 +11,6 @@
   nnoremap <Right> <Nop>
   nnoremap <Up> <Nop>
   nnoremap <Down> <Nop>
-  inoremap <Left> <Nop>
-  inoremap <Right> <Nop>
-  inoremap <Up> <Nop>
-  inoremap <Down> <Nop>
 " }}} Nop "
 
 " Indent {{{ "
@@ -35,6 +31,7 @@
   noremap L $
   nnoremap J G
   nnoremap K gg
+
   vnoremap J G
   vnoremap K gg
 " }}} Motion "

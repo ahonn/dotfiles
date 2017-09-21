@@ -211,9 +211,8 @@ endif
   let g:SuperTabDefaultCompletionType = '<C-n>'
 
   "" Emmet.vim
-  let g:user_emmet_install_global = 0
+  let g:user_emmet_install_global = 1
   let g:user_emmet_expandabbr_key = '<C-e>'
-  autocmd FileType html,css,javascript EmmetInstall
 
   "" YouCompleteMe
   let g:ycm_auto_trigger = 1
