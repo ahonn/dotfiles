@@ -29,6 +29,7 @@ set -g @resurrect-save-bash-history 'on'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
+set -g @continuum-boot-options 'iterm,fullscreen'
 
 run '$DOTFILES/tmux/plugins/tpm/tpm'
 
