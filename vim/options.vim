@@ -48,6 +48,7 @@
 
   " Clipboard
   set clipboard+=unnamed
+  set nopaste
 
   " Session
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize

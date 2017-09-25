@@ -104,11 +104,9 @@ endif
   let g:rainbow_active = 1
 
   "" nerdtree
-  let NERDTreeShowHidden=1
   noremap <C-b> :NERDTreeToggle<Cr>
-  " quit vim when just have nerdtree
   autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
-  " nerdtree syntax highlight
+  let NERDTreeShowHidden=1
   let g:NERDTreeFileExtensionHighlightFullName = 1
   let g:NERDTreeExactMatchHighlightFullName = 1
   let g:NERDTreePatternMatchHighlightFullName = 1
@@ -204,6 +202,11 @@ endif
   nmap fl <Plug>(easymotion-lineforward)
   nmap / <Plug>(easymotion-sn)
   let g:EasyMotion_smartcase = 1
+
+  "" vim-surround
+  nmap , ysiw
+  let g:surround_35 = "#{\r}"
+  let g:surround_36 = "${\r}"
 
   " Completion
   " ===============
