@@ -70,6 +70,7 @@ endif
     Plug 'SirVer/ultisnips'
     Plug 'VimSnippets/vim-snippets'
     Plug 'VimSnippets/vim-react-snippets'
+    Plug 'VimSnippets/vim-clojure-snippets'
 
     " Analyze
     Plug 'wakatime/vim-wakatime'

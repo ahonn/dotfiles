@@ -25,7 +25,6 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @resurrect-save-bash-history 'on'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @continuum-boot 'on'
 set -g @continuum-restore 'on'
