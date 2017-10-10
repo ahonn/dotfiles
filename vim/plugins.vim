@@ -151,6 +151,7 @@ endif
   " ===============
   "" ale
   nnoremap <leader>al :ALEToggle<Cr>
+  let g:ale_javascript_eslint_use_global = 1
   let g:ale_linter_aliases = {
     \ 'javascript.jsx': 'javascript',
     \ 'jsx': 'javascript'

@@ -25,7 +25,7 @@
   " set wrap
   set linebreak
   set showbreak=->
-  set textwidth=120
+  " set textwidth=120
   set colorcolumn=120
   autocmd WinLeave * set nocursorline nocursorcolumn
   autocmd WinEnter * set cursorline cursorcolumn
