@@ -23,6 +23,7 @@ endif
     Plug 'plasticboy/vim-markdown'
     Plug 'sheerun/vim-polyglot'
     Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'styled-components/vim-styled-components'
 
     " Interface
     Plug 'ap/vim-css-color'
@@ -134,10 +135,6 @@ endif
   "" undotree
   nnoremap <Leader>ud :UndotreeToggle<Cr> :UndotreeFocus<Cr>
   let g:undotree_WindowLayout = 3
-  function! g:Undotree_CustomMap()
-     map <buffer> j J
-     map <buffer> k K
-  endfunction
 
   "" tagbar
   nnoremap <Leader>tb :TagbarToggle<Cr>
@@ -152,6 +149,8 @@ endif
   "" ale
   nnoremap <leader>al :ALEToggle<Cr>
   let g:ale_javascript_eslint_use_global = 1
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 0
   let g:ale_linter_aliases = {
     \ 'javascript.jsx': 'javascript',
     \ 'jsx': 'javascript'
@@ -184,6 +183,12 @@ endif
 
   "" nerdcommenter
   let g:NERDSpaceDelims = 1
+  let g:NERDCustomDelimiters = {
+    \ 'javascript.jsx': {
+        \ 'left': '//',
+        \ 'leftAlt': '{/*',
+        \ 'rightAlt': '*/}' }
+    \ }
 
   "" jsdoc
   nnoremap <Leader>dc :JsDoc<Cr>
@@ -192,6 +197,11 @@ endif
   "" vim-autoformat
   nnoremap <Leader>af :Autoformat<Cr>
   autocmd FileType vim let b:autoformat_autoindent=0
+
+  "" MatchTagAlways
+  let g:mta_filetypes = {
+    \  "javascript.jsx": 1,
+    \ }
 
   " Commands
   " ===============

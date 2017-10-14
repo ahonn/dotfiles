@@ -2,6 +2,10 @@
 "                                  Mappings                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Esc & Exit {{{ "
+  inoremap jk <Esc>
+" }}} Esc "
+
 " Nop {{{ "
   nnoremap <Left> <Nop>
   nnoremap <Right> <Nop>
