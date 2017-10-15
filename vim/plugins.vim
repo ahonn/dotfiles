@@ -32,7 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'mbbill/undotree'
+  Plug 'sjl/gundo.vim'
   Plug 'majutsushi/tagbar'
   Plug 'thaerkh/vim-workspace'
 
@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
   " Completion
   Plug 'ervandew/supertab'
   Plug 'mattn/emmet-vim'
+  Plug 'alvan/vim-closetag'
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
   Plug 'SirVer/ultisnips'
@@ -138,15 +139,15 @@ let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-if has('gui_running')
-  let g:airline_right_sep = '⮂'
-endif
+let g:airline_section_error = '%{ALEGetStatusLine()}'
 
 " ----------------------------------------------------------------------------
-"	undotree
+"	gundo
 " ----------------------------------------------------------------------------
-nnoremap <Leader>ud :UndotreeToggle<Cr> :UndotreeFocus<Cr>
-let g:undotree_WindowLayout = 3
+nnoremap <Leader>ud :GundoToggle<Cr>
+let g:gundo_width = 50
+let g:gundo_preview_height = 40
+let g:gundo_right = 1
 
 " ----------------------------------------------------------------------------
 "	tagbar
@@ -164,15 +165,10 @@ let g:workspace_autosave = 1
 "	ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '❗'
 let g:ale_echo_msg_error_str = '✷ Error'
 let g:ale_echo_msg_warning_str = '⚠ Warning'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_statusline_format = ['✘ %d', '❗ %d', '✔ ok']
 let g:ale_javascript_eslint_use_global = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript'
@@ -266,6 +262,11 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " ----------------------------------------------------------------------------
 let g:user_emmet_install_global = 1
 let g:user_emmet_expandabbr_key = '<C-e>'
+
+" ----------------------------------------------------------------------------
+"	vim-closetag
+" ----------------------------------------------------------------------------
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " ----------------------------------------------------------------------------
 "	YouCompleteMe
