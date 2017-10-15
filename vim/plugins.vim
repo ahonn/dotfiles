@@ -139,7 +139,6 @@ let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_section_error = '%{ALEGetStatusLine()}'
 
 " ----------------------------------------------------------------------------
 "	gundo
@@ -165,9 +164,12 @@ let g:workspace_autosave = 1
 "	ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
+let g:ale_sign_error = '💥'
+let g:ale_sign_warning = '⚡️'
+highlight clear ALEErrorSign
 let g:ale_echo_msg_error_str = '✷ Error'
 let g:ale_echo_msg_warning_str = '⚠ Warning'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%severity%] %s'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
@@ -176,6 +178,8 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint']
   \ }
+nmap <silent> <Leader>j <Plug>(ale_next_wrap)
+nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 
 " ----------------------------------------------------------------------------
 "	ctrlsf
@@ -267,6 +271,15 @@ let g:user_emmet_expandabbr_key = '<C-e>'
 "	vim-closetag
 " ----------------------------------------------------------------------------
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
+
+" ----------------------------------------------------------------------------
+"	tern_for_vim
+" ----------------------------------------------------------------------------
+nnoremap <Leader>td :TernDef<Cr>
+nnoremap <Leader>tdp :TernDefPreview<Cr>
+nnoremap <Leader>tds :TernDefSplit<Cr>
+let tern_show_signature_in_pum = 1
+let tern_show_argument_hints = 'on_move'
 
 " ----------------------------------------------------------------------------
 "	YouCompleteMe
