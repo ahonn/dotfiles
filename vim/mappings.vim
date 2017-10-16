@@ -44,9 +44,9 @@
   " }}} Window "
 
 " Buffer {{{ "
-  nnoremap <Leader>k :bn<Cr>
-  nnoremap <Leader>j :bp<Cr>
-  nnoremap <Leader>d :bufdo bd<Cr>
+  nnoremap <C-]> :bn<Cr>
+  nnoremap <C-[> :bp<Cr>
+  nnoremap <Leader>bd :bufdo bd<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "
