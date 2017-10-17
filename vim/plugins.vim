@@ -289,7 +289,6 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_max_num_identifier_candidates = 5
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>']
 let g:ycm_key_list_stop_completion = ['<C-l>']
