@@ -285,11 +285,13 @@ let tern_show_argument_hints = 'on_move'
 "	YouCompleteMe
 " ----------------------------------------------------------------------------
 let g:ycm_auto_trigger = 1
-let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_max_num_identifier_candidates = 5
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_complete_in_comments = 1
+let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>']
-let g:ycm_key_list_previous_completion = ['<C-k>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>']
 let g:ycm_key_list_stop_completion = ['<C-l>']
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
@@ -301,13 +303,14 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_semantic_triggers = {
   \ 'css,less,scss': [ 're!^\s{2}', 're!:\s+' ],
   \ 'javascript.jsx,typescript': [ '.' ],
+  \ 'clojure': [ 're!:' ]
   \ }
 
 " ----------------------------------------------------------------------------
 "	UltiSnips
 " ----------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<C-n>'
 let g:snips_author='Ahonn Jiang'
 let g:snips_email='ahonn95@outlook.com'
 let g:snips_github='https://github.com/ahonn'
