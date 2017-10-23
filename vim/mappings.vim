@@ -44,8 +44,8 @@
   " }}} Window "
 
 " Buffer {{{ "
-  nnoremap <C-]> :bn<Cr>
-  nnoremap <C-[> :bp<Cr>
+  nnoremap = :bn<Cr>
+  nnoremap - :bp<Cr>
   nnoremap <Leader>bd :bufdo bd<Cr>
 " }}} Buffer "
 
