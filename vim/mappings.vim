@@ -46,7 +46,6 @@
 " Buffer {{{ "
   nnoremap <Leader>bn :bn<Cr>
   nnoremap <Leader>bp :bp<Cr>
-  nnoremap <Leader>bd :bufdo bd<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "

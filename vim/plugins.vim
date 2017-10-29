@@ -43,6 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+  Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
 
   " Display
