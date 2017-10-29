@@ -5,8 +5,8 @@ root: ~/Developer/code/clojure/hexdit
 
 windows:
   - editor: vim
-  - shell: 
-    layout: even-horizontal
-    panes: 
-      - npm run dev
-      - clear
+  - shell:
+      layout: even-horizontal
+      panes:
+        - npm run dev
+        - clear

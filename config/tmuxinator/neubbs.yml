@@ -5,8 +5,4 @@ root: ~/Developer/code/neubbs/src/main/webapp
 
 windows:
   - editor: vim
-  - shell:
-      layout: even-horizontal
-      panes:
-        - npm run watch
-        - clear
+  - npm: npm run watch

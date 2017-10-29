@@ -32,6 +32,13 @@ alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
 
+# tmux
+alias tmuxk="tmux kill-server"
+
+# tmuxinator
+alias mux="tmuxinator"
+alias muxs="tmuxinator start"
+
 # ========== Other ========== #
 # mirror
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
