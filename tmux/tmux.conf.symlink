@@ -8,6 +8,9 @@ set -g pane-base-index 1
 set -s escape-time 1
 set -g mouse on
 
+set-window-option -g allow-rename off
+set-window-option -g automatic-rename off
+
 # easy reload
 unbind r
 bind r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
@@ -65,9 +68,10 @@ bind C-u swap-pane -U
 bind C-d swap-pane -D
 bind C-x rotate-window
 
-# kill pane & window
+# kill pane/window/session
 bind q kill-pane
 bind C-q kill-window
+bind Q kill-session
 
 # ========== Notifition ========== #
 setw -g monitor-activity off
@@ -84,6 +88,10 @@ bind -Tcopy-mode-vi MouseDrag1Pane send -X begin-selection
 bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
 # ========== Colorscheme ========== #
+# mode
+setw -g mode-bg brightblack
+setw -g mode-fg brightblue
+
 # panes
 set -g pane-border-style fg=brightblack
 set -g pane-active-border-style fg=brightblack
