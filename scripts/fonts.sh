@@ -10,5 +10,5 @@ if brew cask list $font > /dev/null 2>&1; then
   echo "$font already installed... skipping"
 else
   brew tap caskroom/fonts
-  brew cask install 
+  brew cask install
 fi

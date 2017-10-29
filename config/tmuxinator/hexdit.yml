@@ -1,0 +1,12 @@
+# ~/.tmuxinator/hexdit.yml
+
+name: hexdit
+root: ~/Developer/code/clojure/hexdit
+
+windows:
+  - editor: vim
+  - shell: 
+    layout: even-horizontal
+    panes: 
+      - npm run dev
+      - clear

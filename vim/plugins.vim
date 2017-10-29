@@ -197,8 +197,8 @@ let g:ctrlsf_mapping = {
 "	fzf.vim
 " ----------------------------------------------------------------------------
 nnoremap <C-p> :Files<Cr>
-nnoremap <Leader><Leader> :Buffers<Cr>
 nnoremap <Leader>l :BLines<Cr>
+nnoremap <Leader><Leader> :Buffers<Cr>
 nnoremap <Leader>mp :Maps<Cr>
 
 " ----------------------------------------------------------------------------
@@ -221,8 +221,7 @@ let g:NERDCustomDelimiters = {
 " ----------------------------------------------------------------------------
 "	jsdoc
 " ----------------------------------------------------------------------------
-nnoremap <Leader>dc :JsDoc<Cr>
-let g:jsdoc_allow_input_prompt = 1
+nmap <silent> <Leader>dc <Plug>(jsdoc)
 
 " ----------------------------------------------------------------------------
 "	vim-autoformat
@@ -278,15 +277,12 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 nnoremap <Leader>td :TernDef<Cr>
 nnoremap <Leader>tdp :TernDefPreview<Cr>
 nnoremap <Leader>tds :TernDefSplit<Cr>
-let tern_show_signature_in_pum = 1
-let tern_show_argument_hints = 'on_move'
 
 " ----------------------------------------------------------------------------
 "	YouCompleteMe
 " ----------------------------------------------------------------------------
 let g:ycm_auto_trigger = 1
 let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']

@@ -24,11 +24,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @resurrect-capture-pane-contents 'on'
-set -g @continuum-boot 'on'
-set -g @continuum-restore 'on'
-set -g @continuum-boot-options 'iterm,fullscreen'
 
 run '$DOTFILES/tmux/plugins/tpm/tpm'
 
