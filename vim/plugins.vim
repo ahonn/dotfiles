@@ -16,10 +16,9 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'SpaceVim/vim-swig'
+  Plug 'sheerun/vim-polyglot'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'styled-components/vim-styled-components'
 
   " Interface
@@ -82,17 +81,18 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ----------------------------------------------------------------------------
+" Colorscheme
+" ----------------------------------------------------------------------------
+set background=dark
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
+
+" ----------------------------------------------------------------------------
 " Plugin
 " ----------------------------------------------------------------------------
 nnoremap <Leader>pi :PlugInstall<Cr>
 nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
-
-" ----------------------------------------------------------------------------
-" Colorscheme
-" ----------------------------------------------------------------------------
-let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
 
 " ----------------------------------------------------------------------------
 "	vim-markdown
@@ -275,8 +275,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " ----------------------------------------------------------------------------
 "	tern_for_vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader>td :TernDef<Cr>
-nnoremap <Leader>tdp :TernDefPreview<Cr>
+nnoremap <Leader>df :TernDefPreview<Cr>
 nnoremap <Leader>tds :TernDefSplit<Cr>
 
 " ----------------------------------------------------------------------------
