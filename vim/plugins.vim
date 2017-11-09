@@ -90,9 +90,8 @@ call plug#end()
 " Colorscheme
 " ----------------------------------------------------------------------------
 set background=dark
-colorscheme hybrid
 let g:hybrid_custom_term_colors = 1
-highlight! link JsObjectKey Identifier
+colorscheme hybrid
 
 " ----------------------------------------------------------------------------
 " Plugin
@@ -206,8 +205,13 @@ let g:ctrlsf_mapping = {
 " ----------------------------------------------------------------------------
 nnoremap <C-p> :Files<Cr>
 nnoremap <Leader>l :BLines<Cr>
+nnoremap <Leader>m :Marks<Cr>
 nnoremap <Leader><Leader> :Buffers<Cr>
-nnoremap <Leader>mp :Maps<Cr>
+
+" ----------------------------------------------------------------------------
+"	vim-bufonly
+" ----------------------------------------------------------------------------
+nnoremap <Leader>c :BufOnly<Cr>
 
 " ----------------------------------------------------------------------------
 "	indentLine

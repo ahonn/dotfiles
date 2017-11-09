@@ -46,7 +46,6 @@
 " Buffer {{{ "
   nnoremap <Leader>x :bn<Cr>
   nnoremap <Leader>z :bp<Cr>
-  nnoremap <Leader>c :BufOnly<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "
@@ -61,6 +60,11 @@
   vnoremap F <Esc>yiw/<C-r>"<Cr>
   nnoremap \ :let @/ = ""<Cr>
 " }}} Search
+
+" Command {{{ "
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+" }}} Command "
 
 " Vimrc {{{ "
   nnoremap <Leader>ev :vsplit ~/.vim<Cr>
