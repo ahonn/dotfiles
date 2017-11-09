@@ -9,7 +9,7 @@ set -s escape-time 1
 set -g mouse on
 
 set-window-option -g allow-rename off
-set-window-option -g automatic-rename off
+set-window-option -g automatic-rename on
 
 # easy reload
 unbind r

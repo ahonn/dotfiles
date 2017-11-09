@@ -44,9 +44,9 @@
   " }}} Window "
 
 " Buffer {{{ "
-  nnoremap <Leader>bn :bn<Cr>
-  nnoremap <Leader>bp :bp<Cr>
-  nnoremap <Leader>bd :BufOnly<Cr>
+  nnoremap <Leader>x :bn<Cr>
+  nnoremap <Leader>z :bp<Cr>
+  nnoremap <Leader>c :BufOnly<Cr>
 " }}} Buffer "
 
 " Neovim {{{ "
@@ -63,5 +63,9 @@
 " }}} Search
 
 " Vimrc {{{ "
+  nnoremap <Leader>ev :vsplit ~/.vim<Cr>
+  nnoremap <Leader>eo :vsplit ~/.vim/options.vim<Cr>
+  nnoremap <Leader>em :vsplit ~/.vim/mappings.vim<Cr>
+  nnoremap <Leader>ep :vsplit ~/.vim/plugins.vim<Cr>
   nnoremap <Leader>sv :source $MYVIMRC<Cr>
 " }}} Vimrc "

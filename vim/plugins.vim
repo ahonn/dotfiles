@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'ap/vim-css-color'
+  Plug 'cocopon/colorswatch.vim'
+  Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
   Plug 'ryanoasis/vim-devicons'
@@ -38,8 +40,12 @@ call plug#begin('~/.vim/plugged')
   " Integration
   Plug 'w0rp/ale'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+  if isdirectory('/usr/local/opt/fzf')
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+  else
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  endif
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
@@ -84,8 +90,9 @@ call plug#end()
 " Colorscheme
 " ----------------------------------------------------------------------------
 set background=dark
-let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
+let g:hybrid_custom_term_colors = 1
+highlight! link JsObjectKey Identifier
 
 " ----------------------------------------------------------------------------
 " Plugin
@@ -207,6 +214,8 @@ nnoremap <Leader>mp :Maps<Cr>
 " ----------------------------------------------------------------------------
 nnoremap <Leader><Tab> :IndentLinesToggle<Cr>
 let g:indentLine_enabled = 1
+let g:indentLine_color_term = 236
+let g:indentLine_faster = 1
 
 " ----------------------------------------------------------------------------
 "	nerdcommenter
@@ -297,7 +306,7 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_semantic_triggers = {
   \ 'css,less,scss': [ 're!^\s{2}', 're!:\s+' ],
   \ 'javascript.jsx,typescript': [ '.' ],
-  \ 'clojure': [ 're!:' ]
+  \ 'clojure': [ 're!:', 're!\(' ]
   \ }
 
 " ----------------------------------------------------------------------------
