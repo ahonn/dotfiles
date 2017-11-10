@@ -28,6 +28,7 @@ if [[ -d /usr/local/sbin ]]; then
 fi
 
 # ========== Aliases ========== #
+alias rm="rmtrash"
 alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"

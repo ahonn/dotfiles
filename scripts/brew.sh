@@ -26,6 +26,7 @@ formulas=(
   wget
   z
   zsh
+  rmtrash
 )
 
 for formula in "${formulas[@]}"; do
