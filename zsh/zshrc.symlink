@@ -33,12 +33,12 @@ alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
 
-# tmux
-alias tmuxk="tmux kill-server"
-
 # tmuxinator
 alias mux="tmuxinator"
 alias muxs="tmuxinator start"
+
+# tmux
+alias muxk="tmux kill-server"
 
 # ========== Other ========== #
 # mirror

@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
+  Plug 'ahonn/resize.vim'
   Plug 'christoomey/vim-tmux-navigator'
 
   " Display
@@ -212,6 +213,11 @@ nnoremap <Leader><Leader> :Buffers<Cr>
 "	vim-bufonly
 " ----------------------------------------------------------------------------
 nnoremap <Leader>c :BufOnly<Cr>
+
+" ----------------------------------------------------------------------------
+"	resize.vim
+" ----------------------------------------------------------------------------
+let g:resize_size = 2
 
 " ----------------------------------------------------------------------------
 "	indentLine
