@@ -66,3 +66,4 @@ cnoremap <C-n> <Down>
   nnoremap <Leader>ep :vsplit ~/.vim/plugins.vim<Cr>
   nnoremap <Leader>sv :source $MYVIMRC<Cr>
 " }}} Vimrc "
+
