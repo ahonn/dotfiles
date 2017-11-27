@@ -34,11 +34,10 @@ alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
 
 # tmuxinator
-alias mux="tmuxinator"
-alias muxs="tmuxinator start"
-
+alias t="tmuxinator"
+alias ts="tmuxinator start"
 # tmux
-alias muxk="tmux kill-server"
+alias tk="tmux kill-server"
 
 # ========== Other ========== #
 # mirror
@@ -47,3 +46,8 @@ export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,.undodir}/*" 2> /dev/null'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

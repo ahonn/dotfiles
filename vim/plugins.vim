@@ -59,7 +59,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Chiel92/vim-autoformat'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
-  Plug 'bhurlow/vim-parinfer'
+  Plug 'snoe/nvim-parinfer.js'
 
   " Commands
   Plug 'danro/rename.vim'
@@ -255,6 +255,8 @@ autocmd FileType vim let b:autoformat_autoindent=0
 let g:mta_filetypes = {
   \  "javascript.jsx": 1,
   \ }
+
+let g:parinfer_mode = "indent"
 
 " ----------------------------------------------------------------------------
 "	vim-easymotion

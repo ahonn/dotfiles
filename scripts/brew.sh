@@ -5,28 +5,32 @@ if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+brew update
+brew upgrade --all
+
 echo -e "\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
-  macvim
+  z
   autojump
-  ack
-  ctags
-  fzf
-  git
-  markdown
+  macvim
   neovim/neovim/neovim
-  node
-  nginx
+  ack
   the_silver_searcher
   ripgrep
+  ctags
+  fzf
+  node
+  nvm
+  nginx
   tmux
+  git
+  zsh
   tree
   wget
-  z
-  zsh
   rmtrash
+  thefuck
 )
 
 for formula in "${formulas[@]}"; do
