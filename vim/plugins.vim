@@ -50,6 +50,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
   Plug 'ahonn/resize.vim'
+  Plug 'szw/vim-maximizer'
   Plug 'christoomey/vim-tmux-navigator'
 
   " Display
@@ -218,6 +219,17 @@ nnoremap <Leader>c :BufOnly<Cr>
 "	resize.vim
 " ----------------------------------------------------------------------------
 let g:resize_size = 2
+let g:resize_disable_mappings = 1
+" <M-k/j/h/l>
+nnoremap ˚ :ResizeUp<Cr>
+nnoremap ∆ :ResizeDown<Cr>
+nnoremap ˙ :ResizeLeft<Cr>
+nnoremap ¬ :ResizeRight<Cr>
+
+" ----------------------------------------------------------------------------
+"	vim-maximizer
+" ----------------------------------------------------------------------------
+nnoremap <C-m> :MaximizerToggle<CR>
 
 " ----------------------------------------------------------------------------
 "	indentLine
