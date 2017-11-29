@@ -187,14 +187,16 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint']
   \ }
+let g:ale_fixers = {
+  \ 'javascript': ['eslint']
+  \ }
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>f <Plug>(ale_fix)
 
-" ----------------------------------------------------------------------------
 "	ctrlsf
 " ----------------------------------------------------------------------------
 nnoremap <C-f> :CtrlSF<Space>
-nnoremap <Leader>f yiw:CtrlSF <C-r>"<Cr>
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_ignore_dir = ["node_modules"]
 let g:ctrlsf_mapping = {
@@ -267,6 +269,9 @@ let g:mta_filetypes = {
   \  "javascript.jsx": 1,
   \ }
 
+" ----------------------------------------------------------------------------
+"	nvim-parinfer
+" ----------------------------------------------------------------------------
 let g:parinfer_mode = "indent"
 
 " ----------------------------------------------------------------------------
@@ -307,8 +312,8 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " ----------------------------------------------------------------------------
 "	tern_for_vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader>df :TernDefPreview<Cr>
-nnoremap <Leader>tds :TernDefSplit<Cr>
+nnoremap <Leader>dfp :TernDefPreview<Cr>
+nnoremap <Leader>dfs :TernDefSplit<Cr>
 
 " ----------------------------------------------------------------------------
 "	YouCompleteMe
