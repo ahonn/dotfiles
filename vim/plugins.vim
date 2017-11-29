@@ -49,9 +49,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
+  Plug 'christoomey/vim-tmux-navigator'
   Plug 'ahonn/resize.vim'
   Plug 'szw/vim-maximizer'
-  Plug 'christoomey/vim-tmux-navigator'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -220,11 +220,10 @@ nnoremap <Leader>c :BufOnly<Cr>
 " ----------------------------------------------------------------------------
 let g:resize_size = 2
 let g:resize_disable_mappings = 1
-" <M-k/j/h/l>
-nnoremap ˚ :ResizeUp<Cr>
-nnoremap ∆ :ResizeDown<Cr>
-nnoremap ˙ :ResizeLeft<Cr>
-nnoremap ¬ :ResizeRight<Cr>
+nnoremap <M-k> :ResizeUp<Cr>
+nnoremap <M-j> :ResizeDown<Cr>
+nnoremap <M-h> :ResizeLeft<Cr>
+nnoremap <M-l> :ResizeRight<Cr>
 
 " ----------------------------------------------------------------------------
 "	vim-maximizer

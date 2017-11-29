@@ -4,6 +4,7 @@
 
 " Esc & Exit {{{ "
   inoremap jk <Esc>
+  vnoremap jk <Esc>
 " }}} Esc "
 
 " Indent {{{ "
