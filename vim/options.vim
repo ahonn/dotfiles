@@ -110,14 +110,6 @@
   filetype indent on
 " }}} Filetype "
 
-" Fixed meta key {{{ "
-for i in range(97,122)
-  let c = nr2char(i)
-  exec "map \e".c." <M-".c.">"
-  exec "map! \e".c." <M-".c.">"
-endfor
-" }}} Fixed meta key "
-
 " Cursor {{{ "
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"

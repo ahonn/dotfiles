@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'SpaceVim/vim-swig'
+  Plug 'mxw/vim-jsx'
   Plug 'sheerun/vim-polyglot'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
@@ -173,12 +174,12 @@ let g:workspace_autosave = 1
 "	ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
-let g:ale_sign_error = '💥'
-let g:ale_sign_warning = '✨'
-highlight clear ALEErrorSign
-let g:ale_echo_msg_error_str = '✷ Error'
-let g:ale_echo_msg_warning_str = '⚠ Warning'
-let g:ale_echo_msg_format = '[%severity%] %s'
+" let g:ale_sign_error = '💥'
+" let g:ale_sign_warning = '✨'
+" highlight clear ALEErrorSign
+" let g:ale_echo_msg_error_str = '✷ Error'
+" let g:ale_echo_msg_warning_str = '⚠ Warning'
+" let g:ale_echo_msg_format = '[%severity%] %s'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
@@ -221,11 +222,6 @@ nnoremap <Leader>c :BufOnly<Cr>
 "	resize.vim
 " ----------------------------------------------------------------------------
 let g:resize_size = 2
-let g:resize_disable_mappings = 1
-nnoremap <M-k> :ResizeUp<Cr>
-nnoremap <M-j> :ResizeDown<Cr>
-nnoremap <M-h> :ResizeLeft<Cr>
-nnoremap <M-l> :ResizeRight<Cr>
 
 " ----------------------------------------------------------------------------
 "	vim-maximizer
@@ -303,6 +299,11 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " ----------------------------------------------------------------------------
 let g:user_emmet_install_global = 1
 let g:user_emmet_expandabbr_key = '<C-e>'
+let g:user_emmet_settings = {
+  \ 'javascript.jsx' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ }
 
 " ----------------------------------------------------------------------------
 "	vim-closetag
