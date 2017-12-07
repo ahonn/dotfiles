@@ -16,11 +16,12 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'SpaceVim/vim-swig'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'sheerun/vim-polyglot'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
-  Plug 'styled-components/vim-styled-components'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
 
   " Interface
   Plug 'ap/vim-css-color'
@@ -44,8 +45,8 @@ call plug#begin('~/.vim/plugged')
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   else
-    Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
   endif
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
@@ -104,18 +105,28 @@ nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
 " ----------------------------------------------------------------------------
-"	vim-markdown
-" ----------------------------------------------------------------------------
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_frontmatter = 1
-
-" ----------------------------------------------------------------------------
 "	vim-javascript
 " ----------------------------------------------------------------------------
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 let javascript_enable_domhtmlcss = 1
+
+" ----------------------------------------------------------------------------
+"	vim-css3-syntax
+" ----------------------------------------------------------------------------
+augroup CSSSyntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+  autocmd FileType scss setlocal iskeyword+=-
+  autocmd FileType javascript.jsx setlocal iskeyword+=-
+augroup END
+
+" ----------------------------------------------------------------------------
+"	vim-markdown
+" ----------------------------------------------------------------------------
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
 
 " ----------------------------------------------------------------------------
 "	rainbow
@@ -297,8 +308,10 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " ----------------------------------------------------------------------------
 "	Emmet.vim
 " ----------------------------------------------------------------------------
+"  fix emmet when ycm preview not close
+imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
-let g:user_emmet_expandabbr_key = '<C-e>'
+" let g:user_emmet_expandabbr_key = '<C-e>'
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
   \   'extends' : 'jsx',
