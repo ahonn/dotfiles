@@ -16,9 +16,8 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'SpaceVim/vim-swig'
-  Plug 'hail2u/vim-css3-syntax'
   Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
@@ -111,15 +110,10 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 let javascript_enable_domhtmlcss = 1
 
-" ----------------------------------------------------------------------------
-"	vim-css3-syntax
-" ----------------------------------------------------------------------------
-augroup CSSSyntax
-  autocmd!
-  autocmd FileType css setlocal iskeyword+=-
-  autocmd FileType scss setlocal iskeyword+=-
-  autocmd FileType javascript.jsx setlocal iskeyword+=-
-augroup END
+" vim-jsx-pretty
+let g:vim_jsx_pretty_enable_jsx_highlight = 1
+let g:vim_jsx_pretty_colorful_config = 1
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 " ----------------------------------------------------------------------------
 "	vim-markdown
@@ -185,12 +179,6 @@ let g:workspace_autosave = 1
 "	ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
-" let g:ale_sign_error = '💥'
-" let g:ale_sign_warning = '✨'
-" highlight clear ALEErrorSign
-" let g:ale_echo_msg_error_str = '✷ Error'
-" let g:ale_echo_msg_warning_str = '⚠ Warning'
-" let g:ale_echo_msg_format = '[%severity%] %s'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
@@ -212,7 +200,8 @@ nnoremap <C-f> :CtrlSF<Space>
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_ignore_dir = ["node_modules"]
 let g:ctrlsf_mapping = {
-  \ "vplit": "<C-v>",
+  \ "split": "<C-x>",
+  \ "vsplit": "<C-v>",
   \ "quit": "<Esc>",
   \ }
 
@@ -222,12 +211,13 @@ let g:ctrlsf_mapping = {
 nnoremap <C-p> :Files<Cr>
 nnoremap <Leader>l :BLines<Cr>
 nnoremap <Leader>m :Marks<Cr>
+nnoremap <Leader>g :Commits<Cr>
 nnoremap <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
 "	vim-bufonly
 " ----------------------------------------------------------------------------
-nnoremap <Leader>c :BufOnly<Cr>
+nnoremap <Leader>bo :BufOnly<Cr>
 
 " ----------------------------------------------------------------------------
 "	resize.vim
@@ -250,7 +240,12 @@ let g:indentLine_faster = 1
 " ----------------------------------------------------------------------------
 "	nerdcommenter
 " ----------------------------------------------------------------------------
+nmap <Leader>// <plug>NERDCommenterToggle
+nmap <Leader>/a <plug>NERDCommenterAltDelims
+nmap <Leader>/s <plug>NERDCommenterSexy
 let g:NERDSpaceDelims = 1
+let g:NERDCreateDefaultMappings = 0
+let g:NERDDefaultNesting = 1
 let g:NERDCustomDelimiters = {
   \ 'javascript.jsx': {
       \ 'left': '//',
@@ -311,7 +306,6 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "  fix emmet when ycm preview not close
 imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
-" let g:user_emmet_expandabbr_key = '<C-e>'
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
   \   'extends' : 'jsx',

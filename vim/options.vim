@@ -103,6 +103,13 @@
 " Syntax {{{ "
   syntax on
   syntax enable
+
+  augroup CSSSyntax
+    autocmd!
+    autocmd FileType css setlocal iskeyword+=-
+    autocmd FileType scss setlocal iskeyword+=-
+    autocmd FileType javascript setlocal iskeyword+=-
+  augroup END
 " }}} Syntax "
 
 " Filetype {{{ "
