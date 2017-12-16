@@ -121,4 +121,4 @@ setw -g window-status-attr dim
 
 set -g status-left-length 20
 set -g status-left "#[fg=black,bg=cyan] #S #[fg=cyan,bg=black,nobold,noitalics,nounderscore]"
-set -g status-right "#[fg=brightblack,bg=black,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %Y-%m-%d #[fg=white,bg=brightblack,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %H:%M #[fg=cyan,bg=brightblack,nobold,noitalics,nounderscore]#[fg=black,bg=cyan] #H "
+set -g status-right "#[fg=brightblack,bg=black,nobold,noitalics,nounderscore]#[fg=cyan,bg=brightblack] %Y-%m-%d #[fg=cyan,bg=brightblack,nobold,noitalics,nounderscore]#[fg=cyan,bg=brightblack] %H:%M #[fg=cyan,bg=brightblack,nobold,noitalics,nounderscore]#[fg=black,bg=cyan] #H "
