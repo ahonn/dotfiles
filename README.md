@@ -5,7 +5,7 @@ My vim/neovim, zsh, git, and tmux configuration files
 ```
 $ git clone https://github.com/ahonn/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
-$ ./install.sh
+$ ./setup.sh
 ```
 
 ## Back up your configuration

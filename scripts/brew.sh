@@ -6,7 +6,7 @@ if test ! $(which brew); then
 fi
 
 brew update
-brew upgrade --all
+brew upgrade
 
 echo -e "\nInstalling homebrew packages..."
 echo "=============================="
@@ -21,7 +21,6 @@ formulas=(
   ripgrep
   ctags
   fzf
-  node
   nvm
   nginx
   tmux
