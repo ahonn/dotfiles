@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'SpaceVim/vim-swig'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'hail2u/vim-css3-syntax'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
@@ -259,7 +260,6 @@ let g:jsdoc_custom_args_hook = {
   \   '^\$': {
   \     'type': '{jQuery}'
   \   },
-  \   },
   \   'data': {
   \     'type': '{Object}'
   \   },
@@ -349,8 +349,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " ----------------------------------------------------------------------------
 "	tern_for_vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader>dfp :TernDefPreview<Cr>
-nnoremap <Leader>dfs :TernDefSplit<Cr>
+nnoremap <Leader>tt :TernType<Cr>
+nnoremap <Leader>td :TernDefPreview<Cr>
+let g:tern_show_signature_in_pum = 1
 
 " ----------------------------------------------------------------------------
 "	YouCompleteMe
