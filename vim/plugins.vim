@@ -114,6 +114,13 @@ nnoremap <Leader>pi :PlugInstall<Cr>
 nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
+" ----------------------------------------------------------------------------
+"	vim-javascript
+" ----------------------------------------------------------------------------
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+let javascript_enable_domhtmlcss = 1
+
 " vim-jsx-pretty
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
 let g:vim_jsx_pretty_colorful_config = 1
@@ -383,6 +390,7 @@ let g:ycm_semantic_triggers = {
 "	deoplete.nvim
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_refresh_always = 1
 let g:deoplete#auto_refresh_delay = 200
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
@@ -396,6 +404,8 @@ let g:deoplete#omni#functions.javascript = [
 nnoremap <Leader>t :TernType<Cr>
 autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
 let g:tern_show_signature_in_pum = 1
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 
 " ----------------------------------------------------------------------------
 "	UltiSnips
