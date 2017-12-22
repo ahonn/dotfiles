@@ -15,18 +15,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
 
   " Language
-  Plug 'SpaceVim/vim-swig'
+  " Plug 'othree/yajs.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
+  " Plug 'mxw/vim-jsx'
+  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
+  Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
 
   " Interface
   Plug 'ap/vim-css-color'
-  Plug 'cocopon/colorswatch.vim'
-  Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
   Plug 'ryanoasis/vim-devicons'
@@ -104,17 +104,16 @@ nnoremap <Leader>pi :PlugInstall<Cr>
 nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
-" ----------------------------------------------------------------------------
-"	vim-javascript
-" ----------------------------------------------------------------------------
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-let javascript_enable_domhtmlcss = 1
-
 " vim-jsx-pretty
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
 let g:vim_jsx_pretty_colorful_config = 1
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+
+" ----------------------------------------------------------------------------
+"	javascript-libraries-syntax.vim
+" ----------------------------------------------------------------------------
+let g:used_javascript_libs = 'underscore,jquery'
+autocmd BufReadPre *.jsx let b:javascript_lib_use_react = 0
 
 " ----------------------------------------------------------------------------
 "	vim-markdown
@@ -349,8 +348,8 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " ----------------------------------------------------------------------------
 "	tern_for_vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader>tt :TernType<Cr>
-nnoremap <Leader>td :TernDefPreview<Cr>
+nnoremap <Leader>t :TernType<Cr>
+autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
 let g:tern_show_signature_in_pum = 1
 
 " ----------------------------------------------------------------------------
