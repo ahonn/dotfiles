@@ -28,7 +28,6 @@ formulas=(
   zsh
   tree
   wget
-  rmtrash
   thefuck
 )
 
