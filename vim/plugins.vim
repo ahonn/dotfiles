@@ -74,8 +74,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'ervandew/supertab'
   Plug 'mattn/emmet-vim'
   Plug 'alvan/vim-closetag'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
+  " Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'SirVer/ultisnips'
   Plug 'VimSnippets/vim-snippets'
   Plug 'VimSnippets/vim-react-snippets'
@@ -346,13 +354,6 @@ let g:user_emmet_settings = {
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " ----------------------------------------------------------------------------
-"	tern_for_vim
-" ----------------------------------------------------------------------------
-nnoremap <Leader>t :TernType<Cr>
-autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
-let g:tern_show_signature_in_pum = 1
-
-" ----------------------------------------------------------------------------
 "	YouCompleteMe
 " ----------------------------------------------------------------------------
 let g:ycm_auto_trigger = 1
@@ -373,6 +374,18 @@ let g:ycm_semantic_triggers = {
   \ 'javascript,javascript.jsx,typescript,go': [ '.' ],
   \ 'clojure': [ 're!:', 're!\(' ],
   \ }
+
+" ----------------------------------------------------------------------------
+"	tern_for_vim
+" ----------------------------------------------------------------------------
+nnoremap <Leader>t :TernType<Cr>
+autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+let g:tern_show_signature_in_pum = 1
+
+" ----------------------------------------------------------------------------
+"	deoplete.nvim
+" ----------------------------------------------------------------------------
+let g:deoplete#enable_at_startup = 1
 
 " ----------------------------------------------------------------------------
 "	UltiSnips

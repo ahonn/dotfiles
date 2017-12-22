@@ -15,7 +15,7 @@ else
   echo "ruby_url=https://cache.ruby-china.org/pub/ruby" > ~/.rvm/user/db
 fi
 
-rvm install ruby-head
+rvm install ruby-2.4.1
 
 echo -e "\nInstalling gem packages..."
 echo "=============================="
