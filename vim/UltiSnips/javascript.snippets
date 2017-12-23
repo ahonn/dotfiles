@@ -17,7 +17,7 @@ endsnippet
 #                                                   Import / Require                                                   #
 ########################################################################################################################
 snippet re "const ... = require(...)" b
-${1:const} ${2} = require('${3:$2}')
+const ${1} = require('${2:$1}')
 endsnippet
 
 snippet im "import ... from ..." b
@@ -59,38 +59,34 @@ endsnippet
 
 snippet sw "switch ..." b
 switch (${1}) {
-	case '${2}':
+	case ${2}:
 		${3}
 		break
-			${4}
+	${4}
 	default:
 		${5}
 }
-
-${0}
 endsnippet
 
 snippet case "case ..." b
-case '${1}':
-${0}
-break
+case ${1}:
+	${2}
+	break
 endsnippet
 
 snippet try "try ... catch(e) ..." b
 try {
 	${0:${VISUAL}}
-} catch (${1:e}) {
-	${2:/* handle error */}
-}
+} catch (${1:err}) {${2}}
 endsnippet
 
 snippet tryf "try ... catch(e) ... finally ..." b
 try {
 	${0:${VISUAL}}
-} catch (${1:e}) {
-	${2:/* handle error */}
+} catch (${1:err}) {
+	${2}
 } finally {
-	${3:/* be executed regardless of the try / catch result*/}
+	${3}
 }
 endsnippet
 
@@ -165,12 +161,6 @@ snippet => "arrow function" i
 }
 endsnippet
 
-snippet c=> "const arrow function" b
-const ${1:name} = (${2}) => {
-	${0:${VISUAL}}
-}
-endsnippet
-
 ########################################################################################################################
 #                                                        Class                                                         #
 ########################################################################################################################
@@ -203,10 +193,6 @@ endsnippet
 ########################################################################################################################
 #                                                        Object                                                        #
 ########################################################################################################################
-snippet : "object key value" b
-${1:key}: ${0:value}
-endsnippet
-
 snippet :f "object method" b
 ${1:method}: function (${2}) {
 	${0:${VISUAL}}
