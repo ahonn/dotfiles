@@ -15,10 +15,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
 
   " Language
-  " Plug 'othree/yajs.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
-  " Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
