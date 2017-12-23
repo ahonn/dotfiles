@@ -51,7 +51,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'ahonn/resize.vim'
-  Plug 'szw/vim-maximizer'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -70,8 +69,8 @@ call plug#begin('~/.vim/plugged')
 
   " Completion
   Plug 'ervandew/supertab'
-  Plug 'mattn/emmet-vim'
   Plug 'alvan/vim-closetag'
+  Plug 'mattn/emmet-vim'
   " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -194,6 +193,10 @@ let g:workspace_autosave = 1
 "	ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
+let g:ale_sign_error = '✖'
+hi! ALEErrorSign guifg=#DF8C8C ctermfg=167
+let g:ale_sign_warning = '⚠'
+hi! ALEWarningSign guifg=#F2C38F ctermfg=221
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
@@ -402,6 +405,12 @@ let g:deoplete#omni#functions.javascript = [
 nnoremap <Leader>t :TernType<Cr>
 autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
 let g:tern_show_signature_in_pum = 1
+
+" ----------------------------------------------------------------------------
+"	deoplete-ternjs
+" ----------------------------------------------------------------------------
+let g:deoplete#sources#ternjs#types = 1
+" Use tern_for_vim.
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 

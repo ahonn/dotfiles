@@ -2,18 +2,14 @@
   "ecmaVersion": 6,
   "libs": [
     "browser",
-    "ecmascript",
-    "jquery",
-    "react"
+    "jquery"
   ],
   "plugins": {
-    "commonjs": {},
     "es_modules": {},
-    "complete_strings": {},
+    "node": {},
     "doc_comment": {
       "fullDocs": true,
       "strong": true
-    },
-    "node": {}
+    }
   }
 }
