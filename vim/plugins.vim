@@ -346,7 +346,6 @@ let g:surround_36 = "${\r}"
 " ----------------------------------------------------------------------------
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
-inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " ----------------------------------------------------------------------------
 "	Emmet.vim
@@ -392,7 +391,6 @@ let g:ycm_semantic_triggers = {
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_refresh_always = 1
-let g:deoplete#auto_refresh_delay = 200
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
