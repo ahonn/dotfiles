@@ -1,0 +1,9 @@
+# ~/.tmuxinator/sicp.yml
+
+name: sicp
+root: ~/Developer/code/sicp
+
+windows:
+  - editor: vim
+  - shell:
+    - clear

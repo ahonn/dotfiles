@@ -71,7 +71,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'ervandew/supertab'
   Plug 'alvan/vim-closetag'
   Plug 'mattn/emmet-vim'
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -81,6 +80,8 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'othree/jspc.vim'
+  Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -332,6 +333,9 @@ nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
 nmap fl <Plug>(easymotion-lineforward)
 nmap / <Plug>(easymotion-sn)
+let g:EasyMotion_keys = 'asdhjkl;'
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
 
 " ----------------------------------------------------------------------------
