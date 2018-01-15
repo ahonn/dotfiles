@@ -18,10 +18,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
+  " Plug 'leafgarland/typescript-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
+  Plug 'chemzqm/wxapp.vim'
 
   " Interface
   Plug 'ap/vim-css-color'
@@ -80,6 +83,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'othree/jspc.vim'
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
@@ -204,7 +208,9 @@ let g:ale_linter_aliases = {
   \ 'jsx': 'javascript'
   \ }
 let g:ale_linters = {
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
+  \ 'html': [],
+  \ 'xml': [],
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint']
@@ -242,11 +248,6 @@ nnoremap <Leader>bo :BufOnly<Cr>
 "	resize.vim
 " ----------------------------------------------------------------------------
 let g:resize_size = 2
-
-" ----------------------------------------------------------------------------
-"	vim-maximizer
-" ----------------------------------------------------------------------------
-nnoremap <C-m> :MaximizerToggle<CR>
 
 " ----------------------------------------------------------------------------
 "	indentLine
@@ -399,6 +400,7 @@ let g:ycm_semantic_triggers = {
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_refresh_always = 1
+let g:deoplete#max_menu_width = 60
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
@@ -409,8 +411,9 @@ let g:deoplete#omni#functions.javascript = [
 "	tern_for_vim
 " ----------------------------------------------------------------------------
 nnoremap <Leader>t :TernType<Cr>
-autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
+autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
 
 " ----------------------------------------------------------------------------
 "	deoplete-ternjs
@@ -419,6 +422,12 @@ let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
+
+" ----------------------------------------------------------------------------
+"	nvim-typescript
+" ----------------------------------------------------------------------------
+let g:nvim_typescript#type_info_on_hold = 1
+autocmd FileType typescript setlocal completeopt-=preview
 
 " ----------------------------------------------------------------------------
 "	UltiSnips

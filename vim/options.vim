@@ -24,10 +24,10 @@
   set autowrite
 
   " Line Wrap
-  " set wrap
+  set wrap
   set linebreak
   set showbreak=->
-  " set textwidth=120
+  set textwidth=120
   set colorcolumn=120
   autocmd WinLeave * set nocursorline nocursorcolumn
   autocmd WinEnter * set cursorline cursorcolumn
@@ -36,9 +36,9 @@
   set backspace=eol,start,indent
 
   " Folding
-  set foldenable
-  set foldmethod=manual
-  set foldcolumn=0
+  " set foldenable
+  " set foldmethod=manual
+  " set foldcolumn=0
 
   " Mouse
   set mouse=a
