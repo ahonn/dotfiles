@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
-  " Plug 'leafgarland/typescript-vim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
