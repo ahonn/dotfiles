@@ -4,6 +4,7 @@ echo -e "\nInstalling nerd font..."
 echo "=============================="
 
 formulas=(
+  font-firacode-nerd-font
   font-sourcecodepro-nerd-font-mono
 )
 
