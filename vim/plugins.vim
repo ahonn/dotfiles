@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'pangloss/vim-javascript'
+  " Plug 'othree/yajs.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'HerringtonDarkholme/yats.vim'
@@ -139,6 +140,11 @@ autocmd BufReadPre *.jsx let b:javascript_lib_use_react = 0
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
+
+" ----------------------------------------------------------------------------
+"	wxapp.vim
+" ----------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.wxss set filetype=wxss.css
 
 " ----------------------------------------------------------------------------
 "	rainbow
