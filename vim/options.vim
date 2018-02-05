@@ -36,9 +36,9 @@
   set backspace=eol,start,indent
 
   " Folding
-  " set foldenable
-  " set foldmethod=manual
-  " set foldcolumn=0
+  set foldenable
+  set foldmethod=manual
+  set foldcolumn=0
 
   " Mouse
   set mouse=a
