@@ -59,7 +59,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'scrooloose/nerdcommenter'
   Plug 'heavenshell/vim-jsdoc'
-  Plug 'Chiel92/vim-autoformat'
+  Plug 'sbdchd/neoformat'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
   Plug 'snoe/nvim-parinfer.js'
@@ -316,10 +316,9 @@ let g:jsdoc_custom_args_hook = {
 
 
 " ----------------------------------------------------------------------------
-"	vim-autoformat
+"	neoformat
 " ----------------------------------------------------------------------------
-nnoremap <Leader>af :Autoformat<Cr>
-autocmd FileType vim let b:autoformat_autoindent=0
+nnoremap <Leader>af :Neoformat<Cr>
 
 " ----------------------------------------------------------------------------
 "	MatchTagAlways
