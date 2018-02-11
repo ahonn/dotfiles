@@ -28,7 +28,7 @@ formulas=(
   tree
   wget
   thefuck
-  node
+  focusaurus/homebrew-shfmt/shfmt
 )
 
 for formula in "${formulas[@]}"; do
