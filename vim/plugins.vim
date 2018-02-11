@@ -197,6 +197,7 @@ nnoremap <Leader>tb :TagbarToggle<Cr>
 " ----------------------------------------------------------------------------
 nnoremap <leader>ws :ToggleWorkspace<Cr>
 let g:workspace_session_name = '.vimworkspace'
+let g:workspace_undodir=$HOME.'/.undodir'
 let g:workspace_autosave = 1
 
 " ----------------------------------------------------------------------------
