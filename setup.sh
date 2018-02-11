@@ -9,6 +9,7 @@ git submodule update --init --recursive
 
 source $DOTFILES/scripts/link.sh
 source $DOTFILES/scripts/gem.sh
+source $DOTFILES/scripts/npm.sh
 
 if [ "$(uname)" == "Darwin" ]; then
   source $DOTFILES/scripts/brew.sh

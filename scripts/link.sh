@@ -8,7 +8,7 @@ for file in $linkables ; do
   filename=".$(basename $file '.symlink')"
   target="$HOME/$filename"
   if [ -e $target ]; then
-    echo "~${target#$HOME} already exists... Skipping."
+    echo "$target already exists... Skipping."
   else
     echo "Creating symlink for $file"
     ln -s $file $target
@@ -26,7 +26,7 @@ for config in $DOTFILES/config/*; do
     filename="$(basename $config)"
     target="$HOME/.config/$filename"
     if [ -e $target ]; then
-      echo "~${target#$HOME} already exists... Skipping."
+      echo "$target already exists... Skipping."
     else
       echo "Creating symlink for $config"
       ln -s $config $target

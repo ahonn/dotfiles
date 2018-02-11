@@ -21,7 +21,6 @@ formulas=(
   ripgrep
   ctags
   fzf
-  nvm
   nginx
   tmux
   git
@@ -29,6 +28,7 @@ formulas=(
   tree
   wget
   thefuck
+  node
 )
 
 for formula in "${formulas[@]}"; do
