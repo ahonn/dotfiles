@@ -9,14 +9,14 @@ else
   wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 fi
 
-source ~/.zshrc 2> /dev/null
+source ~/.zshrc 2>/dev/null
 nvm install --lts
 nvm use stable
 
 echo -e "\nInstalling nrm..."
 echo "=============================="
 
-if nrm -V > /dev/null 2>&1; then
+if nrm -V >/dev/null 2>&1; then
   echo "nrm already installed... skipping."
 else
   npm install nrm -g
@@ -39,7 +39,7 @@ formulas=(
 )
 
 for formula in "${formulas[@]}"; do
-  if npm list -g --depth=0 "$formula" > /dev/null 2>&1; then
+  if npm list -g --depth=0 "$formula" >/dev/null 2>&1; then
     echo "$formula already installed... skipping."
   else
     npm install $formula -g

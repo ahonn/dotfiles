@@ -6,9 +6,9 @@ BACKUP_DIR=$HOME/.dotfiles_backup
 echo "Creating backup directory at $BACKUP_DIR"
 mkdir -p $BACKUP_DIR
 
-lineables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
+lineables=$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')
 for file in $lineables; do
-  filename=".$( basename $file '.symlink' )"
+  filename=".$(basename $file '.symlink')"
   target="$HOME/$filename"
   if [ -f $target ]; then
     echo "backing up $filename"
