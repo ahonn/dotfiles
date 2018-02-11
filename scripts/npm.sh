@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+echo -e "\nInstalling nvm..."
+echo "=============================="
+
+if [ -e $HOME/.nvm ]; then
+  echo "nvm already installed... skipping."
+else
+  wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+fi
+
+source ~/.zshrc 2> /dev/null
+nvm install --lts
+nvm use stable
+
 echo -e "\nInstalling nrm..."
 echo "=============================="
 
@@ -10,7 +23,7 @@ else
 fi
 
 nrm ls
-nrm use cnpm
+nrm use taobao
 
 echo -e "\nInstalling npm packages..."
 echo "=============================="
