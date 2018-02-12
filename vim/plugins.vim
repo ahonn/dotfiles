@@ -241,8 +241,6 @@ let g:ctrlsf_mapping = {
 " ----------------------------------------------------------------------------
 nnoremap <C-p> :Files<Cr>
 nnoremap <Leader>l :BLines<Cr>
-nnoremap <Leader>m :Marks<Cr>
-nnoremap <Leader>g :Commits<Cr>
 nnoremap <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
@@ -439,6 +437,7 @@ autocmd FileType typescript setlocal completeopt-=preview
 " UltiSnips
 " ----------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:snips_author='Ahonn Jiang'
 let g:snips_email='ahonn95@outlook.com'
