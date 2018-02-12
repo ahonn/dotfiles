@@ -34,8 +34,8 @@ formulas=(
   eslint-config-airbnb-base
   mirror-config-china
   neovim
-  prettier
   typescript
+  js-beautify
 )
 
 for formula in "${formulas[@]}"; do
