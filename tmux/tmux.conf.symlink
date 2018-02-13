@@ -41,8 +41,8 @@ bind C-l send-keys 'C-l'
 
 # fast switch windows
 bind C-a last-window
-bind C-j previous-window
-bind C-k next-window
+bind C-k previous-window
+bind C-j next-window
 
 # ========== pane ========== #
 # split window
@@ -58,10 +58,10 @@ bind k select-pane -U
 bind l select-pane -R
 
 # resize pane
-bind -r K resizep -U 10
-bind -r J resizep -D 10
-bind -r H resizep -L 10
-bind -r L resizep -R 10
+bind -r K resizep -U 5
+bind -r J resizep -D 5
+bind -r H resizep -L 5
+bind -r L resizep -R 5
 
 # swap panes
 bind C-u swap-pane -U
