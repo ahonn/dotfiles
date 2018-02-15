@@ -11,12 +11,10 @@
 
 " Edit {{{ "
   " Tab and indent
-  set smartindent
   set autoindent
   set smarttab
   set expandtab
   set shiftwidth=2
-  set tabstop=2
   set list
   set listchars=eol:¬,tab:▸\
 
@@ -29,8 +27,11 @@
   set showbreak=->
   set textwidth=120
   set colorcolumn=120
-  autocmd WinLeave * set nocursorline nocursorcolumn
-  autocmd WinEnter * set cursorline cursorcolumn
+  augroup Cursor
+    autocmd!
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
+  augroup END
 
   " Backspace
   set backspace=eol,start,indent
@@ -48,8 +49,7 @@
   set scrolloff=10
 
   " Clipboard
-  set clipboard+=unnamed
-  set nopaste
+  set clipboard^=unnamed
 
   " Session
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
@@ -64,7 +64,7 @@
   " Complete
   set wildmenu
   set wildmode=longest,full
-  set completeopt=menu,menuone,preview
+  set completeopt=menu,menuone
 " }}} Edit "
 
 " View {{{ "

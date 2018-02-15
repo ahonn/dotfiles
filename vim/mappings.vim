@@ -49,9 +49,8 @@
 " }}} Neovim "
 
 " Search {{{ "
-  nnoremap F yiw/<C-r>"<Cr>
-  vnoremap F <Esc>yiw/<C-r>"<Cr>
-  nnoremap \ :let @/ = ""<Cr>
+  noremap F /<C-r><C-w><Cr>
+  nnoremap \ :nohlsearch<Cr>
 " }}} Search
 
 " Command {{{ "

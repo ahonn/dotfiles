@@ -9,8 +9,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/vim-plug'
-
   " Colorscheme
   Plug 'w0ng/vim-hybrid'
 
@@ -95,6 +93,9 @@ call plug#begin('~/.vim/plugged')
 
   " Analyze
   Plug 'wakatime/vim-wakatime'
+
+  " Doc
+  Plug 'keenwon/vimcdoc'
 call plug#end()
 
 
@@ -105,7 +106,6 @@ call plug#end()
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
-set background=dark
 let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 
@@ -126,13 +126,15 @@ let javascript_enable_domhtmlcss = 1
 " vim-jsx-pretty
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
 let g:vim_jsx_pretty_colorful_config = 1
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup JSX
+  autocmd!
+  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 
 " ----------------------------------------------------------------------------
 " javascript-libraries-syntax.vim
 " ----------------------------------------------------------------------------
-let g:used_javascript_libs = 'underscore,jquery'
-autocmd BufReadPre *.jsx let b:javascript_lib_use_react = 0
+let g:used_javascript_libs = 'underscore,jquery,react'
 
 " ----------------------------------------------------------------------------
 " vim-markdown
@@ -144,7 +146,10 @@ let g:vim_markdown_frontmatter = 1
 " ----------------------------------------------------------------------------
 " wxapp.vim
 " ----------------------------------------------------------------------------
-autocmd BufNewFile,BufRead *.wxss set filetype=wxss.css
+augroup Wxapp
+  autocmd!
+  autocmd BufNewFile,BufRead *.wxss set filetype=wxss.css
+augroup END
 
 " ----------------------------------------------------------------------------
 " rainbow
@@ -155,7 +160,6 @@ let g:rainbow_active = 1
 " nerdtree
 " ----------------------------------------------------------------------------
 noremap <C-b> :NERDTreeToggle<Cr>
-autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
 let NERDTreeShowHidden=1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -165,11 +169,15 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
-autocmd FileType nerdtree setlocal nocursorcolumn
-if has('gui_running')
-  autocmd FileType nerdtree setlocal nolist
-  autocmd FileType nerdtree setlocal ambiwidth=double
-endif
+augroup Nerdtree
+  autocmd!
+  autocmd FileType nerdtree setlocal nocursorcolumn
+  autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
+  if has('gui_running')
+    autocmd FileType nerdtree setlocal nolist
+    autocmd FileType nerdtree setlocal ambiwidth=double
+  endif
+augroup END
 
 " ----------------------------------------------------------------------------
 " vim-airline
@@ -378,28 +386,6 @@ let g:user_emmet_settings = {
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " ----------------------------------------------------------------------------
-" YouCompleteMe
-" ----------------------------------------------------------------------------
-let g:ycm_auto_trigger = 1
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_complete_in_comments = 1
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-let g:ycm_filetype_blacklist = {
-  \ 'tagbar' : 1,
-  \ 'markdown' : 1,
-  \ 'text' : 1,
-  \ 'gitcommit' : 1,
-  \ }
-let g:ycm_semantic_triggers = {
-  \ 'css,less,scss': [ 're!^\s{2}', 're!:\s+' ],
-  \ 'javascript,javascript.jsx,typescript,go': [ '.' ],
-  \ 'clojure': [ 're!:', 're!\(' ],
-  \ }
-
-" ----------------------------------------------------------------------------
 " deoplete.nvim
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
@@ -417,7 +403,10 @@ let g:deoplete#omni#functions.javascript = [
 nnoremap <Leader>t :TernType<Cr>
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
-autocmd FileType javascript,javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+augroup Tern
+  autocmd!
+  autocmd FileType javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+augroup END
 
 " ----------------------------------------------------------------------------
 " deoplete-ternjs
@@ -431,7 +420,6 @@ let g:tern#arguments = ["--persistent"]
 " nvim-typescript
 " ----------------------------------------------------------------------------
 let g:nvim_typescript#type_info_on_hold = 1
-autocmd FileType typescript setlocal completeopt-=preview
 
 " ----------------------------------------------------------------------------
 " UltiSnips
