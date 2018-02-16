@@ -67,6 +67,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'easymotion/vim-easymotion'
+  Plug 'kana/vim-textobj-user'
+  Plug 'Julian/vim-textobj-brace'
 
   " Completion
   Plug 'ervandew/supertab'

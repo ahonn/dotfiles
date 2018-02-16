@@ -44,7 +44,7 @@
 " Neovim {{{ "
   if has('nvim')
     nnoremap <C-t> :bo sp term://zsh\|resize 8<Cr>i
-    tnoremap jk <C-\><C-n>
+    tnoremap <Esc> <C-\><C-n>:q<Cr>
   endif
 " }}} Neovim "
 
