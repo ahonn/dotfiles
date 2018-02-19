@@ -162,7 +162,8 @@ let g:rainbow_active = 1
 " nerdtree
 " ----------------------------------------------------------------------------
 noremap <C-b> :NERDTreeToggle<Cr>
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1

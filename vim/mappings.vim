@@ -54,8 +54,8 @@
 " }}} Search
 
 " Command {{{ "
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+  cnoremap <C-p> <Up>
+  cnoremap <C-n> <Down>
 " }}} Command "
 
 " Vimrc {{{ "
