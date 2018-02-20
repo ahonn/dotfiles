@@ -43,11 +43,6 @@
   " Mouse
   set mouse=a
 
-  " Cursor
-  set cursorcolumn
-  set cursorline
-  set scrolloff=10
-
   " Clipboard
   set clipboard^=unnamed
 
@@ -68,8 +63,13 @@
 " }}} Edit "
 
 " View {{{ "
-  " Background
+  " Colors
+  set termguicolors
   set background=dark
+
+  if has('nvim')
+    let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+  endif
 
   " Line number
   set number
@@ -102,9 +102,14 @@
   endif
 " }}} GUI "
 
+" Filetype {{{ "
+  filetype plugin indent on
+" }}} Filetype "
+
 " Syntax {{{ "
-  syntax on
-  syntax enable
+  if !exists('g:syntax_on')
+    syntax enable
+  endif
 
   augroup CSSSyntax
     autocmd!
@@ -114,13 +119,11 @@
   augroup END
 " }}} Syntax "
 
-" Filetype {{{ "
-  filetype plugin on
-  filetype indent on
-" }}} Filetype "
-
 " Cursor {{{ "
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  set cursorcolumn
+  set cursorline
+  set scrolloff=10
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " }}} Cursor "

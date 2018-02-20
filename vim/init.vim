@@ -3,8 +3,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = "\<Space>"
 
-source ~/.vim/options.vim
-source ~/.vim/mappings.vim
-source ~/.vim/iabbrev.vim
-source ~/.vim/plugins.vim
-
+"" https://www.reddit.com/r/vim/wiki/vimrctips#wiki_do_not_use_source
+runtime iabbrev.vim
+runtime plugins.vim
+runtime mappings.vim
+runtime options.vim
