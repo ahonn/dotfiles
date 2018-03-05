@@ -41,8 +41,8 @@ bind C-l send-keys 'C-l'
 
 # fast switch windows
 bind C-a last-window
-bind C-k previous-window
-bind C-j next-window
+bind C-j previous-window
+bind C-k next-window
 
 # ========== pane ========== #
 # split window

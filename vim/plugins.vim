@@ -145,9 +145,17 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 " ----------------------------------------------------------------------------
 " vim-markdown
 " ----------------------------------------------------------------------------
+function! ToggleMarkdownConceal() abort
+  if &conceallevel
+    setlocal conceallevel=0
+  else
+    setlocal conceallevel=2
+  endif
+endfunction
+nnoremap <C-m> :call ToggleMarkdownConceal()<Cr>
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_fenced_languages = ['js=javascript']
 
 " ----------------------------------------------------------------------------
 " wxapp.vim
@@ -221,12 +229,15 @@ let g:workspace_autosave = 1
 " ----------------------------------------------------------------------------
 " vimwiki
 " ----------------------------------------------------------------------------
-let g:vimwiki_list = [{
-  \ 'path': '~/Dropbox/Wiki/',
-  \ 'path_html': '~/Dropbox/Wiki/html/',
-  \ 'auto_toc': 1,
-  \ 'list_margin': 1,
-  \ }]
+let wiki = {}
+let wiki.path = '~/Dropbox/Wiki/'
+let wiki.path_html = '~/Dropbox/Wiki/html/'
+let wiki.auto_toc = 1
+let wiki.nested_syntaxes = {
+  \ 'js': 'javascript',
+  \ 'html': 'html',
+  \ }
+let g:vimwiki_list = [wiki]
 function! SetVimwikiMapping()
   nmap <buffer> <Leader>tt <Plug>VimwikiToggleListItem
   nmap <buffer> <Leader>td <Plug>VimwikiRemoveSingleCB
