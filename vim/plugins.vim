@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
 
   " Language
+  Plug 'ap/vim-css-color'
   Plug 'pangloss/vim-javascript'
   " Plug 'othree/yajs.vim'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -25,7 +26,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'chemzqm/wxapp.vim'
 
   " Interface
-  Plug 'ap/vim-css-color'
+  Plug 'cocopon/colorswatch.vim'
+  Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
   Plug 'ryanoasis/vim-devicons'
@@ -37,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'sjl/gundo.vim'
   Plug 'majutsushi/tagbar'
   Plug 'thaerkh/vim-workspace'
+  Plug 'vimwiki/vimwiki'
 
   " Integration
   Plug 'w0rp/ale'
@@ -52,6 +55,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'ahonn/resize.vim'
+  Plug 'terryma/vim-multiple-cursors'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -157,6 +161,9 @@ augroup END
 " rainbow
 " ----------------------------------------------------------------------------
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\ }
 
 " ----------------------------------------------------------------------------
 " nerdtree
@@ -206,19 +213,35 @@ nnoremap <Leader>tb :TagbarToggle<Cr>
 " ----------------------------------------------------------------------------
 " vim-workspace
 " ----------------------------------------------------------------------------
-nnoremap <leader>ws :ToggleWorkspace<Cr>
+nnoremap <Leader>s :ToggleWorkspace<Cr>
 let g:workspace_session_name = '.vimworkspace'
 let g:workspace_undodir=$HOME.'/.undodir'
 let g:workspace_autosave = 1
+
+" ----------------------------------------------------------------------------
+" vimwiki
+" ----------------------------------------------------------------------------
+let g:vimwiki_list = [{
+  \ 'path': '~/Dropbox/Wiki/',
+  \ 'path_html': '~/Dropbox/Wiki/html/',
+  \ 'auto_toc': 1,
+  \ 'list_margin': 1,
+  \ }]
+function! SetVimwikiMapping()
+  nmap <buffer> <Leader>tt <Plug>VimwikiToggleListItem
+  nmap <buffer> <Leader>td <Plug>VimwikiRemoveSingleCB
+endfunction
+augroup Vimwiki
+  autocmd!
+  autocmd FileType vimwiki call SetVimwikiMapping()
+augroup END
 
 " ----------------------------------------------------------------------------
 " ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
 let g:ale_sign_error = '✖'
-hi! ALEErrorSign guifg=#DF8C8C ctermfg=167
 let g:ale_sign_warning = '⚠'
-hi! ALEWarningSign guifg=#F2C38F ctermfg=221
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
@@ -403,12 +426,15 @@ let g:deoplete#omni#functions.javascript = [
 " ----------------------------------------------------------------------------
 " tern_for_vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader>t :TernType<Cr>
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
+function! SetTernMapping() abort
+  nnoremap <buffer> <Leader>tt :TernType<Cr>
+  nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+endfunction
 augroup Tern
   autocmd!
-  autocmd FileType javascript.jsx nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+  autocmd FileType javascript.jsx,javascript call SetTernMapping()
 augroup END
 
 " ----------------------------------------------------------------------------

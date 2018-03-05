@@ -16,7 +16,7 @@
   set expandtab
   set shiftwidth=2
   set list
-  set listchars=eol:¬,tab:▸\
+  set listchars=eol:¬,tab:▸\ ,trail:·
 
   set autoread
   set autowrite
