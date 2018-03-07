@@ -36,6 +36,7 @@ formulas=(
   neovim
   typescript
   js-beautify
+  gh-pages
 )
 
 for formula in "${formulas[@]}"; do

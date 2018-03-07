@@ -145,14 +145,14 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 " ----------------------------------------------------------------------------
 " vim-markdown
 " ----------------------------------------------------------------------------
-function! ToggleMarkdownConceal() abort
+function! ToggleConceal() abort
   if &conceallevel
     setlocal conceallevel=0
   else
     setlocal conceallevel=2
   endif
 endfunction
-nnoremap <C-m> :call ToggleMarkdownConceal()<Cr>
+nnoremap <Leader>m :call ToggleConceal()<Cr>
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript']
@@ -230,21 +230,33 @@ let g:workspace_autosave = 1
 " vimwiki
 " ----------------------------------------------------------------------------
 let wiki = {}
-let wiki.path = '~/Dropbox/Wiki/'
-let wiki.path_html = '~/Dropbox/Wiki/html/'
-let wiki.auto_toc = 1
-let wiki.nested_syntaxes = {
-  \ 'js': 'javascript',
-  \ 'html': 'html',
-  \ }
+let wiki.path = '~/Dropbox/Wiki/source'
+let wiki.path_html = '~/Dropbox/Wiki'
+let wiki.template_path = '~/Dropbox/Wiki/assets/'
+let wiki.template_default = 'default'
+let wiki.template_ext = '.tpl'
+let wiki.css_name = ''
 let g:vimwiki_list = [wiki]
+let g:vimwiki_toc_header = 'TOC'
+function! SyncToWikiSite()
+  execute ':!git add .'
+  execute ':!git commit -m "Syn at `date`"'
+  execute ':!git push -f origin master'
+endfunction
 function! SetVimwikiMapping()
+  nmap <buffer> <Leader>wha :VimwikiAll2HTML<Cr>
+                           \:set filetype=vimwiki<Cr>
+  nmap <buffer> <Leader>whd :VimwikiAll2HTML<Cr>
+                           \:call SyncToWikiSite()<Cr>
+                           \:set filetype=vimwiki<Cr>
+
   nmap <buffer> <Leader>tt <Plug>VimwikiToggleListItem
   nmap <buffer> <Leader>td <Plug>VimwikiRemoveSingleCB
 endfunction
 augroup Vimwiki
   autocmd!
   autocmd FileType vimwiki call SetVimwikiMapping()
+  autocmd BufWritePost *.wiki VimwikiTOC
 augroup END
 
 " ----------------------------------------------------------------------------

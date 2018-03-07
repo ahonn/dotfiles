@@ -29,8 +29,8 @@
   set colorcolumn=120
   augroup Cursor
     autocmd!
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
   augroup END
 
   " Backspace
@@ -120,7 +120,7 @@
 " }}} Syntax "
 
 " Cursor {{{ "
-  set cursorcolumn
+  " set cursorcolumn
   set cursorline
   set scrolloff=10
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
