@@ -99,9 +99,6 @@ call plug#begin('~/.vim/plugged')
 
   " Analyze
   Plug 'wakatime/vim-wakatime'
-
-  " Doc
-  Plug 'keenwon/vimcdoc'
 call plug#end()
 
 
