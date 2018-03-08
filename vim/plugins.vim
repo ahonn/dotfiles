@@ -85,8 +85,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'ternjs/tern_for_vim'
+  Plug 'carlitux/deoplete-ternjs'
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'othree/jspc.vim'
   Plug 'Shougo/neco-vim', { 'for': 'vim' }

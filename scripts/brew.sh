@@ -29,6 +29,7 @@ formulas=(
   wget
   thefuck
   focusaurus/homebrew-shfmt/shfmt
+  ruby
 )
 
 for formula in "${formulas[@]}"; do
