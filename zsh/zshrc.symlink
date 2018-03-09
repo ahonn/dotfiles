@@ -56,3 +56,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Java
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+# Python
+export PATH="/usr/local/opt/python@2/bin:$PATH"
