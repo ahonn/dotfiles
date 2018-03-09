@@ -34,7 +34,6 @@ alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
 
 # tmuxinator
-alias t="tmuxinator"
 alias ts="tmuxinator start"
 # tmux
 alias tk="tmux kill-server"
@@ -54,3 +53,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Java
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
