@@ -227,9 +227,9 @@ let g:workspace_autosave = 1
 " vimwiki
 " ----------------------------------------------------------------------------
 let wiki = {}
-let wiki.path = '~/Dropbox/Wiki/source'
-let wiki.path_html = '~/Dropbox/Wiki'
-let wiki.template_path = '~/Dropbox/Wiki/assets/'
+let wiki.path = '~/vimwiki/source'
+let wiki.path_html = '~/vimwiki/'
+let wiki.template_path = '~/vimwiki/assets/'
 let wiki.template_default = 'default'
 let wiki.template_ext = '.tpl'
 let wiki.css_name = ''
