@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'chemzqm/wxapp.vim'
+  Plug 'posva/vim-vue'
 
   " Interface
   Plug 'cocopon/colorswatch.vim'
@@ -160,6 +161,13 @@ let g:vim_markdown_fenced_languages = ['js=javascript']
 augroup Wxapp
   autocmd!
   autocmd BufNewFile,BufRead *.wxss set filetype=wxss.css
+augroup END
+
+" ----------------------------------------------------------------------------
+" vim-vue
+" ----------------------------------------------------------------------------
+augroup Vue
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.css
 augroup END
 
 " ----------------------------------------------------------------------------
