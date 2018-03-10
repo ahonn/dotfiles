@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 sudo gem update --system
+
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem sources -l
 sudo gem update
 
 echo -e "\nInstalling gem packages..."
