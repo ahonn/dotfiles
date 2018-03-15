@@ -17,7 +17,8 @@ export GIT_EDITOR='nvim'
 export MANPATH="/usr/local/man:$MANPATH"
 
 export PATH=$DOTFILES/bin:$PATH
-export PATH=/usr/local/bin/:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 if [[ -d $HOME/bin ]]; then
   export PATH=$HOME/bin:$PATH
@@ -58,3 +59,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 # Python
 export PATH="/usr/local/opt/python@2/bin:$PATH"
+# Haskell
+export PATH="$HOME/Library/Haskell/bin:$PATH"

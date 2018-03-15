@@ -50,7 +50,7 @@
 
 " Search {{{ "
   noremap F /<C-r><C-w><Cr>
-  nnoremap \ :nohlsearch<Cr>
+  nnoremap <silent> \ :nohlsearch<Cr>
 " }}} Search
 
 " Command {{{ "

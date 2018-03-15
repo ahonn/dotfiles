@@ -23,12 +23,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
-  Plug 'chemzqm/wxapp.vim'
   Plug 'posva/vim-vue'
 
   " Interface
-  Plug 'cocopon/colorswatch.vim'
-  Plug 'cocopon/pgmnt.vim'
+  " Plug 'cocopon/colorswatch.vim'
+  " Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
   Plug 'ryanoasis/vim-devicons'
@@ -55,8 +54,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'ahonn/resize.vim'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'ahonn/resize.vim'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -65,7 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
   Plug 'Chiel92/vim-autoformat'
-  Plug 'snoe/nvim-parinfer.js'
+  Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
   Plug 'danro/rename.vim'
@@ -89,6 +88,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ternjs/tern_for_vim'
   Plug 'carlitux/deoplete-ternjs'
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
+  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'othree/jspc.vim'
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
@@ -228,16 +228,16 @@ nnoremap <Leader>tb :TagbarToggle<Cr>
 " ----------------------------------------------------------------------------
 nnoremap <Leader>s :ToggleWorkspace<Cr>
 let g:workspace_session_name = '.vimworkspace'
-let g:workspace_undodir=$HOME.'/.undodir'
-let g:workspace_autosave = 1
+let g:workspace_undodir = $HOME.'/.undodir'
+let g:workspace_autosave = 0
 
 " ----------------------------------------------------------------------------
 " vimwiki
 " ----------------------------------------------------------------------------
 let wiki = {}
 let wiki.path = '~/vimwiki/source'
-let wiki.path_html = '~/vimwiki/'
-let wiki.template_path = '~/vimwiki/assets/'
+let wiki.path_html = '~/vimwiki/docs/'
+let wiki.template_path = '~/vimwiki/docs/assets/'
 let wiki.template_default = 'default'
 let wiki.template_ext = '.tpl'
 let wiki.css_name = ''
@@ -270,7 +270,7 @@ augroup END
 nnoremap <leader>al :ALEToggle<Cr>
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
-let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript'
@@ -289,7 +289,7 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 
 " ctrlsf
 " ----------------------------------------------------------------------------
-nnoremap <C-f> :CtrlSF<Space>
+nnoremap <silent> <C-f> :CtrlSF<Space>
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_ignore_dir = ["node_modules"]
 let g:ctrlsf_mapping = {
@@ -301,9 +301,9 @@ let g:ctrlsf_mapping = {
 " ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
-nnoremap <C-p> :Files<Cr>
-nnoremap <Leader>l :BLines<Cr>
-nnoremap <Leader><Leader> :Buffers<Cr>
+nnoremap <silent> <C-p> :Files<Cr>
+nnoremap <silent> <Leader>l :BLines<Cr>
+nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
 " vim-bufonly
@@ -329,13 +329,17 @@ let g:indentLine_faster = 1
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
 let g:NERDCustomDelimiters = {
-  \ 'javascript.jsx': {
-      \ 'left': '//',
+  \ 'javascript': {
+      \ 'left': '/*',
+      \ 'right': '*/',
       \ 'leftAlt': '{/*',
       \ 'rightAlt': '*/}'
     \ },
     \ 'clojure': {
       \ 'left': ';;',
+    \ },
+    \ 'haskell': {
+      \ 'left': '--',
     \ }
   \ }
 
@@ -412,7 +416,7 @@ let g:EasyMotion_smartcase = 1
 " ----------------------------------------------------------------------------
 " vim-surround
 " ----------------------------------------------------------------------------
-nmap , ysiw
+nmap <silent> , ysiw
 let g:surround_35 = "#{\r}"
 let g:surround_36 = "${\r}"
 
@@ -432,6 +436,9 @@ let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
   \   'extends' : 'jsx',
   \  },
+  \ 'javascript' : {
+  \   'extends' : 'jsx',
+  \  },
   \ }
 
 " ----------------------------------------------------------------------------
@@ -449,6 +456,9 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
   \ 'jspc#omni',
+  \ ]
+let g:deoplete#omni#functions.haskell = [
+  \ 'necoghc#omnifunc',
   \ ]
 
 " ----------------------------------------------------------------------------
@@ -477,6 +487,13 @@ let g:tern#arguments = ["--persistent"]
 " nvim-typescript
 " ----------------------------------------------------------------------------
 let g:nvim_typescript#type_info_on_hold = 1
+
+" ----------------------------------------------------------------------------
+" neco-ghc
+" ----------------------------------------------------------------------------
+let g:haskellmode_completion_ghc = 0
+let g:necoghc_enable_detailed_browse = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " ----------------------------------------------------------------------------
 " UltiSnips

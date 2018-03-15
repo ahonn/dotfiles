@@ -19,7 +19,7 @@
   set listchars=eol:¬,tab:▸\ ,trail:·
 
   set autoread
-  set autowrite
+  set noautowrite
 
   " Line Wrap
   set wrap
