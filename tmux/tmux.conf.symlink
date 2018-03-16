@@ -40,6 +40,7 @@ bind c new-window -c "#{pane_current_path}"
 bind C-l send-keys 'C-l'
 
 # fast switch windows
+bind Space choose-tree -w
 bind C-a last-window
 bind C-j previous-window
 bind C-k next-window

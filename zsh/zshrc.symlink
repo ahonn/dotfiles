@@ -59,5 +59,3 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 # Python
 export PATH="/usr/local/opt/python@2/bin:$PATH"
-# Haskell
-export PATH="$HOME/Library/Haskell/bin:$PATH"
