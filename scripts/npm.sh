@@ -37,6 +37,8 @@ formulas=(
   typescript
   js-beautify
   gh-pages
+  commitizen
+  cz-conventional-changelog
 )
 
 for formula in "${formulas[@]}"; do
