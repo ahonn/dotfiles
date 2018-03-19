@@ -290,6 +290,7 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ack.vim
 " ----------------------------------------------------------------------------
 nnoremap <C-f> :Ack!<Space>
+let g:ackprg = 'rg --vimgrep --no-heading'
 let g:ack_autoclose = 1
 let g:ack_mappings = {
   \ "x": '<C-W><CR><C-W>K',
