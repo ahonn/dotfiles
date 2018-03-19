@@ -89,7 +89,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'carlitux/deoplete-ternjs'
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'othree/jspc.vim'
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
   " Snippets
@@ -167,7 +166,7 @@ augroup END
 " vim-vue
 " ----------------------------------------------------------------------------
 augroup Vue
-  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.css
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -456,7 +455,6 @@ let g:deoplete#max_menu_width = 60
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
-  \ 'jspc#omni',
   \ ]
 let g:deoplete#omni#functions.haskell = [
   \ 'necoghc#omnifunc',

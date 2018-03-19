@@ -1,0 +1,12 @@
+# ~/.tmuxinator/wechat.yml
+
+name: wechat
+root: ~/Developer/code/wechat
+
+windows:
+  - editor: clear
+  - shell:
+      layout: even-horizontal
+      panes:
+        - clear
+        - clear

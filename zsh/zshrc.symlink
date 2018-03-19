@@ -33,6 +33,7 @@ alias vim="nvim"
 alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
 alias dotfiles="cd ~/.dotfiles && vim"
+alias ghci="stack exec -- ghci"
 
 # tmuxinator
 alias ts="tmuxinator start"
