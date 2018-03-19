@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'dyng/ctrlsf.vim'
+  Plug 'mileszs/ack.vim'
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   else
@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'bronson/vim-trailing-whitespace'
   Plug 'ahonn/resize.vim'
 
   " Display
@@ -207,6 +207,7 @@ augroup END
 " ----------------------------------------------------------------------------
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
@@ -217,6 +218,7 @@ nnoremap <Leader>ud :GundoToggle<Cr>
 let g:gundo_width = 50
 let g:gundo_preview_height = 40
 let g:gundo_right = 1
+let g:gundo_prefer_python3 = 1
 
 " ----------------------------------------------------------------------------
 " tagbar
@@ -283,20 +285,12 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \ 'javascript': ['eslint']
   \ }
-nmap <silent> <Leader>j <Plug>(ale_next_wrap)
-nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
-" ctrlsf
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-f> :CtrlSF<Space>
-let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_ignore_dir = ["node_modules"]
-let g:ctrlsf_mapping = {
-  \ "split": "<C-x>",
-  \ "vsplit": "<C-v>",
-  \ "quit": "<Esc>",
-  \ }
+" ack.vim
+" ----------------------------------------------------------------------------
+nnoremap <C-f> :Ack!<Space>
 
 " ----------------------------------------------------------------------------
 " fzf.vim
@@ -309,6 +303,14 @@ nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 " vim-bufonly
 " ----------------------------------------------------------------------------
 nnoremap <Leader>bo :BufOnly<Cr>
+
+" ----------------------------------------------------------------------------
+" vim-trailing-whitespace
+" ----------------------------------------------------------------------------
+augroup TrailingSpace
+  autocmd!
+  autocmd BufWritePre * FixWhitespace
+augroup END
 
 " ----------------------------------------------------------------------------
 " resize.vim
