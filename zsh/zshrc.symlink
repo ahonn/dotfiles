@@ -36,6 +36,7 @@ alias dotfiles="cd ~/.dotfiles && vim"
 alias ghci="stack exec -- ghci"
 
 # tmuxinator
+alias t="tmuxinator"
 alias ts="tmuxinator start"
 # tmux
 alias tk="tmux kill-server"
