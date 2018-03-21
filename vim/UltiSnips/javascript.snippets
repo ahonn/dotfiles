@@ -37,19 +37,19 @@ endsnippet
 ########################################################################################################################
 snippet if "if ..." b
 if (${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 snippet el "else ..."
 else {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 snippet elif "else if ..."
 else if (${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
@@ -59,34 +59,34 @@ endsnippet
 
 snippet sw "switch ..." b
 switch (${1}) {
-	case ${2}:
-		${3}
-		break
-	${4}
-	default:
-		${5}
+  case ${2}:
+    ${3}
+    break
+    ${4}
+  default:
+    ${5}
 }
 endsnippet
 
 snippet case "case ..." b
 case ${1}:
-	${2}
-	break
+  ${2}
+  break
 endsnippet
 
 snippet try "try ... catch(e) ..." b
 try {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 } catch (${1:err}) {${2}}
 endsnippet
 
 snippet tryf "try ... catch(e) ... finally ..." b
 try {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 } catch (${1:err}) {
-	${2}
+  ${2}
 } finally {
-	${3}
+  ${3}
 }
 endsnippet
 
@@ -100,20 +100,20 @@ endsnippet
 
 snippet for "for ..." b
 for (${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 snippet while "while ..." b
 while (${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 
 snippet do "do ..." b
 do {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 } while (${1});
 endsnippet
 
@@ -127,37 +127,37 @@ endsnippet
 
 snippet func "function" i
 function ${1}(${2}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
-snippet varf "var function" b
-var ${1} = function(${2}) {
-	${0:${VISUAL}}
-}
-endsnippet
-
-snippet iife "iife function" b
+snippet (f "iife function" b
 (function (${1}) {
- ${0:${VISUAL}}
- }(${2}))
+  ${0:${VISUAL}}
+  }(${2}))
 endsnippet
 
 snippet ;f "iife function" b
 ;(function (${1}) {
-		${0:${VISUAL}}
-		}(${2}))
+  ${0:${VISUAL}}
+}(${2}))
 endsnippet
 
-snippet fun* "generator function" i
+snippet f* "generator function" i
 function* ${1}(${2}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
+endsnippet
+
+snippet *f "generator function" i
+* ${1}(${2}) {
+  ${0:${VISUAL}}
+},
 endsnippet
 
 snippet => "arrow function" i
 (${1}) => {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
@@ -166,27 +166,27 @@ endsnippet
 ########################################################################################################################
 snippet cla "class ..." b
 class ${1} {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 snippet clax "class ... extends ..." b
 class ${1} extends ${2} {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
 snippet clac "class ... { constructor() ... }" b
 class ${1} {
-	constructor(${2}) {
-		${0:${VISUAL}}
-	}
+  constructor(${2}) {
+    ${0:${VISUAL}}
+  }
 }
 endsnippet
 
 snippet con "constructor () { ... }" b
 constructor(${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 
@@ -195,7 +195,7 @@ endsnippet
 ########################################################################################################################
 snippet :f "object method" b
 ${1:method}: function (${2}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 },
 endsnippet
 
@@ -250,7 +250,7 @@ endsnippet
 
 snippet sett "set timeout"
 setTimeout(function () {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }, ${1:0});
 endsnippet
 
@@ -261,6 +261,6 @@ snippet ed "exports defaulr"
 export default ${0}
 endsnippet
 
-snippet ex "module.exports"
-module.exports = $1;
+snippet me "module.exports"
+module.exports = ${0};
 endsnippet
