@@ -199,7 +199,6 @@ augroup END
 " ----------------------------------------------------------------------------
 " vim-devicons
 " ----------------------------------------------------------------------------
-let g:WebDevIconsUnicodeDecorateFolderNodes=1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 if exists('g:loaded_webdevicons')
