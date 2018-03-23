@@ -186,11 +186,6 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
 augroup Nerdtree
   autocmd!
   autocmd FileType nerdtree setlocal nocursorcolumn
@@ -202,12 +197,23 @@ augroup Nerdtree
 augroup END
 
 " ----------------------------------------------------------------------------
+" vim-devicons
+" ----------------------------------------------------------------------------
+let g:WebDevIconsUnicodeDecorateFolderNodes=1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
+
+" ----------------------------------------------------------------------------
 " vim-airline
 " ----------------------------------------------------------------------------
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#show_tabs=0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " ----------------------------------------------------------------------------
