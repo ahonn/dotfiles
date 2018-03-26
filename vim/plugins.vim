@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim'
-  Plug 'majutsushi/tagbar'
+  Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags' }
   Plug 'thaerkh/vim-workspace'
   Plug 'vimwiki/vimwiki'
 
@@ -85,7 +85,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'ternjs/tern_for_vim'
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs'
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
