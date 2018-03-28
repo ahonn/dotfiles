@@ -230,6 +230,7 @@ let g:gundo_prefer_python3 = 1
 nnoremap <Leader>t :TagbarToggle<Cr>
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
+let g:tagbar_autoshowtag = 1
 
 " ----------------------------------------------------------------------------
 " vim-workspace
@@ -308,7 +309,7 @@ let g:ack_mappings = {
 " fzf.vim
 " ----------------------------------------------------------------------------
 nnoremap <silent> <C-p> :Files<Cr>
-nnoremap <silent> <Leader>l :BLines<Cr>
+nnoremap <silent> <C-i> :BLines<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
