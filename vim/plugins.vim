@@ -414,12 +414,10 @@ let g:parinfer_mode = "indent"
 " ----------------------------------------------------------------------------
 " vim-easymotion
 " ----------------------------------------------------------------------------
-nmap f <Plug>(easymotion-prefix)
-nmap ff <Plug>(easymotion-s)
-nmap fh <Plug>(easymotion-linebackward)
-nmap fj <Plug>(easymotion-j)
-nmap fk <Plug>(easymotion-k)
-nmap fl <Plug>(easymotion-lineforward)
+map fh <Plug>(easymotion-linebackward)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fl <Plug>(easymotion-lineforward)
 nmap / <Plug>(easymotion-sn)
 let g:EasyMotion_keys = 'asdhjkl;'
 let g:EasyMotion_do_mapping = 0
