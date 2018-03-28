@@ -227,7 +227,9 @@ let g:gundo_prefer_python3 = 1
 " ----------------------------------------------------------------------------
 " tagbar
 " ----------------------------------------------------------------------------
-nnoremap <Leader>tb :TagbarToggle<Cr>
+nnoremap <Leader>t :TagbarToggle<Cr>
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
 
 " ----------------------------------------------------------------------------
 " vim-workspace
