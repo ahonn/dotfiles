@@ -93,9 +93,8 @@ call plug#begin('~/.vim/plugged')
 
   " Snippets
   Plug 'SirVer/ultisnips'
-  Plug 'VimSnippets/vim-snippets'
-  Plug 'VimSnippets/vim-react-snippets'
-  Plug 'VimSnippets/vim-clojure-snippets'
+  Plug 'honza/vim-snippets'
+  Plug 'VimSnippets/vim-web-snippets'
 
   " Analyze
   Plug 'wakatime/vim-wakatime'
