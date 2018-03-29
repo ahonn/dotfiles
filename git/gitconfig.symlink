@@ -6,3 +6,5 @@ email = ahonn95@outlook.com
 excludesfile = /Users/ahonn/.gitignore_global
 [includeIf "gitdir:~/doryWorkSpace/"]
     path = ~/doryWorkSpace/.gitconfig
+[includeIf "gitdir:~/Code/Alibaba"]
+    path = ~/Code/Alibaba/.gitconfig
