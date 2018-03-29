@@ -11,6 +11,7 @@ endif
 call plug#begin('~/.vim/plugged')
   " Colorscheme
   Plug 'w0ng/vim-hybrid'
+  Plug 'nanotech/jellybeans.vim'
 
   " Language
   Plug 'ap/vim-css-color'
@@ -108,8 +109,10 @@ call plug#end()
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
-let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
+" let g:hybrid_custom_term_colors = 1
+" colorscheme hybrid
+let g:jellybeans_use_lowcolor_black = 1
+colorscheme jellybeans
 
 " ----------------------------------------------------------------------------
 " Plugin
