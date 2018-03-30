@@ -10,8 +10,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
   " Colorscheme
-  Plug 'w0ng/vim-hybrid'
-  Plug 'nanotech/jellybeans.vim'
+  " Plug 'w0ng/vim-hybrid'
+  " Plug 'nanotech/jellybeans.vim'
 
   " Language
   Plug 'ap/vim-css-color'
