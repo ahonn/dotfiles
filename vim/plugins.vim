@@ -110,10 +110,8 @@ call plug#end()
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
-" let g:hybrid_custom_term_colors = 1
-" colorscheme hybrid
-let g:jellybeans_use_lowcolor_black = 1
-colorscheme jellybeans
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " ----------------------------------------------------------------------------
 " Plugin
