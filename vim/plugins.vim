@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'posva/vim-vue'
+  Plug 'yuezk/xtpl.vim'
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
