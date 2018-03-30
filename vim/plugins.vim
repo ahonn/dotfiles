@@ -279,8 +279,10 @@ augroup END
 " ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '◉'
+let g:ale_sign_warning = '◉'
+highlight! ALEErrorSign ctermfg=9 guifg=#C30500
+highlight! ALEWarningSign ctermfg=11 guifg=#F0C674
 " let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',

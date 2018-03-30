@@ -5,6 +5,6 @@ let mapleader = "\<Space>"
 
 "" https://www.reddit.com/r/vim/wiki/vimrctips#wiki_do_not_use_source
 runtime iabbrev.vim
-runtime plugins.vim
 runtime options.vim
 runtime mappings.vim
+runtime plugins.vim
