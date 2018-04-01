@@ -16,10 +16,10 @@ call plug#begin('~/.vim/plugged')
   " Language
   Plug 'ap/vim-css-color'
   Plug 'pangloss/vim-javascript'
-  " Plug 'othree/yajs.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'HerringtonDarkholme/yats.vim'
+  " Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'leafgarland/typescript-vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
+  Plug 'ahonn/fileheader.nvim'
   Plug 'danro/rename.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -92,6 +93,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
+  Plug 'zchee/deoplete-jedi'
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -427,6 +429,15 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
 
+
+" ----------------------------------------------------------------------------
+" fileheader.nvim
+" ----------------------------------------------------------------------------
+let g:fileheader_auto_add = 1
+let g:fileheader_auto_update = 1
+let g:fileheader_default_author = 'ahonn'
+let g:fileheader_show_email = 0
+
 " ----------------------------------------------------------------------------
 " vim-surround
 " ----------------------------------------------------------------------------
@@ -494,7 +505,7 @@ augroup END
 let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
+let g:tern#arguments = ["--persistent --no-port-file"]
 
 " ----------------------------------------------------------------------------
 " nvim-typescript
