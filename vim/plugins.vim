@@ -437,6 +437,7 @@ let g:fileheader_auto_add = 1
 let g:fileheader_auto_update = 1
 let g:fileheader_default_author = 'ahonn'
 let g:fileheader_show_email = 0
+let g:fileheader_by_git_config = 1
 
 " ----------------------------------------------------------------------------
 " vim-surround
