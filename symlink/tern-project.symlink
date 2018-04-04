@@ -2,8 +2,7 @@
   "ecmaVersion": 6,
   "libs": [
     "browser",
-    "jquery",
-    "react"
+    "jquery"
   ],
   "plugins": {
     "doc_comment": {

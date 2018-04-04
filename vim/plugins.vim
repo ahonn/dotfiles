@@ -126,7 +126,7 @@ nnoremap <Leader>pu :PlugUpdate<Cr>
 " ----------------------------------------------------------------------------
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-let javascript_enable_domhtmlcss = 1
+let g:javascript_enable_domhtmlcss = 1
 
 " vim-jsx-pretty
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
@@ -505,7 +505,7 @@ augroup END
 let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent --no-port-file"]
+let g:tern#arguments = ["--persistent"]
 
 " ----------------------------------------------------------------------------
 " nvim-typescript
