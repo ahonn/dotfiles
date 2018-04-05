@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim'
   Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags' }
+  Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
   Plug 'vimwiki/vimwiki'
 
@@ -52,11 +53,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
   endif
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'schickling/vim-bufonly'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'ahonn/resize.vim'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -213,8 +211,8 @@ endif
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#tabline#show_tabs=0
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " ----------------------------------------------------------------------------
@@ -232,6 +230,11 @@ let g:gundo_prefer_python3 = 1
 nnoremap <Leader>t :TagbarToggle<Cr>
 let g:tagbar_sort = 0
 let g:tagbar_autoshowtag = 1
+
+" ----------------------------------------------------------------------------
+" winresizer
+" ----------------------------------------------------------------------------
+let g:winresizer_start_key = '<Leader>r'
 
 " ----------------------------------------------------------------------------
 " vim-workspace
@@ -316,22 +319,12 @@ nnoremap <silent> <C-i> :BLines<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
-" vim-bufonly
-" ----------------------------------------------------------------------------
-nnoremap <Leader>bo :BufOnly<Cr>
-
-" ----------------------------------------------------------------------------
 " vim-trailing-whitespace
 " ----------------------------------------------------------------------------
 augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
 augroup END
-
-" ----------------------------------------------------------------------------
-" resize.vim
-" ----------------------------------------------------------------------------
-let g:resize_size = 2
 
 " ----------------------------------------------------------------------------
 " indentLine
