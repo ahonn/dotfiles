@@ -166,7 +166,7 @@ augroup END
 " vim-vue
 " ----------------------------------------------------------------------------
 augroup Vue
-  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=html.css.vue
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -293,10 +293,9 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'html': [],
-  \ 'xml': [],
   \ }
 let g:ale_fixers = {
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
