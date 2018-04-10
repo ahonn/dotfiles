@@ -12,7 +12,6 @@
     "complete_strings": {},
     "es_modules": {},
     "node": {},
-    "webpack": {},
     "requirejs": {
       "baseURL": "./",
       "paths": {}

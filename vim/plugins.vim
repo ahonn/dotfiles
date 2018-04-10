@@ -90,7 +90,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
-  Plug 'zchee/deoplete-jedi'
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -520,4 +519,6 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:snips_author='Ahonn Jiang'
 let g:snips_email='ahonn95@outlook.com'
 let g:snips_github='https://github.com/ahonn'
+
+
 

@@ -16,9 +16,9 @@
   "extends": "airbnb-base",
 
   "rules": {
-    "semi": 0,
     "camelcase": 0,
     "arrow-parens": 0,
+    "semi": 1,
     "no-unused-vars": 1
   }
 }
