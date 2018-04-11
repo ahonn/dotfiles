@@ -21,7 +21,6 @@ echo "=============================="
 formulas=(
   z
   autojump
-  macvim
   neovim/neovim/neovim
   ack
   the_silver_searcher

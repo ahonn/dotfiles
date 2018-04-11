@@ -190,7 +190,6 @@ augroup Nerdtree
   autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
   if has('gui_running')
     autocmd FileType nerdtree setlocal nolist
-    autocmd FileType nerdtree setlocal ambiwidth=double
   endif
 augroup END
 
