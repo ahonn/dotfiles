@@ -17,8 +17,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
-  " Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'leafgarland/typescript-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
@@ -226,7 +225,7 @@ let g:gundo_prefer_python3 = 1
 " ----------------------------------------------------------------------------
 " tagbar
 " ----------------------------------------------------------------------------
-nnoremap <Leader>t :TagbarToggle<Cr>
+nnoremap <Leader>tb :TagbarToggle<Cr>
 let g:tagbar_sort = 0
 let g:tagbar_autoshowtag = 1
 
@@ -291,10 +290,12 @@ let g:ale_linter_aliases = {
   \ }
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint'],
   \ 'html': [],
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint'],
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
@@ -481,13 +482,12 @@ let g:deoplete#omni#functions.haskell = [
 " ----------------------------------------------------------------------------
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
-function! SetTernMapping() abort
-  nnoremap <buffer> <Leader>tt :TernType<Cr>
+function! SetJSDef() abort
   nnoremap <buffer> <C-]> :TernDefPreview<Cr>
 endfunction
-augroup Tern
+augroup JSDef
   autocmd!
-  autocmd FileType javascript.jsx,javascript call SetTernMapping()
+  autocmd FileType javascript.jsx,javascript call SetJSDef()
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -502,6 +502,14 @@ let g:tern#arguments = ["--persistent"]
 " nvim-typescript
 " ----------------------------------------------------------------------------
 let g:nvim_typescript#type_info_on_hold = 1
+let g:nvim_typescript#signature_complete = 1
+function! SetTSDef() abort
+  nnoremap <buffer> <C-]> :TSDefPreview<Cr>
+endfunction
+augroup TSDef
+  autocmd!
+  autocmd FileType typescript call SetTSDef()
+augroup END
 
 " ----------------------------------------------------------------------------
 " neco-ghc
