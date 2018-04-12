@@ -36,6 +36,7 @@ formulas=(
   thefuck
   focusaurus/homebrew-shfmt/shfmt
   ruby
+  clojure
 )
 
 for formula in "${formulas[@]}"; do

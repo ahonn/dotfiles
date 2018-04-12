@@ -227,6 +227,15 @@ let g:gundo_prefer_python3 = 1
 nnoremap <Leader>tb :TagbarToggle<Cr>
 let g:tagbar_sort = 0
 let g:tagbar_autoshowtag = 1
+let g:tagbar_type_vimwiki = {
+  \  'ctagstype':'vimwiki',
+  \  'kinds':['h:header'],
+  \  'sro':'&&&',
+  \  'kind2scope':{'h':'header'},
+  \  'sort':0,
+  \  'ctagsbin':'vwtags',
+  \  'ctagsargs': 'default',
+  \ }
 
 " ----------------------------------------------------------------------------
 " winresizer
