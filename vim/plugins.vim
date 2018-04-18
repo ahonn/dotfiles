@@ -1,11 +1,17 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Plugins                              "
+"                              Plugins                                       "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" use scriptencoding when multibyte char exists
+scriptencoding utf-8
+
+" install plug.vim
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup PlugInstall
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup END
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -179,7 +185,7 @@ let g:rainbow_conf = {
 " nerdtree
 " ----------------------------------------------------------------------------
 noremap <C-b> :NERDTreeToggle<Cr>
-let NERDTreeShowHidden = 1
+let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -253,14 +259,14 @@ let g:workspace_autosave = 0
 " ----------------------------------------------------------------------------
 " vimwiki
 " ----------------------------------------------------------------------------
-let wiki = {}
-let wiki.path = '~/vimwiki/source'
-let wiki.path_html = '~/vimwiki/docs/'
-let wiki.template_path = '~/vimwiki/docs/assets/'
-let wiki.template_default = 'default'
-let wiki.template_ext = '.tpl'
-let wiki.css_name = ''
-let g:vimwiki_list = [wiki]
+let s:wiki = {}
+let s:wiki.path = '~/vimwiki/source'
+let s:wiki.path_html = '~/vimwiki/docs/'
+let s:wiki.template_path = '~/vimwiki/docs/assets/'
+let s:wiki.template_default = 'default'
+let s:wiki.template_ext = '.tpl'
+let s:wiki.css_name = ''
+let g:vimwiki_list = [s:wiki]
 let g:vimwiki_toc_header = 'TOC'
 function! SyncToWikiSite()
   execute ':!git add .'
@@ -299,11 +305,12 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
-  \ 'html': [],
+  \ 'vim': ['vint'],
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
+  \ 'vim': ['vint'],
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
@@ -314,8 +321,8 @@ nnoremap <C-f> :Ack!<Space>
 let g:ackprg = 'rg --vimgrep --no-heading'
 let g:ack_autoclose = 1
 let g:ack_mappings = {
-  \ "x": '<C-W><CR><C-W>K',
-  \ "gx": '<C-W><CR><C-W>K<C-W>b'
+  \ 'x': '<C-W><CR><C-W>K',
+  \ 'gx': '<C-W><CR><C-W>K<C-W>b'
   \ }
 
 " ----------------------------------------------------------------------------
@@ -407,13 +414,13 @@ let g:autoformat_remove_trailing_spaces = 1
 " MatchTagAlways
 " ----------------------------------------------------------------------------
 let g:mta_filetypes = {
-  \  "javascript.jsx": 1,
+  \  'javascript.jsx': 1,
   \ }
 
 " ----------------------------------------------------------------------------
 " nvim-parinfer
 " ----------------------------------------------------------------------------
-let g:parinfer_mode = "indent"
+let g:parinfer_mode = 'indent'
 
 " ----------------------------------------------------------------------------
 " vim-easymotion
@@ -503,8 +510,8 @@ augroup END
 " ----------------------------------------------------------------------------
 let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
 
 " ----------------------------------------------------------------------------
 " nvim-typescript
@@ -524,7 +531,10 @@ augroup END
 " ----------------------------------------------------------------------------
 let g:haskellmode_completion_ghc = 0
 let g:necoghc_enable_detailed_browse = 1
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup Haskell
+  autocmd!
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
 
 " ----------------------------------------------------------------------------
 " UltiSnips
@@ -535,6 +545,4 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:snips_author='Ahonn Jiang'
 let g:snips_email='ahonn95@outlook.com'
 let g:snips_github='https://github.com/ahonn'
-
-
 

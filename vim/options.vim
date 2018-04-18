@@ -50,8 +50,8 @@
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
 
   " Undo
-  if !isdirectory($HOME."/.undodir")
-    call mkdir($HOME."/.undodir", 0770)
+  if !isdirectory($HOME.'/.undodir')
+    call mkdir($HOME.'/.undodir', 0770)
   endif
   set undodir=~/.undodir
   set undofile
@@ -68,10 +68,10 @@
   set background=dark
 
   if (empty($TMUX))
-    if (has("nvim"))
+    if (has('nvim'))
       let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
-    if (has("termguicolors"))
+    if (has('termguicolors'))
       set termguicolors
     endif
   endif
