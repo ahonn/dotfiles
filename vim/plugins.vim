@@ -213,6 +213,7 @@ endif
 " ----------------------------------------------------------------------------
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#enabled = 0
@@ -301,16 +302,6 @@ highlight! ALEWarningSign ctermfg=11 guifg=#F0C674
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript'
-  \ }
-let g:ale_linters = {
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint'],
-  \ 'vim': ['vint'],
-  \ }
-let g:ale_fixers = {
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint'],
-  \ 'vim': ['vint'],
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
