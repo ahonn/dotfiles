@@ -274,13 +274,14 @@ function! SyncToWikiSite()
   execute ':!git commit -m "Syn at `date`"'
   execute ':!git push -f origin master'
 endfunction
+function! DeployVimwiki()
+  VimwikiAll2HTML
+  call SyncToWikiSite()
+  set filetype=vimwiki
+endfunction
 function! SetVimwikiMapping()
   nmap <buffer> <Leader>wha :VimwikiAll2HTML<Cr>
-                           \:set filetype=vimwiki<Cr>
-  nmap <buffer> <Leader>whd :VimwikiAll2HTML<Cr>
-                           \:call SyncToWikiSite()<Cr>
-                           \:set filetype=vimwiki<Cr>
-
+  nmap <buffer> <Leader>whd :call DeployVimwiki()<Cr>
   nmap <buffer> <Leader>tt <Plug>VimwikiToggleListItem
   nmap <buffer> <Leader>td <Plug>VimwikiRemoveSingleCB
 endfunction
@@ -302,6 +303,9 @@ highlight! ALEWarningSign ctermfg=11 guifg=#F0C674
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript'
+  \ }
+let g:ale_fixers = {
+  \ 'javascript': 'eslint',
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 

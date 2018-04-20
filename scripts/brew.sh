@@ -31,6 +31,7 @@ formulas=(
   tmux
   git
   zsh
+  zsh-autosuggestions
   tree
   wget
   thefuck
