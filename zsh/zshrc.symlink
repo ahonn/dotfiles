@@ -5,6 +5,8 @@ export ZSH=$DOTFILES/zsh/oh-my-zsh
 ZSH_THEME="ys"
 plugins=(git git-extras git-flow osx autojump z vi-mode zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
+# brew zsh-autosuggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ========== Language ========== #
 export LANG=en_US.UTF-8
