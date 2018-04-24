@@ -23,19 +23,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'SpaceVim/vim-swig'
-  Plug 'godlygeek/tabular' " must before vim-markdown
-  Plug 'plasticboy/vim-markdown'
-  Plug 'posva/vim-vue'
-  Plug 'yuezk/xtpl.vim'
+  Plug 'SpaceVim/vim-swig', { 'for': 'swig' }
+  Plug 'godlygeek/tabular', { 'for': 'markdown' } " must before vim-markdown
+  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+  Plug 'posva/vim-vue', { 'for': 'vue' }
+  Plug 'yuezk/xtpl.vim', { 'for': 'xtpl' }
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
   " Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
-  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim'
-  Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags' }
+  Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags', 'on': 'TagbarToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
   Plug 'vimwiki/vimwiki'
@@ -457,7 +457,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 " Emmet.vim
 " ----------------------------------------------------------------------------
 "  fix emmet when ycm preview not close
-imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+imap <C-e> <plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
