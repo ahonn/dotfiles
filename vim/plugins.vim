@@ -46,7 +46,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags', 'on': 'TagbarToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
-  Plug 'vimwiki/vimwiki'
 
   " Integration
   Plug 'w0rp/ale'
@@ -234,15 +233,6 @@ let g:gundo_prefer_python3 = 1
 nnoremap <Leader>tb :TagbarToggle<Cr>
 let g:tagbar_sort = 0
 let g:tagbar_autoshowtag = 1
-let g:tagbar_type_vimwiki = {
-  \  'ctagstype':'vimwiki',
-  \  'kinds':['h:header'],
-  \  'sro':'&&&',
-  \  'kind2scope':{'h':'header'},
-  \  'sort':0,
-  \  'ctagsbin':'vwtags',
-  \  'ctagsargs': 'default',
-  \ }
 
 " ----------------------------------------------------------------------------
 " winresizer
@@ -256,40 +246,6 @@ nnoremap <Leader>s :ToggleWorkspace<Cr>
 let g:workspace_session_name = '.vimworkspace'
 let g:workspace_undodir = $HOME.'/.undodir'
 let g:workspace_autosave = 0
-
-" ----------------------------------------------------------------------------
-" vimwiki
-" ----------------------------------------------------------------------------
-let s:wiki = {}
-let s:wiki.path = '~/vimwiki/source'
-let s:wiki.path_html = '~/vimwiki/docs/'
-let s:wiki.template_path = '~/vimwiki/docs/assets/'
-let s:wiki.template_default = 'default'
-let s:wiki.template_ext = '.tpl'
-let s:wiki.css_name = ''
-let g:vimwiki_list = [s:wiki]
-let g:vimwiki_toc_header = 'TOC'
-function! SyncToWikiSite()
-  execute ':!git add .'
-  execute ':!git commit -m "Syn at `date`"'
-  execute ':!git push -f origin master'
-endfunction
-function! DeployVimwiki()
-  VimwikiAll2HTML
-  call SyncToWikiSite()
-  set filetype=vimwiki
-endfunction
-function! SetVimwikiMapping()
-  nmap <buffer> <Leader>wha :VimwikiAll2HTML<Cr>
-  nmap <buffer> <Leader>whd :call DeployVimwiki()<Cr>
-  nmap <buffer> <Leader>tt <Plug>VimwikiToggleListItem
-  nmap <buffer> <Leader>td <Plug>VimwikiRemoveSingleCB
-endfunction
-augroup Vimwiki
-  autocmd!
-  autocmd FileType vimwiki call SetVimwikiMapping()
-  autocmd BufWritePost *.wiki VimwikiTOC
-augroup END
 
 " ----------------------------------------------------------------------------
 " ale
