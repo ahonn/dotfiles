@@ -49,7 +49,6 @@
 " }}} Neovim "
 
 " Search {{{ "
-  noremap F /<C-r><C-w><Cr>
   nnoremap <silent> \ :nohlsearch<Cr>
 " }}} Search
 

@@ -203,9 +203,9 @@ augroup END
 " ----------------------------------------------------------------------------
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
+" if exists('g:loaded_webdevicons')
+  " call webdevicons#refresh()
+" endif
 
 " ----------------------------------------------------------------------------
 " vim-airline
@@ -412,8 +412,8 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 " ----------------------------------------------------------------------------
 " Emmet.vim
 " ----------------------------------------------------------------------------
-"  fix emmet when ycm preview not close
-imap <C-e> <plug>(emmet-expand-abbr)
+" let g:user_emmet_leader_key = '<C-y>'
+" imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
