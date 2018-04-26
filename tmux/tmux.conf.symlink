@@ -95,7 +95,7 @@ setw -g mode-fg brightblue
 
 # panes
 set -g pane-border-style fg=brightblack
-set -g pane-active-border-style fg=brightblack
+set -g pane-active-border-style fg=cyan
 
 # message
 set -g message-fg blue
