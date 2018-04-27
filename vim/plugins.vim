@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig', { 'for': 'swig' }
   Plug 'godlygeek/tabular', { 'for': 'markdown' } " must before vim-markdown

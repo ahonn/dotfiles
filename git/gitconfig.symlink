@@ -8,3 +8,5 @@ excludesfile = /Users/ahonn/.gitignore_global
     path = ~/doryWorkSpace/.gitconfig
 [includeIf "gitdir:~/Code/Alibaba"]
     path = ~/Code/Alibaba/.gitconfig
+[push]
+	default = matching
