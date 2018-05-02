@@ -260,8 +260,13 @@ let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript'
   \ }
+let g:ale_linters = {
+  \ 'typescript': ['tslint'],
+  \ 'javascript': ['eslint'],
+  \ }
 let g:ale_fixers = {
   \ 'javascript': 'eslint',
+  \ 'typescript': 'tslint',
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
