@@ -35,10 +35,9 @@ call plug#begin('~/.vim/plugged')
   " Plug 'cocopon/colorswatch.vim'
   " Plug 'cocopon/pgmnt.vim'
   Plug 'luochen1990/rainbow'
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'ryanoasis/vim-devicons'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'airblade/vim-gitgutter'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -49,12 +48,8 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
-  if isdirectory('/usr/local/opt/fzf')
-    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-  else
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-  endif
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
@@ -90,7 +85,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
+  Plug 'mhartington/nvim-typescript'
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
@@ -180,6 +175,15 @@ let g:rainbow_conf = {
 \ }
 
 " ----------------------------------------------------------------------------
+" vim-devicons
+" ----------------------------------------------------------------------------
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" if exists('g:loaded_webdevicons')
+  " call webdevicons#refresh()
+" endif
+
+" ----------------------------------------------------------------------------
 " nerdtree
 " ----------------------------------------------------------------------------
 noremap <C-b> :NERDTreeToggle<Cr>
@@ -196,15 +200,6 @@ augroup Nerdtree
     autocmd FileType nerdtree setlocal nolist
   endif
 augroup END
-
-" ----------------------------------------------------------------------------
-" vim-devicons
-" ----------------------------------------------------------------------------
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" if exists('g:loaded_webdevicons')
-  " call webdevicons#refresh()
-" endif
 
 " ----------------------------------------------------------------------------
 " vim-airline
