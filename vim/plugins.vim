@@ -49,7 +49,6 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'mileszs/ack.vim'
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   else
@@ -271,21 +270,11 @@ let g:ale_fixers = {
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
 " ----------------------------------------------------------------------------
-" ack.vim
-" ----------------------------------------------------------------------------
-nnoremap <C-f> :Ack!<Space>
-let g:ackprg = 'rg --vimgrep --no-heading'
-let g:ack_autoclose = 1
-let g:ack_mappings = {
-  \ 'x': '<C-W><CR><C-W>K',
-  \ 'gx': '<C-W><CR><C-W>K<C-W>b'
-  \ }
-
-" ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
 nnoremap <silent> <C-p> :Files<Cr>
 nnoremap <silent> <C-i> :BLines<Cr>
+nnoremap <silent> <C-f> :Ag<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
@@ -417,8 +406,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 " ----------------------------------------------------------------------------
 " Emmet.vim
 " ----------------------------------------------------------------------------
-" let g:user_emmet_leader_key = '<C-y>'
-" imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
