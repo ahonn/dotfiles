@@ -41,7 +41,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'sjl/gundo.vim'
+  Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags', 'on': 'TagbarToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
