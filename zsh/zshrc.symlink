@@ -63,3 +63,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 # Python
 export PATH="/usr/local/opt/python@2/bin:$PATH"
+
+# just env path
+export PATH=/Users/ahonn/.just-installs/bin:$PATH
