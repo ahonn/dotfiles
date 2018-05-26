@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
   Plug 'posva/vim-vue', { 'for': 'vue' }
   Plug 'yuezk/xtpl.vim', { 'for': 'xtpl' }
+  Plug 'othree/html5.vim'
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
@@ -260,6 +261,7 @@ let g:ale_linters = {
   \ }
 let g:ale_fixers = {
   \ 'javascript': 'eslint',
+  \ 'vue': 'eslint',
   \ 'typescript': 'tslint',
   \ }
 nmap <silent> <Leader>f <Plug>(ale_fix)
