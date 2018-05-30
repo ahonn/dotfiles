@@ -67,3 +67,5 @@ export PATH="/usr/local/opt/python@2/bin:$PATH"
 export PATH=$HOME/.just-installs/bin:$PATH
 # Flutter
 export PATH=$HOME/flutter/bin:$PATH
+
+eval $(thefuck --alias)
