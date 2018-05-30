@@ -26,9 +26,6 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @resurrect-capture-pane-contents 'on'
-
 run '$DOTFILES/tmux/plugins/tpm/tpm'
 
 # ========== window =========== #
@@ -44,6 +41,9 @@ bind Space choose-tree -w
 bind C-a last-window
 bind C-j previous-window
 bind C-k next-window
+
+# fast switch session
+bind C-s run-shell "tmux list-session | fzf-tmux | cut -d \":\" -f 1 | xargs tmux switch-client -t"
 
 # ========== pane ========== #
 # split window
