@@ -25,11 +25,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'SpaceVim/vim-swig', { 'for': 'swig' }
-  Plug 'godlygeek/tabular', { 'for': 'markdown' } " must before vim-markdown
-  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-  Plug 'posva/vim-vue', { 'for': 'vue' }
-  Plug 'yuezk/xtpl.vim', { 'for': 'xtpl' }
+  Plug 'SpaceVim/vim-swig'
+  Plug 'godlygeek/tabular' " must before vim-markdown
+  Plug 'plasticboy/vim-markdown'
+  Plug 'posva/vim-vue'
+  Plug 'yuezk/xtpl.vim'
   Plug 'othree/html5.vim'
 
   " Interface
