@@ -72,6 +72,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
   Plug 'kana/vim-textobj-user'
   Plug 'Julian/vim-textobj-brace'
+  Plug 'sgur/vim-textobj-parameter'
 
   " Completion
   Plug 'ervandew/supertab'
