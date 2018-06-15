@@ -87,7 +87,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript'
+  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
@@ -463,9 +463,10 @@ let g:nvim_typescript#signature_complete = 1
 function! SetTSDef() abort
   nnoremap <buffer> <C-]> :TSDefPreview<Cr>
 endfunction
-augroup TSDef
+augroup Typescript
   autocmd!
   autocmd FileType typescript call SetTSDef()
+  autocmd BufEnter *.tsx set filetype=typescript
 augroup END
 
 " ----------------------------------------------------------------------------
