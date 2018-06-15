@@ -72,7 +72,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
   Plug 'kana/vim-textobj-user'
   Plug 'Julian/vim-textobj-brace'
-  Plug 'sgur/vim-textobj-parameter'
+  Plug 'gaving/vim-textobj-argument'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -369,11 +369,11 @@ let g:parinfer_mode = 'indent'
 " vim-easymotion
 " ----------------------------------------------------------------------------
 map fh <Plug>(easymotion-linebackward)
-map fj <Plug>(easymotion-j)
-map fk <Plug>(easymotion-k)
+map fj <Plug>(easymotion-w)
+map fk <Plug>(easymotion-b)
 map fl <Plug>(easymotion-lineforward)
 nmap / <Plug>(easymotion-sn)
-let g:EasyMotion_keys = 'asdhjkl;'
+let g:EasyMotion_keys = 'asdhjkl;qwer'
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
