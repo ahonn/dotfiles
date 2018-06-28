@@ -45,6 +45,15 @@ alias tk="tmux kill-server"
 
 # ========== Other ========== #
 # mirror
+export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 
 # fzf
@@ -69,3 +78,4 @@ export PATH=$HOME/.just-installs/bin:$PATH
 export PATH=$HOME/flutter/bin:$PATH
 
 eval $(thefuck --alias)
+
