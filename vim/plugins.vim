@@ -91,7 +91,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
