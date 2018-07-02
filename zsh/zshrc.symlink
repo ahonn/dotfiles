@@ -31,6 +31,7 @@ if [[ -d /usr/local/sbin ]]; then
 fi
 
 # ========== Aliases ========== #
+alias vi="nvim"
 alias vim="nvim"
 alias pc="proxychains4"
 alias zshconfig="vim ~/.zshrc"
