@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
+  Plug 'rhysd/vim-fixjson', { 'for': 'json' }
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   else
@@ -376,7 +377,6 @@ map fh <Plug>(easymotion-linebackward)
 map fj <Plug>(easymotion-w)
 map fk <Plug>(easymotion-b)
 map fl <Plug>(easymotion-lineforward)
-nmap / <Plug>(easymotion-sn)
 let g:EasyMotion_keys = 'asdhjkl;qwer'
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
