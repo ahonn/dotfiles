@@ -70,7 +70,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
-  Plug 'ahonn/fileheader.nvim'
+  if has('nvim')
+    Plug 'ahonn/fileheader.nvim'
+  endif
   Plug 'danro/rename.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -85,16 +87,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
+    Plug 'carlitux/deoplete-ternjs'
+    Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
+    Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+    Plug 'Shougo/neco-vim', { 'for': 'vim' }
   endif
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
-  Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
-  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
