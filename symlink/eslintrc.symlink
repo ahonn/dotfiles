@@ -6,18 +6,16 @@
       "jsx": true
     }
   },
-
   "env": {
     "es6": true,
     "node": true,
     "browser": true
   },
-
   "extends": "airbnb-base",
-
   "rules": {
     "camelcase": 0,
     "arrow-parens": 0,
+    "no-underscore-dangle": 0,
     "semi": 1,
     "no-unused-vars": 1
   }
