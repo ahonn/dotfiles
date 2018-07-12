@@ -79,7 +79,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
   Plug 'kana/vim-textobj-user'
   Plug 'Julian/vim-textobj-brace'
-  Plug 'gaving/vim-textobj-argument'
+  Plug 'sgur/vim-textobj-parameter'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -380,6 +380,10 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
 
+" ----------------------------------------------------------------------------
+" vim-textobj-parameter
+" ----------------------------------------------------------------------------
+let g:vim_textobj_parameter_mapping = 'a'
 
 " ----------------------------------------------------------------------------
 " fileheader.nvim
