@@ -491,7 +491,4 @@ augroup END
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:snips_author='Ahonn Jiang'
-let g:snips_email='ahonn95@outlook.com'
-let g:snips_github='https://github.com/ahonn'
 
