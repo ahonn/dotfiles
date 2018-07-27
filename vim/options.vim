@@ -44,7 +44,7 @@
   set mouse=a
 
   " Clipboard
-  set clipboard^=unnamed
+  set clipboard=unnamed
 
   " Session
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize

@@ -1,4 +1,5 @@
 augroup Symlink
+  autocmd BufRead .*rc set filetype=json
   autocmd BufRead *rc.symlink set filetype=json
   autocmd BufRead zshrc.symlink set filetype=zsh
   autocmd BufRead tern-project.symlink set filetype=json
