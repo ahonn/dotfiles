@@ -50,10 +50,6 @@
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
 
   " Undo
-  if !isdirectory($HOME.'/.undodir')
-    call mkdir($HOME.'/.undodir', 0770)
-  endif
-  set undodir=~/.undodir
   set undofile
 
   " Complete

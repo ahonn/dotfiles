@@ -242,9 +242,11 @@ let g:winresizer_start_key = '<Leader>r'
 " vim-workspace
 " ----------------------------------------------------------------------------
 nnoremap <Leader>s :ToggleWorkspace<Cr>
-let g:workspace_session_name = '.vimworkspace'
-let g:workspace_undodir = $HOME.'/.undodir'
+let g:workspace_autocreate = 1
 let g:workspace_autosave = 0
+let g:workspace_persist_undo_history = 1
+let g:workspace_session_name = '.vimworkspace'
+let g:workspace_undodir = '.undodir'
 
 " ----------------------------------------------------------------------------
 " ale
