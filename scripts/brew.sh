@@ -19,6 +19,7 @@ echo -e "\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
+  yarn
   z
   autojump
   neovim/neovim/neovim
