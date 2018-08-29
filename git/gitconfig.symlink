@@ -4,7 +4,5 @@ name = ahonn
 email = ahonn95@outlook.com
 [core]
 excludesfile = /Users/ahonn/.gitignore_global
-[includeIf "gitdir:~/doryWorkSpace/"]
-    path = ~/doryWorkSpace/.gitconfig
 [push]
-	default = matching
+default = matching
