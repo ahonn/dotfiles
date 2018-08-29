@@ -5,4 +5,4 @@ email = ahonn95@outlook.com
 [core]
 excludesfile = /Users/ahonn/.gitignore_global
 [push]
-default = matching
+default = current
