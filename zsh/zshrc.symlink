@@ -4,9 +4,9 @@ export ZSH=$DOTFILES/zsh/oh-my-zsh
 # ========== Zsh ========== #
 ZSH_THEME="ys"
 plugins=(git git-extras git-flow osx autojump z vi-mode zsh-autosuggestions)
-source $ZSH/oh-my-zsh.sh
 # brew zsh-autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/oh-my-zsh.sh
 
 # ========== Language ========== #
 export LANG=en_US.UTF-8
@@ -16,7 +16,7 @@ export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
 # ========== Path ========== #
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH=/usr/local/man:$MANPATH
 
 export PATH=$DOTFILES/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -67,18 +67,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$PATH:$HOME/.rvm/bin
 
 # Java
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 # Python
-export PATH="/usr/local/opt/python@2/bin:$PATH"
+export PATH=/usr/local/opt/python@2/bin:$PATH
 # just env path
 export PATH=$HOME/.just-installs/bin:$PATH
 # Flutter
 export PATH=$HOME/flutter/bin:$PATH
 
 eval $(thefuck --alias)
-
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
