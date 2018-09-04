@@ -39,6 +39,7 @@ formulas=(
   focusaurus/homebrew-shfmt/shfmt
   ruby
   clojure
+  cmake
 )
 
 for formula in "${formulas[@]}"; do
