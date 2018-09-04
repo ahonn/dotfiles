@@ -87,12 +87,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
     Plug 'carlitux/deoplete-ternjs'
     Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
     Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
   endif
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -389,7 +390,7 @@ let g:vim_textobj_parameter_mapping = 'a'
 " ----------------------------------------------------------------------------
 " fileheader.nvim
 " ----------------------------------------------------------------------------
-let g:fileheader_auto_add = 1
+let g:fileheader_auto_add = 0
 let g:fileheader_auto_update = 1
 let g:fileheader_default_author = 'ahonn'
 let g:fileheader_show_email = 0
@@ -485,6 +486,43 @@ augroup Haskell
   autocmd!
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
+
+" ----------------------------------------------------------------------------
+" tern_for_vim
+" ----------------------------------------------------------------------------
+let g:tern_show_argument_hints='on_hold'
+let g:tern_show_signature_in_pum = 1
+function! SetJSDef() abort
+  nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+endfunction
+augroup JSDef
+  autocmd!
+  autocmd FileType javascript.jsx,javascript call SetJSDef()
+augroup END
+
+" ----------------------------------------------------------------------------
+" YouCompleteMe
+" ----------------------------------------------------------------------------
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_max_num_identifier_candidates = 5
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>']
+let g:ycm_key_list_stop_completion = ['<C-l>']
+let g:ycm_filetype_blacklist = {
+  \ 'tagbar' : 1,
+  \ 'markdown' : 1,
+  \ 'text' : 1,
+  \ 'gitcommit' : 1,
+  \ }
+let g:ycm_semantic_triggers = {
+  \ 'css,less,scss': [ 're!^\s{2}', 're!:\s+' ],
+  \ 'javascript.jsx,typescript': [ '.' ],
+  \ 'clojure': [ 're!:' ]
+  \ }
 
 " ----------------------------------------------------------------------------
 " UltiSnips
