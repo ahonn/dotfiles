@@ -2,7 +2,7 @@
 
 sudo gem update --system
 
-gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 gem sources -l
 sudo gem update
 
