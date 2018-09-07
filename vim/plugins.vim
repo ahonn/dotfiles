@@ -276,7 +276,7 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-p> :Files<Cr>
+nnoremap <silent> <C-p> :GFiles<Cr>
 nnoremap <silent> <C-f> :Ag<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
@@ -485,19 +485,6 @@ let g:necoghc_enable_detailed_browse = 1
 augroup Haskell
   autocmd!
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
-
-" ----------------------------------------------------------------------------
-" tern_for_vim
-" ----------------------------------------------------------------------------
-let g:tern_show_argument_hints='on_hold'
-let g:tern_show_signature_in_pum = 1
-function! SetJSDef() abort
-  nnoremap <buffer> <C-]> :TernDefPreview<Cr>
-endfunction
-augroup JSDef
-  autocmd!
-  autocmd FileType javascript.jsx,javascript call SetJSDef()
 augroup END
 
 " ----------------------------------------------------------------------------
