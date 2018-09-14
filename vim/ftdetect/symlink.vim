@@ -1,5 +1,4 @@
 augroup Symlink
-  autocmd BufRead .eslintrc set filetype=json
   autocmd BufRead eslintrc.symlink set filetype=json
   autocmd BufRead jsbeautifyrc.symlink set filetype=json
   autocmd BufRead tern-project.symlink set filetype=json
