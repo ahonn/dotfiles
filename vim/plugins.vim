@@ -43,7 +43,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-  Plug 'majutsushi/tagbar', { 'do': 'npm install -g jsctags', 'on': 'TagbarToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
 
@@ -87,11 +86,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'carlitux/deoplete-ternjs'
-    Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
-    Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-    Plug 'Shougo/neco-vim', { 'for': 'vim' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+  Plug 'carlitux/deoplete-ternjs'
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
+  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+  Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
   " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
 
@@ -213,7 +220,7 @@ augroup END
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -228,13 +235,6 @@ let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
 " ----------------------------------------------------------------------------
-" tagbar
-" ----------------------------------------------------------------------------
-nnoremap <Leader>tb :TagbarToggle<Cr>
-let g:tagbar_sort = 0
-let g:tagbar_autoshowtag = 1
-
-" ----------------------------------------------------------------------------
 " winresizer
 " ----------------------------------------------------------------------------
 let g:winresizer_start_key = '<Leader>r'
@@ -247,7 +247,7 @@ let g:workspace_autocreate = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 1
 let g:workspace_session_name = '.vimworkspace'
-let g:workspace_undodir = '.undodir'
+let g:workspace_undodir = $HOME.'/.undodir'
 
 " ----------------------------------------------------------------------------
 " ale
@@ -276,7 +276,7 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-p> :GFiles<Cr>
+nnoremap <silent> <C-p> :Files<Cr>
 nnoremap <silent> <C-f> :Ag<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
@@ -293,8 +293,9 @@ augroup END
 " ----------------------------------------------------------------------------
 nnoremap <Leader><Tab> :IndentLinesToggle<Cr>
 let g:indentLine_enabled = 1
-let g:indentLine_color_term = 236
+let g:indentLine_color_term = 235
 let g:indentLine_faster = 1
+let g:indentLine_char = '¦'
 
 " ----------------------------------------------------------------------------
 " nerdcommenter
@@ -303,7 +304,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
 let g:NERDCustomDelimiters = {
   \ 'javascript': {
-      \ 'left': '//',
+      \ 'left': '/',
       \ 'leftAlt': '{/*',
       \ 'rightAlt': '*/}'
     \ },
@@ -429,6 +430,15 @@ let g:user_emmet_settings = {
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " ----------------------------------------------------------------------------
+" LanguageClient
+" ----------------------------------------------------------------------------
+let g:LanguageClient_serverCommands = {
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ }
+let g:LanguageClient_selectionUI = "fzf"
+let g:LanguageClient_diagnosticsSignsMax = 0
+
+" ----------------------------------------------------------------------------
 " deoplete.nvim
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
@@ -437,6 +447,7 @@ let g:deoplete#max_menu_width = 60
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
+  \ 'LanguageClient#complete',
   \ ]
 let g:deoplete#omni#functions.haskell = [
   \ 'necoghc#omnifunc',
