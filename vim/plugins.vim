@@ -458,12 +458,12 @@ let g:deoplete#omni#functions.haskell = [
 " ----------------------------------------------------------------------------
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
-function! SetJSDef() abort
-  nnoremap <buffer> <C-]> :TernDefPreview<Cr>
+function! SetTernDef() abort
+  nnoremap <buffer> gd :TernDef<Cr>
 endfunction
-augroup JSDef
+augroup TernDef
   autocmd!
-  autocmd FileType javascript.jsx,javascript call SetJSDef()
+  autocmd FileType javascript.jsx,javascript call SetTernDef()
 augroup END
 
 " ----------------------------------------------------------------------------
