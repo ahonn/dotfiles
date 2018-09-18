@@ -274,7 +274,8 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-p> :Files<Cr>
+nnoremap <silent> <C-p> :GFiles<Cr>
+nnoremap <silent> <C-q> :Files<Cr>
 nnoremap <silent> <C-f> :Ag<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
