@@ -436,8 +436,9 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_selectionUI = "fzf"
 let g:LanguageClient_diagnosticsSignsMax = 0
 
-nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> rn :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<Cr>
+nnoremap <silent> <C-[> :call LanguageClient#textDocument_references()<Cr>
+nnoremap <silent> <Leader>rn :call LanguageClient#textDocument_rename()<Cr>
 
 " ----------------------------------------------------------------------------
 " deoplete.nvim
@@ -453,7 +454,8 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
 function! SetTernMapping() abort
   nnoremap <buffer> <C-]> :TernDef<Cr>
-  nnoremap <buffer> rn :TernRename<Cr>
+  nnoremap <buffer> <C-[> :TernRefs<Cr>
+  nnoremap <buffer> <Leader>rn :TernRename<Cr>
 endfunction
 augroup TernMapping
   autocmd!
