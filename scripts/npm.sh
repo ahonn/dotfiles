@@ -33,13 +33,11 @@ formulas=(
   eslint
   babel-eslint
   eslint-config-airbnb-base
-  mirror-config-china
   typescript
-  js-beautify
   gh-pages
   commitizen
   cz-conventional-changelog
-  javascript-typescript-stdio
+  javascript-typescript-langserver
 )
 
 for formula in "${formulas[@]}"; do

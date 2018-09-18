@@ -12,6 +12,7 @@ git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew
 cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
 git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
 
+echo -e "\nUpgrade homebrew packages..."
 brew update
 brew upgrade
 
@@ -19,27 +20,20 @@ echo -e "\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
+  fish
   yarn
-  z
-  autojump
-  neovim/neovim/neovim
-  ack
-  the_silver_searcher
   ripgrep
-  ctags
   fzf
   nginx
   tmux
   git
-  zsh
-  zsh-autosuggestions
   tree
   wget
   thefuck
-  focusaurus/homebrew-shfmt/shfmt
   ruby
   clojure
   cmake
+  neovim/neovim/neovim
 )
 
 for formula in "${formulas[@]}"; do

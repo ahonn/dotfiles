@@ -1,5 +1,5 @@
 # ========== Basic ========= #
-set -g default-command "reattach-to-user-namespace -l zsh"
+set -g default-command "reattach-to-user-namespace -l fish"
 set -g default-terminal "screen-256color"
 set -g display-time 3000
 set -g history-limit 10000
