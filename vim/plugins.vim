@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue'
   Plug 'yuezk/xtpl.vim'
   Plug 'othree/html5.vim'
-  Plug 'dag/vim-fish'
+  Plug 'dag/vim-fish', { 'for': 'fish' }
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'

@@ -1,3 +1,4 @@
+package foreign-env
 package nvm
 package thefuck
 package vi-mode
