@@ -96,8 +96,6 @@ call plug#begin('~/.vim/plugged')
     \ 'do': 'bash install.sh',
     \ }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': 'typescript' }
-  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
   " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
@@ -438,32 +436,28 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_selectionUI = "fzf"
 let g:LanguageClient_diagnosticsSignsMax = 0
 
+nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> rn :call LanguageClient#textDocument_rename()<CR>
+
 " ----------------------------------------------------------------------------
 " deoplete.nvim
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_menu_width = 60
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'LanguageClient#complete',
-  \ ]
-let g:deoplete#omni#functions.haskell = [
-  \ 'necoghc#omnifunc',
-  \ ]
 
 " ----------------------------------------------------------------------------
 " tern_for_vim
 " ----------------------------------------------------------------------------
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
-function! SetTernDef() abort
-  nnoremap <buffer> gd :TernDef<Cr>
+function! SetTernMapping() abort
+  nnoremap <buffer> <C-]> :TernDef<Cr>
+  nnoremap <buffer> rn :TernRename<Cr>
 endfunction
-augroup TernDef
+augroup TernMapping
   autocmd!
-  autocmd FileType javascript.jsx,javascript call SetTernDef()
+  autocmd FileType javascript.jsx,javascript call SetTernMapping()
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -473,20 +467,6 @@ let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
-
-" ----------------------------------------------------------------------------
-" nvim-typescript
-" ----------------------------------------------------------------------------
-let g:nvim_typescript#type_info_on_hold = 1
-let g:nvim_typescript#signature_complete = 1
-function! SetTSDef() abort
-  nnoremap <buffer> <C-]> :TSDefPreview<Cr>
-endfunction
-augroup Typescript
-  autocmd!
-  autocmd FileType typescript call SetTSDef()
-  autocmd BufEnter *.tsx set filetype=typescript
-augroup END
 
 " ----------------------------------------------------------------------------
 " neco-ghc
