@@ -32,7 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'yuezk/xtpl.vim'
   Plug 'othree/html5.vim'
   Plug 'dag/vim-fish'
-  Plug 'fatih/vim-go'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
@@ -402,12 +402,14 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " ----------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
   \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'go': ['go-langserver '],
   \ }
 let g:LanguageClient_selectionUI = "fzf"
 let g:LanguageClient_diagnosticsSignsMax = 0
 
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
-nnoremap <silent> gr :call LanguageClient#textDocument_rename()<Cr>
+nnoremap <silent> gr :call LanguageClient#textDocument_references()<Cr>
+nnoremap <silent> gn :call LanguageClient#textDocument_rename()<Cr>
 
 " ----------------------------------------------------------------------------
 " deoplete.nvim
@@ -423,7 +425,8 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
 function! SetTernMapping() abort
   nnoremap <buffer> gd :TernDef<Cr>
-  nnoremap <buffer> gr :TernRename<Cr>
+  nnoremap <buffer> gr :TernRefs<Cr>
+  nnoremap <buffer> gn :TernRename<Cr>
 endfunction
 augroup TernMapping
   autocmd!

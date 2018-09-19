@@ -1,5 +1,6 @@
 package foreign-env
 package nvm
+package proxy
 package thefuck
 package vi-mode
 package z

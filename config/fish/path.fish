@@ -19,3 +19,8 @@ if test -d $DOTFILES/bin
   set -gx PATH $DOTFILES/bin $PATH
 end
 
+set -gx GOPATH $HOME/go
+if test -d $GOPATH/bin
+  set -gx PATH $GOPATH/bin $PATH
+end
+
