@@ -70,9 +70,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
-  if has('nvim')
-    Plug 'ahonn/fileheader.nvim'
-  endif
   Plug 'danro/rename.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -246,7 +243,7 @@ let g:workspace_autocreate = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 1
 let g:workspace_session_name = '.vimworkspace'
-let g:workspace_undodir = $HOME.'/.undodir'
+let g:workspace_undodir = '.undodir'
 
 " ----------------------------------------------------------------------------
 " ale
@@ -322,35 +319,6 @@ let g:NERDCustomDelimiters = {
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
 let g:jsdoc_custom_args_regex_only = 1
-let g:jsdoc_custom_args_hook = {
-  \   '^\$': {
-  \     'type': '{jQuery}'
-  \   },
-  \   'data': {
-  \     'type': '{Object}'
-  \   },
-  \   '^e$': {
-  \     'type': '{Event}'
-  \   },
-  \   'el$': {
-  \     'type': '{Element}'
-  \   },
-  \   '\(err\|error\)$': {
-  \     'type': '{Error}'
-  \   },
-  \   'handler$': {
-  \     'type': '{Function}'
-  \   },
-  \   '^i$': {
-  \     'type': '{Number}'
-  \   },
-  \   '^_\?is': {
-  \     'type': '{Boolean}'
-  \   },
-  \   'options$': {
-  \     'type': '{Object}'
-  \   },
-  \ }
 
 " ----------------------------------------------------------------------------
 " vim-autoformat
@@ -393,8 +361,7 @@ let g:vim_textobj_parameter_mapping = 'a'
 " ----------------------------------------------------------------------------
 let g:fileheader_auto_add = 0
 let g:fileheader_auto_update = 1
-let g:fileheader_default_author = 'ahonn'
-let g:fileheader_show_email = 0
+let g:fileheader_show_email = 1
 let g:fileheader_by_git_config = 1
 
 " ----------------------------------------------------------------------------
@@ -438,9 +405,8 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_selectionUI = "fzf"
 let g:LanguageClient_diagnosticsSignsMax = 0
 
-nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<Cr>
-nnoremap <silent> <C-[> :call LanguageClient#textDocument_references()<Cr>
-nnoremap <silent> <Leader>rn :call LanguageClient#textDocument_rename()<Cr>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
+nnoremap <silent> gr :call LanguageClient#textDocument_rename()<Cr>
 
 " ----------------------------------------------------------------------------
 " deoplete.nvim
@@ -455,9 +421,8 @@ let g:deoplete#max_menu_width = 60
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
 function! SetTernMapping() abort
-  nnoremap <buffer> <C-]> :TernDef<Cr>
-  nnoremap <buffer> <C-[> :TernRefs<Cr>
-  nnoremap <buffer> <Leader>rn :TernRename<Cr>
+  nnoremap <buffer> gd :TernDef<Cr>
+  nnoremap <buffer> gr :TernRename<Cr>
 endfunction
 augroup TernMapping
   autocmd!
