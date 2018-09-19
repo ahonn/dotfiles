@@ -302,7 +302,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
 let g:NERDCustomDelimiters = {
   \ 'javascript': {
-      \ 'left': '/',
+      \ 'left': '//',
       \ 'leftAlt': '{/*',
       \ 'rightAlt': '*/}'
     \ },
