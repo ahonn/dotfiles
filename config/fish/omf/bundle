@@ -1,5 +1,6 @@
 package foreign-env
 package nvm
+package osx
 package proxy
 package thefuck
 package vi-mode
