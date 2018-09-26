@@ -250,8 +250,10 @@ let g:workspace_undodir = '.undodir'
 " ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
-let g:ale_sign_error = '◉'
-let g:ale_sign_warning = '◉'
+" let g:ale_sign_error = '◉'
+" let g:ale_sign_warning = '◉'
+let g:ale_sign_warning = '●'
+let g:ale_sign_error = '●'
 highlight! ALEErrorSign ctermfg=9 guifg=#C30500
 highlight! ALEWarningSign ctermfg=11 guifg=#F0C674
 " let g:ale_javascript_eslint_use_global = 1
@@ -273,8 +275,8 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ----------------------------------------------------------------------------
 " fzf.vim
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-p> :GFiles<Cr>
-nnoremap <silent> <C-q> :Files<Cr>
+nnoremap <silent> <C-p> :Files<Cr>
+nnoremap <silent> <C-q> :GFiles<Cr>
 nnoremap <silent> <C-f> :Ag<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
