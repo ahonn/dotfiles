@@ -10,6 +10,9 @@ set -gx NVMW_NODEJS_ORG_MIRROR https://npm.taobao.org/mirrors/node
 set -gx NVMW_NPM_MIRROR        https://npm.taobao.org/mirrors/npm
 set -gx ELECTRON_MIRROR        https://npm.taobao.org/mirrors/electron/
 
+# ============ FZF =========== #
+set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,.undodir}/*" 2> /dev/null'
+
 # =========== PATH =========== #
 if test -d $HOME/bin
   set -gx PATH $HOME/bin $PATH
