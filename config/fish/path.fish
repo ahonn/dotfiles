@@ -27,3 +27,13 @@ if test -d $GOPATH/bin
   set -gx PATH $GOPATH/bin $PATH
 end
 
+# Flutter
+if test -d $HOME/flutter/bin
+  set -gx PATH $HOME/flutter/bin $PATH
+end
+
+# Sqlite
+set -gx PATH "/usr/local/opt/sqlite/bin" $PATH
+set -gx LDFLAGS "-L/usr/local/opt/sqlite/lib"
+set -gx CPPFLAGS "-I/usr/local/opt/sqlite/include"
+set -gx PKG_CONFIG_PATH "/usr/local/opt/sqlite/lib/pkgconfig"
