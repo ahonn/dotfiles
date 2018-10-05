@@ -95,7 +95,7 @@
 " GUI {{{ "
   if has('gui_running')
     " Font
-    set guifont=FuraCode_Nerd_Font:h12
+    set guifont=OperatorMono_Nerd_Font:h13
 
     " Display scrollbar
     set guioptions-=r

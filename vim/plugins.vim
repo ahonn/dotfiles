@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
   " Interface
   " Plug 'cocopon/colorswatch.vim'
   " Plug 'cocopon/pgmnt.vim'
+  Plug 'ahonn/vim-fileheader'
   Plug 'luochen1990/rainbow'
   Plug 'ryanoasis/vim-devicons'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -107,7 +108,6 @@ call plug#begin('~/.vim/plugged')
   " Analyze
   Plug 'wakatime/vim-wakatime'
 call plug#end()
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Configure                                  "
@@ -360,12 +360,10 @@ let g:EasyMotion_smartcase = 1
 let g:vim_textobj_parameter_mapping = 'a'
 
 " ----------------------------------------------------------------------------
-" fileheader.nvim
+" vim-fileheader
 " ----------------------------------------------------------------------------
-let g:fileheader_auto_add = 0
-let g:fileheader_auto_update = 1
-let g:fileheader_show_email = 1
-let g:fileheader_by_git_config = 1
+let g:fileheader_auto_add = 1
+let g:fileheader_show_email = 0
 
 " ----------------------------------------------------------------------------
 " vim-surround
