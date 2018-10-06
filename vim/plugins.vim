@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/html5.vim'
   Plug 'dag/vim-fish'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'dart-lang/dart-vim-plugin'
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
