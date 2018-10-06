@@ -1,0 +1,14 @@
+priority -50
+
+global !p
+from vimsnippets import foldmarker, make_box, get_comment_format
+endglobal
+
+snippet todo "TODO comment" bw
+`!p snip.rv=get_comment_format()[0]` TODO: ${0}
+endsnippet
+
+snippet fixme "FIXME comment" bw
+`!p snip.rv=get_comment_format()[0]` FIXME: ${0}
+endsnippet
+
