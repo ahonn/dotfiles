@@ -37,3 +37,8 @@ set -gx PATH "/usr/local/opt/sqlite/bin" $PATH
 set -gx LDFLAGS "-L/usr/local/opt/sqlite/lib"
 set -gx CPPFLAGS "-I/usr/local/opt/sqlite/include"
 set -gx PKG_CONFIG_PATH "/usr/local/opt/sqlite/lib/pkgconfig"
+
+# Rust
+if test -d $HOME/.cargo/bin
+  set -gx PATH $HOME/.cargo/bin $PATH
+end
