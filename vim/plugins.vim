@@ -34,6 +34,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'dag/vim-fish'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'dart-lang/dart-vim-plugin'
+  Plug 'cespare/vim-toml'
+  Plug 'rust-lang/rust.vim'
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
@@ -402,6 +404,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 " LanguageClient
 " ----------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver '],
   \ }
