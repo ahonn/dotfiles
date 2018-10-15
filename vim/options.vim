@@ -45,7 +45,7 @@
   set mouse=a
 
   " Clipboard
-  set clipboard=unnamed
+  set clipboard+=unnamed
 
   " Session
   set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
@@ -87,7 +87,6 @@
   set nowritebackup
 
   " Language
-  set helplang=cn
   set encoding=utf-8
   set fileencodings=utf-8,gbk,gb2312,gb18030
 " }}} View "
