@@ -305,19 +305,7 @@ let g:indentLine_char = '¦'
 " ----------------------------------------------------------------------------
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
-let g:NERDCustomDelimiters = {
-  \ 'javascript': {
-      \ 'left': '//',
-      \ 'leftAlt': '{/*',
-      \ 'rightAlt': '*/}'
-    \ },
-    \ 'clojure': {
-      \ 'left': ';;',
-    \ },
-    \ 'haskell': {
-      \ 'left': '--',
-    \ }
-  \ }
+let g:NERDDefaultAlign = 'left'
 
 " ----------------------------------------------------------------------------
 " jsdoc
