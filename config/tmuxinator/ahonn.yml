@@ -5,3 +5,4 @@ root: ~/
 
 windows:
   - shell: clear
+  - dotfiles: dotfiles
