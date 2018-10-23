@@ -75,7 +75,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
-  Plug 'danro/rename.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'easymotion/vim-easymotion'
