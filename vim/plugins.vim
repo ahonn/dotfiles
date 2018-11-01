@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
   " Interface
   " Plug 'cocopon/colorswatch.vim'
   " Plug 'cocopon/pgmnt.vim'
+  Plug 'majutsushi/tagbar'
   Plug 'ahonn/vim-fileheader'
   Plug 'luochen1990/rainbow'
   Plug 'ryanoasis/vim-devicons'
@@ -237,6 +238,13 @@ let g:gundo_prefer_python3 = 1
 " winresizer
 " ----------------------------------------------------------------------------
 let g:winresizer_start_key = '<Leader>r'
+
+" ----------------------------------------------------------------------------
+" tagbar
+" ----------------------------------------------------------------------------
+nnoremap <Leader>t :TagbarToggle<Cr>
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
 
 " ----------------------------------------------------------------------------
 " vim-workspace
