@@ -97,6 +97,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
+    \ 'frozen': 1,
     \ }
   Plug 'carlitux/deoplete-ternjs'
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
