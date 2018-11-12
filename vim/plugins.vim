@@ -397,21 +397,6 @@ let g:user_emmet_settings = {
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " ----------------------------------------------------------------------------
-" LanguageClient
-" ----------------------------------------------------------------------------
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'go': ['go-langserver '],
-  \ }
-let g:LanguageClient_selectionUI = "fzf"
-let g:LanguageClient_diagnosticsSignsMax = 0
-
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
-nnoremap <silent> gr :call LanguageClient#textDocument_references()<Cr>
-nnoremap <silent> gn :call LanguageClient#textDocument_rename()<Cr>
-
-" ----------------------------------------------------------------------------
 " deoplete.nvim
 " ----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
@@ -474,6 +459,29 @@ let g:ycm_semantic_triggers = {
   \ 'javascript.jsx,typescript': [ '.' ],
   \ 'clojure': [ 're!:' ]
   \ }
+
+" ----------------------------------------------------------------------------
+" LanguageClient
+" ----------------------------------------------------------------------------
+let g:LanguageClient_serverCommands = {
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'go': ['go-langserver'],
+  \ }
+let g:LanguageClient_selectionUI = "fzf"
+let g:LanguageClient_diagnosticsSignsMax = 0
+
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
+    nnoremap <silent> gr :call LanguageClient#textDocument_references()<Cr>
+    nnoremap <silent> gn :call LanguageClient#textDocument_rename()<Cr>
+  endif
+endfunction
+
+augroup LanguageClient
+  autocmd FileType * call LC_maps()
+augroup END
 
 " ----------------------------------------------------------------------------
 " UltiSnips
