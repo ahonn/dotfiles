@@ -30,8 +30,6 @@ formulas=(
   tree
   wget
   thefuck
-  ruby
-  clojure
   cmake
   neovim/neovim/neovim
 )
