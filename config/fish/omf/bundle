@@ -2,6 +2,7 @@ package foreign-env
 package nvm
 package osx
 package proxy
+package rvm
 package thefuck
 package vi-mode
 package z

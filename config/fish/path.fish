@@ -15,30 +15,36 @@ set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git
 
 # =========== PATH =========== #
 if test -d $HOME/bin
-  set -gx PATH $HOME/bin $PATH
+  set -gx fish_user_paths $HOME/bin $fish_user_paths
 end
 
 if test -d $DOTFILES/bin
-  set -gx PATH $DOTFILES/bin $PATH
+  set -gx fish_user_paths $DOTFILES/bin $fish_user_paths
 end
 
 set -gx GOPATH $HOME/go
 if test -d $GOPATH/bin
-  set -gx PATH $GOPATH/bin $PATH
+  set -gx fish_user_paths $GOPATH/bin $fish_user_paths
 end
 
-# Flutter
+# flutter
 if test -d $HOME/flutter/bin
-  set -gx PATH $HOME/flutter/bin $PATH
+  set -gx fish_user_paths $HOME/flutter/bin $fish_user_paths
 end
 
-# Sqlite
-set -gx PATH "/usr/local/opt/sqlite/bin" $PATH
+# sqlite
+set -gx fish_user_paths "/usr/local/opt/sqlite/bin" $fish_user_paths
 set -gx LDFLAGS "-L/usr/local/opt/sqlite/lib"
 set -gx CPPFLAGS "-I/usr/local/opt/sqlite/include"
 set -gx PKG_CONFIG_PATH "/usr/local/opt/sqlite/lib/pkgconfig"
 
-# Rust
+# rust
 if test -d $HOME/.cargo/bin
-  set -gx PATH $HOME/.cargo/bin $PATH
+  set -gx fish_user_paths $HOME/.cargo/bin $fish_user_paths
+end
+
+# ruby rvm
+if test -d $HOME/.rvm
+  set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
+  set -gx fish_user_paths $HOME/.rvm/gems/ruby-head/bin $fish_user_paths
 end

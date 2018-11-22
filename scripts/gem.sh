@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
 
-sudo gem update --system
 
+echo -e "\nInstalling rvm..."
+echo "=============================="
+
+if [ -e $HOME/.rvm ]; then
+  echo "rvm already installed... skipping."
+else
+  curl -sSL https://get.rvm.io | bash -s stable
+fi
+
+rvm list
+rvm use ruby-head
+
+gem update
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 gem sources -l
-sudo gem update
 
 echo -e "\nInstalling gem packages..."
 echo "=============================="
