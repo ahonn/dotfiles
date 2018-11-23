@@ -17,6 +17,7 @@ endif
 call plug#begin('~/.vim/plugged')
   " Colorscheme
   " Plug 'w0ng/vim-hybrid'
+  " Plug 'morhetz/gruvbox'
 
   " Language
   Plug 'ap/vim-css-color'
@@ -120,8 +121,11 @@ call plug#end()
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
-let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
+" let g:hybrid_custom_term_colors = 1
+" colorscheme hybrid
+let g:gruvbox_bold = 0
+let g:gruvbox_sign_column = 'bg0'
+colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
 " Plugin
@@ -218,7 +222,7 @@ augroup END
 " ----------------------------------------------------------------------------
 " vim-airline
 " ----------------------------------------------------------------------------
-let g:airline_theme='jellybeans'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
