@@ -126,6 +126,7 @@ call plug#end()
 " colorscheme hybrid
 let g:gruvbox_bold = 0
 let g:gruvbox_sign_column = 'bg0'
+let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
