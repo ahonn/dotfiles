@@ -32,7 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'yuezk/xtpl.vim'
   Plug 'othree/html5.vim'
   Plug 'dag/vim-fish'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'cespare/vim-toml'
   Plug 'rust-lang/rust.vim'
@@ -471,7 +471,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_selectionUI = "fzf"
 let g:LanguageClient_diagnosticsSignsMax = 0
 
-function LC_maps()
+function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
     nnoremap <silent> gr :call LanguageClient#textDocument_references()<Cr>
