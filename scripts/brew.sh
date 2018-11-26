@@ -21,7 +21,6 @@ echo "=============================="
 
 formulas=(
   fish
-  yarn
   ripgrep
   fzf
   nginx
@@ -32,6 +31,7 @@ formulas=(
   thefuck
   cmake
   neovim/neovim/neovim
+  fx
 )
 
 for formula in "${formulas[@]}"; do
