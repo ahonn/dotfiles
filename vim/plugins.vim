@@ -318,6 +318,7 @@ call denite#custom#var('grep', 'final_opts', [])
 " ----------------------------------------------------------------------------
 " vim-trailing-whitespace
 " ----------------------------------------------------------------------------
+let g:extra_whitespace_ignored_filetypes = ['denite']
 augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
