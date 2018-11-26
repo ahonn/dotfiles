@@ -8,6 +8,7 @@ set -g pane-base-index 1
 set -s escape-time 1
 set -g mouse on
 
+set-window-option -g utf8 on
 set-window-option -g allow-rename off
 set-window-option -g automatic-rename on
 

@@ -1,6 +1,6 @@
 set -gx DOTFILES $HOME/.dotfiles
 
-set -gx LANG en_GB
+set -gx LANG en_US.UTF-8
 set -gx EDITOR 'nvim'
 set -gx GIT_EDITOR 'nvim'
 
