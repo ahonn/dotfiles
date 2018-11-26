@@ -30,6 +30,7 @@ echo "=============================="
 formulas=(
   neovim
   eslint
+  prettier
   babel-eslint
   eslint-config-airbnb-base
   typescript

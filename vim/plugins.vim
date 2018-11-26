@@ -74,7 +74,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'heavenshell/vim-jsdoc'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
-  Plug 'Chiel92/vim-autoformat'
+  Plug 'sbdchd/neoformat'
   Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
@@ -329,11 +329,9 @@ let g:jsdoc_enable_es6 = 1
 let g:jsdoc_custom_args_regex_only = 1
 
 " ----------------------------------------------------------------------------
-" vim-autoformat
+" neoformat
 " ----------------------------------------------------------------------------
-noremap <Leader>af :Autoformat<Cr>
-let g:autoformat_retab = 1
-let g:autoformat_remove_trailing_spaces = 1
+noremap <Leader>af :Neoformat<Cr>
 
 " ----------------------------------------------------------------------------
 " MatchTagAlways
