@@ -288,15 +288,14 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " denite
 " ----------------------------------------------------------------------------
 nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
-nnoremap <silent> <C-t> :<C-u>Denite -highlight-matched-char=None outline<Cr>
-nnoremap <silent> <C-f> :<C-u>Denite -highlight-matched-char=None grep<Cr>
-nnoremap <silent> <C-p> :<C-u>Denite -highlight-matched-char=None
-  \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+nnoremap <silent> <C-t> :<C-u>Denite outline<Cr>
+nnoremap <silent> <C-f> :<C-u>Denite grep<Cr>
+nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
 
 call denite#custom#option('default', 'unique', 1)
 call denite#custom#option('default', 'reversed', 1)
 call denite#custom#option('default', 'auto-resize', 1)
-call denite#custom#option('default', 'use-default-mappings', 0)
+call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
 
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
