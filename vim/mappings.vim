@@ -41,13 +41,6 @@
   nnoremap <Leader>j :bp<Cr>
 " }}} Buffer "
 
-" Neovim {{{ "
-  if has('nvim')
-    nnoremap <C-t> :bo sp term://zsh\|resize 8<Cr>i
-    tnoremap <Esc> <C-\><C-n>:q<Cr>
-  endif
-" }}} Neovim "
-
 " Search {{{ "
   nnoremap <silent> \ :nohlsearch<Cr>
 " }}} Search

@@ -57,16 +57,11 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'rhysd/vim-fixjson', { 'for': 'json' }
-  if isdirectory('/usr/local/opt/fzf')
-    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-  else
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-  endif
+  Plug 'Shougo/denite.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
+  Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -290,12 +285,36 @@ let g:ale_fixers = {
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
 " ----------------------------------------------------------------------------
-" fzf.vim
+" denite
 " ----------------------------------------------------------------------------
-nnoremap <silent> <C-p> :Files<Cr>
-nnoremap <silent> <C-q> :GFiles<Cr>
-nnoremap <silent> <C-f> :Ag<Cr>
-nnoremap <silent> <Leader><Leader> :Buffers<Cr>
+nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
+nnoremap <silent> <C-t> :<C-u>Denite -highlight-matched-char=None outline<Cr>
+nnoremap <silent> <C-f> :<C-u>Denite -highlight-matched-char=None grep<Cr>
+nnoremap <silent> <C-p> :<C-u>Denite -highlight-matched-char=None
+  \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+
+call denite#custom#option('default', 'unique', 1)
+call denite#custom#option('default', 'reversed', 1)
+call denite#custom#option('default', 'auto-resize', 1)
+call denite#custom#option('default', 'use-default-mappings', 0)
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplit>', 'noremap')
+call denite#custom#map('insert', '<C-i>', '<denite:do_action:split>', 'noremap')
+call denite#custom#map('_', '<C-x>', '<denite:do_action:delete>', 'noremap')
+
+
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--path-to-ignore=~/.gitignore_global'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
 " ----------------------------------------------------------------------------
 " vim-trailing-whitespace
