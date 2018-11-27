@@ -1,5 +1,5 @@
 # dotfiles
-My vim/neovim, zsh, git, and tmux configuration files
+My vim/neovim, fish, git, and tmux configuration files
 
 ## Install
 ```
