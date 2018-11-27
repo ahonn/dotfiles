@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'lyokha/vim-xkbswitch'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -227,6 +228,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#xkblayout#enabled = 0
 
 " ----------------------------------------------------------------------------
 " gundo
@@ -334,6 +336,12 @@ let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" ----------------------------------------------------------------------------
+" indentLine
+" ----------------------------------------------------------------------------
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = $DOTFILES.'/lib/libxkbswitch.dylib'
 
 " ----------------------------------------------------------------------------
 " indentLine
