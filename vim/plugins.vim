@@ -54,14 +54,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
+  Plug 'Shougo/denite.nvim'
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'Shougo/denite.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
+  Plug 'ludovicchabant/vim-gutentags'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -259,6 +260,36 @@ let g:workspace_session_name = '.vimworkspace'
 let g:workspace_undodir = '.undodir'
 
 " ----------------------------------------------------------------------------
+" denite
+" ----------------------------------------------------------------------------
+nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
+nnoremap <silent> <C-t> :<C-u>Denite outline<Cr>
+nnoremap <silent> <C-f> :<C-u>Denite grep<Cr>
+nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+
+call denite#custom#option('default', 'unique', 1)
+call denite#custom#option('default', 'reversed', 1)
+call denite#custom#option('default', 'auto-resize', 1)
+call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplit>', 'noremap')
+call denite#custom#map('insert', '<C-i>', '<denite:do_action:split>', 'noremap')
+call denite#custom#map('_', '<C-x>', '<denite:do_action:delete>', 'noremap')
+
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--path-to-ignore=~/.gitignore_global'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+" ----------------------------------------------------------------------------
 " ale
 " ----------------------------------------------------------------------------
 nnoremap <leader>al :ALEToggle<Cr>
@@ -285,37 +316,6 @@ let g:ale_fixers = {
 nmap <silent> <Leader>f <Plug>(ale_fix)
 
 " ----------------------------------------------------------------------------
-" denite
-" ----------------------------------------------------------------------------
-nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
-nnoremap <silent> <C-t> :<C-u>Denite outline<Cr>
-nnoremap <silent> <C-f> :<C-u>Denite grep<Cr>
-nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
-
-call denite#custom#option('default', 'unique', 1)
-call denite#custom#option('default', 'reversed', 1)
-call denite#custom#option('default', 'auto-resize', 1)
-call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplit>', 'noremap')
-call denite#custom#map('insert', '<C-i>', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('_', '<C-x>', '<denite:do_action:delete>', 'noremap')
-
-
-" Ag command on grep source
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--path-to-ignore=~/.gitignore_global'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" ----------------------------------------------------------------------------
 " vim-trailing-whitespace
 " ----------------------------------------------------------------------------
 let g:extra_whitespace_ignored_filetypes = ['denite']
@@ -323,6 +323,17 @@ augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
 augroup END
+
+" ----------------------------------------------------------------------------
+" gutentags
+" ----------------------------------------------------------------------------
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " ----------------------------------------------------------------------------
 " indentLine
