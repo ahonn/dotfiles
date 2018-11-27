@@ -21,11 +21,11 @@ call plug#begin('~/.vim/plugged')
 
   " Language
   Plug 'ap/vim-css-color'
+  Plug 'moll/vim-node'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'moll/vim-node'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'SpaceVim/vim-swig'
   Plug 'godlygeek/tabular' " must before vim-markdown
