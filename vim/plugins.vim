@@ -318,7 +318,7 @@ nmap <silent> <Leader>f <Plug>(ale_fix)
 " ----------------------------------------------------------------------------
 " vim-trailing-whitespace
 " ----------------------------------------------------------------------------
-let g:extra_whitespace_ignored_filetypes = ['denite']
+let g:extra_whitespace_ignored_filetypes = ['denite', 'help', 'grep', 'search']
 augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
