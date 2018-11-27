@@ -54,16 +54,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'simeji/winresizer'
   Plug 'thaerkh/vim-workspace'
-  Plug 'Shougo/denite.nvim'
 
   " Integration
   Plug 'w0rp/ale'
+  Plug 'Shougo/denite.nvim'
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'lyokha/vim-xkbswitch'
+  Plug 'vim-jp/vital.vim'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -364,12 +365,13 @@ let g:NERDDefaultAlign = 'left'
 " ----------------------------------------------------------------------------
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
-let g:jsdoc_custom_args_regex_only = 1
+let g:jsdoc_access_descriptions = 2
+let g:jsdoc_underscore_private = 1
 
 " ----------------------------------------------------------------------------
 " neoformat
 " ----------------------------------------------------------------------------
-noremap <Leader>af :Neoformat<Cr>
+noremap <silent> <Leader>af :Neoformat<Cr>
 
 " ----------------------------------------------------------------------------
 " MatchTagAlways
