@@ -385,7 +385,7 @@ let g:vim_textobj_parameter_mapping = 'a'
 " vim-fileheader
 " ----------------------------------------------------------------------------
 let g:fileheader_auto_add = 1
-let g:fileheader_show_email = 0
+let g:fileheader_show_email = 1
 
 " ----------------------------------------------------------------------------
 " vim-surround
