@@ -32,6 +32,7 @@ formulas=(
   cmake
   neovim/neovim/neovim
   fx
+  bat
 )
 
 for formula in "${formulas[@]}"; do

@@ -4,7 +4,7 @@ alias world 'tmuxinator start project -n'
 alias bye   'tmux kill-server'
 
 # dotfiles
-alias dotfiles 'cd $DOTFILES & nvim'
+alias dot 'cd $DOTFILES'
 
 # neovim
 alias vim 'nvim'
@@ -15,3 +15,6 @@ alias gch 'git checkout'
 
 # safe remove
 alias rm 'trash'
+
+# better cat
+alias cat 'bat'
