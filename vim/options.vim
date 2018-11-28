@@ -39,7 +39,8 @@
 
   " Folding
   set nofoldenable
-  set foldmethod=marker
+  set foldmethod=syntax
+  set foldlevelstart=2
 
   " Mouse
   set mouse=a
