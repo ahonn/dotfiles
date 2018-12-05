@@ -14,7 +14,7 @@ alias gst 'git status'
 alias gch 'git checkout'
 
 # safe remove
-alias rm 'trash'
+alias rmt 'trash'
 
 # better cat
 alias cat 'bat'
