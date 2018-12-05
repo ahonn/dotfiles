@@ -100,9 +100,8 @@ call plug#begin('~/.vim/plugged')
     \ 'frozen': 1,
     \ }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all', 'frozen': 1 }
+  Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -471,40 +470,6 @@ let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
 " ----------------------------------------------------------------------------
-" neco-ghc
-" ----------------------------------------------------------------------------
-let g:haskellmode_completion_ghc = 0
-let g:necoghc_enable_detailed_browse = 1
-augroup Haskell
-  autocmd!
-  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
-
-" ----------------------------------------------------------------------------
-" YouCompleteMe
-" ----------------------------------------------------------------------------
-let g:ycm_auto_trigger = 1
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_max_num_identifier_candidates = 5
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<C-j>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<C-k>']
-let g:ycm_key_list_stop_completion = ['<C-l>']
-let g:ycm_filetype_blacklist = {
-  \ 'tagbar' : 1,
-  \ 'markdown' : 1,
-  \ 'text' : 1,
-  \ 'gitcommit' : 1,
-  \ }
-let g:ycm_semantic_triggers = {
-  \ 'css,less,scss': [ 're!^\s{2}', 're!:\s+' ],
-  \ 'javascript.jsx,typescript': [ '.' ],
-  \ 'clojure': [ 're!:' ]
-  \ }
-
-" ----------------------------------------------------------------------------
 " LanguageClient
 " ----------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
@@ -512,8 +477,8 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver'],
   \ }
-let g:LanguageClient_selectionUI = "fzf"
-let g:LanguageClient_diagnosticsSignsMax = 0
+let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 
 function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
