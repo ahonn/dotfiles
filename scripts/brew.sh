@@ -28,11 +28,12 @@ formulas=(
   git
   tree
   wget
-  thefuck
   cmake
-  neovim/neovim/neovim
+  neovim
+  thefuck
   fx
   bat
+  fd
 )
 
 for formula in "${formulas[@]}"; do
