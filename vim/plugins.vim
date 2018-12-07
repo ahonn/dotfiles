@@ -64,7 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'lyokha/vim-xkbswitch'
-  Plug 'vim-jp/vital.vim'
+  " Plug 'vim-jp/vital.vim'
 
   " Display
   Plug 'Yggdroot/indentLine'
@@ -101,6 +101,7 @@ call plug#begin('~/.vim/plugged')
     \ }
   Plug 'carlitux/deoplete-ternjs'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+  Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
   " Snippets
@@ -468,6 +469,12 @@ let g:deoplete#sources#ternjs#types = 1
 " Use tern_for_vim.
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
+
+" ----------------------------------------------------------------------------
+" vim-import-js
+" ----------------------------------------------------------------------------
+nnoremap <Leader>i :ImportJSWord<Cr>
+nnoremap <Leader>g :ImportJSGoto<Cr>
 
 " ----------------------------------------------------------------------------
 " LanguageClient

@@ -30,6 +30,7 @@ echo "=============================="
 formulas=(
   neovim
   eslint
+  import-js
   prettier
   babel-eslint
   eslint-config-airbnb-base
