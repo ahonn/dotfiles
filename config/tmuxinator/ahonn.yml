@@ -4,5 +4,4 @@ name: ahonn
 root: ~/
 
 windows:
-  - shell: clear
-  - dotfiles: cd ~/.dotfiles
+  - base: clear
