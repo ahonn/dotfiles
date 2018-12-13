@@ -100,7 +100,7 @@ call plug#begin('~/.vim/plugged')
     \ 'frozen': 1,
     \ }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
@@ -452,15 +452,6 @@ let g:deoplete#max_menu_width = 60
 " ----------------------------------------------------------------------------
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum = 1
-function! SetTernMapping() abort
-  nnoremap <buffer> gd :TernDef<Cr>
-  nnoremap <buffer> gr :TernRefs<Cr>
-  nnoremap <buffer> gn :TernRename<Cr>
-endfunction
-augroup TernMapping
-  autocmd!
-  autocmd FileType javascript.jsx,javascript call SetTernMapping()
-augroup END
 
 " ----------------------------------------------------------------------------
 " deoplete-ternjs
@@ -482,6 +473,7 @@ nnoremap <Leader>g :ImportJSGoto<Cr>
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'javascript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver'],
   \ }
 let g:LanguageClient_loggingLevel = 'ERROR'
