@@ -446,6 +446,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_menu_width = 60
+call deoplete#custom#source('_', 'matchers', ['matcher_head', 'matcher_length'])
 
 " ----------------------------------------------------------------------------
 " tern_for_vim
@@ -457,9 +458,12 @@ let g:tern_show_signature_in_pum = 1
 " deoplete-ternjs
 " ----------------------------------------------------------------------------
 let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
 " Use tern_for_vim.
 let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+let g:tern#arguments = ['--persistent', '--no-port-file']
 
 " ----------------------------------------------------------------------------
 " vim-import-js
@@ -476,14 +480,14 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver'],
   \ }
-let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_completionPreferTextEdit = 1
+let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 
 function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
-    nnoremap <silent> gr :call LanguageClient#textDocument_references()<Cr>
-    nnoremap <silent> gn :call LanguageClient#textDocument_rename()<Cr>
+    nnoremap <silent> gr :call LanguageClient#textDocument_rename()<Cr>
   endif
 endfunction
 

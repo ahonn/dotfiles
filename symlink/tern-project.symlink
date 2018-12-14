@@ -1,21 +1,21 @@
 {
-  "ecmaVersion": 6,
+  "ecmaVersion": 7,
   "libs": [
     "browser",
-    "jquery",
+    "ecmascript",
     "react"
   ],
   "plugins": {
-    "doc_comment": {
-      "fullDocs": true,
-      "strong": true
-    },
+    "doc_comment": null,
     "complete_strings": {},
     "es_modules": {},
+    "modules": {},
     "node": {},
+    "node_resolve": {},
     "requirejs": {
       "baseURL": "./",
       "paths": {}
-    }
+    },
+    "webpack": {}
   }
 }
