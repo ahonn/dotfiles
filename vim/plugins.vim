@@ -475,14 +475,28 @@ nnoremap <Leader>g :ImportJSGoto<Cr>
 " LanguageClient
 " ----------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'go': ['go-langserver'],
+  \   'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \   'typescript': ['javascript-typescript-stdio'],
+  \   'javascript': ['javascript-typescript-stdio'],
+  \   'go': ['go-langserver'],
   \ }
 let g:LanguageClient_completionPreferTextEdit = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_diagnosticsDisplay = {
+  \   1: {
+  \     'name': 'Error',
+  \     'texthl': 'ALEError',
+  \     'signText': g:ale_sign_error,
+  \     'signTexthl': 'ALEErrorSign',
+  \   },
+  \   2: {
+  \     'name': 'Warning',
+  \     'texthl': 'ALEWarning',
+  \     'signText': g:ale_sign_warning,
+  \     'signTexthl': 'ALEWarningSign',
+  \   },
+  \ }
 
 function! LC_maps()
   if has_key(g:LanguageClient_serverCommands, &filetype)
