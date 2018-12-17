@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
   Plug 'lyokha/vim-xkbswitch'
   " Plug 'vim-jp/vital.vim'
 
@@ -73,7 +74,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
   Plug 'sbdchd/neoformat'
-  Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 
   " Commands
   Plug 'tpope/vim-surround'
@@ -359,6 +359,9 @@ let g:indentLine_char = '¦'
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
 let g:NERDDefaultAlign = 'left'
+let g:NERDCustomDelimiters = {
+  \   'clojure': { 'left': ';;' },
+  \ }
 
 " ----------------------------------------------------------------------------
 " jsdoc
@@ -475,10 +478,11 @@ nnoremap <Leader>g :ImportJSGoto<Cr>
 " LanguageClient
 " ----------------------------------------------------------------------------
 let g:LanguageClient_serverCommands = {
-  \   'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-  \   'typescript': ['javascript-typescript-stdio'],
-  \   'javascript': ['javascript-typescript-stdio'],
-  \   'go': ['go-langserver'],
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'go': ['go-langserver'],
+  \ 'clojure': ['clojure-lsp']
   \ }
 let g:LanguageClient_completionPreferTextEdit = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
