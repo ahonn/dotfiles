@@ -27,17 +27,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'hail2u/vim-css3-syntax'
+  Plug 'othree/html5.vim'
   Plug 'SpaceVim/vim-swig'
+  Plug 'yuezk/xtpl.vim'
   Plug 'godlygeek/tabular' " must before vim-markdown
   Plug 'plasticboy/vim-markdown'
-  Plug 'posva/vim-vue'
-  Plug 'yuezk/xtpl.vim'
-  Plug 'othree/html5.vim'
-  Plug 'dag/vim-fish'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
-  Plug 'dart-lang/dart-vim-plugin'
-  Plug 'cespare/vim-toml'
   Plug 'rust-lang/rust.vim'
+  Plug 'dag/vim-fish'
 
   " Interface
   " Plug 'cocopon/colorswatch.vim'
