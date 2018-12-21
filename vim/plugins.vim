@@ -93,7 +93,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+    \ 'do': './install.sh',
     \ 'frozen': 1,
     \ }
   Plug 'carlitux/deoplete-ternjs'
@@ -252,7 +252,7 @@ let g:tagbar_compact = 1
 " ----------------------------------------------------------------------------
 " vim-workspace
 " ----------------------------------------------------------------------------
-nnoremap <Leader>s :ToggleWorkspace<Cr>
+nnoremap <silent> <Leader>s :ToggleWorkspace<Cr>
 let g:workspace_autocreate = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 1
@@ -463,7 +463,7 @@ let g:deoplete#sources#ternjs#depths = 1
 let g:deoplete#sources#ternjs#omit_object_prototype = 0
 " Use tern_for_vim.
 let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent', '--no-port-file']
+let g:tern#arguments = ['--persistent']
 
 " ----------------------------------------------------------------------------
 " vim-import-js
@@ -477,11 +477,10 @@ nnoremap <Leader>g :ImportJSGoto<Cr>
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'javascript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver'],
   \ 'clojure': ['clojure-lsp']
   \ }
-let g:LanguageClient_completionPreferTextEdit = 1
+let g:LanguageClient_rootMarkers = ['.git', '.vimworkspace']
 let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_diagnosticsDisplay = {

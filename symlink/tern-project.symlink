@@ -6,7 +6,6 @@
     "react"
   ],
   "plugins": {
-    "doc_comment": null,
     "complete_strings": {},
     "es_modules": {},
     "modules": {},
@@ -15,7 +14,6 @@
     "requirejs": {
       "baseURL": "./",
       "paths": {}
-    },
-    "webpack": {}
+    }
   }
 }
