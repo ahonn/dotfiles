@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
   Plug 'rust-lang/rust.vim'
+  Plug 'guns/vim-clojure-static'
   Plug 'dag/vim-fish'
 
   " Interface
@@ -180,6 +181,14 @@ augroup END
 augroup Vue
   autocmd BufRead,BufNewFile *.vue setlocal filetype=html.css.vue
 augroup END
+
+" ----------------------------------------------------------------------------
+" vim-clojure-static
+" ----------------------------------------------------------------------------
+let g:clojure_syntax_keywords = {
+  \ 'clojureMacro': ['deftest', 'is'],
+  \ 'clojureFunc': ['run-tests']
+  \ }
 
 " ----------------------------------------------------------------------------
 " rainbow
