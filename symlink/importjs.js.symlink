@@ -1,0 +1,6 @@
+module.exports = {
+  aliases: {
+    _: 'lodash/fp',
+    monent: 'moment',
+  }
+};

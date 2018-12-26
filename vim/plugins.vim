@@ -20,12 +20,12 @@ call plug#begin('~/.vim/plugged')
   " Plug 'morhetz/gruvbox'
 
   " Language
-  Plug 'ap/vim-css-color'
   Plug 'moll/vim-node'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'leafgarland/typescript-vim'
+  Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'othree/html5.vim'
   Plug 'SpaceVim/vim-swig'
@@ -139,7 +139,9 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 let g:javascript_enable_domhtmlcss = 1
 
+" ----------------------------------------------------------------------------
 " vim-jsx-pretty
+" ----------------------------------------------------------------------------
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
 let g:vim_jsx_pretty_colorful_config = 1
 augroup JSX
@@ -151,6 +153,14 @@ augroup END
 " javascript-libraries-syntax.vim
 " ----------------------------------------------------------------------------
 let g:used_javascript_libs = 'underscore,jquery,react'
+
+" ----------------------------------------------------------------------------
+" vim-css3-syntax
+" ----------------------------------------------------------------------------
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 " ----------------------------------------------------------------------------
 " vim-markdown
@@ -166,21 +176,6 @@ nnoremap <Leader>m :call ToggleConceal()<Cr>
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript']
-
-" ----------------------------------------------------------------------------
-" wxapp.vim
-" ----------------------------------------------------------------------------
-augroup Wxapp
-  autocmd!
-  autocmd BufNewFile,BufRead *.wxss set filetype=wxss.css
-augroup END
-
-" ----------------------------------------------------------------------------
-" vim-vue
-" ----------------------------------------------------------------------------
-augroup Vue
-  autocmd BufRead,BufNewFile *.vue setlocal filetype=html.css.vue
-augroup END
 
 " ----------------------------------------------------------------------------
 " vim-clojure-static
@@ -210,7 +205,7 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " ----------------------------------------------------------------------------
 " nerdtree
 " ----------------------------------------------------------------------------
-noremap <C-b> :NERDTreeToggle<Cr>
+noremap <silent> <C-b> :NERDTreeToggle<Cr>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -240,7 +235,7 @@ let g:airline#extensions#xkblayout#enabled = 0
 " ----------------------------------------------------------------------------
 " gundo
 " ----------------------------------------------------------------------------
-nnoremap <Leader>ud :GundoToggle<Cr>
+nnoremap <silent> <Leader>ud :GundoToggle<Cr>
 let g:gundo_width = 50
 let g:gundo_preview_height = 40
 let g:gundo_right = 1
@@ -254,7 +249,7 @@ let g:winresizer_start_key = '<Leader>r'
 " ----------------------------------------------------------------------------
 " tagbar
 " ----------------------------------------------------------------------------
-nnoremap <Leader>t :TagbarToggle<Cr>
+nnoremap <silent> <Leader>t :TagbarToggle<Cr>
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 
@@ -301,7 +296,7 @@ call denite#custom#var('grep', 'final_opts', [])
 " ----------------------------------------------------------------------------
 " ale
 " ----------------------------------------------------------------------------
-nnoremap <leader>al :ALEToggle<Cr>
+nnoremap <silent> <leader>al :ALEToggle<Cr>
 " let g:ale_sign_error = '◉'
 " let g:ale_sign_warning = '◉'
 let g:ale_sign_warning = '●'
@@ -375,7 +370,6 @@ let g:NERDCustomDelimiters = {
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
 let g:jsdoc_access_descriptions = 2
-let g:jsdoc_underscore_private = 1
 
 " ----------------------------------------------------------------------------
 " neoformat
