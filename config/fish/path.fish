@@ -38,3 +38,8 @@ if test -d $HOME/.rvm
         set -gx fish_user_paths $HOME/.rvm/gems/ruby-head/bin $fish_user_paths
     end
 end
+
+# deno
+if test -d $HOME/.deno/bin
+  set -gx fish_user_paths $HOME/.deno/bin $fish_user_paths
+end

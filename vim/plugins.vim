@@ -369,7 +369,6 @@ let g:NERDCustomDelimiters = {
 " ----------------------------------------------------------------------------
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
-let g:jsdoc_access_descriptions = 2
 
 " ----------------------------------------------------------------------------
 " neoformat
