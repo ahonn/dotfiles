@@ -66,14 +66,15 @@ call plug#begin('~/.vim/plugged')
     \ }
   Plug 'carlitux/deoplete-ternjs'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+  Plug 'Shougo/neco-vim'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'VimSnippets/vim-web-snippets'
 call plug#end()
 
-nnoremap <Leader>pi :PlugInstall<Cr>
-nnoremap <Leader>pc :PlugClean<Cr>
-nnoremap <Leader>pu :PlugUpdate<Cr>
+nnoremap <silent> <Leader>pi :PlugInstall<Cr>
+nnoremap <silent> <Leader>pc :PlugClean<Cr>
+nnoremap <silent> <Leader>pu :PlugUpdate<Cr>
 
 " ----------------------------------------------------------------------------
 " Colorscheme
@@ -102,16 +103,16 @@ let g:javascript_enable_domhtmlcss = 1
 let g:used_javascript_libs = 'underscore,jquery,react'
 
 " vim-import-js
-nnoremap <Leader>ji :ImportJSWord<Cr>
-nnoremap <Leader>jf :ImportJSFix<Cr>
-nnoremap <Leader>jg :ImportJSGoto<Cr>
+nnoremap <silent> <Leader>ji :ImportJSWord<Cr>
+nnoremap <silent> <Leader>jf :ImportJSFix<Cr>
+nnoremap <silent> <Leader>jg :ImportJSGoto<Cr>
 
 " jsdoc
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
 
 " Emmet.vim
-imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+imap <silent> <C-e> <Space><BS><plug>(emmet-expand-abbr)
 let g:user_emmet_install_global = 1
 let g:user_emmet_settings = {
   \ 'javascript.jsx' : {
@@ -142,7 +143,7 @@ let g:rainbow_conf = {
 \ }
 
 " indentLine
-nnoremap <Leader><Tab> :IndentLinesToggle<Cr>
+nnoremap <silent> <Leader><Tab> :IndentLinesToggle<Cr>
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#504945'
