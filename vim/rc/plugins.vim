@@ -20,6 +20,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
 
+  " Language/CSS
+  Plug 'groenewege/vim-less', { 'for': 'less' }
+  Plug 'ap/vim-css-color', { 'for': ['css', 'less', 'scss'] }
+  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
+
   " UI
   Plug 'mhinz/vim-startify'
   Plug 'luochen1990/rainbow'
@@ -122,6 +127,16 @@ let g:user_emmet_settings = {
   \   'extends' : 'jsx',
   \  },
   \ }
+
+" ----------------------------------------------------------------------------
+" Language/CSS
+" ----------------------------------------------------------------------------
+
+" vim-css3-syntax
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 " ----------------------------------------------------------------------------
 " UI
