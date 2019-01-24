@@ -2,10 +2,8 @@
 "                               Ahonn's vimrc                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:mapleader = "\<Space>"
+let g:vimrc_root_path = "~/.dotfile/vim"
 
-let g:python_host_prog = '/usr/local/bin/python'
-
-"" https://www.reddit.com/r/vim/wiki/vimrctips#wiki_do_not_use_source
-runtime options.vim
-runtime mappings.vim
-runtime plugins.vim
+runtime! rc/mappings.vim
+runtime! rc/plugins.vim
+runtime! rc/general.vim

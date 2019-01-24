@@ -25,17 +25,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-nnoremap <Leader>k :bn<Cr>
-nnoremap <Leader>j :bp<Cr>
-
 nnoremap <silent> \ :nohlsearch<Cr>
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <Leader>ev :vsplit ~/.vim<Cr>
-nnoremap <Leader>eo :vsplit ~/.vim/options.vim<Cr>
-nnoremap <Leader>em :vsplit ~/.vim/mappings.vim<Cr>
-nnoremap <Leader>ep :vsplit ~/.vim/plugins.vim<Cr>
 nnoremap <Leader>sv :source $MYVIMRC<Cr>
-

@@ -1,11 +1,3 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Plugins                                       "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" use scriptencoding when multibyte char exists
-scriptencoding utf-8
-
-" install plug.vim
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -16,60 +8,43 @@ endif
 
 call plug#begin('~/.vim/plugged')
   " Colorscheme
-  " Plug 'w0ng/vim-hybrid'
-  " Plug 'morhetz/gruvbox'
+  Plug 'w0ng/vim-hybrid'
+  Plug 'morhetz/gruvbox'
 
-  " Language
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'herringtondarkholme/yats.vim'
-  Plug 'heavenshell/vim-jsdoc'
-  Plug 'ap/vim-css-color'
-  Plug 'hail2u/vim-css3-syntax'
-  Plug 'othree/html5.vim'
-  Plug 'SpaceVim/vim-swig'
-  Plug 'godlygeek/tabular' " must before vim-markdown
-  Plug 'plasticboy/vim-markdown'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
-  Plug 'rust-lang/rust.vim'
-  Plug 'guns/vim-clojure-static'
-  Plug 'dag/vim-fish'
-  Plug 'Valloric/MatchTagAlways'
-  Plug 'alvan/vim-closetag'
-  Plug 'mattn/emmet-vim'
+  " Language/JavaScript
+  Plug 'moll/vim-node', { 'for': 'javascript' }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'neoclide/vim-jsx-improve', { 'for': ['javascript', 'typescript'] }
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
+  Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
+  Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
 
-  " Interface
-  " Plug 'cocopon/colorswatch.vim'
-  " Plug 'cocopon/pgmnt.vim'
-  Plug 'mhinz/vim-startify'
+  " UI
   Plug 'luochen1990/rainbow'
   Plug 'Yggdroot/indentLine'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
+  Plug 'ryanoasis/vim-devicons'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'majutsushi/tagbar'
+  Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'Shougo/denite.nvim'
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'sbdchd/neoformat'
+  Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'easymotion/vim-easymotion'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'Valloric/MatchTagAlways'
+  Plug 'alvan/vim-closetag'
   Plug 'ahonn/vim-fileheader'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'rhysd/vim-fixjson', { 'for': 'json' }
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'wakatime/vim-wakatime'
 
   " Completion
@@ -97,10 +72,6 @@ nnoremap <Leader>pi :PlugInstall<Cr>
 nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Configure                                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
@@ -116,7 +87,7 @@ let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
-" Language
+" Language/JavaScript
 " ----------------------------------------------------------------------------
 
 " vim-javascript
@@ -131,56 +102,14 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 nmap <silent> <Leader>dc <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
 
-" vim-css3-syntax
-augroup VimCSS3Syntax
-  autocmd!
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
-
-" vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_fenced_languages = ['js=javascript']
-
-" vim-clojure-static
-let g:clojure_syntax_keywords = {
-  \ 'clojureMacro': ['deftest', 'is'],
-  \ 'clojureFunc': ['run-tests']
-  \ }
-
-" MatchTagAlways
-let g:mta_filetypes = {
-  \  'javascript': 1,
-  \  'javascript.jsx': 1,
-  \  'typescript': 1,
-  \ }
-
-" vim-closetag
-let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
-
-" Emmet.vim
-imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
-let g:user_emmet_install_global = 1
-let g:user_emmet_settings = {
-  \ 'javascript.jsx' : {
-  \   'extends' : 'jsx',
-  \  },
-  \ 'javascript' : {
-  \   'extends' : 'jsx',
-  \  },
-  \ }
+" vim-import-js
+nnoremap <Leader>ji :ImportJSWord<Cr>
+nnoremap <Leader>jf :ImportJSFix<Cr>
+nnoremap <Leader>jg :ImportJSGoto<Cr>
 
 " ----------------------------------------------------------------------------
-" Interface
+" UI
 " ----------------------------------------------------------------------------
-
-" vim-startify
-let g:startify_lists = [
-  \ { 'type': 'files',     'header': ['   MRU']            },
-  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-  \ { 'type': 'commands',  'header': ['   Commands']       },
-  \ ]
 
 " rainbow
 let g:rainbow_active = 1
@@ -191,16 +120,18 @@ let g:rainbow_conf = {
 " indentLine
 nnoremap <Leader><Tab> :IndentLinesToggle<Cr>
 let g:indentLine_enabled = 1
-let g:indentLine_color_term = 235
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#504945'
 let g:indentLine_faster = 1
-let g:indentLine_char = '¦'
+let g:indentLine_char = '┊'
+
 
 " vim-devicons
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" if exists('g:loaded_webdevicons')
-  " call webdevicons#refresh()
-" endif
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 " nerdtree
 noremap <silent> <C-b> :NERDTreeToggle<Cr>
@@ -320,6 +251,17 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
 
+
+" MatchTagAlways
+let g:mta_filetypes = {
+  \  'javascript': 1,
+  \  'javascript.jsx': 1,
+  \  'typescript': 1,
+  \ }
+
+" vim-closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
+
 " vim-fileheader
 let g:fileheader_auto_add = 0
 let g:fileheader_show_email = 0
@@ -330,22 +272,6 @@ augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
 augroup END
-
-" gutentags
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
-endif
-
-" parinfer-rust
-let g:parinfer_mode = 'indent'
-
-" vim-import-js
-nnoremap <Leader>i :ImportJSWord<Cr>
-nnoremap <Leader>g :ImportJSGoto<Cr>
 
 " ----------------------------------------------------------------------------
 " Completion
