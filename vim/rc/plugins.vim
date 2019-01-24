@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
 
   " UI
+  Plug 'mhinz/vim-startify'
   Plug 'luochen1990/rainbow'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
@@ -124,6 +125,15 @@ let g:user_emmet_settings = {
 " ----------------------------------------------------------------------------
 " UI
 " ----------------------------------------------------------------------------
+
+" vim-startify
+let g:startify_lists = [
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
+let g:startify_change_dir = 0
 
 " rainbow
 let g:rainbow_active = 1
