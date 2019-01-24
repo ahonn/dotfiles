@@ -18,13 +18,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
+  Plug 'mattn/emmet-vim'
 
   " UI
   Plug 'luochen1990/rainbow'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'scrooloose/nerdtree'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -46,6 +47,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'wakatime/vim-wakatime'
+  Plug 'takac/vim-hardtime'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -98,14 +100,26 @@ let g:javascript_enable_domhtmlcss = 1
 " javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'underscore,jquery,react'
 
-" jsdoc
-nmap <silent> <Leader>dc <Plug>(jsdoc)
-let g:jsdoc_enable_es6 = 1
-
 " vim-import-js
 nnoremap <Leader>ji :ImportJSWord<Cr>
 nnoremap <Leader>jf :ImportJSFix<Cr>
 nnoremap <Leader>jg :ImportJSGoto<Cr>
+
+" jsdoc
+nmap <silent> <Leader>dc <Plug>(jsdoc)
+let g:jsdoc_enable_es6 = 1
+
+" Emmet.vim
+imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+let g:user_emmet_install_global = 1
+let g:user_emmet_settings = {
+  \ 'javascript.jsx' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ 'javascript' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ }
 
 " ----------------------------------------------------------------------------
 " UI
@@ -129,9 +143,9 @@ let g:indentLine_char = '┊'
 " vim-devicons
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
+" if exists('g:loaded_webdevicons')
+"   call webdevicons#refresh()
+" endif
 
 " nerdtree
 noremap <silent> <C-b> :NERDTreeToggle<Cr>
@@ -272,6 +286,13 @@ augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
 augroup END
+
+" vim-hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_quickfix = 1
+let g:hardtime_allow_different_key = 1
+let g:hardtime_maxcount = 3
+let g:hardtime_ignore_buffer_patterns = [ 'NERD.*' ]
 
 " ----------------------------------------------------------------------------
 " Completion
