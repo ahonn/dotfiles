@@ -149,7 +149,7 @@ let g:startify_lists = [
   \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
   \ { 'type': 'commands',  'header': ['   Commands']       },
   \ ]
-let g:startify_change_dir = 0
+let g:startify_change_to_dir = 0
 
 " rainbow
 let g:rainbow_active = 1
