@@ -25,6 +25,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color', { 'for': ['css', 'less', 'scss'] }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 
+  " Language/Reason
+  Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+
   " UI
   Plug 'mhinz/vim-startify'
   Plug 'luochen1990/rainbow'
@@ -352,7 +355,8 @@ let g:LanguageClient_serverCommands = {
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'go': ['go-langserver'],
-  \ 'clojure': ['clojure-lsp']
+  \ 'clojure': ['clojure-lsp'],
+  \ 'reason': ['~/reason-language-server/reason-language-server.exe']
   \ }
 let g:LanguageClient_rootMarkers = ['.git', '.vimworkspace']
 let g:LanguageClient_loggingLevel = 'DEBUG'
