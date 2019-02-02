@@ -285,10 +285,10 @@ let g:surround_35 = "#{\r}"
 let g:surround_36 = "${\r}"
 
 " vim-easymotion
-map fh <Plug>(easymotion-linebackward)
-map fj <Plug>(easymotion-w)
-map fk <Plug>(easymotion-b)
-map fl <Plug>(easymotion-lineforward)
+map <silent> <Leader>mh <Plug>(easymotion-linebackward)
+map <silent> <Leader>mj <Plug>(easymotion-w)
+map <silent> <Leader>mk <Plug>(easymotion-b)
+map <silent> <Leader>ml <Plug>(easymotion-lineforward)
 let g:EasyMotion_keys = 'asdhjkl;qwer'
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
