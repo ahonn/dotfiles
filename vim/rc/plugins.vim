@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
+  Plug 'jparise/vim-graphql'
 
   " Language/CSS
   Plug 'groenewege/vim-less', { 'for': 'less' }
