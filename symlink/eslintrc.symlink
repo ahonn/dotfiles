@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2016,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -11,12 +11,16 @@
     "node": true,
     "browser": true
   },
-  "extends": "airbnb-base",
+  "extends": ["eslint:recommended", "google"],
   "rules": {
-    "camelcase": 0,
-    "arrow-parens": 0,
-    "no-underscore-dangle": 0,
-    "semi": 0,
-    "no-unused-vars": 1
+    "require-jsdoc": 1,
+    "max-len": [
+      2,
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreUrls": true
+      }
+    ]
   }
 }

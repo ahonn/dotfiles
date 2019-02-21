@@ -28,17 +28,18 @@ echo -e "\nInstalling npm packages..."
 echo "=============================="
 
 formulas=(
+  tern
+  leetcode-cli
   neovim
   eslint
-  import-js
   prettier
   babel-eslint
-  eslint-config-airbnb-base
   typescript
   gh-pages
   commitizen
   cz-conventional-changelog
   javascript-typescript-langserver
+  eslint-config-google
 )
 
 for formula in "${formulas[@]}"; do

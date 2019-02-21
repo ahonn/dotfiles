@@ -117,6 +117,12 @@ nnoremap <silent> <Leader>jg :ImportJSGoto<Cr>
 
 " jsdoc
 nmap <silent> <Leader>dc <Plug>(jsdoc)
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_custom_args_hook = {}
+let g:jsdoc_tags = {
+  \  'returns': 'return',
+  \  'param': 'param',
+  \ }
 let g:jsdoc_enable_es6 = 1
 
 " Emmet.vim
