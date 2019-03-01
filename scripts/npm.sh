@@ -31,7 +31,6 @@ formulas=(
   tern
   leetcode-cli
   neovim
-  eslint
   prettier
   babel-eslint
   typescript
@@ -39,7 +38,8 @@ formulas=(
   commitizen
   cz-conventional-changelog
   javascript-typescript-langserver
-  eslint-config-google
+  eslint
+  eslint-config-standard
 )
 
 for formula in "${formulas[@]}"; do

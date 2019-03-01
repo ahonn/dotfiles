@@ -11,9 +11,8 @@
     "node": true,
     "browser": true
   },
-  "extends": ["eslint:recommended", "google"],
+  "extends": ["standard"],
   "rules": {
-    "require-jsdoc": 1,
     "max-len": [
       2,
       {
