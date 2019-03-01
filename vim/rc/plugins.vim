@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
   Plug 'neoclide/vim-jsx-improve', { 'for': ['javascript', 'typescript'] }
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
+  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
@@ -25,8 +26,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color', { 'for': ['css', 'less', 'scss'] }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 
-  " Language/Reason
-  Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
+  " Language/Go
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
+
+  " Language/Clojure
+  Plug 'guns/vim-clojure-static'
 
   " UI
   Plug 'mhinz/vim-startify'
@@ -146,6 +150,16 @@ augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
+
+" ----------------------------------------------------------------------------
+" Language/Clojure
+" ----------------------------------------------------------------------------
+
+" vim-clojure-static
+let g:clojure_syntax_keywords = {
+  \ 'clojureMacro': ['deftest', 'is'],
+  \ 'clojureFunc': ['run-tests']
+  \ }
 
 " ----------------------------------------------------------------------------
 " UI
@@ -358,14 +372,13 @@ let g:tern#arguments = ['--persistent']
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'cpp': ['clangd'],
   \ 'go': ['go-langserver'],
   \ 'clojure': ['clojure-lsp'],
-  \ 'reason': ['~/reason-language-server/reason-language-server.exe']
+  \ 'typescript': ['javascript-typescript-stdio']
   \ }
 let g:LanguageClient_rootMarkers = ['.git', '.vimworkspace']
-let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingLevel = 'ERROR'
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_diagnosticsDisplay = {
   \   1: {

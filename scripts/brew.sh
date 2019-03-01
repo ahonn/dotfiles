@@ -28,9 +28,10 @@ formulas=(
   git
   tree
   wget
-  cmake
   neovim
   thefuck
+  cmake
+  clangd
   fx
   bat
   fd
