@@ -60,7 +60,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'wakatime/vim-wakatime'
-  Plug 'takac/vim-hardtime'
+  Plug 'ludovicchabant/vim-gutentags'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -336,12 +336,14 @@ augroup TrailingSpace
   autocmd BufWritePre * FixWhitespace
 augroup END
 
-" vim-hardtime
-let g:hardtime_default_on = 1
-let g:hardtime_ignore_quickfix = 1
-let g:hardtime_allow_different_key = 1
-let g:hardtime_maxcount = 3
-let g:hardtime_ignore_buffer_patterns = [ 'NERD.*' ]
+" gutentags
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
 
 " ----------------------------------------------------------------------------
 " Completion
@@ -372,10 +374,11 @@ let g:tern#arguments = ['--persistent']
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
+  \ 'c': ['clangd'],
   \ 'cpp': ['clangd'],
   \ 'go': ['go-langserver'],
   \ 'clojure': ['clojure-lsp'],
-  \ 'typescript': ['javascript-typescript-stdio']
+  \ 'typescript': ['javascript-typescript-stdio'],
   \ }
 let g:LanguageClient_rootMarkers = ['.git', '.vimworkspace']
 let g:LanguageClient_loggingLevel = 'ERROR'
