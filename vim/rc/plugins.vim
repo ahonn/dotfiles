@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'Shougo/denite.nvim'
+  Plug 'neoclide/denite-git'
 
   " Integration
   Plug 'w0rp/ale'
@@ -64,6 +65,7 @@ call plug#begin('~/.vim/plugged')
 
   " Completion
   Plug 'ervandew/supertab'
+  Plug 'Shougo/echodoc.vim'
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -353,6 +355,9 @@ endif
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
 
+" echodoc
+let g:echodoc#enable_at_startup = 1
+
 " deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_refresh_always = 1
@@ -371,6 +376,13 @@ let g:deoplete#sources#ternjs#omit_object_prototype = 0
 " Use tern_for_vim.
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
+function! Tern_Map()
+  nnoremap <silent> gd :TernDef<Cr>
+  nnoremap <silent> gr :TernRename<Cr>
+endfunction
+augroup Tern
+  autocmd FileType javascript call Tern_Map()
+augroup END
 
 " LanguageClient
 let g:LanguageClient_serverCommands = {
@@ -404,7 +416,6 @@ function! LC_maps()
     nnoremap <silent> gr :call LanguageClient#textDocument_rename()<Cr>
   endif
 endfunction
-
 augroup LanguageClient
   autocmd FileType * call LC_maps()
 augroup END
