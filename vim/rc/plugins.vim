@@ -63,6 +63,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'wakatime/vim-wakatime'
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'tpope/vim-fugitive'
+  Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
   " Completion
   Plug 'ervandew/supertab'
