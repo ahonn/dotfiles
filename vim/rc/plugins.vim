@@ -12,20 +12,20 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
 
   " Language/JavaScript
-  Plug 'moll/vim-node', { 'for': 'javascript' }
-  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-  Plug 'neoclide/vim-jsx-improve', { 'for': ['javascript', 'typescript'] }
+  Plug 'moll/vim-node'
+  Plug 'pangloss/vim-javascript'
+  Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
-  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+  Plug 'leafgarland/typescript-vim'
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
   Plug 'jparise/vim-graphql'
 
   " Language/CSS
-  Plug 'groenewege/vim-less', { 'for': 'less' }
-  Plug 'ap/vim-css-color', { 'for': ['css', 'less', 'scss'] }
-  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
+  Plug 'groenewege/vim-less'
+  Plug 'ap/vim-css-color'
+  Plug 'hail2u/vim-css3-syntax'
 
   " Language/Go
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
@@ -349,6 +349,14 @@ let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" vimwiki
+let g:vimwiki_list = [{
+  \ 'path': '~/vimwiki',
+  \ 'path_html': '~/vimwiki/docs',
+  \ 'nested_syntaxes': {'javascript': 'javascript'},
+  \ 'auto_export': 1,
+  \ }]
 
 " ----------------------------------------------------------------------------
 " Completion
