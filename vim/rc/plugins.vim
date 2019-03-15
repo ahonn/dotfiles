@@ -64,7 +64,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'wakatime/vim-wakatime'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'tpope/vim-fugitive'
-  Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
   " Completion
   Plug 'ervandew/supertab'
@@ -272,7 +271,7 @@ call denite#custom#var('grep', 'final_opts', [])
 " ----------------------------------------------------------------------------
 
 " ale
-nnoremap <silent> <leader>al :ALEToggle<Cr>
+nnoremap <leader>al :ALEToggle<Cr>
 let g:ale_sign_warning = '●'
 let g:ale_sign_error = '●'
 highlight! ALEErrorSign ctermfg=9 guifg=#C30500
@@ -349,14 +348,6 @@ let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
-
-" vimwiki
-let g:vimwiki_list = [{
-  \ 'path': '~/vimwiki',
-  \ 'path_html': '~/vimwiki/docs',
-  \ 'nested_syntaxes': {'javascript': 'javascript'},
-  \ 'auto_export': 1,
-  \ }]
 
 " ----------------------------------------------------------------------------
 " Completion
