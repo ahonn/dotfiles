@@ -52,7 +52,7 @@ end
 if test -d ~/emsdk
   set -g fish_user_paths $HOME/emsdk $fish_user_paths
   set -g fish_user_paths $HOME/emsdk/emscripten/incoming $fish_user_paths
-  set -g fish_user_paths $HOME/emsdk/node/8.9.1_64bit/bin $fish_user_paths
+  # set -g fish_user_paths $HOME/emsdk/node/8.9.1_64bit/bin $fish_user_paths
   set -g fish_user_paths $HOME/emsdk/clang/fastcomp/build_incoming_64 $fish_user_paths
   set -g fish_user_paths $HOME/emsdk/binaryen/master_64bit_binaryen/bin $fish_user_paths
 end
