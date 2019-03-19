@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
-  Plug 'leafgarland/typescript-vim'
+  Plug 'herringtondarkholme/yats.vim'
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
