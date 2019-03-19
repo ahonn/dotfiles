@@ -1,0 +1,7 @@
+{
+	"suggest.triggerAfterInsertEnter": true,
+	"suggest.minTriggerInputLength": 2,
+  "diagnostic.displayByAle": true,
+  "diagnostic.level": "error",
+  "javascript.suggestionActions.enabled": false
+}

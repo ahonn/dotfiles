@@ -30,4 +30,4 @@ nnoremap <silent> \ :nohlsearch<Cr>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-nnoremap <Leader>sv :source $MYVIMRC<Cr>
+nnoremap <silent> <Leader>sv :source $MYVIMRC<Cr>

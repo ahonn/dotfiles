@@ -67,22 +67,7 @@ call plug#begin('~/.vim/plugged')
 
   " Completion
   Plug 'ervandew/supertab'
-  Plug 'Shougo/echodoc.vim'
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh',
-    \ 'frozen': 1,
-    \ }
-  Plug 'carlitux/deoplete-ternjs'
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-  Plug 'Shougo/neco-vim'
+  Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'VimSnippets/vim-web-snippets'
@@ -357,70 +342,17 @@ endif
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-" echodoc
-let g:echodoc#enable_at_startup = 1
-
-" deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_menu_width = 60
-call deoplete#custom#source('_', 'matchers', ['matcher_head', 'matcher_length'])
-
-" tern_for_vim
-let g:tern_show_argument_hints='on_hold'
-let g:tern_show_signature_in_pum = 1
-
-" deoplete-ternjs
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#depths = 1
-let g:deoplete#sources#ternjs#omit_object_prototype = 0
-" Use tern_for_vim.
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-function! Tern_Map()
-  nnoremap <silent> gd :TernDef<Cr>
-  nnoremap <silent> gr :TernRename<Cr>
-endfunction
-augroup Tern
-  autocmd FileType javascript call Tern_Map()
-augroup END
-
-" LanguageClient
-let g:LanguageClient_serverCommands = {
-  \ 'c': ['clangd'],
-  \ 'cpp': ['clangd'],
-  \ 'go': ['go-langserver'],
-  \ 'clojure': ['clojure-lsp'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ }
-let g:LanguageClient_rootMarkers = ['.git', '.vimworkspace']
-let g:LanguageClient_loggingLevel = 'ERROR'
-let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-let g:LanguageClient_diagnosticsDisplay = {
-  \   1: {
-  \     'name': 'Error',
-  \     'texthl': 'ALEError',
-  \     'signText': g:ale_sign_error,
-  \     'signTexthl': 'ALEErrorSign',
-  \   },
-  \   2: {
-  \     'name': 'Warning',
-  \     'texthl': 'ALEWarning',
-  \     'signText': g:ale_sign_warning,
-  \     'signTexthl': 'ALEWarningSign',
-  \   },
-  \ }
-
-function! LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<Cr>
-    nnoremap <silent> gr :call LanguageClient#textDocument_rename()<Cr>
-  endif
-endfunction
-augroup LanguageClient
-  autocmd FileType * call LC_maps()
-augroup END
+" coc.nvim
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+call coc#add_extension(
+  \ 'coc-tsserver',
+  \ 'coc-json',
+  \ 'coc-css',
+  \ 'coc-ultisnips'
+  \ )
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = '<Tab>'
