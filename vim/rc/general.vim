@@ -25,11 +25,6 @@ set linebreak
 set showbreak=->
 set textwidth=120
 set colorcolumn=120
-augroup Cursorline
-  autocmd!
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set cursorline
-augroup END
 
 set ignorecase
 set smartcase

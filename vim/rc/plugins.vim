@@ -11,12 +11,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
   Plug 'morhetz/gruvbox'
 
+  " Language/Fish
+  Plug 'dag/vim-fish'
+
   " Language/JavaScript
-  Plug 'moll/vim-node'
   Plug 'pangloss/vim-javascript'
   Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
-  Plug 'herringtondarkholme/yats.vim'
+  Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'mattn/emmet-vim'
@@ -131,16 +133,6 @@ let g:user_emmet_settings = {
   \ }
 
 " ----------------------------------------------------------------------------
-" Language/CSS
-" ----------------------------------------------------------------------------
-
-" vim-css3-syntax
-augroup VimCSS3Syntax
-  autocmd!
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
-
-" ----------------------------------------------------------------------------
 " Language/Clojure
 " ----------------------------------------------------------------------------
 
@@ -225,7 +217,6 @@ let g:gundo_prefer_python3 = 1
 
 " denite
 nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
-nnoremap <silent> <C-t> :<C-u>Denite outline<Cr>
 nnoremap <silent> <C-f> :<C-u>Denite grep<Cr>
 nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
 
