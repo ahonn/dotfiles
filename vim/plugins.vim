@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 
   " Completion
   Plug 'ervandew/supertab'
+  Plug 'Shougo/echodoc.vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -333,6 +334,9 @@ endif
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
 
+" echodoc
+let g:echodoc#enable_at_startup = 1
+
 " coc.nvim
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -342,7 +346,8 @@ call coc#add_extension(
   \ 'coc-tsserver',
   \ 'coc-json',
   \ 'coc-css',
-  \ 'coc-ultisnips'
+  \ 'coc-ultisnips',
+  \ 'coc-word'
   \ )
 
 " UltiSnips
