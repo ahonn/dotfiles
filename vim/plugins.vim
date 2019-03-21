@@ -295,7 +295,6 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
 let g:EasyMotion_smartcase = 1
 
-
 " MatchTagAlways
 let g:mta_filetypes = {
   \  'javascript': 1,

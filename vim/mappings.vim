@@ -28,7 +28,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> \ :nohlsearch<Cr>
 
 if has('nvim')
-  nnoremap <C-t> :bo sp term://fish\|resize 8<Cr>i
+  nnoremap <silent> <C-t> :bo sp term://fish\|resize 8<Cr>i
   tnoremap <C-h> <C-\><C-n><C-w>h
   tnoremap <C-j> <C-\><C-n><C-w>j
   tnoremap <C-k> <C-\><C-n><C-w>k
