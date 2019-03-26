@@ -45,10 +45,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'Shougo/denite.nvim'
-  Plug 'neoclide/denite-git'
+  Plug 'neoclide/denite-git', { 'on': 'Denite' }
 
   " Integration
   Plug 'w0rp/ale'
@@ -203,11 +202,6 @@ let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#xkblayout#enabled = 0
-
-" tagbar
-nnoremap <silent> <Leader>t :TagbarToggle<Cr>
-let g:tagbar_sort = 0
-let g:tagbar_compact = 1
 
 " gundo
 nnoremap <silent> <Leader>ud :GundoToggle<Cr>
