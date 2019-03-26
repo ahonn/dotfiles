@@ -337,10 +337,11 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 call coc#add_extension(
   \ 'coc-tsserver',
+  \ 'coc-tslint-plugin',
   \ 'coc-json',
   \ 'coc-css',
   \ 'coc-ultisnips',
-  \ 'coc-word'
+  \ 'coc-word',
   \ )
 
 " UltiSnips
