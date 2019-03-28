@@ -338,8 +338,9 @@ call coc#add_extension(
   \ 'coc-tslint-plugin',
   \ 'coc-json',
   \ 'coc-css',
-  \ 'coc-ultisnips',
+  \ 'coc-snippets',
   \ 'coc-word',
+  \ 'coc-prettier',
   \ )
 
 " UltiSnips
