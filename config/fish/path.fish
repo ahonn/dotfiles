@@ -56,3 +56,8 @@ if test -d ~/emsdk
   set -g fish_user_paths $HOME/emsdk/clang/fastcomp/build_incoming_64 $fish_user_paths
   set -g fish_user_paths $HOME/emsdk/binaryen/master_64bit_binaryen/bin $fish_user_paths
 end
+
+# just env path
+if test -d $HOME/.just-installs/bin
+  set -gx fish_user_paths $HOME/.just-installs/bin $fish_user_paths
+end

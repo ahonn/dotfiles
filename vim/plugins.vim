@@ -51,7 +51,6 @@ call plug#begin('~/.vim/plugged')
 
   " Integration
   Plug 'w0rp/ale'
-  Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -261,10 +260,7 @@ let g:ale_fixers = {
   \ 'vue': 'eslint',
   \ 'typescript': 'tslint',
   \ }
-nmap <silent> <Leader>f <Plug>(ale_fix)
-
-" neoformat
-noremap <silent> <Leader>af :Neoformat<Cr>
+nmap <silent> <Leader>af <Plug>(ale_fix)
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -331,10 +327,12 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:echodoc#enable_at_startup = 1
 
 " coc.nvim
+nnoremap <silent> <C-q> :CocList --interactive outline<Cr>
+
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>f <Plug>(coc-format)
+nmap <silent> <Leader>r <Plug>(coc-rename)
+
 call coc#add_extension(
   \ 'coc-tsserver',
   \ 'coc-tslint-plugin',

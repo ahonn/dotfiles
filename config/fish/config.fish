@@ -14,3 +14,4 @@ set -U fish_cursor_insert line
 # disable greeting
 function fish_greeting
 end
+
