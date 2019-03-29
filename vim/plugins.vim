@@ -210,9 +210,9 @@ let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
 " denite
-nnoremap <silent> <Leader><Leader> :<C-u>Denite buffer<Cr>
-nnoremap <silent> <C-f> :<C-u>Denite grep<Cr>
-nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+nnoremap <silent> <Leader><Leader> :Denite buffer<Cr>
+nnoremap <silent> <C-f> :Denite grep<Cr>
+nnoremap <silent> <C-p> :Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
 
 call denite#custom#option('default', 'unique', 1)
 call denite#custom#option('default', 'reversed', 1)
@@ -235,6 +235,9 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+
+" denite-git
+nnoremap <silent> <C-g> :Denite gitlog:all<Cr>
 
 " ----------------------------------------------------------------------------
 " Integration
