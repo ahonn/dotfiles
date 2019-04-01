@@ -64,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'wakatime/vim-wakatime'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'tpope/vim-fugitive'
+  Plug 'rhysd/git-messenger.vim'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -317,6 +318,9 @@ let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" git-messenger.vim
+nnoremap gm :GitMessenger<Cr>
 
 " ----------------------------------------------------------------------------
 " Completion
