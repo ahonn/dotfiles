@@ -55,7 +55,6 @@ function createWindowResizer(win)
     end,
 
     zoom = function (size)
-      alert.show(windowFrame);
       local x = math.max(windowFrame.x - (step.w * size), 0)
       local y = math.max(windowFrame.y - (step.h * size), 0)
       local w = math.min(windowFrame.w + (step.w * 2 * size), screenFrame.w)
@@ -130,17 +129,17 @@ end
 local hyper = { "ctrl", "cmd" }
 
 -- binding ctrl + cmd H/J/K/L to resize window Left/Bottom/Top/Right
-hotkey.bind(hyper, "H", hs.fnutils.partial(windowResize, "Left"))
-hotkey.bind(hyper, "K", hs.fnutils.partial(windowResize, "Top"))
-hotkey.bind(hyper, "J", hs.fnutils.partial(windowResize, "Bottom"))
-hotkey.bind(hyper, "L", hs.fnutils.partial(windowResize, "Right"))
+hotkey.bind(hyper, "H", fnutils.partial(windowResize, "Left"))
+hotkey.bind(hyper, "K", fnutils.partial(windowResize, "Top"))
+hotkey.bind(hyper, "J", fnutils.partial(windowResize, "Bottom"))
+hotkey.bind(hyper, "L", fnutils.partial(windowResize, "Right"))
 
 -- binding ctrl + cmd C to center window
-hotkey.bind(hyper, "C", hs.fnutils.partial(windowResize, "Center"))
+hotkey.bind(hyper, "C", fnutils.partial(windowResize, "Center"))
 
 -- binding ctrl + cmd =/- to zoom in/out window
-hotkey.bind(hyper, "=", hs.fnutils.partial(windowResize, "ZoomIn"))
-hotkey.bind(hyper, "-", hs.fnutils.partial(windowResize, "ZoomOut"))
+hotkey.bind(hyper, "=", fnutils.partial(windowResize, "ZoomIn"))
+hotkey.bind(hyper, "-", fnutils.partial(windowResize, "ZoomOut"))
 
 -- binding ctrl + cmd m to maximize window
 hotkey.bind(hyper, "M", windowMaximize)
