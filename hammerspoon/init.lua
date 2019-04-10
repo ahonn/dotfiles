@@ -10,13 +10,15 @@ function reloadConfigCallback(files)
   end
   if doReload then
     hs.reload()
-    hs.notify.new({
-      title="Hammerspoon",
-      informativeText="Reload Config Success"
-    }):send()
   end
 end
 
 local configPath = os.getenv("HOME") .. "/.hammerspoon/"
 reloadWatcher = hs.pathwatcher.new(configPath, reloadConfigCallback):start()
+
+hs.notify.new({
+  title="Hammerspoon",
+  informativeText="Config Reload Success",
+  withdrawAfter=2,
+}):send()
 
