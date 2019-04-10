@@ -13,50 +13,82 @@ window.animationDuration = 0
 
 local gridparts = 30
 
+function createWindowResizer(win)
+  -- win:screen():fullFrame() return 0.0, 0.0, 1920.0, 1080.0
+  -- win:screen():frame() return 0.0, 23.0, 1920.0, 1057.0
+  local screenFrame = win:screen():frame()
+  local windowFrame = win:frame();
+  local step = {
+    w = screenFrame.w / gridparts,
+    h = screenFrame.h / gridparts
+  }
+
+  return {
+    left = function (scale)
+      local newrect = geometry.rect(0, 0, screenFrame.w * scale, screenFrame.h)
+      win:setFrame(newrect)
+    end,
+
+    right = function (scale)
+      local newrect = geometry.rect(screenFrame.w * scale, 0, screenFrame.w * scale, screenFrame.h)
+      win:setFrame(newrect)
+    end,
+
+    top = function (scale)
+      local newrect = geometry.rect(0, 0, screenFrame.w, screenFrame.h * scale)
+      win:setFrame(newrect)
+    end,
+
+    bottom = function (scale)
+      local newrect = geometry.rect(0, screenFrame.h * scale, screenFrame.w, screenFrame.h * scale)
+      win:setFrame(newrect)
+    end,
+
+    center = function ()
+      local newrect = geometry.rect(
+        (screenFrame.w - windowFrame.w) / 2,
+        (screenFrame.h - windowFrame.h) / 2,
+        windowFrame.w,
+        windowFrame.h
+      )
+      win:setFrame(newrect)
+    end,
+
+    zoom = function (size)
+      alert.show(windowFrame);
+      local x = math.max(windowFrame.x - (step.w * size), 0)
+      local y = math.max(windowFrame.y - (step.h * size), 0)
+      local w = math.min(windowFrame.w + (step.w * 2 * size), screenFrame.w)
+      local h = math.min(windowFrame.h + (step.h * 2 * size), screenFrame.h)
+      local newrect = geometry.rect(x, y, w, h)
+      win:setFrame(newrect)
+    end,
+  }
+end
+
 function windowResize(option)
   local cwin = window.focusedWindow()
 
   if cwin then
     if not cwin:isFullScreen() then
-      local screenFrame = cwin:screen():fullFrame()
-      local windowFrame = cwin:frame();
-      local step = {
-        w = screenFrame.w / gridparts,
-        h = screenFrame.h / gridparts
-      }
+      local resizer = createWindowResizer(cwin);
 
       local newrect;
       if option == "Left" then
-        newrect = geometry.rect(0, 0, screenFrame.w / 2, screenFrame.h)
+        resizer.left(1/2)
       elseif option == "Right" then
-        newrect = geometry.rect(screenFrame.w / 2, 0, screenFrame.w / 2, screenFrame.h)
+        resizer.right(1/2)
       elseif option == "Top" then
-        newrect = geometry.rect(0, 0, screenFrame.w, screenFrame.h / 2)
+        resizer.top(1/2)
       elseif option == "Bottom" then
-        newrect = geometry.rect(0, screenFrame.h / 2, screenFrame.w, screenFrame.h / 2)
+        resizer.bottom(1/2)
       elseif option == "Center" then
-        newrect = geometry.rect(
-          (screenFrame.w - windowFrame.w) / 2,
-          (screenFrame.h - windowFrame.h) / 2,
-          windowFrame.w,
-          windowFrame.h
-        )
+        resizer.center()
       elseif option == "ZoomIn" then
-        newrect = geometry.rect(
-          windowFrame.x - step.w,
-          windowFrame.y - step.h,
-          windowFrame.w + step.w * 2,
-          windowFrame.h + step.h * 2
-        )
+        resizer.zoom(1)
       elseif option == "ZoomOut" then
-        newrect = geometry.rect(
-          windowFrame.x + step.w,
-          windowFrame.y + step.h,
-          windowFrame.w - step.w * 2,
-          windowFrame.h - step.h * 2
-        )
+        resizer.zoom(-1)
       end
-      cwin:setFrame(newrect);
     end
   else
     alert.show('No focused window!')
@@ -64,8 +96,6 @@ function windowResize(option)
 end
 
 function isMaximize(win)
-  -- win:screen():fullFrame() return 0.0, 0.0, 1920.0, 1080.0
-  -- win:screen():frame() frame return 0.0, 23.0, 1920.0, 1057.0
   local screenFrame = win:screen():frame()
   local windowFrame = win:frame()
 
