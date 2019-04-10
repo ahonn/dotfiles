@@ -2,7 +2,7 @@
 
 DOTFILES=$HOME/.dotfiles
 
-echo -e "\nCreating symlinks"
+echo -e "\nCreating dotfile symlinks"
 echo "=============================="
 linkables=$(find -H "$DOTFILES" -not -path "$DOTFILES/.undodir/*" -maxdepth 3 -name '*.symlink')
 
@@ -17,7 +17,7 @@ for file in $linkables; do
   fi
 done
 
-echo -e "\nInstalling to ~/.config"
+echo -e "\nCreating config symlinks"
 echo "=============================="
 if [ ! -d $HOME/.config ]; then
   echo "Creating ~/.config"
@@ -50,3 +50,13 @@ for file in "${VIMFILES[@]}"; do
     ln -s ${VALUE} ${KEY}
   fi
 done
+
+echo -e "\nCreating hammerspoon symlinks"
+echo "=============================="
+if [ -e $HOME/.hammerspoon ]; then
+  echo "$HOME/.hammerspoon already exists... skipping."
+else
+  echo "Creating symlink for $HOME/.hammerspoon"
+  ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
+fi
+
