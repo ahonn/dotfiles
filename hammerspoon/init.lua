@@ -1,5 +1,5 @@
-require "modules.window"
-require "modules.application"
+require "modules/window"
+require "modules/launcher"
 
 function reloadConfigCallback(files)
   doReload = false

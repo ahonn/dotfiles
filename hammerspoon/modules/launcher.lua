@@ -6,6 +6,14 @@ local appfinder = require "hs.appfinder"
 local hotkey = require "hs.hotkey"
 local fnutils = require "hs.fnutils"
 
+local applist = {
+  {key="b", name="Finder"},
+  {key="a", name="Alacritty"},
+  {key="C", name="Google Chrome"},
+  {key="t", name="Trello"},
+  {key="w", name="WeChat"},
+}
+
 function toggleApplication(name)
   local cwin = window.focusedWindow()
   -- hide application if current window is target
@@ -19,8 +27,7 @@ function toggleApplication(name)
   end
 end
 
-hotkey.bind({"alt"}, "B", fnutils.partial(toggleApplication, "Finder"))
-hotkey.bind({"alt"}, "A", fnutils.partial(toggleApplication, "Alacritty"))
-hotkey.bind({"alt"}, "C", fnutils.partial(toggleApplication, "Google Chrome"))
-hotkey.bind({"alt"}, "T", fnutils.partial(toggleApplication, "Trello"))
-hotkey.bind({"alt"}, "W", fnutils.partial(toggleApplication, "WeChat"))
+fnutils.each(applist, function (app)
+  hotkey.bind({"alt"}, app.key, fnutils.partial(toggleApplication, app.name))
+end)
+

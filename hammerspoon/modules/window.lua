@@ -107,7 +107,7 @@ function isMaximize(win)
 end
 
 local frameCache = {}
-function windowMaximize()
+function windowToggleMaximize()
   local cwin = window.focusedWindow()
 
   if cwin then
@@ -126,20 +126,36 @@ function windowMaximize()
   end
 end
 
-local hyper = { "ctrl", "cmd" }
+function windowToggleFullScreen()
+  local cwin = window.focusedWindow()
 
--- binding ctrl + cmd H/J/K/L to resize window Left/Bottom/Top/Right
-hotkey.bind(hyper, "H", fnutils.partial(windowResize, "Left"))
-hotkey.bind(hyper, "K", fnutils.partial(windowResize, "Top"))
-hotkey.bind(hyper, "J", fnutils.partial(windowResize, "Bottom"))
-hotkey.bind(hyper, "L", fnutils.partial(windowResize, "Right"))
+  if cwin then
+    cwin:toggleFullScreen()
+  else
+    alert.show('No focused window!')
+  end
+end
 
--- binding ctrl + cmd C to center window
-hotkey.bind(hyper, "C", fnutils.partial(windowResize, "Center"))
+----------------------- hotkey bindings ----------------------------
+
+local ctrl_cmd = { "ctrl", "cmd" }
+
+-- binding ctrl + cmd h/j/k/l to resize window Left/Bottom/Top/Right
+hotkey.bind(ctrl_cmd, "h", fnutils.partial(windowResize, "Left"))
+hotkey.bind(ctrl_cmd, "k", fnutils.partial(windowResize, "Top"))
+hotkey.bind(ctrl_cmd, "j", fnutils.partial(windowResize, "Bottom"))
+hotkey.bind(ctrl_cmd, "l", fnutils.partial(windowResize, "Right"))
+
+-- binding ctrl + cmd c to center window
+hotkey.bind(ctrl_cmd, "c", fnutils.partial(windowResize, "Center"))
 
 -- binding ctrl + cmd =/- to zoom in/out window
-hotkey.bind(hyper, "=", fnutils.partial(windowResize, "ZoomIn"))
-hotkey.bind(hyper, "-", fnutils.partial(windowResize, "ZoomOut"))
+hotkey.bind(ctrl_cmd, "=", fnutils.partial(windowResize, "ZoomIn"))
+hotkey.bind(ctrl_cmd, "-", fnutils.partial(windowResize, "ZoomOut"))
 
--- binding ctrl + cmd m to maximize window
-hotkey.bind(hyper, "M", windowMaximize)
+-- binding ctrl + cmd m to toggle maximize window
+hotkey.bind(ctrl_cmd, "m", windowToggleMaximize)
+
+-- binding ctrl + cmd f to toggle fullscreen window
+hotkey.bind(ctrl_cmd, "f", windowToggleFullScreen)
+
