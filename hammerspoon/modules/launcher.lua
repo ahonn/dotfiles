@@ -9,8 +9,8 @@ local fnutils = require "hs.fnutils"
 local applist = {
   {key="b", name="Finder"},
   {key="a", name="Alacritty"},
-  {key="C", name="Google Chrome"},
-  {key="t", name="Trello"},
+  {key="c", name="Google Chrome"},
+  {key="t", name="iTunes"},
   {key="w", name="WeChat"},
 }
 

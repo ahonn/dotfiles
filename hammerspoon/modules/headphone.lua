@@ -1,3 +1,5 @@
+-- Headphone watcher
+
 local audiodevice = require "hs.audiodevice"
 local application = require "hs.application"
 local itunes = require "hs.itunes"
