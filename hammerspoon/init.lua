@@ -1,9 +1,10 @@
-require "modules/window"
-require "modules/launcher"
+require "modules.window"
+require "modules.launcher"
+require "modules.headphone"
 
 function reloadConfigCallback(files)
   doReload = false
-  for _,file in pairs(files) do
+  for _, file in pairs(files) do
     if file:sub(-4) == ".lua" then
       doReload = true
     end
@@ -19,6 +20,6 @@ reloadWatcher = hs.pathwatcher.new(configPath, reloadConfigCallback):start()
 hs.notify.new({
   title="Hammerspoon",
   informativeText="Config Reload Success",
-  withdrawAfter=2,
+  withdrawAfter=1,
 }):send()
 
