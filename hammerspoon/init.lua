@@ -1,6 +1,6 @@
 require "modules.window"
-require "modules.launcher"
 require "modules.headphone"
+require "modules.vi-mode"
 
 function reloadConfigCallback(files)
   doReload = false
