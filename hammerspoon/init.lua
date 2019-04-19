@@ -1,4 +1,5 @@
 require "modules.window"
+require "modules.screen"
 require "modules.headphone"
 require "modules.vi-mode"
 
