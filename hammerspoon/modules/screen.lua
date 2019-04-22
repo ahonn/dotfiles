@@ -22,6 +22,8 @@ function focusScreen(option)
   -- move cursor to target screen center
   local point = geometry.rectMidPoint(target:fullFrame())
   mouse.setAbsolutePosition(point)
+  -- move cursor to current screen edge
+  mouse.setRelativePosition(geometry.point(0, point.y))
 end
 
 local ctrl_cmd = { "cmd" }

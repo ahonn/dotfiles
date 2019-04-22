@@ -38,7 +38,7 @@ set shiftwidth=2
 set tabstop=2
 
 set list
-set listchars=tab:▸\ ,eol:¬,trail:·,extends:↷,precedes:↶
+set listchars=tab:▸\ ,eol:\ ,trail:·,extends:↷,precedes:↶
 set fillchars=vert:│,fold:·
 
 set backspace=indent,eol,start
