@@ -1,7 +1,8 @@
-require "modules.window"
-require "modules.screen"
-require "modules.headphone"
-require "modules.vi-mode"
+require("modules.window")
+require("modules.screen")
+require("modules.headphone")
+require("modules.vi-mode")
+require("modules.clipboard")
 
 function reloadConfigCallback(files)
   doReload = false

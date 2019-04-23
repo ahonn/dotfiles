@@ -1,7 +1,5 @@
 -- Navigation
 
-local eventtap = require "hs.eventtap"
-
 function tapperCallback(evt)
   local flags = evt:getFlags()
   local keyCode = evt:getKeyCode()
@@ -42,5 +40,5 @@ function tapperCallback(evt)
   end
 end
 
-tapper = eventtap.new({eventtap.event.types.keyDown}, tapperCallback)
+tapper = hs.eventtap.new({hs.eventtap.event.types.keyDown}, tapperCallback)
 tapper:start()

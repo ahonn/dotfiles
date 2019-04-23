@@ -2,14 +2,8 @@
 
 local math = require "math"
 
-local hotkey = require "hs.hotkey"
-local window = require "hs.window"
-local geometry = require "hs.geometry"
-local alert = require "hs.alert"
-local fnutils = require "hs.fnutils"
-
 -- disable animationDuration
-window.animationDuration = 0
+hs.window.animationDuration = 0
 
 local gridparts = 30
 
@@ -25,27 +19,27 @@ function createWindowResizer(win)
 
   return {
     left = function (scale)
-      local newrect = geometry.rect(0, 0, screenFrame.w * scale, screenFrame.h)
+      local newrect = hs.geometry.rect(0, 0, screenFrame.w * scale, screenFrame.h)
       win:setFrame(newrect)
     end,
 
     right = function (scale)
-      local newrect = geometry.rect(screenFrame.w * scale, 0, screenFrame.w * scale, screenFrame.h)
+      local newrect = hs.geometry.rect(screenFrame.w * scale, 0, screenFrame.w * scale, screenFrame.h)
       win:setFrame(newrect)
     end,
 
     top = function (scale)
-      local newrect = geometry.rect(0, 0, screenFrame.w, screenFrame.h * scale)
+      local newrect = hs.geometry.rect(0, 0, screenFrame.w, screenFrame.h * scale)
       win:setFrame(newrect)
     end,
 
     bottom = function (scale)
-      local newrect = geometry.rect(0, screenFrame.h * scale, screenFrame.w, screenFrame.h * scale)
+      local newrect = hs.geometry.rect(0, screenFrame.h * scale, screenFrame.w, screenFrame.h * scale)
       win:setFrame(newrect)
     end,
 
     center = function ()
-      local newrect = geometry.rect(
+      local newrect = hs.geometry.rect(
         (screenFrame.w - windowFrame.w) / 2,
         (screenFrame.h - windowFrame.h) / 2,
         windowFrame.w,
@@ -59,14 +53,14 @@ function createWindowResizer(win)
       local y = math.max(windowFrame.y - (step.h * size), 0)
       local w = math.min(windowFrame.w + (step.w * 2 * size), screenFrame.w)
       local h = math.min(windowFrame.h + (step.h * 2 * size), screenFrame.h)
-      local newrect = geometry.rect(x, y, w, h)
+      local newrect = hs.geometry.rect(x, y, w, h)
       win:setFrame(newrect)
     end,
   }
 end
 
 function windowResize(option)
-  local cwin = window.focusedWindow()
+  local cwin = hs.window.focusedWindow()
 
   if cwin then
     if not cwin:isFullScreen() then
@@ -90,7 +84,7 @@ function windowResize(option)
       end
     end
   else
-    alert.show('No focused window!')
+    hs.alert.show('No focused window!')
   end
 end
 
@@ -108,7 +102,7 @@ end
 
 local frameCache = {}
 function windowToggleMaximize()
-  local cwin = window.focusedWindow()
+  local cwin = hs.window.focusedWindow()
 
   if cwin then
     if not cwin:isFullScreen() then
@@ -122,17 +116,17 @@ function windowToggleMaximize()
       end
     end
   else
-    alert.show('No focused window!')
+    hs.alert.show('No focused window!')
   end
 end
 
 function windowToggleFullScreen()
-  local cwin = window.focusedWindow()
+  local cwin = hs.window.focusedWindow()
 
   if cwin then
     cwin:toggleFullScreen()
   else
-    alert.show('No focused window!')
+    hs.alert.show('No focused window!')
   end
 end
 
@@ -141,21 +135,21 @@ end
 local ctrl_cmd = { "ctrl", "cmd" }
 
 -- binding ctrl + cmd h/j/k/l to resize window Left/Bottom/Top/Right
-hotkey.bind(ctrl_cmd, "h", fnutils.partial(windowResize, "Left"))
-hotkey.bind(ctrl_cmd, "k", fnutils.partial(windowResize, "Top"))
-hotkey.bind(ctrl_cmd, "j", fnutils.partial(windowResize, "Bottom"))
-hotkey.bind(ctrl_cmd, "l", fnutils.partial(windowResize, "Right"))
+hs.hotkey.bind(ctrl_cmd, "h", hs.fnutils.partial(windowResize, "Left"))
+hs.hotkey.bind(ctrl_cmd, "k", hs.fnutils.partial(windowResize, "Top"))
+hs.hotkey.bind(ctrl_cmd, "j", hs.fnutils.partial(windowResize, "Bottom"))
+hs.hotkey.bind(ctrl_cmd, "l", hs.fnutils.partial(windowResize, "Right"))
 
 -- binding ctrl + cmd c to center window
-hotkey.bind(ctrl_cmd, "c", fnutils.partial(windowResize, "Center"))
+hs.hotkey.bind(ctrl_cmd, "c", hs.fnutils.partial(windowResize, "Center"))
 
 -- binding ctrl + cmd =/- to zoom in/out window
-hotkey.bind(ctrl_cmd, "=", fnutils.partial(windowResize, "ZoomIn"))
-hotkey.bind(ctrl_cmd, "-", fnutils.partial(windowResize, "ZoomOut"))
+hs.hotkey.bind(ctrl_cmd, "=", hs.fnutils.partial(windowResize, "ZoomIn"))
+hs.hotkey.bind(ctrl_cmd, "-", hs.fnutils.partial(windowResize, "ZoomOut"))
 
 -- binding ctrl + cmd m to toggle maximize window
-hotkey.bind(ctrl_cmd, "m", windowToggleMaximize)
+hs.hotkey.bind(ctrl_cmd, "m", windowToggleMaximize)
 
 -- binding ctrl + cmd f to toggle fullscreen window
-hotkey.bind(ctrl_cmd, "f", windowToggleFullScreen)
+hs.hotkey.bind(ctrl_cmd, "f", windowToggleFullScreen)
 
