@@ -22,32 +22,35 @@ clipboard = hs.chooser.new(function (choice)
   end
 end)
 
-function copy2Clipboard()
-  keybinds.copy:disable()
-  hs.eventtap.keyStroke({ "cmd" }, "c")
-
+function addHistory(content)
   -- limit history length
   while (#history >= maxSize) do
     table.remove(history, #history)
   end
 
+  if #history < 1 or history[1].text ~= content then
+    local text = string.gsub(content, "[\r\n]+", " ")
+
+    local appname = hs.window.focusedWindow():application():name()
+    local subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
+
+    table.insert(history, 1, {text = text, subText = subText, raw = content})
+
+    -- save to clipboard cache (will load when restart)
+    local cache = io.open(cachePath, "w")
+    cache:write(hs.json.encode(history))
+    cache:close()
+  end
+end
+
+function copy2Clipboard()
+  keybinds.copy:disable()
+  hs.eventtap.keyStroke({ "cmd" }, "c")
+
   -- add copy content into clipboard history
   hs.timer.doAfter(0.1, function()
     local content = hs.pasteboard.getContents()
-
-    if #history < 1 or history[1].text ~= content then
-      local text = string.gsub(content, "[\r\n]+", " ")
-
-      local appname = hs.window.focusedWindow():application():name()
-      local subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
-
-      table.insert(history, 1, {text = text, subText = subText, raw = content})
-
-      -- save to clipboard cache (will load when restart)
-      local cache = io.open(cachePath, "w")
-      cache:write(hs.json.encode(history))
-      cache:close()
-    end
+    addHistory(content)
     keybinds.copy:enable()
   end)
 end
@@ -57,6 +60,19 @@ function showClipboard()
   clipboard:choices(history);
   clipboard:show()
 end
+
+----------------------- pasteboard watch ---------------------------
+
+preCount = hs.pasteboard.changeCount()
+hs.timer.doEvery(0.5, function()
+  local count = hs.pasteboard.changeCount()
+
+  if (count ~= preCount) then
+    preCount = count;
+    local content = hs.pasteboard.getContents()
+    addHistory(content)
+  end
+end)
 
 ----------------------- hotkey bindings ----------------------------
 
