@@ -1,19 +1,32 @@
--- Clipboard
+-- Clipboard History
 
 local history = {}
 local maxSize = 100
 local cachePath = os.getenv("HOME") .. "/.clipboard"
 
+local UTI = {
+  IMAGE = "public.tiff",
+  TEXT = "public.utf8-plain-text",
+}
+
 -- load clipboard cache if exists
 local cache = io.open(cachePath, "r")
 if cache then
-  history = hs.json.decode(cache:read("*a"))
+  local str = cache:read("*a")
+  if str ~= "" then
+    history = hs.json.decode(str)
+  end
 end
 
 clipboard = hs.chooser.new(function (choice)
   -- paste if choice text
   if choice then
-    hs.pasteboard.setContents(choice.raw)
+    if choice.uti == UTI.IMAGE then
+      local image = hs.image.imageFromURL(choice.raw)
+      hs.pasteboard.writeObjects(image)
+    else
+      hs.pasteboard.setContents(choice.raw)
+    end
     hs.eventtap.keyStroke({ "cmd" }, "v")
   end
   -- clear clipboard query string
@@ -22,22 +35,49 @@ clipboard = hs.chooser.new(function (choice)
   end
 end)
 
-function addClipboardHistory(content)
+function addClipboardHistory()
+  -- local content = hs.pasteboard.getContents()
+  local contentTypes = hs.pasteboard.contentTypes()
+
+  local imageType = false;
+  for index, uti in ipairs(contentTypes) do
+    if uti == UTI.IMAGE then
+      imageType = true
+    end
+  end
+
+  local item = {}
+  if imageType then
+    local image = hs.pasteboard.readImage()
+    item.text = '[Image]';
+    item.uti = UTI.IMAGE;
+    item.raw = image:encodeAsURLString("TIFF")
+  else
+    local text = hs.pasteboard.readString()
+    if text == nil or utf8.len(text) < 3 then
+      return
+    end
+
+    item.text = string.gsub(text, "[\r\n]+", " ")
+    item.uti = UTI.TEXT;
+    item.raw = text;
+  end
+
   -- limit history length
   while (#history >= maxSize) do
     table.remove(history, #history)
   end
 
-  if #history < 1 or history[1].text ~= content then
-    local text = string.gsub(content, "[\r\n]+", " ")
-
+  print(item)
+  if #history < 1 or history[1].raw ~= item.raw then
     local appname = hs.window.focusedWindow():application():name()
-    local subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
+    item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
 
-    table.insert(history, 1, {text = text, subText = subText, raw = content})
+    table.insert(history, 1, item)
 
     -- save to clipboard cache (will load when restart)
     local cache = io.open(cachePath, "w")
+    -- print(history)
     cache:write(hs.json.encode(history))
     cache:close()
   end
@@ -49,15 +89,22 @@ function copy2Clipboard()
 
   -- add copy content into clipboard history
   hs.timer.doAfter(0.1, function()
-    local content = hs.pasteboard.getContents()
-    addClipboardHistory(content)
+    addClipboardHistory()
     keybinds.copy:enable()
   end)
 end
 
 function showClipboard()
+  local choices = hs.fnutils.map(history, function(item)
+    local choice = hs.fnutils.copy(item)
+    if choice.uti == UTI.IMAGE then
+      choice.image = hs.image.imageFromURL(item.raw)
+    end
+    return choice
+  end)
+
   clipboard:width(30);
-  clipboard:choices(history);
+  clipboard:choices(choices);
   clipboard:show()
 end
 
@@ -69,8 +116,7 @@ hs.timer.doEvery(0.5, function()
 
   if (count ~= preCount) then
     preCount = count;
-    local content = hs.pasteboard.getContents()
-    addClipboardHistory(content)
+    addClipboardHistory()
   end
 end)
 

@@ -5,7 +5,7 @@ function focusScreen(option)
 
   -- get target screen's windows
   local target = options == "Left" and current:previous() or current:next()
-  local wins = fnutils.filter(hs.window.orderedWindows(), function(win)
+  local wins = hs.fnutils.filter(hs.window.orderedWindows(), function(win)
     return win:screen() == target;
   end)
 
@@ -20,11 +20,9 @@ function focusScreen(option)
   hs.mouse.setRelativePosition(hs.geometry.point(0, point.y))
 end
 
-local ctrl_cmd = { "cmd" }
-
 ----------------------- hotkey bindings ----------------------------
 
--- binding ctrl + cmd + left as focus left screen
-hs.hotkey.bind(ctrl_cmd, "Left", hs.fnutils.partial(focusScreen, "Left"))
--- binding ctrl + cmd + right as focus right screen
-hs.hotkey.bind(ctrl_cmd, "Right", hs.fnutils.partial(focusScreen, "Right"))
+-- binding cmd + left as focus left screen
+hs.hotkey.bind({ "cmd" }, "h", hs.fnutils.partial(focusScreen, "Left"))
+-- binding cmd + right as focus right screen
+hs.hotkey.bind({ "cmd" }, "l", hs.fnutils.partial(focusScreen, "Right"))
