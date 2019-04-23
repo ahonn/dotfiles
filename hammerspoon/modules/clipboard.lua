@@ -22,7 +22,7 @@ clipboard = hs.chooser.new(function (choice)
   end
 end)
 
-function addHistory(content)
+function addClipboardHistory(content)
   -- limit history length
   while (#history >= maxSize) do
     table.remove(history, #history)
@@ -50,7 +50,7 @@ function copy2Clipboard()
   -- add copy content into clipboard history
   hs.timer.doAfter(0.1, function()
     local content = hs.pasteboard.getContents()
-    addHistory(content)
+    addClipboardHistory(content)
     keybinds.copy:enable()
   end)
 end
@@ -70,7 +70,7 @@ hs.timer.doEvery(0.5, function()
   if (count ~= preCount) then
     preCount = count;
     local content = hs.pasteboard.getContents()
-    addHistory(content)
+    addClipboardHistory(content)
   end
 end)
 
