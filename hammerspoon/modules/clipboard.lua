@@ -1,6 +1,7 @@
 -- Clipboard History
 
 local history = {}
+local width = 30
 local maxSize = 100
 local cachePath = os.getenv("HOME") .. "/.clipboard"
 
@@ -49,7 +50,7 @@ function addClipboardHistory()
   local item = {}
   if imageType then
     local image = hs.pasteboard.readImage()
-    item.text = '[Image]';
+    item.text = "[[Image]]";
     item.uti = UTI.IMAGE;
     item.raw = image:encodeAsURLString("TIFF")
   else
@@ -68,7 +69,6 @@ function addClipboardHistory()
     table.remove(history, #history)
   end
 
-  print(item)
   if #history < 1 or history[1].raw ~= item.raw then
     local appname = hs.window.focusedWindow():application():name()
     item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
@@ -77,7 +77,6 @@ function addClipboardHistory()
 
     -- save to clipboard cache (will load when restart)
     local cache = io.open(cachePath, "w")
-    -- print(history)
     cache:write(hs.json.encode(history))
     cache:close()
   end
@@ -97,13 +96,15 @@ end
 function showClipboard()
   local choices = hs.fnutils.map(history, function(item)
     local choice = hs.fnutils.copy(item)
+    choice.text = " " .. choice.text
+    choice.subText = " " .. choice.subText
     if choice.uti == UTI.IMAGE then
       choice.image = hs.image.imageFromURL(item.raw)
     end
     return choice
   end)
 
-  clipboard:width(30);
+  clipboard:width(width);
   clipboard:choices(choices);
   clipboard:show()
 end
