@@ -83,13 +83,13 @@ function addClipboardHistory()
 end
 
 function copy2Clipboard()
-  keybinds.copy:disable()
+  copyBind:disable()
   hs.eventtap.keyStroke({ "cmd" }, "c")
 
   -- add copy content into clipboard history
   hs.timer.doAfter(0.1, function()
     addClipboardHistory()
-    keybinds.copy:enable()
+    copyBind:enable()
   end)
 end
 
@@ -123,9 +123,8 @@ end)
 
 ----------------------- hotkey bindings ----------------------------
 
-keybinds = {}
 -- binding shift + cmd + v as show clipboard
-keybinds.paste = hs.hotkey.bind({ "shift", "cmd" }, "v", showClipboard);
+pasteBind = hs.hotkey.bind({ "shift", "cmd" }, "v", showClipboard);
 -- hook cmd + c to add clipboard hostory
-keybinds.copy = hs.hotkey.bind({ "cmd" }, "c", copy2Clipboard)
+copyBind = hs.hotkey.bind({ "cmd" }, "c", copy2Clipboard)
 

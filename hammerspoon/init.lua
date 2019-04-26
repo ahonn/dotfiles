@@ -3,6 +3,7 @@ require("modules.screen")
 require("modules.headphone")
 require("modules.vi-mode")
 require("modules.clipboard")
+require("modules.switcher")
 
 function reloadConfigCallback(files)
   doReload = false

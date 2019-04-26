@@ -23,6 +23,6 @@ end
 ----------------------- hotkey bindings ----------------------------
 
 -- binding cmd + left as focus left screen
-hs.hotkey.bind({ "cmd" }, "h", hs.fnutils.partial(focusScreen, "Left"))
+hs.hotkey.bind({ "cmd", "shift" }, ",", hs.fnutils.partial(focusScreen, "Left"))
 -- binding cmd + right as focus right screen
-hs.hotkey.bind({ "cmd" }, "l", hs.fnutils.partial(focusScreen, "Right"))
+hs.hotkey.bind({ "cmd", "shift" }, ".", hs.fnutils.partial(focusScreen, "Right"))
