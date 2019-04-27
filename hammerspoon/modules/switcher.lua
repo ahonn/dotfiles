@@ -4,39 +4,48 @@ local choices = {}
 local width = 30
 
 local screenshot = nil
-local content = nil
+local preChoice = nil
 local timer = hs.timer.new(0.1, function ()
-  local selectedContent = switcher:selectedRowContents()
+  local currentChoice = switcher:selectedRowContents()
 
-  if content == nil or content.wid ~= selectedContent.wid then
+  if preChoice == nil or preChoice.wid ~= currentChoice.wid then
     if screenshot ~= nil then
       screenshot:hide()
     end
-    print('drawing')
+
+    local app = hs.application.applicationForPID(currentChoice.pid)
+    local window = app:getWindow(currentChoice.wid) or app:mainWindow()
+    local windowFrame = window:frame()
 
     local switcherFrame = hs.window.focusedWindow():frame()
 
-    local snapshot = hs.window.snapshotForID(selectedContent.wid)
-    local w = 300;
-    local h = 300;
+    local snapshot = hs.window.snapshotForID(currentChoice.wid)
+    local w = switcherFrame.w
+    local h = w * (windowFrame.h / windowFrame.w)
     local x = switcherFrame.x + switcherFrame.w + 5
-    local y = switcherFrame.y - 60
-    screenshot = hs.drawing.image({x = x, y = y, w = w, h = 300}, snapshot)
+    local y = switcherFrame.y
+    screenshot = hs.drawing.image({x = x, y = y, w = w, h = h}, snapshot)
     screenshot:setBehavior(hs.drawing.windowBehaviors.moveToActiveSpace)
     screenshot:show()
-    content = selectedContent
+    preChoice = currentChoice
   end
 end)
 
 switcher = hs.chooser.new(function (choice)
   if choice ~= nil then
     local app = hs.application.applicationForPID(choice.pid)
-    local wins = app:allWindows()
+    local windows = app:allWindows()
 
+    print(hs.inspect.inspect(app))
     app:activate()
-    if #wins > 1 then
-      local win = app:getWindow(choice.wid)
-      win:focus()
+    if #windows > 0 then
+      local window = app:getWindow(choice.wid)
+      print(hs.inspect.inspect(window))
+      print(window:isMinimized())
+      if window:isMinimized() then
+        window:unminimize()
+      end
+      window:focus()
     end
   end
   -- clear switcher query string
@@ -46,6 +55,7 @@ switcher = hs.chooser.new(function (choice)
 
   screenshot:hide()
   timer:stop()
+  preChoice = nil
 end)
 
 switcher:queryChangedCallback(function (query)

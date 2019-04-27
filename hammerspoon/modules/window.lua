@@ -2,9 +2,6 @@
 
 local math = require "math"
 
--- disable animationDuration
-hs.window.animationDuration = 0
-
 local gridparts = 30
 
 function createWindowResizer(win)

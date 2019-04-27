@@ -5,6 +5,9 @@ require("modules.vi-mode")
 require("modules.clipboard")
 require("modules.switcher")
 
+-- disable animationDuration
+hs.window.animationDuration = 0
+
 function reloadConfigCallback(files)
   doReload = false
   for _, file in pairs(files) do
