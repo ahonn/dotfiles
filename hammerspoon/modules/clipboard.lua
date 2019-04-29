@@ -1,130 +1,159 @@
 -- Clipboard History
 
-local history = {}
+local module = {}
+
+-- metadata
+module.name = "Clipboard"
+module.version = "1.0.0"
+module.author = "Yuexun Jiang <yuexunjiang@gmail.com>"
+module.license = "MIT - https://opensource.org/licenses/MIT"
+
+-- settings
 local width = 30
 local maxSize = 100
-local cachePath = os.getenv("HOME") .. "/.clipboard"
 
-local UTI = {
-  IMAGE = "public.tiff",
-  TEXT = "public.utf8-plain-text",
+local storePath = os.getenv("HOME") .. "/.clipboard"
+local cachePath = storePath .. "/cache.json"
+local imagePath = storePath .. "/images"
+
+local UTI_TYPE = {
+  IMAGE_TIFF = "public.tiff",
+  IMAGE_PNG = "public.png",
+  PLAIN_TEXT = "public.utf8-plain-text",
 }
 
--- load clipboard cache if exists
-local cache = io.open(cachePath, "r")
-if cache then
-  local str = cache:read("*a")
-  if str ~= "" then
-    history = hs.json.decode(str)
+local HISTORY_TYPE = {
+  IMAGE = "IMAGE",
+  TEXT = "TEXT",
+}
+
+function readHistoryFromCache()
+  hs.fs.mkdir(storePath)
+  local cacheFile = io.open(cachePath, "r")
+  if cacheFile then
+    local content = cacheFile:read("*a")
+    if content ~= "" then
+      return hs.json.decode(content)
+    end
+  end
+
+  return {}
+end
+
+function saveHistoryIntoCache(history)
+  local cacheFile = io.open(cachePath, "w")
+  cacheFile:write(hs.json.encode(history))
+  cacheFile:close()
+end
+
+function saveTemporaryImage(image)
+  hs.fs.mkdir(imagePath)
+  local imageBase64 = hs.base64.encode(image:encodeAsURLString())
+  local startIndex = string.len(imageBase64) / 2
+  local endIndex = startIndex + 20;
+  local filename = imagePath .. "/" .. string.sub(imageBase64, startIndex, endIndex) .. ".png"
+  image:saveToFile(filename)
+  return filename
+end
+
+function reduceHistorySize()
+  while #module.history >= maxSize do
+    table.remove(history, #module.history)
   end
 end
 
-clipboard = hs.chooser.new(function (choice)
-  -- paste if choice text
-  if choice then
-    if choice.uti == UTI.IMAGE then
-      local image = hs.image.imageFromURL(choice.raw)
-      hs.pasteboard.writeObjects(image)
-    else
-      hs.pasteboard.setContents(choice.raw)
-    end
-    hs.eventtap.keyStroke({ "cmd" }, "v")
-  end
-  -- clear clipboard query string
-  if clipboard:query() ~= "" then
-    clipboard:query("")
-  end
-end)
-
-function addClipboardHistory()
-  -- local content = hs.pasteboard.getContents()
+function addHistoryFromPasteboard()
   local contentTypes = hs.pasteboard.contentTypes()
 
-  local imageType = false;
-  for index, uti in ipairs(contentTypes) do
-    if uti == UTI.IMAGE then
-      imageType = true
-    end
-  end
-
   local item = {}
-  if imageType then
-    local image = hs.pasteboard.readImage()
-    item.text = "[[Image]]";
-    item.uti = UTI.IMAGE;
-    item.raw = image:encodeAsURLString("TIFF")
-  else
-    local text = hs.pasteboard.readString()
-    if text == nil or utf8.len(text) < 3 then
-      return
+  for index, uti in ipairs(contentTypes) do
+    if uti == UTI_TYPE.IMAGE_TIFF or uti == UTI_TYPE.IMAGE_PNG then
+      local image = hs.pasteboard.readImage()
+      item.text = "_IMAGE_"
+      item.type = HISTORY_TYPE.IMAGE
+      item.content = saveTemporaryImage(image)
+      break
+    elseif uti == UTI_TYPE.PLAIN_TEXT then
+      local text = hs.pasteboard.readString()
+      if text == nil or utf8.len(text) < 3 then
+        return
+      end
+
+      item.text = string.gsub(text, "[\r\n]+", " ")
+      item.type = HISTORY_TYPE.TEXT;
+      item.content = text;
+      break
     end
-
-    item.text = string.gsub(text, "[\r\n]+", " ")
-    item.uti = UTI.TEXT;
-    item.raw = text;
   end
 
-  -- limit history length
-  while (#history >= maxSize) do
-    table.remove(history, #history)
+  for index, el in ipairs(module.history) do
+    if item.content == el.content then
+      table.remove(module.history, index)
+    end
   end
 
-  if #history < 1 or history[1].raw ~= item.raw then
-    local appname = hs.window.focusedWindow():application():name()
-    item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
+  local appname = hs.window.focusedWindow():application():name()
+  item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
 
-    table.insert(history, 1, item)
-
-    -- save to clipboard cache (will load when restart)
-    local cache = io.open(cachePath, "w")
-    cache:write(hs.json.encode(history))
-    cache:close()
-  end
-end
-
-function copy2Clipboard()
-  copyBind:disable()
-  hs.eventtap.keyStroke({ "cmd" }, "c")
-
-  -- add copy content into clipboard history
-  hs.timer.doAfter(0.1, function()
-    addClipboardHistory()
-    copyBind:enable()
-  end)
+  table.insert(module.history, 1, item)
+  saveHistoryIntoCache(module.history)
 end
 
 function showClipboard()
-  local choices = hs.fnutils.map(history, function(item)
+  local choices = hs.fnutils.map(module.history, function(item)
     local choice = hs.fnutils.copy(item)
     choice.text = " " .. choice.text
     choice.subText = " " .. choice.subText
-    if choice.uti == UTI.IMAGE then
-      choice.image = hs.image.imageFromURL(item.raw)
+    if choice.type == HISTORY_TYPE.IMAGE then
+      choice.image = hs.image.imageFromPath(item.content)
     end
     return choice
   end)
 
-  clipboard:width(width);
-  clipboard:choices(choices);
-  clipboard:show()
+  module.chooser:width(width);
+  module.chooser:choices(choices);
+  module.chooser:show()
 end
 
------------------------ pasteboard watch ---------------------------
-
-preCount = hs.pasteboard.changeCount()
-hs.timer.doEvery(0.5, function()
-  local count = hs.pasteboard.changeCount()
-
-  if (count ~= preCount) then
-    preCount = count;
-    addClipboardHistory()
+function choiceClipboard(choice)
+  if choice then
+    if choice.type == HISTORY_TYPE.IMAGE then
+      local image = hs.image.imageFromPath(choice.content)
+      hs.pasteboard.writeObjects(image)
+    else
+      hs.pasteboard.setContents(choice.content)
+    end
+    hs.eventtap.keyStroke({ "cmd" }, "v")
   end
-end)
+  if module.chooser:query() ~= "" then
+    module.chooser:query("")
+  end
+end
 
------------------------ hotkey bindings ----------------------------
+function module:start()
+  module.history = readHistoryFromCache()
+  module.chooser = hs.chooser.new(choiceClipboard)
+  module.preChangeCount = hs.pasteboard.changeCount()
+  module.watcher = hs.timer.new(0.5, function()
+    local changeCount = hs.pasteboard.changeCount()
+    if changeCount ~= module.preChangeCount then
+      addHistoryFromPasteboard()
+      module.preChangeCount = changeCount
+    end
+  end)
+  module.watcher:start()
+end
 
--- binding shift + cmd + v as show clipboard
-pasteBind = hs.hotkey.bind({ "shift", "cmd" }, "v", showClipboard);
--- hook cmd + c to add clipboard hostory
-copyBind = hs.hotkey.bind({ "cmd" }, "c", copy2Clipboard)
+function module:stop()
+  module.watcher:stop()
+end
 
+function module:bindHotkeys(mapping)
+  local def = {
+    showClipboard = showClipboard
+  }
+  hs.spoons.bindHotkeysToSpec(def, mapping)
+  module.mapping = mapping
+end
+
+return module
