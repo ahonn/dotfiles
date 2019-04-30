@@ -1,14 +1,5 @@
 -- Clipboard History
 
-local module = {}
-
--- metadata
-module.name = "Clipboard"
-module.version = "1.0.0"
-module.author = "Yuexun Jiang <yuexunjiang@gmail.com>"
-module.license = "MIT - https://opensource.org/licenses/MIT"
-
--- settings
 local width = 30
 local maxSize = 100
 
@@ -57,8 +48,8 @@ function saveTemporaryImage(image)
 end
 
 function reduceHistorySize()
-  while #module.history >= maxSize do
-    table.remove(history, #module.history)
+  while #history >= maxSize do
+    table.remove(history, #history)
   end
 end
 
@@ -86,21 +77,21 @@ function addHistoryFromPasteboard()
     end
   end
 
-  for index, el in ipairs(module.history) do
+  for index, el in ipairs(history) do
     if item.content == el.content then
-      table.remove(module.history, index)
+      table.remove(history, index)
     end
   end
 
   local appname = hs.window.focusedWindow():application():name()
   item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
 
-  table.insert(module.history, 1, item)
-  saveHistoryIntoCache(module.history)
+  table.insert(history, 1, item)
+  saveHistoryIntoCache(history)
 end
 
 function showClipboard()
-  local choices = hs.fnutils.map(module.history, function(item)
+  local choices = hs.fnutils.map(history, function(item)
     local choice = hs.fnutils.copy(item)
     choice.text = " " .. choice.text
     choice.subText = " " .. choice.subText
@@ -110,9 +101,9 @@ function showClipboard()
     return choice
   end)
 
-  module.chooser:width(width);
-  module.chooser:choices(choices);
-  module.chooser:show()
+  chooser:width(width);
+  chooser:choices(choices);
+  chooser:show()
 end
 
 function choiceClipboard(choice)
@@ -125,35 +116,22 @@ function choiceClipboard(choice)
     end
     hs.eventtap.keyStroke({ "cmd" }, "v")
   end
-  if module.chooser:query() ~= "" then
-    module.chooser:query("")
+  if chooser:query() ~= "" then
+    chooser:query("")
   end
 end
 
-function module:start()
-  module.history = readHistoryFromCache()
-  module.chooser = hs.chooser.new(choiceClipboard)
-  module.preChangeCount = hs.pasteboard.changeCount()
-  module.watcher = hs.timer.new(0.5, function()
-    local changeCount = hs.pasteboard.changeCount()
-    if changeCount ~= module.preChangeCount then
-      addHistoryFromPasteboard()
-      module.preChangeCount = changeCount
-    end
-  end)
-  module.watcher:start()
-end
+history = readHistoryFromCache()
+chooser = hs.chooser.new(choiceClipboard)
+preChangeCount = hs.pasteboard.changeCount()
+watcher = hs.timer.new(0.5, function()
+  local changeCount = hs.pasteboard.changeCount()
+  if changeCount ~= preChangeCount then
+    addHistoryFromPasteboard()
+    preChangeCount = changeCount
+  end
+end)
+watcher:start()
 
-function module:stop()
-  module.watcher:stop()
-end
+hs.hotkey.bind({ "cmd", "shift" }, "v", showClipboard)
 
-function module:bindHotkeys(mapping)
-  local def = {
-    showClipboard = showClipboard
-  }
-  hs.spoons.bindHotkeysToSpec(def, mapping)
-  module.mapping = mapping
-end
-
-return module

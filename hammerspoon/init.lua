@@ -3,16 +3,10 @@ require("modules.screen")
 require("modules.headphone")
 require("modules.vi-mode")
 require("modules.switcher")
-
-local clipboard = require("modules.clipboard")
+require("modules.clipboard")
 
 -- disable animationDuration
 hs.window.animationDuration = 0
-
-clipboard:bindHotkeys({
-  showClipboard = {{"cmd", "shift"}, "v"}
-})
-clipboard:start()
 
 function reloadConfigCallback(files)
   doReload = false

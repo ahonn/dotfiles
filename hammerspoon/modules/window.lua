@@ -127,8 +127,6 @@ function windowToggleFullScreen()
   end
 end
 
------------------------ hotkey bindings ----------------------------
-
 local ctrl_cmd = { "ctrl", "cmd" }
 
 -- binding ctrl + cmd h/j/k/l to resize window Left/Bottom/Top/Right

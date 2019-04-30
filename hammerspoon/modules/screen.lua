@@ -20,8 +20,6 @@ function focusScreen(option)
   hs.mouse.setRelativePosition(hs.geometry.point(0, point.y))
 end
 
------------------------ hotkey bindings ----------------------------
-
 -- binding cmd + left as focus left screen
 hs.hotkey.bind({ "cmd", "shift" }, ",", hs.fnutils.partial(focusScreen, "Left"))
 -- binding cmd + right as focus right screen
