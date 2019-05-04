@@ -77,17 +77,19 @@ function addHistoryFromPasteboard()
     end
   end
 
-  for index, el in ipairs(history) do
-    if item.content == el.content then
-      table.remove(history, index)
+  if #item > 0 then
+    for index, el in ipairs(history) do
+      if item.content == el.content then
+        table.remove(history, index)
+      end
     end
+
+    local appname = hs.window.focusedWindow():application():name()
+    item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
+
+    table.insert(history, 1, item)
+    saveHistoryIntoCache(history)
   end
-
-  local appname = hs.window.focusedWindow():application():name()
-  item.subText = appname .. " / " .. os.date("%Y-%m-%d %H:%M", os.time())
-
-  table.insert(history, 1, item)
-  saveHistoryIntoCache(history)
 end
 
 function showClipboard()
