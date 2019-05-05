@@ -41,7 +41,7 @@ function saveTemporaryImage(image)
   hs.fs.mkdir(imagePath)
   local imageBase64 = hs.base64.encode(image:encodeAsURLString())
   local startIndex = string.len(imageBase64) / 2
-  local endIndex = startIndex + 20;
+  local endIndex = startIndex + 5;
   local filename = imagePath .. "/" .. string.sub(imageBase64, startIndex, endIndex) .. ".png"
   image:saveToFile(filename)
   return filename
@@ -77,7 +77,7 @@ function addHistoryFromPasteboard()
     end
   end
 
-  if #item > 0 then
+  if item.text ~= "" then
     for index, el in ipairs(history) do
       if item.content == el.content then
         table.remove(history, index)
