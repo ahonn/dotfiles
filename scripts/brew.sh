@@ -31,7 +31,6 @@ formulas=(
   neovim
   thefuck
   cmake
-  clangd
   fx
   bat
   fd

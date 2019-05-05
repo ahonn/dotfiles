@@ -28,7 +28,6 @@ echo -e "\nInstalling npm packages..."
 echo "=============================="
 
 formulas=(
-  tern
   leetcode-cli
   neovim
   prettier
@@ -37,7 +36,6 @@ formulas=(
   gh-pages
   commitizen
   cz-conventional-changelog
-  javascript-typescript-langserver
   eslint
   eslint-config-standard
 )
