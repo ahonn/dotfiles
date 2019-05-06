@@ -40,5 +40,5 @@ function tapperCallback(evt)
   end
 end
 
-tapper = hs.eventtap.new({hs.eventtap.event.types.keyDown}, tapperCallback)
-tapper:start()
+viTapper = hs.eventtap.new({hs.eventtap.event.types.keyDown}, tapperCallback)
+viTapper:start()

@@ -5,7 +5,7 @@ local width = 30
 
 local screenshot = nil
 local preChoice = nil
-local timer = hs.timer.new(0.1, function ()
+local timer = hs.timer.new(0.3, function ()
   local currentChoice = switcher:selectedRowContents()
 
   if preChoice == nil or preChoice.wid ~= currentChoice.wid then
@@ -66,6 +66,7 @@ switcher:queryChangedCallback(function (query)
     return isMatch(item.text) or isMatch(item.subText)
   end)
   switcher:choices(result)
+  timer:start()
 end)
 
 function showSwitcher()
@@ -90,5 +91,24 @@ function showSwitcher()
   timer:start()
 end
 
-switchBind = hs.hotkey.bind({ "alt" }, "tab", showSwitcher)
+switcherTapper = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function (evt)
+  local flags = evt:getFlags()
+  local keyCode = evt:getKeyCode()
 
+  -- reset timer if press down or up when switcher is visible
+  if switcher:isVisible() and flags['ctrl'] then
+    if keyCode == 45 or keyCode == 35 then
+      timer:stop()
+      timer:start()
+    end
+  end
+end)
+switcherTapper:start()
+
+switchBind = hs.hotkey.bind({ "alt" }, "tab", function ()
+  if switcher:isVisible() then
+    hs.eventtap.keyStroke({ "ctrl" }, "n")
+  else
+    showSwitcher()
+  end
+end)

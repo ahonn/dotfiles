@@ -16,7 +16,6 @@ function reloadConfigCallback(files)
     end
   end
   if doReload then
-    clipboard:stop()
     hs.reload()
   end
 end
