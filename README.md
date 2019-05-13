@@ -1,7 +1,7 @@
 # dotfiles
 My vim/neovim, fish, git, and tmux configuration files
 
-![](http://ahonn-me.oss-cn-beijing.aliyuncs.com/images/zldvf.png)
+![screenshot](./screenshot.png)
 
 ## Install
 ```
