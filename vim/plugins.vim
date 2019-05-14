@@ -21,16 +21,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
-  Plug 'mattn/emmet-vim'
   Plug 'jparise/vim-graphql'
+  Plug 'Quramy/vim-js-pretty-template'
 
   " Language/CSS
   Plug 'groenewege/vim-less'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-
-  " Language/Go
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'frozen': 1 }
 
   " Language/Clojure
   Plug 'guns/vim-clojure-static'
@@ -68,6 +65,7 @@ call plug#begin('~/.vim/plugged')
 
   " Completion
   Plug 'ervandew/supertab'
+  Plug 'mattn/emmet-vim'
   Plug 'Shougo/echodoc.vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'SirVer/ultisnips'
@@ -120,17 +118,15 @@ let g:jsdoc_tags = {
   \ }
 let g:jsdoc_enable_es6 = 1
 
-" Emmet.vim
-imap <silent> <C-e> <Space><BS><plug>(emmet-expand-abbr)
-let g:user_emmet_install_global = 1
-let g:user_emmet_settings = {
-  \ 'javascript.jsx' : {
-  \   'extends' : 'jsx',
-  \  },
-  \ 'javascript' : {
-  \   'extends' : 'jsx',
-  \  },
-  \ }
+" vim-js-pretty-template
+call jspretmpl#register_tag('html', 'html')
+augroup JsPreTmpl
+  autocmd!
+  autocmd FileType javascript JsPreTmpl
+  autocmd FileType javascript.jsx JsPreTmpl
+  autocmd FileType typescript JsPreTmpl
+  autocmd FileType typescript.tsx JsPreTmpl
+augroup END
 
 " ----------------------------------------------------------------------------
 " Language/Clojure
@@ -330,6 +326,19 @@ nnoremap gm :GitMessenger<Cr>
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
+
+" Emmet.vim
+imap <silent> <C-e> <Space><BS><plug>(emmet-expand-abbr)
+let g:user_emmet_install_global = 1
+let g:user_emmet_settings = {
+  \ 'javascript.jsx' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ 'javascript' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ }
+
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
