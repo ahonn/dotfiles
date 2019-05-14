@@ -22,7 +22,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'galooshi/vim-import-js', { 'do': 'npm install import-js -g' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'jparise/vim-graphql'
-  Plug 'Quramy/vim-js-pretty-template'
 
   " Language/CSS
   Plug 'groenewege/vim-less'
@@ -117,16 +116,6 @@ let g:jsdoc_tags = {
   \  'param': 'param',
   \ }
 let g:jsdoc_enable_es6 = 1
-
-" vim-js-pretty-template
-call jspretmpl#register_tag('html', 'html')
-augroup JsPreTmpl
-  autocmd!
-  autocmd FileType javascript JsPreTmpl
-  autocmd FileType javascript.jsx JsPreTmpl
-  autocmd FileType typescript JsPreTmpl
-  autocmd FileType typescript.tsx JsPreTmpl
-augroup END
 
 " ----------------------------------------------------------------------------
 " Language/Clojure

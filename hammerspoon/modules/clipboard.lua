@@ -77,7 +77,7 @@ function addHistoryFromPasteboard()
     end
   end
 
-  if item.text ~= "" then
+  if item.text then
     for index, el in ipairs(history) do
       if item.content == el.content then
         table.remove(history, index)
