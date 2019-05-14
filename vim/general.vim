@@ -11,6 +11,17 @@ if has('gui_running')
   set guioptions-=L
 endif
 
+if empty($TMUX)
+  if has('nvim')
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if has('termguicolors')
+    set termguicolors
+  endif
+endi
+
+set background=dark
+
 set number
 set relativenumber
 
@@ -60,9 +71,6 @@ set sessionoptions=buffers,curdir,folds,tabpages,winpos,winsize
 set wildmenu
 set wildmode=longest,full
 set completeopt=menu,menuone
-
-set termguicolors
-set background=dark
 
 set cursorline
 set scrolloff=10
