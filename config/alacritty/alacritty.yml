@@ -60,7 +60,7 @@ scrolling:
   faux_multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: true
+  auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -204,7 +204,7 @@ mouse:
   triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  hide_when_typing: true
+  hide_when_typing: false
 
   url:
     # URL launcher
