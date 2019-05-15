@@ -88,6 +88,7 @@ let g:hybrid_custom_term_colors = 1
 let g:gruvbox_bold = 0
 let g:gruvbox_sign_column = 'bg0'
 let g:gruvbox_invert_selection = 0
+
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
@@ -154,7 +155,6 @@ let g:indentLine_color_gui = '#504945'
 let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
 
-
 " vim-devicons
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
@@ -187,7 +187,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#xkblayout#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
 
 " gundo
 nnoremap <silent> <Leader>ud :GundoToggle<Cr>
