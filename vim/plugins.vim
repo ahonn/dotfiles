@@ -163,7 +163,7 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " nerdtree
 noremap <silent> <C-b> :NERDTreeToggle<Cr>
-let NERDTreeIgnore=['_.*$[[dir]]']
+" let NERDTreeIgnore=['_.*$[[dir]]']
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
