@@ -332,8 +332,6 @@ let g:user_emmet_settings = {
 let g:echodoc#enable_at_startup = 1
 
 " coc.nvim
-nnoremap <silent> <C-q> :CocList --interactive outline<Cr>
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <Leader>r <Plug>(coc-rename)
