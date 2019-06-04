@@ -196,23 +196,28 @@ let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
 " denite
-nnoremap <silent> <Leader><Leader> :Denite buffer<Cr>
-nnoremap <silent> <C-f> :Denite grep<Cr>
-nnoremap <silent> <C-p> :Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+nnoremap <silent> <Leader><Leader> :Denite -start-filter buffer<Cr>
+nnoremap <silent> <C-f> :Denite -no-empty grep<Cr>
+nnoremap <silent> <C-p> :Denite -start-filter `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Cr> denite#do_map('do_action', 'open')
+  nnoremap <silent><buffer><expr> <C-s> denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> <C-i> denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+endfunction
 
 call denite#custom#option('default', 'unique', 1)
 call denite#custom#option('default', 'reversed', 1)
 call denite#custom#option('default', 'auto-resize', 1)
+" call denite#custom#option('default', 'start-filter', 1)
 call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
 
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplit>', 'noremap')
-call denite#custom#map('insert', '<C-i>', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('_', '<C-x>', '<denite:do_action:delete>', 'noremap')
 
 " Ag command on grep source
 call denite#custom#var('grep', 'command', ['ag'])
