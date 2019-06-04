@@ -196,9 +196,9 @@ let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
 " denite
-nnoremap <silent> <Leader><Leader> :Denite -start-filter buffer<Cr>
+nnoremap <silent> <Leader><Leader> :Denite buffer<Cr>
 nnoremap <silent> <C-f> :Denite -no-empty grep<Cr>
-nnoremap <silent> <C-p> :Denite -start-filter `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
+nnoremap <silent> <C-p> :Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
 
 " Define mappings
 autocmd FileType denite call s:denite_my_settings()
