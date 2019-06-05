@@ -3,7 +3,6 @@ package nvm
 package osx
 package rvm
 package thefuck
-package vi-mode
 package z
 theme default
 theme robbyrussell

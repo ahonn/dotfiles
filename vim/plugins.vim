@@ -201,7 +201,7 @@ let g:gundo_prefer_python3 = 1
 
 " fzf.vim
 nnoremap <silent> <C-p> :Files<Cr>
-nnoremap <silent> <C-f> :Ag<Cr>
+nnoremap <silent> <C-f> :Rg<Cr>
 nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
