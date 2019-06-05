@@ -41,8 +41,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-  Plug 'Shougo/denite.nvim'
-  Plug 'neoclide/denite-git', { 'on': 'Denite' }
+  if isdirectory('/usr/local/opt/fzf')
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+  else
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+  endif
 
   " Integration
   Plug 'w0rp/ale'
@@ -195,40 +199,10 @@ let g:gundo_preview_height = 40
 let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
-" denite
-nnoremap <silent> <Leader><Leader> :Denite buffer<Cr>
-nnoremap <silent> <C-f> :Denite -no-empty grep<Cr>
-nnoremap <silent> <C-p> :Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
-
-" Define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Cr> denite#do_map('do_action', 'open')
-  nnoremap <silent><buffer><expr> <C-s> denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-i> denite#do_map('do_action', 'split')
-  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
-endfunction
-
-call denite#custom#option('default', 'unique', 1)
-call denite#custom#option('default', 'reversed', 1)
-call denite#custom#option('default', 'auto-resize', 1)
-" call denite#custom#option('default', 'start-filter', 1)
-call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-" Ag command on grep source
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--path-to-ignore=~/.gitignore_global'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" denite-git
-nnoremap <silent> <C-g> :Denite gitlog:all<Cr>
+" fzf.vim
+nnoremap <silent> <C-p> :Files<Cr>
+nnoremap <silent> <C-f> :Ag<Cr>
+nnoremap <silent> <Leader><Leader> :Buffers<Cr>
 
 " ----------------------------------------------------------------------------
 " Integration
