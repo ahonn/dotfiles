@@ -9,7 +9,7 @@ endif
 call plug#begin('~/.vim/plugged')
   " Colorscheme
   Plug 'w0ng/vim-hybrid'
-  Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
 
   " Language/Fish
   Plug 'dag/vim-fish'
@@ -68,7 +68,6 @@ call plug#begin('~/.vim/plugged')
   " Completion
   Plug 'ervandew/supertab'
   Plug 'mattn/emmet-vim'
-  Plug 'Shougo/echodoc.vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -306,10 +305,6 @@ let g:user_emmet_settings = {
   \  },
   \ }
 
-
-" echodoc
-let g:echodoc#enable_at_startup = 1
-
 " coc.nvim
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> <Leader>f <Plug>(coc-format)
@@ -323,6 +318,7 @@ call coc#add_extension(
   \ 'coc-snippets',
   \ 'coc-word',
   \ 'coc-prettier',
+  \ 'coc-vimlsp',
   \ )
 
 " UltiSnips
