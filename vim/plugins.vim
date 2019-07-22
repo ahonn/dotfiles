@@ -314,6 +314,7 @@ nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <Leader>r <Plug>(coc-rename)
 
 call coc#add_extension(
+  \ 'coc-tabnine',
   \ 'coc-tsserver',
   \ 'coc-tslint-plugin',
   \ 'coc-json',
