@@ -41,6 +41,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+  Plug 'ahonn/resize.vim'
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   else
@@ -148,6 +149,11 @@ let g:rainbow_active = 1
 let g:rainbow_conf = {
 \   'guifgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \ }
+let g:rainbow_conf = {
+\    'separately': {
+\       'nerdtree': 0
+\    }
+\}
 
 " indentLine
 nnoremap <silent> <Leader><Tab> :IndentLinesToggle<Cr>
@@ -158,11 +164,11 @@ let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
 
 " vim-devicons
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-" if exists('g:loaded_webdevicons')
-"   call webdevicons#refresh()
-" endif
 
 " nerdtree
 noremap <silent> <C-b> :NERDTreeToggle<Cr>
