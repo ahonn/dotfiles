@@ -269,7 +269,7 @@ let g:mta_filetypes = {
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
 " vim-fileheader
-let g:fileheader_auto_add = 0
+let g:fileheader_auto_add = 1
 let g:fileheader_show_email = 0
 
 " vim-trailing-whitespace
