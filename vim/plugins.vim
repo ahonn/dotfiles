@@ -20,7 +20,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
-  Plug 'jparise/vim-graphql'
 
   " Language/CSS
   Plug 'groenewege/vim-less'
@@ -65,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
+  Plug 'lfv89/vim-interestingwords'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -290,6 +290,13 @@ endif
 
 " git-messenger.vim
 nnoremap gm :GitMessenger<Cr>
+
+" vim-interestingwords
+nnoremap <silent> <Leader>k :call InterestingWords('n')<Cr>
+nnoremap <silent> <Leader>K :call UncolorAllWords()<Cr>
+
+nnoremap <silent> n :call WordNavigation('forward')<Cr>
+nnoremap <silent> N :call WordNavigation('backward')<Cr>
 
 " ----------------------------------------------------------------------------
 " Completion
