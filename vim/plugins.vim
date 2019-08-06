@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
 
   " Language/Clojure
   Plug 'guns/vim-clojure-static'
+  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
   " UI
   Plug 'mhinz/vim-startify'
