@@ -318,6 +318,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <Leader>r <Plug>(coc-rename)
+nmap <silent> <Leader>t :CocList outline<Cr>
 
 call coc#add_extension(
   \ 'coc-tabnine',
