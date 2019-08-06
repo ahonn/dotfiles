@@ -64,7 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
-  Plug 'lfv89/vim-interestingwords'
+  Plug 'editorconfig/editorconfig-vim'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -249,10 +249,10 @@ let g:surround_35 = "#{\r}"
 let g:surround_36 = "${\r}"
 
 " vim-easymotion
-map <silent> <Leader>mh <Plug>(easymotion-linebackward)
-map <silent> <Leader>mj <Plug>(easymotion-w)
-map <silent> <Leader>mk <Plug>(easymotion-b)
-map <silent> <Leader>ml <Plug>(easymotion-lineforward)
+map <silent> <Leader>h <Plug>(easymotion-linebackward)
+map <silent> <Leader>j <Plug>(easymotion-w)
+map <silent> <Leader>k <Plug>(easymotion-b)
+map <silent> <Leader>l <Plug>(easymotion-lineforward)
 let g:EasyMotion_keys = 'asdhjkl;qwer'
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_grouping = 2
@@ -290,13 +290,6 @@ endif
 
 " git-messenger.vim
 nnoremap gm :GitMessenger<Cr>
-
-" vim-interestingwords
-nnoremap <silent> <Leader>k :call InterestingWords('n')<Cr>
-nnoremap <silent> <Leader>K :call UncolorAllWords()<Cr>
-
-nnoremap <silent> n :call WordNavigation('forward')<Cr>
-nnoremap <silent> N :call WordNavigation('backward')<Cr>
 
 " ----------------------------------------------------------------------------
 " Completion
