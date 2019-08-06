@@ -1,7 +1,7 @@
 -- Clipboard History
 
 local width = 30
-local maxSize = 100
+local maxSize = 50
 
 local storePath = os.getenv("HOME") .. "/.clipboard"
 local cachePath = storePath .. "/cache.json"
@@ -129,7 +129,7 @@ preChangeCount = hs.pasteboard.changeCount()
 watcher = hs.timer.new(0.5, function()
   local changeCount = hs.pasteboard.changeCount()
   if changeCount ~= preChangeCount then
-    addHistoryFromPasteboard()
+    pcall(addHistoryFromPasteboard)
     preChangeCount = changeCount
   end
 end)
