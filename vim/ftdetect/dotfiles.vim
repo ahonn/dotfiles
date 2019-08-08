@@ -4,4 +4,5 @@ augroup Dotfiles
   autocmd BufRead tmux.conf.symlink set filetype=tmux
   autocmd BufRead perttierrc.symlink set filetype=json
   autocmd BufRead czrc.symlink set filetype=json
+  autocmd BufRead importjs.js.symlink set filetype=javascript
 augroup END
