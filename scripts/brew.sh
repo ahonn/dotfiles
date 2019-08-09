@@ -34,6 +34,7 @@ formulas=(
   fx
   bat
   fd
+  clojure-lsp
 )
 
 for formula in "${formulas[@]}"; do
