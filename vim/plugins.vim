@@ -321,6 +321,8 @@ nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <Leader>r <Plug>(coc-rename)
 nmap <silent> <Leader>t :CocList outline<Cr>
 
+nnoremap <silent> gh :call CocAction('doHover')<CR>
+
 call coc#add_extension(
   \ 'coc-tabnine',
   \ 'coc-tsserver',
