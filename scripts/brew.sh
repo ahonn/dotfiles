@@ -35,6 +35,7 @@ formulas=(
   bat
   fd
   clojure-lsp
+  borkdude/brew/clj-kondo
 )
 
 for formula in "${formulas[@]}"; do

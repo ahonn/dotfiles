@@ -228,6 +228,7 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'typescript': ['tslint'],
   \ 'javascript': ['eslint'],
+  \ 'clojure': ['clj-kondo'],
   \ }
 let g:ale_fixers = {
   \ 'javascript': 'eslint',
