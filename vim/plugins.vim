@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
+  Plug 'evanleck/vim-svelte'
 
   " Language/CSS
   Plug 'groenewege/vim-less'
