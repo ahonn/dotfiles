@@ -51,7 +51,7 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " Integration
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
