@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
-  Plug 'evanleck/vim-svelte'
+  Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
 
   " Language/CSS
   Plug 'groenewege/vim-less'
@@ -28,8 +28,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'hail2u/vim-css3-syntax'
 
   " Language/Clojure
-  Plug 'guns/vim-clojure-static'
-  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
+  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
 
   " UI
   Plug 'mhinz/vim-startify'
@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'

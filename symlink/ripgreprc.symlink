@@ -1,0 +1,11 @@
+--max-columns=150
+--max-columns-preview
+
+--glob
+!git/*
+!node_modules/*
+
+--no-ignore
+--hidden
+--follow
+--smart-case
