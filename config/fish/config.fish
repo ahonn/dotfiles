@@ -6,7 +6,7 @@ set -gx TERM 'screen-256color'
 set -gx EDITOR 'nvim'
 set -gx GIT_EDITOR 'nvim'
 
-set -gx FZF_DEFAULT_COMMAND 'rg --files 2> /dev/null'
+set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 
 # flutter
 set -gx PUB_HOSTED_URL https://pub.flutter-io.cn
