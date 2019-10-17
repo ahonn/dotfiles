@@ -3,7 +3,7 @@
 name = ahonn
 email = ahonn95@outlook.com
 [core]
-excludesfile = /Users/ahonn/.gitignore_global
+excludesfile = ~/.gitignore_global
 [includeIf "gitdir:~/Documents/code/"]
 path = ~/Documents/code/.gitconfig
 [push]
