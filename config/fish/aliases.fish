@@ -1,7 +1,8 @@
 # tmux & tmuxinator
-alias hello 'tmuxinator start ahonn'
-alias world 'tmuxinator start project -n'
+alias hello 'tmuxinator start world -n ahonn'
+alias world 'tmuxinator start world -n'
 alias bye 'tmux kill-server'
+alias kill 'tmux kill-session -t'
 
 # dotfiles
 alias dot 'cd $DOTFILES'

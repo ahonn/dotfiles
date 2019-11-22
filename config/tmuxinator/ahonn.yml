@@ -1,7 +1,0 @@
-# ~/.tmuxinator/ahonn.yml
-
-name: ahonn
-root: ~/
-
-windows:
-  - base: clear
