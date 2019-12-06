@@ -326,7 +326,6 @@ nmap <silent> <Leader>t :CocList outline<Cr>
 nnoremap <silent> gh :call CocAction('doHover')<CR>
 
 call coc#add_extension(
-  \ 'coc-tabnine',
   \ 'coc-tsserver',
   \ 'coc-tslint-plugin',
   \ 'coc-json',
