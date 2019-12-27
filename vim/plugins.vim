@@ -228,13 +228,15 @@ let g:ale_linter_aliases = {
   \ }
 let g:ale_linters = {
   \ 'typescript': ['tslint'],
+  \ 'typescriptreact': ['tslint'],
   \ 'javascript': ['eslint'],
   \ 'clojure': ['clj-kondo'],
   \ }
 let g:ale_fixers = {
   \ 'javascript': 'eslint',
-  \ 'vue': 'eslint',
   \ 'typescript': 'tslint',
+  \ 'typescriptreact': 'tslint',
+  \ 'vue': 'eslint',
   \ }
 nmap <silent> <Leader>af <Plug>(ale_fix)
 
