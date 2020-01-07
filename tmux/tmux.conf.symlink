@@ -51,7 +51,7 @@ bind C-s run-shell "tmux list-session | fzf-tmux | cut -d \":\" -f 1 | xargs tmu
 unbind %
 bind - split-window -v -c '#{pane_current_path}'
 unbind '"'
-bind \ split-window -h -c '#{pane_current_path}'
+bind '\' split-window -h -c '#{pane_current_path}'
 
 # select pane
 bind h select-pane -L
