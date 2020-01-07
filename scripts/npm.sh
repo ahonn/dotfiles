@@ -33,7 +33,6 @@ formulas=(
   prettier
   babel-eslint
   typescript
-  gh-pages
   commitizen
   cz-conventional-changelog
   eslint
