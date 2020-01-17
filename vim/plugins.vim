@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'hotoo/pangu.vim'
 
   " Completion
   Plug 'ervandew/supertab'
