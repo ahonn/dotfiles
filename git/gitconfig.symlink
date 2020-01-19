@@ -9,3 +9,7 @@ excludesfile = ~/.gitignore_global
 path = ~/Documents/code/.gitconfig
 [push]
 default = current
+[http]
+proxy = http://127.0.0.1:1081
+[https]
+proxy = https://127.0.0.1:1081
