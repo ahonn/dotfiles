@@ -1,0 +1,15 @@
+patch:
+  us_keyboard_layout: true
+  show_notifications_when: appropriate
+
+  style:
+    color_scheme: purity_of_essence
+    horizontal: true
+    inline_preedit: true
+    font_point: 16
+    corner_radius: 5
+    candidate_format: "%c\u2005%@ \u2005"
+
+  app_options:
+    io.alacritty:
+      ascii_mode: true

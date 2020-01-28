@@ -59,4 +59,3 @@ else
   echo "Creating symlink for $HOME/.hammerspoon"
   ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 fi
-
