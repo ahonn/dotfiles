@@ -1,0 +1,21 @@
+# encoding: utf-8
+
+---
+name: squirrel
+version: "2020-01-29"
+sort: by_weight
+use_preset_vocabulary: true
+import_tables:
+  - luna_pinyin
+  - luna_pinyin.extended
+  - luna_pinyin.hanyu
+  - luna_pinyin.poetry
+...
+
+ahonn.me	ahonn	1000
+ahonn95@outlook.com	ahonn	1000
+
+GitHub	github	1000
+JavaScript	js	1000
+macOS	macos	1000
+iOS	ios	1000
