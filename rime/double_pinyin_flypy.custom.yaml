@@ -1,9 +1,19 @@
 patch:
+  punctuator:
+    import_preset: default
+    full_shape:
+      '#': '#'
+      '`': '`'
+
   translator:
     dictionary: squirrel
 
+  recognizer:
+    patterns:
+      reverse_lookup:
+
 __patch:
-# Rx: emoji:customize:schema=double_pinyin_flypy {
+  # Rx: emoji:customize:schema=double_pinyin_flypy {
   - patch/+:
       __include: emoji_suggestion:/patch
 # }

@@ -1,0 +1,326 @@
+---
+name: luna_pinyin.sougou
+version: "1.0"
+sort: by_weight
+use_preset_vocabulary: true
+...
+
+半自动步枪	ban zi dong bu qiang	1
+步枪	bu qiang	1
+冲锋枪	chong feng qiang	1
+式冲锋枪	shi chong feng qiang	1
+式马克沁水冷式机枪	shi ma ke qin shui leng shi ji qiang	1
+手枪	shou qiang	1
+通用机枪	tong yong ji qiang	1
+自动步枪	zi dong bu qiang	1
+阿基米德巧计	a ji mi de qiao ji	1
+阿拉沟	a la gou	1
+阿拉曼	a la man	1
+阿玛利特	a ma li te	1
+阿斯洛克	a si luo ke	1
+爱岗敬业	ai gang jing ye	1
+爱国主义	ai guo zhu yi	1
+隘路	ai lu	1
+爱默森	ai mo sen	1
+埃塞克斯级	ai sai ke si ji	1
+艾森豪威尔	ai sen hao wei er	1
+艾森豪威尔号	ai sen hao wei er hao	1
+爱生豪威尔	ai sheng hao wei er	1
+岸壁式码头	an bi shi ma tou	1
+岸边	an bian	1
+岸边节套舟	an bian jie tao zhou	1
+岸边码头	an bian ma tou	1
+岸边器材	an bian qi cai	1
+岸边舟	an bian zhou	1
+鞍部	an bu	1
+按撤诉处理	an che su chu li	1
+安大略	an da lue	1
+安定器	an ding qi	1
+案发单位	an fa dan wei	1
+岸防	an fang	1
+岸防兵	an fang bing	1
+岸防兵部队	an fang bing bu dui	1
+按方位角行进	an fang wei jiao xing jin	1
+安哥拉之战	an ge la zhi zhan	1
+安汉	an han	1
+安徽武备学堂	an hui wu bei xue tang	1
+暗火力点	an huo li dian	1
+按计划	an ji hua	1
+按计划出动	an ji hua chu dong	1
+按级任教	an ji ren jiao	1
+按级指挥	an ji zhi hui	1
+岸舰导弹	an jian dao dan	1
+安能动之	an neng dong zhi	1
+岸炮	an pao	1
+安庆保卫战	an qing bao wei zhan	1
+安全导火索	an quan dao huo suo	1
+安全电流	an quan dian liu	1
+安全剂量	an quan ji liang	1
+安全界	an quan jie	1
+安全距离	an quan ju li	1
+安全密度	an quan mi du	1
+安全射速	an quan she su	1
+安全深度	an quan shen du	1
+安全试验	an quan shi yan	1
+安全系统	an quan xi tong	1
+安全自毁系统	an quan zi hui xi tong	1
+按人之兵	an ren zhi bing	1
+岸上目标	an shang mu biao	1
+岸上指挥所	an shang zhi hui suo	1
+岸上重要目标	an shang zhong yao mu biao	1
+岸上重要设施	an shang zhong yao she shi	1
+岸滩	an tan	1
+岸滩障碍物	an tan zhang ai wu	1
+暗挖式工事	an wa shi gong shi	1
+暗挖式通道	an wa shi tong dao	1
+安外大街	an wai da jie	1
+按西方	an xi fang	1
+按下点火按钮	an xia dian huo an niu	1
+按下发射按钮	an xia fa she an niu	1
+按下炮钮	an xia pao niu	1
+安新战役	an xin zhan yi	1
+按预定弹道	an yu ding dan dao	1
+安远将军	an yuan jiang jun	1
+安战	an zhan	1
+按照坦克	an zhao tan ke	1
+安装部位	an zhuang bu wei	1
+安装工作量	an zhuang gong zuo liang	1
+安装使用电网	an zhuang shi yong dian wang	1
+按左扶右	an zuo fu you	1
+肮脏核武器	ang zang he wu qi	1
+肮脏氢弹	ang zang qing dan	1
+奥得	ao de	1
+凹入式打磨	ao ru shi da mo	1
+奥托	ao tuo	1
+奥托丛林王	ao tuo cong lin wang	1
+凹形斜面	ao xing xie mian	1
+巴巴罗萨	ba ba luo sa	1
+靶场	ba chang	1
+靶场选型试验	ba chang xuan xing shi yan	1
+扒乘机动车	ba cheng ji dong che	1
+八服	ba fu	1
+八卦旗	ba gua qi	1
+靶机	ba ji	1
+巴克	ba ke	1
+巴克夜鹰	ba ke ye ying	1
+靶雷	ba lei	1
+巴列夫防线	ba lie fu fang xian	1
+八路军	ba lu jun	1
+八路军进行曲	ba lu jun jin xing qu	1
+八年抗战	ba nian kang zhan	1
+八旗兵	ba qi bing	1
+八一厂	ba yi chang	1
+八一建军节	ba yi jian jun jie	1
+八一奖章	ba yi jiang zhang	1
+八一军徽	ba yi jun hui	1
+八一军旗	ba yi jun qi	1
+八一帽徽	ba yi mao hui	1
+八一南昌起义	ba yi nan chang qi yi	1
+八一体工队	ba yi ti gong dui	1
+八一勋章	ba yi xun zhang	1
+八中队	ba zhong dui	1
+拔桩	ba zhuang	1
+拔桩机	ba zhuang ji	1
+白崇禧	bai chong xi	1
+白根	bai gen	1
+柏伽索斯号	bai jia suo si hao	1
+白令海峡	bai ling hai xia	1
+百年战争	bai nian zhan zheng	1
+白袍衣	bai pao yi	1
+百骑	bai qi	1
+百人督	bai ren du	1
+白刃格斗	bai ren ge dou	1
+白色方案	bai se fang an	1
+百色起义	bai se qi yi	1
+百团大战	bai tuan da zhan	1
+百万雄师	bai wan xiong shi	1
+百姓之费	bai xing zhi fei	1
+白烟	bai yan	1
+百眼巨人号	bai yan ju ren hao	1
+败战	bai zhan	1
+百战	bai zhan	1
+百战奇法	bai zhan qi fa	1
+百战奇略	bai zhan qi lue	1
+半渡而击	ban du er ji	1
+半渡击	ban du ji	1
+绊发	ban fa	1
+班副	ban fu	1
+扳机	ban ji	1
+扳机簧	ban ji huang	1
+扳机力	ban ji li	1
+扳机轴	ban ji zhou	1
+半距等高线	ban ju deng gao xian	1
+办理印鉴备案	ban li yin jian bei an	1
+半潜	ban qian	1
+半潜状态	ban qian zhuang tai	1
+半日潮	ban ri chao	1
+半伤害剂量	ban shang hai ji liang	1
+半伤害浓度	ban shang hai nong du	1
+班哨	ban shao	1
+半衰期	ban shuai qi	1
+半衰期时间	ban shuai qi shi jian	1
+半衰弱层	ban shuai ruo ceng	1
+伴随修理	ban sui xiu li	1
+绊线	ban xian	1
+绊线轴	ban xian zhou	1
+班用	ban yong	1
+班用冲锋舟	ban yong chong feng zhou	1
+半永久修复	ban yong jiu xiu fu	1
+半圆形落地拱	ban yuan xing luo di gong	1
+半遮蔽阵地	ban zhe bi zhen di	1
+半直接	ban zhi jie	1
+半致死剂量	ban zhi si ji liang	1
+半舟	ban zhou	1
+半主动雷达	ban zhu dong lei da	1
+绊桩	ban zhuang	1
+半自动步枪	ban zi dong bu qiang	1
+保持空域位置	bao chi kong yu wei zhi	1
+饱而饥之	bao er ji zhi	1
+报废装备	bao fei zhuang bei	1
+爆高	bao gao	1
+报告文书	bao gao wen shu	1
+爆后	bao hou	1
+保护公民	bao hu gong min	1
+保护迷彩	bao hu mi cai	1
+保家卫国	bao jia wei guo	1
+堡篮桥脚	bao lan qiao jiao	1
+暴力威胁	bao li wei xie	1
+暴露人员	bao lu ren yuan	1
+暴露翼侧	bao lu yi ce	1
+暴露阵地	bao lu zhen di	1
+暴露征候	bao lu zheng hou	1
+暴乱事件	bao luan shi jian	1
+保密电话	bao mi dian hua	1
+保密话网	bao mi hua wang	1
+保密机	bao mi ji	1
+保密纪律	bao mi ji lv	1
+保密手段	bao mi shou duan	1
+保密通信	bao mi tong xin	1
+保密性	bao mi xing	1
+保密制度	bao mi zhi du	1
+暴怒号	bao nu hao	1
+爆破弹	bao po dan	1
+爆破队	bao po dui	1
+爆破罐	bao po guan	1
+爆破技术	bao po ji shu	1
+爆破名词	bao po ming ci	1
+爆破器	bao po qi	1
+爆破器材	bao po qi cai	1
+爆破任务	bao po ren wu	1
+爆破筒	bao po tong	1
+爆破组	bao po zu	1
+爆破作业	bao po zuo ye	1
+爆前	bao qian	1
+爆区	bao qu	1
+爆深	bao shen	1
+保守地方	bao shou di fang	1
+爆速	bao su	1
+保卫目标	bao wei mu biao	1
+保卫区域	bao wei qu yu	1
+保卫战	bao wei zhan	1
+报务员	bao wu yuan	1
+保险道	bao xian dao	1
+保险杆	bao xian gan	1
+保险机构	bao xian ji gou	1
+保险销	bao xian xiao	1
+爆心	bao xin	1
+爆心投影点	bao xin tou ying dian	1
+保养间	bao yang jian	1
+爆炸部	bao zha bu	1
+爆炸带	bao zha dai	1
+爆炸当量	bao zha dang liang	1
+爆炸方式	bao zha fang shi	1
+爆炸高度	bao zha gao du	1
+爆炸荷载	bao zha he zai	1
+爆炸日	bao zha ri	1
+爆炸闪光	bao zha shan guang	1
+爆炸深度	bao zha shen du	1
+爆炸性核武器	bao zha xing he wu qi	1
+爆炸性能	bao zha xing neng	1
+爆炸性障碍物	bao zha xing zhang ai wu	1
+爆炸中心	bao zha zhong xin	1
+饱战	bao zhan	1
+保障部队	bao zhang bu dui	1
+保障队	bao zhang dui	1
+保障公共安全	bao zhang gong gong an quan	1
+保障机械	bao zhang ji xie	1
+保障类车辆	bao zhang lei che liang	1
+保障群	bao zhang qun	1
+保障引导	bao zhang yin dao	1
+保障有力	bao zhang you li	1
+爆震波	bao zhen bo	1
+爆震弹	bao zhen dan	1
+爆震风	bao zhen feng	1
+报知通信	bao zhi tong xin	1
+报知通信网	bao zhi tong xin wang	1
+备案联	bei an lian	1
+备弹	bei dan	1
+贝当	bei dang	1
+被动段	bei dong duan	1
+被动红外侦察	bei dong hong wai zhen cha	1
+被动式	bei dong shi	1
+被动式声纳	bei dong shi sheng na	1
+卑而骄之	bei er jiao zhi	1
+北伐战争	bei fa zhan zheng	1
+北方工业	bei fang gong ye	1
+被防护	bei fang hu	1
+被防护对象	bei fang hu dui xiang	1
+北方集团军群	bei fang ji tuan jun qun	1
+北方战争	bei fang zhan zheng	1
+被覆	bei fu	1
+被俘	bei fu	1
+被服	bei fu	1
+被覆线	bei fu xian	1
+被覆线路	bei fu xian lu	1
+备件	bei jian	1
+备件库	bei jian ku	1
+备降	bei jiang	1
+备降场	bei jiang chang	1
+备降机场	bei jiang ji chang	1
+北京军区	bei jing jun qu	1
+被具	bei ju	1
+备考文书	bei kao wen shu	1
+贝雷桥	bei lei qiao	1
+背囊式滤水器	bei nang shi lv shui qi	1
+北欧斗士	bei ou dou shi	1
+北欧猎刀	bei ou lie dao	1
+被迫跳伞	bei po tiao san	1
+杯士	bei shi	1
+背水攻击	bei shui gong ji	1
+背水击	bei shui ji	1
+背水作战	bei shui zuo zhan	1
+背锁	bei suo	1
+北衙禁军	bei ya jin jun	1
+贝洋山	bei yang shan	1
+备用频率	bei yong pin lv	1
+北约标准弹	bei yue biao zhun dan	1
+北约口径	bei yue kou jing	1
+倍则分之	bei ze fen zhi	1
+被装	bei zhuang	1
+本初子午线	ben chu zi wu xian	1
+本队	ben dui	1
+本级战术	ben ji zhan shu	1
+苯氯乙酮	ben lv yi tong	1
+奔袭	ben xi	1
+本行政区域	ben xing zheng qu yu	1
+本在于政	ben zai yu zheng	1
+避弹所	bi dan suo	1
+避开射击	bi kai she ji	1
+闭塞门桥	bi se men qiao	1
+避实击虚	bi shi ji xu	1
+俾斯麦号	bi si mai hao	1
+闭锁机构	bi suo ji gou	1
+闭所机构	bi suo ji gou	1
+臂腕之力	bi wan zhi li	1
+避战	bi zhan	1
+必战	bi zhan	1
+边兵	bian bing	1
+边打边插	bian da bian cha	1
+边打边组织	bian da bian zu zhi	1
+编队防御	bian dui fang yu	1
+编队攻击	bian dui gong ji	1
+编队航行	bian dui hang xing	1
+编队内部通信	bian dui nei bu tong xin	1
+编队训练	bian dui xun lian	1
+编队运动	bian dui yun dong	1
+编队运动规则	bian dui yun dong gui z

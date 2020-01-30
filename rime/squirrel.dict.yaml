@@ -10,6 +10,8 @@ import_tables:
   - luna_pinyin.extended
   - luna_pinyin.hanyu
   - luna_pinyin.poetry
+  - luna_pinyin.sogou
+  - luna_pinyin.emoji
 ...
 
 ahonn.me	ahonn	1000
