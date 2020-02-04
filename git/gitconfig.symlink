@@ -5,8 +5,8 @@ email = ahonn95@outlook.com
 [core]
 ignoreCase = false
 excludesfile = ~/.gitignore_global
-[includeIf "gitdir:~/Documents/code/"]
-path = ~/Documents/code/.gitconfig
+[includeIf "gitdir:~/Developer/work/"]
+path = ~/Developer/work/.gitconfig
 [push]
 default = current
 [http]
