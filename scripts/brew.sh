@@ -45,3 +45,20 @@ for formula in "${formulas[@]}"; do
     brew install $formula
   fi
 done
+
+echo -e "\nInstalling homebrew casks..."
+echo "=============================="
+casks=(
+  hammerspoon
+  squirrel
+  upic
+  alacritty
+)
+
+for cask in "${casks[@]}"; do
+  if brew cask list "$cask" >/dev/null 2>&1; then
+    echo "$cask already installed... skipping."
+  else
+    brew cask install $cask
+  fi
+done
