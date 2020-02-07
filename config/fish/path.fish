@@ -1,6 +1,10 @@
 # ========== MIRROR ========== #
 # set -gx ELECTRON_MIRROR https://npm.taobao.org/mirrors/electron/
 
+# flutter
+set -gx PUB_HOSTED_URL https://pub.flutter-io.cn
+set -gx FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
+
 # =========== PATH =========== #
 if test -d $HOME/bin
   set -gx fish_user_paths $HOME/bin $fish_user_paths
