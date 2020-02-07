@@ -4,4 +4,3 @@ package osx
 package rvm
 package z
 theme default
-theme robbyrussell
