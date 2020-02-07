@@ -2,7 +2,6 @@ package foreign-env
 package nvm
 package osx
 package rvm
-package thefuck
 package z
 theme default
 theme robbyrussell

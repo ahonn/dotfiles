@@ -33,7 +33,9 @@ end
 
 # ruby rvm
 if test -d $HOME/.rvm
-  set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
+  if test -d $HOME/.rvm/bin
+    set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
+  end
   if test -d $HOME/.rvm/gems/ruby-head/bin
     set -gx fish_user_paths $HOME/.rvm/gems/ruby-head/bin $fish_user_paths
   end
