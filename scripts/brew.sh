@@ -6,11 +6,11 @@ if test ! $(which brew); then
 fi
 
 # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
-cd "$(brew --repo)"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+# cd "$(brew --repo)"
+# git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
 
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+# cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+# git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
 
 echo -e "\nUpgrade homebrew packages..."
 brew update
@@ -29,13 +29,14 @@ formulas=(
   tree
   wget
   neovim
-  thefuck
   cmake
   fx
   bat
   fd
-  clojure-lsp
-  borkdude/brew/clj-kondo
+  reattach-to-user-namespace
+  universal-ctags/universal-ctags/universal-ctags
+  # clojure-lsp
+  # borkdude/brew/clj-kondo
 )
 
 for formula in "${formulas[@]}"; do
@@ -53,6 +54,7 @@ casks=(
   squirrel
   upic
   alacritty
+  kitty
 )
 
 for cask in "${casks[@]}"; do
