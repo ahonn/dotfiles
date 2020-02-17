@@ -34,7 +34,7 @@ set noshowmode
 set wrap
 set linebreak
 set showbreak=->
-set textwidth=100
+set textwidth=80
 set colorcolumn=100
 
 set ignorecase
