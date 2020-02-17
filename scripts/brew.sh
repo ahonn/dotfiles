@@ -53,8 +53,8 @@ casks=(
   hammerspoon
   squirrel
   upic
-  alacritty
   kitty
+  # alacritty
 )
 
 for cask in "${casks[@]}"; do

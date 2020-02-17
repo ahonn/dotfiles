@@ -16,5 +16,9 @@ set -U fish_cursor_insert line
 function fish_greeting
 end
 
+# proxy
+set proxy_host 127.0.0.1:1081
+set proxy_auth false
+
 source $DOTFILES/config/fish/aliases.fish
 source $DOTFILES/config/fish/path.fish
