@@ -291,6 +291,7 @@ augroup END
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_exclude_filetypes = ['gitcommit']
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
