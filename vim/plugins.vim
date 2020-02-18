@@ -68,6 +68,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'hotoo/pangu.vim'
+  Plug 'kana/vim-textobj-user'
+  Plug 'sgur/vim-textobj-parameter'
 
   " Completion
   Plug 'ervandew/supertab'
@@ -296,6 +298,9 @@ endif
 
 " git-messenger.vim
 nnoremap gm :GitMessenger<Cr>
+
+" vim-textobj-parameter
+let g:vim_textobj_parameter_mapping = 'a'
 
 " ----------------------------------------------------------------------------
 " Completion
