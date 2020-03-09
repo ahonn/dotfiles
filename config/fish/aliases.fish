@@ -15,6 +15,5 @@ alias gst 'git status'
 alias gch 'git checkout'
 
 # better command
-alias rm   'trash'
 alias cat  'bat'
 alias find 'fd'
