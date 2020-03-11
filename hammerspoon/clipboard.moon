@@ -47,7 +47,7 @@ clipboard = {
     image = hs.pasteboard.readImage!
     content = image\encodeAsURLString!
     db\exec("DELETE FROM clipboard WHERE uti_type = '#{uti_type}' AND content = '#{content}';")
-    db\exec("INSERT INTO clipboard VALUES(#{os.time!}, '#{appname}', '#{uti_type}', '[IMAGE]', '#{content}')")
+    db\exec("INSERT INTO clipboard VALUES(#{os.time!}, '#{appname}', '#{uti_type}', '@IMAGE', '#{content}')")
 
   read: =>
     sql = "SELECT * FROM clipboard ORDER BY created_at DESC LIMIT #{limit}"
@@ -67,14 +67,14 @@ clipboard = {
     sql = "SELECT * FROM clipboard WHERE title LIKE '%#{query}%' ORDER BY created_at DESC LIMIT #{limit}"
     choices = {}
     for created_at, appname, uti_type, title, content in db\urows(sql)
-      if isImageUtiType(uti_type)
-        continue
       item = {
         text: title
         uti_type: uti_type,
         subText: appname .. " / " .. os.date("%Y-%m-%d %H:%M", created_at)
         content: content
       }
+      if isImageUtiType(uti_type)
+        item.image = hs.image.imageFromURL(content)
       table.insert(choices, item)
     chooser\choices(choices)
 
