@@ -31,6 +31,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
   Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
 
+  Plug 'leafo/moonscript-vim'
+
   " UI
   Plug 'mhinz/vim-startify'
   Plug 'luochen1990/rainbow'
