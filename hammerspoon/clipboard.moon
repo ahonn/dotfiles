@@ -26,7 +26,7 @@ clipboard = {
   save: =>
     contentTypes = hs.pasteboard.contentTypes!
     if conf.debug
-      utils\logger(contentTypes)
+      utils\inspect(contentTypes)
     for uti_type in *contentTypes
       if isTextUtiType(uti_type)
         @saveText(uti_type)
@@ -98,8 +98,8 @@ clipboard = {
     chooser\show!
 }
 
-preChangeCount = hs.pasteboard.changeCount!
-watcher = hs.timer.new(0.5, ->
+export preChangeCount = hs.pasteboard.changeCount!
+export watcher = hs.timer.new(0.5, ->
   changeCount = hs.pasteboard.changeCount!
   if changeCount != preChangeCount
     pcall(clipboard\save)
@@ -108,3 +108,4 @@ watcher = hs.timer.new(0.5, ->
 watcher\start!
 
 hs.hotkey.bind({ 'cmd', 'shift' }, 'v', clipboard\show)
+

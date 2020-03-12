@@ -6,6 +6,9 @@ utils =
       withdrawAfter: 1,
     })\send!
 
-  logger: (variable) =>
+  alert: (message) =>
+    hs.alert.show(message)
+
+  inspect: (variable) =>
     print hs.inspect.inspect(variable)
 utils

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 RIME_CONFIG=$HOME/Library/Rime
 
 for config in $DOTFILES/rime/*; do

@@ -19,3 +19,4 @@ source $DOTFILES/scripts/npm.sh
 source $DOTFILES/scripts/fonts.sh
 
 source $DOTFILES/scripts/rime.sh
+source $DOTFILES/scripts/hammerspoon.sh

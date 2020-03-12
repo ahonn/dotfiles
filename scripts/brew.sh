@@ -20,6 +20,7 @@ echo -e "\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
+  lua
   fish
   ripgrep
   fzf
