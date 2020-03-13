@@ -352,9 +352,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <Leader>f <Plug>(coc-format)
+
 nmap <silent> <Leader>r <Plug>(coc-rename)
-nmap <silent> <Leader>t :CocList outline<Cr>
+nmap <silent> <Leader>f <Plug>(coc-format)
+nmap <silent> <leader>p <Plug>(coc-format-selected)
+vmap <silent> <leader>p <Plug>(coc-format-selected)
 
 nnoremap <silent> gh :call CocAction('doHover')<CR>
 
