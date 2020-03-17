@@ -45,8 +45,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
   Plug 'ahonn/resize.vim'
-  Plug 'Shougo/denite.nvim'
-  Plug 'neoclide/denite-git', { 'on': 'Denite' }
+  Plug 'Yggdroot/LeaderF'
 
   " Integration
   Plug 'dense-analysis/ale'
@@ -207,36 +206,11 @@ let g:gundo_preview_height = 40
 let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
 
-" denite
-nnoremap <silent> <Leader><Leader> :Denite buffer<Cr>
-nnoremap <silent> <C-f> :Denite -no-empty grep<Cr>
-nnoremap <silent> <C-p> :Denite -start-filter `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<Cr>
-
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <Cr> denite#do_map('do_action', 'open')
-  nnoremap <silent><buffer><expr> <C-o> denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-v> denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-x> denite#do_map('do_action', 'split')
-  nnoremap <silent><buffer><expr> <C-p> denite#do_map('quit')
-endfunction
-
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-  inoremap <silent><buffer><expr> <C-p> denite#do_map('quit')
-endfunction
-
-call denite#custom#option('default', 'unique', 1)
-call denite#custom#option('default', 'reversed', 1)
-call denite#custom#option('default', 'auto-resize', 1)
-call denite#custom#option('default', 'highlight_matched_char', 'Underlined')
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-" denite-git
-nnoremap <silent> <C-g> :Denite gitlog:all<Cr>
+" LeaderF
+nnoremap <silent> <C-p> :Leaderf file<Cr>
+nnoremap <silent> <C-f> :Leaderf rg<Cr>
+nnoremap <silent> <C-q> :Leaderf line<Cr>
+nnoremap <silent> <Leader><Leader> :Leaderf buffer<Cr>
 
 " ----------------------------------------------------------------------------
 " Integration
