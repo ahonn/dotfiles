@@ -6,6 +6,13 @@
   "codeLens.enable": false,
   "diagnostic.enable": false,
   "javascript.suggestionActions.enabled": false,
+  "snippets.ultisnips.enable": false,
+  "snippets.loadFromExtensions": false,
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  },
   "languageserver": {
     "lua": {
       "command": "lua-lsp",

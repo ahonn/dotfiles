@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
-  Plug 'heavenshell/vim-jsdoc', { 'on': 'JsDoc' }
   Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
 
   " Language/CSS
@@ -67,14 +66,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'hotoo/pangu.vim'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
+  Plug 'kkoomen/vim-doge'
 
   " Completion
-  Plug 'ervandew/supertab'
   Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'VimSnippets/vim-web-snippets'
 call plug#end()
 
 nnoremap <silent> <Leader>pi :PlugInstall<Cr>
@@ -112,16 +108,6 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 nnoremap <silent> <Leader>ji :ImportJSWord<Cr>
 nnoremap <silent> <Leader>jf :ImportJSFix<Cr>
 nnoremap <silent> <Leader>jg :ImportJSGoto<Cr>
-
-" jsdoc
-nmap <silent> <Leader>dc <Plug>(jsdoc)
-let g:jsdoc_allow_input_prompt = 1
-let g:jsdoc_custom_args_hook = {}
-let g:jsdoc_tags = {
-  \  'returns': 'return',
-  \  'param': 'param',
-  \ }
-let g:jsdoc_enable_es6 = 1
 
 " ----------------------------------------------------------------------------
 " Language/Clojure
@@ -301,13 +287,12 @@ nnoremap gm :GitMessenger<Cr>
 " vim-textobj-parameter
 let g:vim_textobj_parameter_mapping = 'a'
 
+" vim-doge
+let g:doge_mapping = '<Leader>dc'
+
 " ----------------------------------------------------------------------------
 " Completion
 "----------------------------------------------------------------------------
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Emmet.vim
 imap <silent> <C-e> <Space><BS><plug>(emmet-expand-abbr)
@@ -326,13 +311,15 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gh :call CocAction('doHover')<CR>
 
 nmap <silent> <Leader>r <Plug>(coc-rename)
 nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <leader>p <Plug>(coc-format-selected)
 vmap <silent> <leader>p <Plug>(coc-format-selected)
 
-nnoremap <silent> gh :call CocAction('doHover')<CR>
+imap <silent> <Tab> <Plug>(coc-snippets-expand)
+vmap <silent> <Tab> <Plug>(coc-snippets-select)
 
 call coc#add_extension(
   \ 'coc-tsserver',
@@ -344,9 +331,3 @@ call coc#add_extension(
   \ 'coc-prettier',
   \ 'coc-vimlsp',
   \ )
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-
