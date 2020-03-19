@@ -292,8 +292,17 @@ nmap <silent> <Leader>f <Plug>(coc-format)
 nmap <silent> <leader>p <Plug>(coc-format-selected)
 vmap <silent> <leader>p <Plug>(coc-format-selected)
 
-imap <silent> <Tab> <Plug>(coc-snippets-expand)
 vmap <silent> <Tab> <Plug>(coc-snippets-select)
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<Cr>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 call coc#add_extension(
   \ 'coc-tsserver',
