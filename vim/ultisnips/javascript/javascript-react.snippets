@@ -1,0 +1,211 @@
+snippet ir "import React from 'react'"
+import React from 'react';
+endsnippet
+
+snippet irc "import React, { Component } from 'react'"
+import React, { Component } from 'react';
+endsnippet
+
+snippet ird "import ReactDOM from 'react-dom'"
+import ReactDOM from 'react-dom';
+endsnippet
+
+snippet irp "import PropTypes from 'prop-types'"
+import PropTypes from 'prop-types';
+endsnippet
+
+snippet rcc "class xyz extends Component { ... }"
+class ${1:ClassName} extends Component {
+  state = {}
+
+  render() {
+    return (
+      <div>
+        $1
+      </div>
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+snippet rc "constructor(props) { ... }"
+constructor(props) {
+  super(props)
+
+  ${1}
+}
+endsnippet
+
+snippet gdsfp "getDerivedStateFromProps"
+static getDerivedStateFromProps(${1:nextProps, prevState}) {
+  ${1}
+}
+endsnippet
+
+snippet cwm "componentWillMount"
+componentWillMount() {
+  ${1}
+}
+endsnippet
+
+snippet cdm "componentDidMount"
+componentDidMount() {
+  ${1}
+}
+endsnippet
+
+snippet cwu "componentWillUpdate"
+componentWillUpdate(nextProps, nextState) {
+  ${1}
+}
+endsnippet
+
+snippet cdu "componentDidUpdate"
+componentDidUpdate(prevProps, prevState) {
+  ${1}
+}
+endsnippet
+
+snippet scu "shouldComponentUpdate"
+shouldComponentUpdate(nextProps, nextState) {
+  ${1}
+}
+endsnippet
+
+snippet cwr "componentWillReceiveProps"
+componentWillReceiveProps(nextProps) {
+  ${1}
+}
+endsnippet
+
+snippet cwun "componentWillUnmount"
+componentWillUnmount() {
+  ${1}
+}
+endsnippet
+
+snippet gsbu "getSnapshotBeforeUpdate"
+getSnapshotBeforeUpdate(${1:prevProps, prevState}) {
+  ${1}
+}
+endsnippet
+
+snippet cdc "componentDidCatch"
+componentDidCatch(error, info) {
+  ${1}
+}
+endsnippet
+
+snippet dp "static defaultProps = { ... }" b
+static defaultProps = {
+  ${1}
+}
+endsnippet
+
+snippet dp "xyz.defaultProps = { ... }" i
+.defaultProps = {
+  ${1}
+}
+endsnippet
+
+snippet pt "static propTypes = { ... }" b
+static propTypes = {
+  ${1}
+}
+endsnippet
+
+snippet pt "xyz.propTypes = { ... }" i
+.propTypes = {
+  ${1}
+}
+endsnippet
+
+snippet pta "PropTypes.array"
+PropTypes.array
+endsnippet
+
+snippet ptb "PropTypes.bool"
+PropTypes.bool
+endsnippet
+
+snippet ptf "PropTypes.func"
+PropTypes.func
+endsnippet
+
+snippet ptn "PropTypes.number"
+PropTypes.number
+endsnippet
+
+snippet pto "PropTypes.object"
+PropTypes.object
+endsnippet
+
+snippet pts "PropTypes.string"
+PropTypes.string
+endsnippet
+
+snippet ptsb "PropTypes.symbol"
+PropTypes.symbol
+endsnippet
+
+snippet ptno "PropTypes.node"
+PropTypes.node
+endsnippet
+
+snippet pte "PropTypes.element"
+PropTypes.element
+endsnippet
+
+snippet ptif "PropTypes.instanceOf(...)"
+PropTypes.instanceOf(${1})
+endsnippet
+
+snippet ptof "PropTypes.oneOf(...)"
+PropTypes.oneOf(${1})
+endsnippet
+
+snippet ptoft "PropTypes.oneOfType(...)"
+PropTypes.oneOfType(${1})
+endsnippet
+
+snippet ptaf "PropTypes.arrayOf(...)"
+PropTypes.arrayOf(${1})
+endsnippet
+
+snippet ptoo "PropTypes.objectOf(...)"
+PropTypes.objectOf(${1})
+endsnippet
+
+snippet ptsp "PropTypes.shape({ ... })"
+PropTypes.shape({
+  ${1}
+})
+endsnippet
+
+snippet .isR "PropTypes isRequired" i
+.isRequired
+endsnippet
+
+snippet rus "React.useState(...)" i
+React.useState(${1});
+endsnippet
+
+snippet rue "React.useEffect(() => { ... })"
+React.useEffect(() => {
+  ${0:${VISUAL}}
+});
+endsnippet
+
+snippet rucb "React.useCallback(() => { ... }, [])" i
+React.useCallback(() => {
+  ${0:${VISUAL}}
+}, [${1}]);
+endsnippet
+
+snippet rumo "React.useMemo(() => { ... }, [])" i
+React.useMemo(() => {
+  ${0:${VISUAL}}
+}, [${1}]);
+endsnippet

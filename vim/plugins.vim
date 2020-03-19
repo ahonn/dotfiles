@@ -47,7 +47,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/LeaderF'
 
   " Integration
-  Plug 'dense-analysis/ale'
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
@@ -202,31 +201,6 @@ nnoremap <silent> <Leader><Leader> :Leaderf buffer<Cr>
 " Integration
 " ----------------------------------------------------------------------------
 
-" ale
-nnoremap <leader>al :ALEToggle<Cr>
-let g:ale_sign_warning = '●'
-let g:ale_sign_error = '●'
-highlight! ALEErrorSign ctermfg=9 guifg=#C30500
-highlight! ALEWarningSign ctermfg=11 guifg=#F0C674
-" let g:ale_javascript_eslint_use_global = 1
-let g:ale_linter_aliases = {
-  \ 'javascript.jsx': 'javascript',
-  \ 'jsx': 'javascript'
-  \ }
-let g:ale_linters = {
-  \ 'typescript': ['tslint'],
-  \ 'typescriptreact': ['tslint'],
-  \ 'javascript': ['eslint'],
-  \ 'clojure': ['clj-kondo'],
-  \ }
-let g:ale_fixers = {
-  \ 'javascript': 'eslint',
-  \ 'typescript': 'tslint',
-  \ 'typescriptreact': 'tslint',
-  \ 'vue': 'eslint',
-  \ }
-nmap <silent> <Leader>af <Plug>(ale_fix)
-
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
@@ -326,8 +300,9 @@ call coc#add_extension(
   \ 'coc-tslint-plugin',
   \ 'coc-json',
   \ 'coc-css',
+  \ 'coc-vimlsp',
   \ 'coc-snippets',
   \ 'coc-word',
   \ 'coc-prettier',
-  \ 'coc-vimlsp',
+  \ 'coc-diagnostic',
   \ )
