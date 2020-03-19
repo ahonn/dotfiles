@@ -7,6 +7,7 @@
   "diagnostic.warningSign": "●",
   "diagnostic.errorSign": "●",
   "diagnostic.level": "warning",
+  "eslint.autoFixOnSave": true,
   "snippets.priority": 100,
   "snippets.snipmate.enable": false,
   "snippets.loadFromExtensions": false,

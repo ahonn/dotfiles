@@ -306,7 +306,6 @@ endfunction
 
 call coc#add_extension(
   \ 'coc-tsserver',
-  \ 'coc-tslint-plugin',
   \ 'coc-json',
   \ 'coc-css',
   \ 'coc-vimlsp',
@@ -314,4 +313,5 @@ call coc#add_extension(
   \ 'coc-word',
   \ 'coc-prettier',
   \ 'coc-diagnostic',
+  \ 'coc-eslint'
   \ )
