@@ -1,13 +1,13 @@
 conf = require 'conf'
 utils = require 'utils'
 
-path = conf.module.clipboard.path
-width = conf.module.clipboard.width
-limit = conf.module.clipboard.limit
+PATH = conf.module.clipboard.path
+WIDTH = conf.module.clipboard.width
+LIMIT = conf.module.clipboard.limit
 
-hs.fs.mkdir(path)
+hs.fs.mkdir(PATH)
 
-db = hs.sqlite3.open("#{path}/db.sqlite3")
+db = hs.sqlite3.open("#{PATH}/db.sqlite3")
 db\exec('CREATE TABLE clipboard(
   created_at NUMERIC PRIMARY KEY NOT NULL,
   app TEXT NOT NULL,
@@ -22,7 +22,13 @@ isTextUtiType = (uti_type) ->
 isImageUtiType = (uti_type) ->
   return uti_type == 'public.tiff' or uti_type == 'public.png'
 
-clipboard = {
+class Clipboard
+  new: =>
+    @chooser = hs.chooser.new((choice) -> @completion(choice))
+    @chooser\queryChangedCallback((query) -> @query(query))
+    @chooser\showCallback(-> @clearOutdated())
+    @chooser\width(WIDTH)
+
   save: =>
     contentTypes = hs.pasteboard.contentTypes!
     if conf.debug
@@ -50,7 +56,7 @@ clipboard = {
     db\exec("INSERT INTO clipboard VALUES(#{os.time!}, '#{appname}', '#{uti_type}', '@IMAGE', '#{content}')")
 
   read: =>
-    sql = "SELECT * FROM clipboard ORDER BY created_at DESC LIMIT #{limit}"
+    sql = "SELECT * FROM clipboard ORDER BY created_at DESC LIMIT #{LIMIT}"
     choices = {}
     for created_at, appname, uti_type, title, content in db\urows(sql)
       item = {
@@ -63,8 +69,8 @@ clipboard = {
         item.image = hs.image.imageFromURL(content)
       table.insert(choices, item)
 
-  query: (query, chooser) =>
-    sql = "SELECT * FROM clipboard WHERE title LIKE '%#{query}%' ORDER BY created_at DESC LIMIT #{limit}"
+  query: (query) =>
+    sql = "SELECT * FROM clipboard WHERE title LIKE '%#{query}%' ORDER BY created_at DESC LIMIT #{LIMIT}"
     choices = {}
     for created_at, appname, uti_type, title, content in db\urows(sql)
       item = {
@@ -76,7 +82,7 @@ clipboard = {
       if isImageUtiType(uti_type)
         item.image = hs.image.imageFromURL(content)
       table.insert(choices, item)
-    chooser\choices(choices)
+    @chooser\choices(choices)
 
   completion: (choice) =>
     if choice
@@ -87,16 +93,19 @@ clipboard = {
         hs.pasteboard.setContents(choice.content)
       hs.eventtap.keyStroke({ 'cmd' }, 'v')
 
+  clearOutdated: =>
+    outdatedTime = os.time! - 604800
+    db\exec("DELETE FROM clipboard WHERE created_at < #{outdatedTime};")
+
   show: =>
-    chooser = hs.chooser.new((choice) -> @completion(choice))
-    chooser\queryChangedCallback((query) -> @query(query, chooser))
+    if @chooser\isVisible!
+      @chooser\hide!
+    else
+      choices = @read!
+      @chooser\choices(choices)
+      @chooser\show!
 
-    choices = @read!
-    chooser\choices(choices)
-
-    chooser\width(width)
-    chooser\show!
-}
+export clipboard = Clipboard!
 
 export preChangeCount = hs.pasteboard.changeCount!
 export watcher = hs.timer.new(0.5, ->
