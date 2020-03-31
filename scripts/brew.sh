@@ -55,6 +55,7 @@ casks=(
   squirrel
   upic
   kitty
+  fork
   # alacritty
 )
 
