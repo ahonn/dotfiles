@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'thaerkh/vim-workspace'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge'
@@ -218,6 +219,14 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-doge
 let g:doge_mapping = '<Leader>dc'
+
+" vim-workspace
+nnoremap <Leader>s :ToggleWorkspace<Cr>
+let g:workspace_autocreate = 1
+let g:workspace_autosave = 0
+let g:workspace_persist_undo_history = 1
+let g:workspace_session_name = '.vimworkspace'
+let g:workspace_undodir = '.undodir'
 
 " ----------------------------------------------------------------------------
 " Completion
