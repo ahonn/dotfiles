@@ -11,29 +11,20 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
   Plug 'gruvbox-community/gruvbox'
 
-  " Language/Fish
+  " Language
   Plug 'dag/vim-fish'
-
-  " Language/JavaScript
   Plug 'pangloss/vim-javascript'
   Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
   Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
-
-  " Language/CSS
   Plug 'groenewege/vim-less'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-
-  " Language/Clojure
-  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
   Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
-
   Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 
   " UI
-  Plug 'mhinz/vim-startify'
   Plug 'luochen1990/rainbow'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
@@ -62,7 +53,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'hotoo/pangu.vim'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge'
@@ -92,7 +82,7 @@ let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
-" Language/JavaScript
+" Language
 " ----------------------------------------------------------------------------
 
 " vim-javascript
@@ -103,44 +93,9 @@ let g:javascript_enable_domhtmlcss = 1
 " javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'underscore,jquery,react'
 
-" vim-import-js
-nnoremap <silent> <Leader>ji :ImportJSWord<Cr>
-nnoremap <silent> <Leader>jf :ImportJSFix<Cr>
-nnoremap <silent> <Leader>jg :ImportJSGoto<Cr>
-
-" ----------------------------------------------------------------------------
-" Language/Clojure
-" ----------------------------------------------------------------------------
-
-" vim-clojure-static
-let g:clojure_syntax_keywords = {
-  \ 'clojureMacro': ['deftest', 'is'],
-  \ 'clojureFunc': ['run-tests']
-  \ }
-
 " ----------------------------------------------------------------------------
 " UI
 " ----------------------------------------------------------------------------
-
-" vim-startify
-let g:startify_lists = [
-  \ { 'type': 'files',     'header': ['   MRU']            },
-  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-  \ { 'type': 'commands',  'header': ['   Commands']       },
-  \ ]
-let g:startify_change_to_dir = 0
-
-" rainbow
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-\   'guifgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\ }
-let g:rainbow_conf = {
-\    'separately': {
-\       'nerdtree': 0
-\    }
-\}
 
 " indentLine
 nnoremap <silent> <Leader><Tab> :IndentLinesToggle<Cr>
