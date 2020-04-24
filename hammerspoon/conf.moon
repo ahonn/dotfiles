@@ -7,7 +7,7 @@ conf =
       enable: true
       animationDuration: 0
     clipboard:
-      enable: true
+      enable: false
       path: os.getenv('HOME') .. '/.clipboard'
       width: 30
       limit: 50

@@ -16,3 +16,4 @@ patch:
       - { when: has_menu, accept: "Control+l", send: Right }
       - { when: has_menu, accept: ";", send: 2 }
       - { when: has_menu, accept: "'", send: 3 }
+      - { when: always, accept: Shift_L, toggle: ascii_mode  }
