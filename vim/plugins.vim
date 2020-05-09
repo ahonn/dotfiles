@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
+  Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
   Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 
   " UI
@@ -93,6 +95,11 @@ let g:javascript_enable_domhtmlcss = 1
 
 " javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'underscore,jquery,react'
+
+" vim-clojure-static
+let g:clojure_syntax_keywords = {
+  \ 'clojureMacro': ['deftest', 'defnc'],
+  \ }
 
 " ----------------------------------------------------------------------------
 " UI

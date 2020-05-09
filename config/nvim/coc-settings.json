@@ -24,19 +24,11 @@
       "filetypes": ["lua"]
     },
     "clojure-lsp": {
-      "command": "bash",
-      "args": ["-c", "clojure-lsp"],
+      "command": "clojure-lsp",
       "filetypes": ["clojure"],
       "rootPatterns": ["project.clj", "shadown-cljs.edn"],
       "additionalSchemes": ["jar", "zipfile"],
       "initializationOptions": {}
     }
-  },
-  "diagnostic-languageserver.filetypes": {
-    "javascript": ["eslint"],
-    "javascriptreact": ["eslint"],
-    "typescript": ["tslint", "eslint"],
-    "typescriptreact": ["tslint", "eslint"],
-    "clojure": ["clj-kondo"]
   }
 }

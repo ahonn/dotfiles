@@ -36,8 +36,8 @@ formulas=(
   fd
   reattach-to-user-namespace
   universal-ctags/universal-ctags/universal-ctags
-  # clojure-lsp
-  # borkdude/brew/clj-kondo
+  clojure-lsp
+  borkdude/brew/clj-kondo
 )
 
 for formula in "${formulas[@]}"; do

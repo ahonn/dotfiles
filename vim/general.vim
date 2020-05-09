@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has('gui_running')
-  set guifont=OperatorMono_Nerd_Font:h13
+  set guifont=JetBrainsMono_Nerd_Font:h15
 
   set guioptions-=m
   set guioptions-=r
