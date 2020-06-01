@@ -6,7 +6,7 @@ conf =
     tiddlywiki:
       enable: true
       source: HOME .. '/Library/Mobile Documents/com~apple~CloudDocs/TiddlyWiki/index.html'
-      target: HOME .. '/Desktop/TiddlyWiki/index.html'
+      target: HOME .. '/Dropbox/Fast.io/notes.imfast.io/index.html'
   module:
     reload:
       enable: true
