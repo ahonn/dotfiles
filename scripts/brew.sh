@@ -56,6 +56,8 @@ casks=(
   upic
   kitty
   fork
+  dash
+  wireshark
   # alacritty
 )
 
