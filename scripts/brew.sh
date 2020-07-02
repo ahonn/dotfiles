@@ -37,7 +37,7 @@ formulas=(
   bat
   fd
   reattach-to-user-namespace
-  universal-ctags/universal-ctags/universal-ctags
+  ctags
   clojure-lsp
   borkdude/brew/clj-kondo
 )

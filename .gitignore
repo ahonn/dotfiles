@@ -1,4 +1,6 @@
 config/fish/fishd.*
 vim/plugged/
 config/fish/fish_variables
-
+config/fish/proxy.fish
+.vimworkspace
+.undodir
