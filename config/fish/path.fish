@@ -37,6 +37,9 @@ end
 
 # ruby rvm
 if test -d $HOME/.rvm
+  if test -d $HOME/.rvm/gems/truffleruby-20.0.0/bin
+    set -gx fish_user_paths $HOME/.rvm/gems/truffleruby-20.0.0/bin
+  end
   if test -d $HOME/.rvm/bin
     set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
   end
