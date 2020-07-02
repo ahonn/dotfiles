@@ -35,17 +35,22 @@ if test -d $HOME/.cargo/bin
   set -gx fish_user_paths $HOME/.cargo/bin $fish_user_paths
 end
 
-# ruby rvm
-if test -d $HOME/.rvm
-  if test -d $HOME/.rvm/gems/truffleruby-20.0.0/bin
-    set -gx fish_user_paths $HOME/.rvm/gems/truffleruby-20.0.0/bin
-  end
-  if test -d $HOME/.rvm/bin
-    set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
-  end
-  if test -d $HOME/.rvm/gems/ruby-head/bin
-    set -gx fish_user_paths $HOME/.rvm/gems/ruby-head/bin $fish_user_paths
-  end
+# rvm
+# if test -d $HOME/.rvm
+#   if test -d $HOME/.rvm/bin
+#     set -gx fish_user_paths $HOME/.rvm/bin $fish_user_paths
+#   end
+#   if test -d $HOME/.rvm/gems/ruby-head/bin
+#     set -gx fish_user_paths $HOME/.rvm/gems/ruby-head/bin $fish_user_paths
+#   end
+# end
+
+# ruby
+if test -d /usr/local/opt/ruby/bin
+  set -gx fish_user_paths /usr/local/opt/ruby/bin $fish_user_paths
+end
+if test -d /usr/local/lib/ruby/gems/2.7.0/bin
+  set -gx fish_user_paths /usr/local/lib/ruby/gems/2.7.0/bin $fish_user_paths
 end
 
 # deno

@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 
-echo -e "\nInstalling rvm..."
-echo "=============================="
+# echo -e "\nInstalling rvm..."
+# echo "=============================="
 
-if [ -e $HOME/.rvm ]; then
-  echo "rvm already installed... skipping."
-else
-  curl -sSL https://get.rvm.io | bash -s stable
-fi
+# if [ -e $HOME/.rvm ]; then
+#   echo "rvm already installed... skipping."
+# else
+#   curl -sSL https://get.rvm.io | bash -s stable
+# fi
 
-rvm list
-rvm use ruby-head
+# rvm list
+# rvm install ruby-head
+# rvm use ruby-head
 
-gem update
-gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
-gem sources -l
+# gem update
+# gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+# gem sources -l
 
 echo -e "\nInstalling gem packages..."
 echo "=============================="
