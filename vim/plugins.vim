@@ -17,13 +17,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/vim-jsx-improve'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'typescript'] }
   Plug 'herringtondarkholme/yats.vim', { 'for': 'typescript' }
-  Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
   Plug 'groenewege/vim-less'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
-  Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+  " Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
+  " Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+  " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+  " Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
   Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 
   " UI
@@ -56,6 +56,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'thaerkh/vim-workspace'
+  Plug 'chaoren/vim-wordmotion'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge'
