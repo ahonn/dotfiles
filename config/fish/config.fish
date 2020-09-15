@@ -19,7 +19,7 @@ end
 source $DOTFILES/config/fish/aliases.fish
 source $DOTFILES/config/fish/path.fish
 
-if test $DOTFILES/config/fish/proxy.fish
+if test -e $DOTFILES/config/fish/proxy.fish
   # set proxy_host 127.0.0.1:1080
   # set proxy_auth false
   source $DOTFILES/config/fish/proxy.fish

@@ -20,24 +20,25 @@ call plug#begin('~/.vim/plugged')
   Plug 'groenewege/vim-less'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  " Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release', 'for': ['clojure'] }
-  " Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-  " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-  " Plug 'evanleck/vim-svelte', { 'for': 'svelte' }
   Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 
   " UI
   Plug 'luochen1990/rainbow'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  if has('nvim')
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug 'kristijanhusak/defx-icons'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-  Plug 'ahonn/resize.vim'
   Plug 'Yggdroot/LeaderF'
+  Plug 'mhinz/vim-startify'
 
   " Integration
   Plug 'scrooloose/nerdcommenter'
@@ -47,15 +48,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
   Plug 'alvan/vim-closetag'
-  Plug 'ahonn/vim-fileheader'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'wakatime/vim-wakatime'
-  Plug 'ludovicchabant/vim-gutentags'
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'thaerkh/vim-workspace'
   Plug 'chaoren/vim-wordmotion'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
@@ -97,11 +95,6 @@ let g:javascript_enable_domhtmlcss = 1
 " javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'underscore,jquery,react'
 
-" vim-clojure-static
-let g:clojure_syntax_keywords = {
-  \ 'clojureMacro': ['deftest', 'defnc'],
-  \ }
-
 " ----------------------------------------------------------------------------
 " UI
 " ----------------------------------------------------------------------------
@@ -114,28 +107,36 @@ let g:indentLine_color_gui = '#504945'
 let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
 
-" vim-devicons
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" defx.nvim
+nnoremap <silent> <C-b> :<C-u>Defx -buffer-name=tab`tabpagenr()`<CR>
+nnoremap <silent> <Leader>b :<C-u>Defx -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+call defx#custom#option('_', {
+  \ 'winwidth': 30,
+  \ 'split': 'vertical',
+  \ 'direction': 'topleft',
+  \ 'show_ignored_files': 1,
+  \ 'buffer_name': 'tab`tabpagenr()`',
+  \ 'toggle': 1,
+  \ 'resume': 1,
+  \ 'columns': 'indent:icons:filename:type',
+  \ })
 
-" nerdtree
-noremap <silent> <C-b> :NERDTreeToggle<Cr>
-" let NERDTreeIgnore=['_.*$[[dir]]']
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-augroup Nerdtree
-  autocmd!
-  autocmd FileType nerdtree setlocal nocursorcolumn
-  autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
-  if has('gui_running')
-    autocmd FileType nerdtree setlocal nolist
-  endif
+function! s:defx_mappings() abort
+  nnoremap <silent><buffer><expr> o defx#is_directory() ?  defx#do_action('open_or_close_tree') : defx#do_action('drop',)
+  nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> C defx#do_action('cd')
+  nnoremap <silent><buffer><expr> c defx#do_action('copy')
+  nnoremap <silent><buffer><expr> x defx#do_action('move')
+  nnoremap <silent><buffer><expr> p defx#do_action('paste')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> y defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> s defx#do_action('drop', 'split')
+  nnoremap <silent><buffer><expr> i defx#do_action('drop', 'vsplit')
+  nnoremap <silent><buffer><expr> <C-r> defx#do_action('redraw')
+endfunction
+augroup Defx
+  autocmd FileType defx call s:defx_mappings()
 augroup END
 
 " vim-airline
@@ -160,6 +161,15 @@ nnoremap <silent> <C-p> :Leaderf file<Cr>
 nnoremap <silent> <C-f> :Leaderf rg<Cr>
 nnoremap <silent> <C-q> :Leaderf line<Cr>
 nnoremap <silent> <Leader><Leader> :Leaderf buffer<Cr>
+
+" vim-startify
+let g:startify_lists = [
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
+let g:startify_change_to_dir = 0
 
 " ----------------------------------------------------------------------------
 " Integration
@@ -203,7 +213,7 @@ let g:fileheader_auto_add = 0
 let g:fileheader_show_email = 0
 
 " vim-trailing-whitespace
-let g:extra_whitespace_ignored_filetypes = ['denite', 'help', 'grep', 'search']
+let g:extra_whitespace_ignored_filetypes = ['defx', 'help', 'grep', 'search']
 augroup TrailingSpace
   autocmd!
   autocmd BufWritePre * FixWhitespace
@@ -219,22 +229,11 @@ if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
 
-" git-messenger.vim
-nnoremap gm :GitMessenger<Cr>
-
 " vim-textobj-parameter
 let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-doge
 let g:doge_mapping = '<Leader>dc'
-
-" vim-workspace
-nnoremap <Leader>s :ToggleWorkspace<Cr>
-let g:workspace_autocreate = 1
-let g:workspace_autosave = 0
-let g:workspace_persist_undo_history = 1
-let g:workspace_session_name = '.vimworkspace'
-let g:workspace_undodir = '.undodir'
 
 " ----------------------------------------------------------------------------
 " Completion
