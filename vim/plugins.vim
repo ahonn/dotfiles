@@ -137,11 +137,12 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer> h <Nop>
   nnoremap <silent><buffer><expr> o defx#is_directory() ?  defx#do_action('open_or_close_tree') : defx#do_action('drop',)
   nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> C defx#do_action('cd')
+  nnoremap <silent><buffer><expr> C defx#do_action('open_directory')
   nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> x defx#do_action('move')
   nnoremap <silent><buffer><expr> p defx#do_action('paste')
+  nnoremap <silent><buffer><expr> ma defx#do_action('new_file')
   nnoremap <silent><buffer><expr> mr defx#do_action('rename')
   nnoremap <silent><buffer><expr> md defx#do_action('remove')
   nnoremap <silent><buffer><expr> y defx#do_action('yank_path')
