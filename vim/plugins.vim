@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'kristijanhusak/defx-icons'
+  Plug 'kristijanhusak/defx-git'
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
@@ -108,36 +109,55 @@ let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
 
 " defx.nvim
-nnoremap <silent> <C-b> :<C-u>Defx -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>b :<C-u>Defx -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+nnoremap <silent> <C-b> :<C-u>Defx<CR>
+nnoremap <silent> <Leader>b :<C-u>Defx -search=`expand('%:p')`<CR>
 call defx#custom#option('_', {
   \ 'winwidth': 30,
   \ 'split': 'vertical',
   \ 'direction': 'topleft',
   \ 'show_ignored_files': 1,
-  \ 'buffer_name': 'tab`tabpagenr()`',
+  \ 'buffer_name': '',
   \ 'toggle': 1,
   \ 'resume': 1,
-  \ 'columns': 'indent:icons:filename:type',
+  \ 'columns': 'mark:indent:git:icons:filename:type:size',
   \ })
 
+call defx#custom#column('git', 'indicators', {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?'
+  \ })
 function! s:defx_mappings() abort
+  nnoremap <silent><buffer> l <Nop>
+  nnoremap <silent><buffer> h <Nop>
   nnoremap <silent><buffer><expr> o defx#is_directory() ?  defx#do_action('open_or_close_tree') : defx#do_action('drop',)
   nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
   nnoremap <silent><buffer><expr> C defx#do_action('cd')
+  nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> x defx#do_action('move')
   nnoremap <silent><buffer><expr> p defx#do_action('paste')
-  nnoremap <silent><buffer><expr> r defx#do_action('rename')
-  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> mr defx#do_action('rename')
+  nnoremap <silent><buffer><expr> md defx#do_action('remove')
   nnoremap <silent><buffer><expr> y defx#do_action('yank_path')
   nnoremap <silent><buffer><expr> s defx#do_action('drop', 'split')
   nnoremap <silent><buffer><expr> i defx#do_action('drop', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-r> defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> r defx#do_action('redraw')
 endfunction
 augroup Defx
+  autocmd BufWritePost * call defx#redraw()
+  autocmd BufEnter * call defx#redraw()
+  autocmd FileType defx match ExtraWhitespace /^^/
   autocmd FileType defx call s:defx_mappings()
 augroup END
+
+" defx-icons
+let g:defx_icons_enable_syntax_highlight = 1
 
 " vim-airline
 let g:airline_theme='gruvbox'
