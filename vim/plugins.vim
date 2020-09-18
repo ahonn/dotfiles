@@ -78,10 +78,10 @@ let g:hybrid_custom_term_colors = 1
 " colorscheme hybrid
 
 " gruvbox
-let g:gruvbox_bold = 0
+let g:gruvbox_bold = 1
+let g:gruvbox_italic = 1
 let g:gruvbox_sign_column = 'bg0'
 let g:gruvbox_invert_selection = 0
-
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
