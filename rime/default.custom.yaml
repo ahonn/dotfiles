@@ -4,7 +4,7 @@ patch:
     - schema: luna_pinyin
 
   menu:
-    page_size: 5
+    page_size: 8
 
   key_binder:
     bindings:
@@ -16,4 +16,4 @@ patch:
       - { when: has_menu, accept: "Control+l", send: Right }
       - { when: has_menu, accept: ";", send: 2 }
       - { when: has_menu, accept: "'", send: 3 }
-      - { when: always, accept: Shift_L, toggle: ascii_mode  }
+      - { when: always, accept: Shift_L, toggle: ascii_mode }

@@ -242,7 +242,11 @@ augroup TrailingSpace
 augroup END
 
 " vim-move
-let g:move_key_modifier = 'C'
+let g:move_map_keys = 0
+vmap <C-j> <Plug>MoveBlockDown
+vmap <C-k> <Plug>MoveBlockUp
+vmap <C-h> <Plug>MoveBlockLeft
+vmap <C-l> <Plug>MoveBlockRight
 
 " vim-textobj-parameter
 let g:vim_textobj_parameter_mapping = 'a'
