@@ -5,11 +5,13 @@
 [core]
 ignoreCase = false
 excludesfile = ~/.gitignore_global
-[includeIf "gitdir:~/Developer/work/"]
-path = ~/Developer/work/.gitconfig
 [push]
 default = current
-[http]
-proxy = http://127.0.0.1:1081
-[https]
-proxy = https://127.0.0.1:1081
+
+[includeIf "gitdir:~/Developer/work/"]
+path = ~/Developer/work/.gitconfig
+[includeIf "gitdir:~/Documents/work/"]
+path = ~/Documents/work/.gitconfig
+
+[include]
+path = ~/.gitconfig_proxy

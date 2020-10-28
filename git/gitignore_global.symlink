@@ -45,3 +45,5 @@ tags
 .undodir/
 .vimworkspace
 .tern-port
+
+.netrwhist
