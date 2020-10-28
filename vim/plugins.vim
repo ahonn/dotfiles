@@ -56,6 +56,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'chaoren/vim-wordmotion'
+  Plug 'matze/vim-move'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge'
@@ -240,15 +241,8 @@ augroup TrailingSpace
   autocmd BufWritePre * FixWhitespace
 augroup END
 
-" gutentags
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_exclude_filetypes = ['gitcommit']
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
-endif
+" vim-move
+let g:move_key_modifier = 'C'
 
 " vim-textobj-parameter
 let g:vim_textobj_parameter_mapping = 'a'
