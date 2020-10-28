@@ -110,8 +110,8 @@ let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
 
 " defx.nvim
-nnoremap <silent> <C-b> :<C-u>Defx<CR>
-nnoremap <silent> <Leader>b :<C-u>Defx -search=`expand('%:p')`<CR>
+nnoremap <silent> <C-b> :<C-u>Defx -search=`expand('%:p')`<CR>
+" nnoremap <silent> <Leader>b :<C-u>Defx -search=`expand('%:p')`<CR>
 call defx#custom#option('_', {
   \ 'winwidth': 30,
   \ 'split': 'vertical',
@@ -154,6 +154,8 @@ endfunction
 augroup Defx
   autocmd BufWritePost * call defx#redraw()
   autocmd BufEnter * call defx#redraw()
+  autocmd BufWritePost * setlocal cursorline
+  autocmd BufEnter * setlocal cursorline
   autocmd FileType defx match ExtraWhitespace /^^/
   autocmd FileType defx call s:defx_mappings()
 augroup END
