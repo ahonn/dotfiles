@@ -35,7 +35,7 @@ set wrap
 set linebreak
 set showbreak=->
 set textwidth=80
-set colorcolumn=100
+set colorcolumn=""
 
 set ignorecase
 set smartcase
