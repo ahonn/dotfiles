@@ -158,6 +158,8 @@ augroup Defx
   autocmd BufEnter * setlocal cursorline
   autocmd FileType defx match ExtraWhitespace /^^/
   autocmd FileType defx call s:defx_mappings()
+  autocmd FileType defx setlocal nonumber
+  autocmd FileType defx setlocal norelativenumber
 augroup END
 
 " defx-icons
