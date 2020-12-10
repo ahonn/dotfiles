@@ -12,6 +12,7 @@ source $DOTFILES/scripts/brew.sh
 
 # fish
 chsh -s /usr/local/bin/fish
+curl -L https://get.oh-my.fish | fish
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
 
 source $DOTFILES/scripts/gem.sh
