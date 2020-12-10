@@ -4,8 +4,8 @@ echo -e "\nInstalling nerd font..."
 echo "=============================="
 
 formulas=(
-  font-firacode-nerd-font
-  font-jetbrainsmono-nerd-font
+  font-fira-code-nerd-font
+  font-jetbrains-mono-nerd-font
 )
 
 brew tap homebrew/cask-fonts
@@ -14,6 +14,6 @@ for formula in "${formulas[@]}"; do
   if brew cask list $formula >/dev/null 2>&1; then
     echo "$formula already installed... skipping"
   else
-    brew cask install $formula
+    brew install $formula --cask
   fi
 done
