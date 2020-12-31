@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
-	name = ahonn
-	email = ahonn95@outlook.com
+	name = yuexunjiang
+	email = yuexunjiang@tencent.com
 [core]
 ignoreCase = false
 excludesfile = ~/.gitignore_global

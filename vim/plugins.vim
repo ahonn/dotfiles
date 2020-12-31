@@ -64,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   " Completion
   Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+  Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 call plug#end()
 
 nnoremap <silent> <Leader>pi :PlugInstall<Cr>
@@ -280,7 +281,7 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gh :call CocAction('doHover')<CR>
-nnoremap <silent> ga :CocList actions --normal<CR>
+nnoremap <silent> ga :CocAction<CR>
 
 nmap <silent> <Leader>r <Plug>(coc-rename)
 nmap <silent> <Leader>f <Plug>(coc-format)
