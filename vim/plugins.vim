@@ -59,7 +59,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'matze/vim-move'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
-  Plug 'kkoomen/vim-doge'
+  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
   " Completion
   Plug 'mattn/emmet-vim'
