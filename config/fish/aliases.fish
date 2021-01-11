@@ -1,6 +1,5 @@
 # tmux & tmuxinator
-alias hello 'tmuxinator start world -n ahonn'
-alias world 'tmuxinator start world -n'
+alias hello 'tmux new-session -s ahonn'
 alias bye 'tmux kill-server'
 alias kill 'tmux kill-session -t'
 

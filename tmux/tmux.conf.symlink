@@ -34,6 +34,9 @@ run '$DOTFILES/tmux/plugins/tpm/tpm'
 unbind c
 bind c new-window -c "#{pane_current_path}"
 
+# create session
+bind n new-session
+
 # clean screen
 bind C-l send-keys 'C-l'
 

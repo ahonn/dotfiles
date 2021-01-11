@@ -22,7 +22,6 @@ echo -e "\nInstalling gem packages..."
 echo "=============================="
 
 formulas=(
-  tmuxinator
   neovim
 )
 
