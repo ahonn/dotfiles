@@ -18,8 +18,8 @@ if test -d $DOTFILES/bin
   set -gx fish_user_paths $DOTFILES/bin $fish_user_paths
 end
 
-if test -d $HOME/Library/Python/2.7/bin
-  set -gx fish_user_paths $HOME/Library/Python/2.7/bin $fish_user_paths
+if test -d /usr/local/bin
+  set -gx fish_user_paths /usr/local/bin $fish_user_paths
 end
 
 set -gx GOPATH $HOME/go
