@@ -1,15 +1,13 @@
 # This is Git's per-user configuration file.
 [user]
-	name = yuexunjiang
-	email = yuexunjiang@tencent.com
+	name = ahonn
+	email = ahonn95@outlook.com
 [core]
 ignoreCase = false
 excludesfile = ~/.gitignore_global
 [push]
 default = current
 
-[includeIf "gitdir:~/Developer/work/"]
-path = ~/Developer/work/.gitconfig
 [includeIf "gitdir:~/Documents/work/"]
 path = ~/Documents/work/.gitconfig
 
