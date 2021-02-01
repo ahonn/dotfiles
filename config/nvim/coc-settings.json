@@ -6,7 +6,8 @@
   "diagnostic.enable": true,
   "diagnostic.warningSign": "●",
   "diagnostic.errorSign": "●",
-  "diagnostic.level": "warning",
+  "diagnostic.infoSign": "●",
+  "diagnostic.level": "hint",
   "eslint.autoFixOnSave": true,
   "snippets.priority": 100,
   "snippets.snipmate.enable": false,
@@ -30,5 +31,11 @@
       "additionalSchemes": ["jar", "zipfile"],
       "initializationOptions": {}
     }
-  }
+  },
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "list.height": 20
 }

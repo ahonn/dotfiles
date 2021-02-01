@@ -38,7 +38,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-  Plug 'Yggdroot/LeaderF'
   Plug 'mhinz/vim-startify'
 
   " Integration
@@ -53,7 +52,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
-  Plug 'rhysd/git-messenger.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'chaoren/vim-wordmotion'
   Plug 'matze/vim-move'
@@ -67,9 +65,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 call plug#end()
 
-nnoremap <silent> <Leader>pi :PlugInstall<Cr>
-nnoremap <silent> <Leader>pc :PlugClean<Cr>
-nnoremap <silent> <Leader>pu :PlugUpdate<Cr>
+nnoremap <silent> <Leader>pi :PlugInstall<CR>
+nnoremap <silent> <Leader>pc :PlugClean<CR>
+nnoremap <silent> <Leader>pu :PlugUpdate<CR>
 
 " ----------------------------------------------------------------------------
 " Colorscheme
@@ -103,12 +101,15 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 " ----------------------------------------------------------------------------
 
 " indentLine
-nnoremap <silent> <Leader><Tab> :IndentLinesToggle<Cr>
+nnoremap <silent> <Leader><Tab> :IndentLinesToggle<CR>
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#504945'
 let g:indentLine_faster = 1
 " let g:indentLine_char = '┊'
+
+" vim-gitgutter
+let g:gitgutter_enabled = 0
 
 " defx.nvim
 nnoremap <silent> <C-b> :<C-u>Defx -search=`expand('%:p')`<CR>
@@ -177,17 +178,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#hunks#enabled = 0
 
 " gundo
-nnoremap <silent> <Leader>ud :GundoToggle<Cr>
+nnoremap <silent> <Leader>ud :GundoToggle<CR>
 let g:gundo_width = 50
 let g:gundo_preview_height = 40
 let g:gundo_right = 1
 let g:gundo_prefer_python3 = 1
-
-" LeaderF
-nnoremap <silent> <C-p> :Leaderf file<Cr>
-nnoremap <silent> <C-f> :Leaderf rg<Cr>
-nnoremap <silent> <C-q> :Leaderf line<Cr>
-nnoremap <silent> <Leader><Leader> :Leaderf buffer<Cr>
 
 " vim-startify
 let g:startify_lists = [
@@ -285,13 +280,22 @@ nnoremap <silent> ga :CocAction<CR>
 
 nmap <silent> <Leader>r <Plug>(coc-rename)
 nmap <silent> <Leader>f <Plug>(coc-format)
-nmap <silent> <leader>p <Plug>(coc-format-selected)
-vmap <silent> <leader>p <Plug>(coc-format-selected)
+nmap <silent> <Leader>p <Plug>(coc-format-selected)
+vmap <silent> <Leader>p <Plug>(coc-format-selected)
+
+" coc-git
+nmap <silent> <Leader>g :<C-u>CocList --normal gstatus<CR>
+nmap <silent> <Leader>c :<C-u>CocList commits<CR>
+
+" coc-lists
+nmap <silent> <C-p> :<C-u>CocList --auto-preview files<CR>
+nmap <silent> <C-f> :<C-u>CocList grep<CR>
+nmap <silent> <Leader><Space> :<C-u>CocList --auto-preview buffers<CR>
 
 vmap <silent> <Tab> <Plug>(coc-snippets-select)
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<Cr>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
@@ -309,5 +313,6 @@ call coc#add_extension(
   \ 'coc-word',
   \ 'coc-prettier',
   \ 'coc-diagnostic',
-  \ 'coc-eslint'
+  \ 'coc-eslint',
+  \ 'coc-git',
   \ )
