@@ -37,5 +37,6 @@
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "list.height": 20
+  "list.height": 20,
+  "list.matchHighlightGroup": "GruvboxRedBold"
 }
