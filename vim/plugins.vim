@@ -284,9 +284,9 @@ nmap <silent> <Leader>g :<C-u>CocList --normal gstatus<CR>
 nmap <silent> <Leader>c :<C-u>CocList commits<CR>
 
 " coc-lists
-nmap <silent> <C-p> :<C-u>CocList --auto-preview files<CR>
+nmap <silent> <C-p> :<C-u>CocList files<CR>
 nmap <silent> <C-f> :<C-u>CocList grep<CR>
-nmap <silent> <Leader><Space> :<C-u>CocList --auto-preview buffers<CR>
+nmap <silent> <Leader><Space> :<C-u>CocList buffers<CR>
 
 vmap <silent> <Tab> <Plug>(coc-snippets-select)
 inoremap <silent><expr> <Tab>
@@ -311,4 +311,5 @@ call coc#add_extension(
   \ 'coc-diagnostic',
   \ 'coc-eslint',
   \ 'coc-git',
+  \ 'coc-lists',
   \ )
