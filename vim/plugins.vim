@@ -230,10 +230,6 @@ let g:mta_filetypes = {
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
-" vim-fileheader
-let g:fileheader_auto_add = 0
-let g:fileheader_show_email = 0
-
 " vim-trailing-whitespace
 let g:extra_whitespace_ignored_filetypes = ['defx', 'help', 'grep', 'search']
 augroup TrailingSpace

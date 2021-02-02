@@ -14,7 +14,4 @@ augroup Common
 
   " css/less/scss keyword
   autocmd FileType css,less,scss setlocal iskeyword+=-
-
-  " auto format chinese
-  autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 augroup end
