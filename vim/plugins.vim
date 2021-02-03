@@ -58,6 +58,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+  Plug 'vim-test/vim-test'
 
   " Completion
   Plug 'mattn/emmet-vim'
@@ -186,12 +187,14 @@ let g:gundo_prefer_python3 = 1
 
 " vim-startify
 let g:startify_lists = [
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
   \ { 'type': 'files',     'header': ['   MRU']            },
   \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
   \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
   \ { 'type': 'commands',  'header': ['   Commands']       },
   \ ]
 let g:startify_change_to_dir = 0
+let g:startify_session_dir = '$DOTFILES/vim/sessions'
 
 " ----------------------------------------------------------------------------
 " Integration
@@ -249,6 +252,11 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-doge
 let g:doge_mapping = '<Leader>dc'
+
+" vim-test
+nnoremap <silent> <Leader>tn :TestNearest<Cr>
+nnoremap <silent> <Leader>tf :TestFile<Cr>
+nnoremap <silent> <Leader>ts :TestSuite<Cr>
 
 " ----------------------------------------------------------------------------
 " Completion
