@@ -66,6 +66,11 @@ if test -d $HOME/.deno/bin
   set -gx fish_user_paths $HOME/.deno/bin $fish_user_paths
 end
 
+# go
+if test -d /usr/local/go/bin
+  set -gx fish_user_paths /usr/local/go/bin $fish_user_paths
+end
+
 # llvm
 if test -d /usr/local/opt/llvm/bin
   set -g fish_user_paths /usr/local/opt/llvm/bin $fish_user_paths

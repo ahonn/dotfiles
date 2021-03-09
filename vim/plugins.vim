@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'leafo/moonscript-vim', { 'for': 'moon' }
+  Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
 
   " UI
   Plug 'luochen1990/rainbow'
