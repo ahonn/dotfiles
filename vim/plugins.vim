@@ -65,6 +65,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
+
+  Plug 'nathangrigg/vim-beancount'
 call plug#end()
 
 nnoremap <silent> <Leader>pi :PlugInstall<CR>
