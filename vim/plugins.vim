@@ -313,6 +313,7 @@ endfunction
 
 call coc#add_extension(
   \ 'coc-tsserver',
+  \ 'coc-go',
   \ 'coc-json',
   \ 'coc-css',
   \ 'coc-vimlsp',
@@ -323,4 +324,5 @@ call coc#add_extension(
   \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-lists',
+  \ 'coc-tabnine'
   \ )
