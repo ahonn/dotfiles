@@ -299,12 +299,15 @@ nmap <silent> <C-p> :<C-u>CocList files<CR>
 nmap <silent> <C-f> :<C-u>CocList grep<CR>
 nmap <silent> <Leader><Space> :<C-u>CocList buffers<CR>
 
-vmap <silent> <Tab> <Plug>(coc-snippets-select)
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 function! s:check_back_space() abort
   let col = col('.') - 1
