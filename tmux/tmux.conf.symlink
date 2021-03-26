@@ -1,5 +1,4 @@
 # ========== Basic ========= #
-set -g default-command "reattach-to-user-namespace -l fish"
 set -g default-terminal "screen-256color"
 set -g terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
 set -g display-time 3000
@@ -26,6 +25,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-urlview'
 set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-plugins/tmux-yank'
 
 run '$DOTFILES/tmux/plugins/tpm/tpm'
 
@@ -86,11 +86,9 @@ set -g visual-activity off
 setw -g mode-keys vi
 bind v copy-mode
 bind -Tcopy-mode-vi 'v' send -X begin-selection
-bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 bind -Tcopy-mode-vi Escape send -X cancel
 
 bind -Tcopy-mode-vi MouseDrag1Pane send -X begin-selection
-bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
 # ========== Colorscheme ========== #
 # mode
