@@ -8,7 +8,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
   " Colorscheme
-  Plug 'w0ng/vim-hybrid'
   Plug 'gruvbox-community/gruvbox'
 
   " Language
@@ -76,10 +75,6 @@ nnoremap <silent> <Leader>pu :PlugUpdate<CR>
 " ----------------------------------------------------------------------------
 " Colorscheme
 " ----------------------------------------------------------------------------
-
-" hybrid
-let g:hybrid_custom_term_colors = 1
-" colorscheme hybrid
 
 " gruvbox
 let g:gruvbox_bold = 1
