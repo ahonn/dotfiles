@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.vim/plugged')
   " Colorscheme
   Plug 'gruvbox-community/gruvbox'
+  Plug 'joshdick/onedark.vim'
 
   " Language
   Plug 'dag/vim-fish'
@@ -81,7 +82,10 @@ let g:gruvbox_bold = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_sign_column = 'bg0'
 let g:gruvbox_invert_selection = 0
-colorscheme gruvbox
+" colorscheme gruvbox
+
+let g:onedark_termcolors = 256
+colorscheme onedark
 
 " ----------------------------------------------------------------------------
 " Language
@@ -167,7 +171,8 @@ augroup END
 let g:defx_icons_enable_syntax_highlight = 1
 
 " vim-airline
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
