@@ -1,2 +1,0 @@
-require "moonscript"
-require "main"
