@@ -60,6 +60,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'sgur/vim-textobj-parameter'
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   Plug 'vim-test/vim-test'
+  Plug 'karb94/neoscroll.nvim'
 
   " Completion
   Plug 'mattn/emmet-vim'
@@ -265,6 +266,9 @@ let g:doge_javascript_settings = {
 nnoremap <silent> <Leader>tn :TestNearest<Cr>
 nnoremap <silent> <Leader>tf :TestFile<Cr>
 nnoremap <silent> <Leader>ts :TestSuite<Cr>
+
+" neoscroll
+lua require('neoscroll').setup()
 
 " ----------------------------------------------------------------------------
 " Completion
