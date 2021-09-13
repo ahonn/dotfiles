@@ -85,6 +85,7 @@ let g:gruvbox_invert_selection = 0
 " colorscheme gruvbox
 
 let g:onedark_termcolors = 256
+let g:onedark_terminal_italics = 1
 colorscheme onedark
 
 " ----------------------------------------------------------------------------
@@ -255,6 +256,10 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-doge
 let g:doge_mapping = '<Leader>dc'
+let g:doge_javascript_settings = {
+  \  'destructuring_props': 1,
+  \  'omit_redundant_param_types': 1,
+  \ }
 
 " vim-test
 nnoremap <silent> <Leader>tn :TestNearest<Cr>
