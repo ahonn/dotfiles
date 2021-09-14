@@ -20,12 +20,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'groenewege/vim-less'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'leafo/moonscript-vim', { 'for': 'moon' }
   Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
 
   " UI
   Plug 'luochen1990/rainbow'
-  Plug 'Yggdroot/indentLine'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'airblade/vim-gitgutter'
   if has('nvim')
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -105,13 +104,10 @@ let g:used_javascript_libs = 'underscore,jquery,react'
 " UI
 " ----------------------------------------------------------------------------
 
-" indentLine
-nnoremap <silent> <Leader><Tab> :IndentLinesToggle<CR>
-let g:indentLine_enabled = 1
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#504945'
-let g:indentLine_faster = 1
-" let g:indentLine_char = '┊'
+" indent-blankline.nvim
+lua <<EOF
+require("indent_blankline").setup()
+EOF
 
 " vim-gitgutter
 let g:gitgutter_enabled = 0
