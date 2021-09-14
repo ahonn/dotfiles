@@ -264,7 +264,11 @@ nnoremap <silent> <Leader>tf :TestFile<Cr>
 nnoremap <silent> <Leader>ts :TestSuite<Cr>
 
 " neoscroll
-lua require('neoscroll').setup()
+lua <<EOF
+require('neoscroll').setup({
+  mappings = {'<C-u>', '<C-d>', 'zz'},
+})
+EOF
 
 " ----------------------------------------------------------------------------
 " Completion
