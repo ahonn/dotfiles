@@ -24,5 +24,3 @@ if test -e $DOTFILES/config/fish/proxy.fish
   # set proxy_auth false
   source $DOTFILES/config/fish/proxy.fish
 end
-
-eval (/opt/homebrew/bin/brew shellenv)
