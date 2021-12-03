@@ -9,7 +9,6 @@ endif
 call plug#begin('~/.vim/plugged')
   " Colorscheme
   Plug 'gruvbox-community/gruvbox'
-  Plug 'joshdick/onedark.vim'
 
   " Language
   Plug 'dag/vim-fish'
@@ -44,7 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
-  Plug 'easymotion/vim-easymotion'
+  " Plug 'easymotion/vim-easymotion'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Valloric/MatchTagAlways'
   Plug 'alvan/vim-closetag'
@@ -53,7 +52,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'chaoren/vim-wordmotion'
   Plug 'matze/vim-move'
   Plug 'kana/vim-textobj-user'
   Plug 'sgur/vim-textobj-parameter'
@@ -65,8 +63,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
-
-  Plug 'nathangrigg/vim-beancount'
 call plug#end()
 
 nnoremap <silent> <Leader>pi :PlugInstall<CR>
