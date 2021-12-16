@@ -27,6 +27,10 @@ if test -d $GOPATH/bin
   set -gx fish_user_paths $GOPATH/bin $fish_user_paths
 end
 
+if test -d /opt/homebrew/bin
+  set -gx fish_user_paths /opt/homebrew/bin $fish_user_paths
+end
+
 # flutter
 if test -d $HOME/flutter/bin
   set -gx fish_user_paths $HOME/flutter/bin $fish_user_paths
