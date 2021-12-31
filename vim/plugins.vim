@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'eraserhd/parinfer-rust', { 'do': 'cargo build --release' }
+  Plug 'chemzqm/wxapp.vim'
 
   " UI
   Plug 'luochen1990/rainbow'
@@ -317,9 +318,9 @@ endfunction
 
 call coc#add_extension(
   \ 'coc-tsserver',
-  \ 'coc-go',
   \ 'coc-json',
   \ 'coc-css',
+  \ 'coc-wxml',
   \ 'coc-vimlsp',
   \ 'coc-snippets',
   \ 'coc-word',
@@ -328,5 +329,6 @@ call coc#add_extension(
   \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-lists',
-  \ 'coc-tabnine'
+  \ 'coc-tabnine',
+  \ 'coc-go',
   \ )
