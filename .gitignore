@@ -3,5 +3,6 @@ vim/plugged/
 vim/sessions/
 config/fish/fish_variables
 config/fish/proxy.fish
+config/nvim/plugin
 .vimworkspace
 .undodir
