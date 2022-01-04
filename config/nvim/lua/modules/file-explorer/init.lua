@@ -23,12 +23,15 @@ M.setup = function()
         },
     }
 
-    vim.api.nvim_set_keymap("n", "<C-b>", "<cmd>NvimTreeToggle<CR>", { noremap = true })
-    vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>NvimTreeFindFile<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<C-b>", "<CMD>NvimTreeToggle<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<C-f>", "<CMD>NvimTreeFindFile<CR>", { noremap = true })
 
     require("nvim-tree").setup {
         diagnostics = {
             enable = true,
+        },
+        update_focused_file = {
+          enable = true,
         },
         view = {
             width = 40,
