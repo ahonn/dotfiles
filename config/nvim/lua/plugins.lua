@@ -85,6 +85,25 @@ local function spec(use)
       }
     }
 
+    -- Git
+    use {
+      {
+        "APZelos/blamer.nvim",
+        setup = function ()
+          vim.g.blamer_enabled = 1
+        end
+      },
+      {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+          'nvim-lua/plenary.nvim'
+        },
+        config = function ()
+          require('gitsigns').setup()
+        end
+      },
+    }
+
     -- Extensions
     use {
         "tpope/vim-repeat",
@@ -149,6 +168,10 @@ local function spec(use)
             vim.g.doge_enable_mappings = 0
             vim.g.doge_comment_jump_modes = { "n" }
           end,
+        },
+        {
+          "eraserhd/parinfer-rust",
+          run = "cargo build --release"
         }
     }
 
