@@ -14,8 +14,12 @@ function M.buf_set_keymaps(bufnr)
   buf_set_keymap("n", "gd", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", opts);
   buf_set_keymap("n", "gi", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", opts);
   buf_set_keymap("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", opts)
+
   buf_set_keymap("n", "ga", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap("v", "ga", "<CMD><C-U>lua vim.lsp.buf.range_code_action()<CR>", opts)
+
+  buf_set_keymap("n", "<Leader>f", "<CMD>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("v", "<Leader>f", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
 
   for _, mode in pairs { "n", "v" } do
     buf_set_keymap(mode, "[e", "<CMD>lua vim.diagnostic.goto_prev({ severity_limit = 'Error' })<CR>", opts)

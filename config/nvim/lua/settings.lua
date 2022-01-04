@@ -8,7 +8,7 @@ vim.o.autoread = true
 vim.o.autowrite = false
 
 vim.o.laststatus = 2
-vim.o.showmode = false 
+vim.o.showmode = false
 
 vim.o.wrap = true
 vim.o.linebreak = true
@@ -52,4 +52,5 @@ vim.o.scrolloff = 10
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,gbk,gb2312,gb18030"
 
-vim.cmd [[syntax on]]
+vim.cmd([[syntax on]])
+
