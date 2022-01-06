@@ -18,7 +18,7 @@ end
 vim.cmd([[command! PackerUpgrade :call v:lua.packer_upgrade()]])
 
 local function spec(use)
-  use 'lewis6991/impatient.nvim'
+	use("lewis6991/impatient.nvim")
 
 	-- Color scheme
 	use({
@@ -89,11 +89,7 @@ local function spec(use)
 	})
 
 	-- Git
-	use(
-    {
-      "rhysd/git-messenger.vim",
-      cmd = "GitMessenger",
-    },
+	use({
 		{
 			"lewis6991/gitsigns.nvim",
 			requires = {
@@ -102,18 +98,32 @@ local function spec(use)
 			config = function()
 				require("gitsigns").setup()
 			end,
-		}
-	)
+		},
+		{
+			"rhysd/git-messenger.vim",
+			config = function()
+				vim.api.nvim_set_keymap("n", "gm", "<CMD>GitMessenger<CR>", { noremap = true })
+			end,
+		},
+	})
 
 	-- Extensions
 	use({
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
-    "tpope/vim-commentary",
-    {
-      "simnalamburt/vim-mundo",
-      cmd = "MundoInstall",
-    },
+		"tpope/vim-commentary",
+		{
+			"simnalamburt/vim-mundo",
+			cmd = "MundoInstall",
+		},
+		{
+			"ntpeters/vim-better-whitespace",
+			setup = function()
+				vim.g.better_whitespace_enabled = true
+				vim.g.strip_whitespace_on_save = true
+				vim.g.strip_whitespace_confirm = false
+			end,
+		},
 		{
 			"alexghergh/nvim-tmux-navigation",
 			config = function()
@@ -167,8 +177,8 @@ local function spec(use)
 			"karb94/neoscroll.nvim",
 			config = function()
 				require("neoscroll").setup({
-          mappings = {'<C-u>', '<C-d>', 'zz'},
-        })
+					mappings = { "<C-u>", "<C-d>", "zz" },
+				})
 			end,
 		},
 		{

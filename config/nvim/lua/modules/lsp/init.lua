@@ -7,6 +7,7 @@ local M = {}
 function M.setup()
   local on_attach = function(client, bufnr)
     require "lsp_signature".on_attach()
+
     lsp_keymaps.buf_set_keymaps(bufnr)
   end
 

@@ -16,12 +16,16 @@ function M.setup()
 		},
 	})
 
+	local function telescope(func)
+		return "<CMD>lua require('telescope.builtin')." .. func .. "<CR>"
+	end
+
 	local opts = { noremap = true }
-	vim.api.nvim_set_keymap("n", "<C-p>", "<CMD>lua require('telescope.builtin').find_files()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "<C-f>", "<CMD>lua require('telescope.builtin').live_grep()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "<Leader><Space>", "<CMD>lua require('telescope.builtin').buffers()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "<Leader>d", "<CMD>lua require('telescope.builtin').diagnostics()<CR>", opts)
-	vim.api.nvim_set_keymap("n", "<Leader>s", "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
+	vim.api.nvim_set_keymap("n", "<C-p>", telescope("find_files()"), opts)
+	vim.api.nvim_set_keymap("n", "<C-f>", telescope("live_grep()"), opts)
+	vim.api.nvim_set_keymap("n", "<Leader><Space>", telescope("buffers()"), opts)
+	vim.api.nvim_set_keymap("n", "<Leader>d", telescope("diagnostics()"), opts)
+	vim.api.nvim_set_keymap("n", "<Leader>s", telescope("lsp_document_symbols()"), opts)
 end
 
 return M
