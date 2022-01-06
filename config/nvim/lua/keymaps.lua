@@ -11,6 +11,11 @@ set_keymap("n", ">", ">>", opts)
 set_keymap("v", "<", "<gv", opts)
 set_keymap("v", ">", ">gv", opts)
 
+set_keymap("n", "J", "G", opts)
+set_keymap("n", "K", "gg", opts)
+set_keymap("n", "H", "^", opts)
+set_keymap("n", "L", "$", opts)
+
 set_keymap("n", "k", "gk", opts)
 set_keymap("n", "gk", "k", opts)
 set_keymap("n", "j", "gj", opts)

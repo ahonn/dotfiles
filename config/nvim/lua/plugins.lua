@@ -16,7 +16,10 @@ function _G.packer_upgrade()
 end
 
 vim.cmd([[command! PackerUpgrade :call v:lua.packer_upgrade()]])
+
 local function spec(use)
+  use 'lewis6991/impatient.nvim'
+
 	-- Color scheme
 	use({
 		"gruvbox-community/gruvbox",
@@ -86,13 +89,11 @@ local function spec(use)
 	})
 
 	-- Git
-	use({
-		{
-			"APZelos/blamer.nvim",
-			setup = function()
-				vim.g.blamer_enabled = 1
-			end,
-		},
+	use(
+    {
+      "rhysd/git-messenger.vim",
+      cmd = "GitMessenger",
+    },
 		{
 			"lewis6991/gitsigns.nvim",
 			requires = {
@@ -101,14 +102,18 @@ local function spec(use)
 			config = function()
 				require("gitsigns").setup()
 			end,
-		},
-	})
+		}
+	)
 
 	-- Extensions
 	use({
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
-		"simnalamburt/vim-mundo",
+    "tpope/vim-commentary",
+    {
+      "simnalamburt/vim-mundo",
+      cmd = "MundoInstall",
+    },
 		{
 			"alexghergh/nvim-tmux-navigation",
 			config = function()
