@@ -179,11 +179,29 @@ local function spec(use)
 			end,
 		},
 		{
+			"akinsho/bufferline.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("bufferline").setup({})
+				vim.api.nvim_set_keymap("n", "[b", "<CMD>BufferLineCyclePrev<CR>", { noremap = true })
+				vim.api.nvim_set_keymap("n", "]b", "<CMD>BufferLineCycleNext<CR>", { noremap = true })
+			end,
+		},
+		{
 			"karb94/neoscroll.nvim",
 			config = function()
 				require("neoscroll").setup({
 					mappings = { "<C-u>", "<C-d>", "zz" },
 				})
+			end,
+		},
+		{
+			"hrsh7th/vim-eft",
+			config = function()
+				vim.api.nvim_set_keymap("n", "f", "<Plug>(eft-f)", { noremap = false })
+				vim.api.nvim_set_keymap("n", "F", "<Plug>(eft-F)", { noremap = false })
+				vim.api.nvim_set_keymap("n", "t", "<Plug>(eft-t)", { noremap = false })
+				vim.api.nvim_set_keymap("n", "T", "<Plug>(eft-T)", { noremap = false })
 			end,
 		},
 		{

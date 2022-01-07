@@ -36,22 +36,22 @@ function M.setup()
 				goto_next_start = {
 					["]m"] = "@function.outer",
 					["]c"] = "@class.outer",
-          ["]a"] = "@parameter.inner",
+					["]a"] = "@parameter.inner",
 				},
 				goto_next_end = {
 					["]M"] = "@function.outer",
 					["]C"] = "@class.outer",
-          ["]A"] = "@parameter.inner",
+					["]A"] = "@parameter.inner",
 				},
 				goto_previous_start = {
 					["[m"] = "@function.outer",
 					["[c"] = "@class.outer",
-          ["[a"] = "@parameter.inner",
+					["[a"] = "@parameter.inner",
 				},
 				goto_previous_end = {
 					["[M"] = "@function.outer",
 					["[C"] = "@class.outer",
-          ["[A"] = "@parameter.inner",
+					["[A"] = "@parameter.inner",
 				},
 			},
 		},
