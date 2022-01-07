@@ -4,6 +4,9 @@ function M.setup()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = "maintained",
 		sync_install = false,
+		tree_docs = {
+      enable = true
+    },
 		highlight = {
 			enable = true,
 			additional_vim_regex_highlighting = false,
@@ -34,22 +37,22 @@ function M.setup()
 				enable = true,
 				set_jumps = true,
 				goto_next_start = {
-					["]m"] = "@function.outer",
+					["]f"] = "@function.outer",
 					["]c"] = "@class.outer",
 					["]a"] = "@parameter.inner",
 				},
 				goto_next_end = {
-					["]M"] = "@function.outer",
+					["]F"] = "@function.outer",
 					["]C"] = "@class.outer",
 					["]A"] = "@parameter.inner",
 				},
 				goto_previous_start = {
-					["[m"] = "@function.outer",
+					["[f"] = "@function.outer",
 					["[c"] = "@class.outer",
 					["[a"] = "@parameter.inner",
 				},
 				goto_previous_end = {
-					["[M"] = "@function.outer",
+					["[F"] = "@function.outer",
 					["[C"] = "@class.outer",
 					["[A"] = "@parameter.inner",
 				},

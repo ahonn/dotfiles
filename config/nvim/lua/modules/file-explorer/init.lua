@@ -24,7 +24,6 @@ M.setup = function()
 	}
 
 	vim.api.nvim_set_keymap("n", "<C-b>", "<CMD>NvimTreeToggle<CR>", { noremap = true })
-	vim.api.nvim_set_keymap("n", "<C-f>", "<CMD>NvimTreeFindFile<CR>", { noremap = true })
 
 	require("nvim-tree").setup({
 		diagnostics = {
