@@ -36,6 +36,10 @@ local function spec(use)
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
+		requires = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/playground",
+		},
 		run = ":TSUpdate",
 		config = function()
 			require("modules.treesitter").setup()
@@ -109,6 +113,7 @@ local function spec(use)
 
 	-- Extensions
 	use({
+		"tomlion/vim-solidity",
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
 		"tpope/vim-commentary",
