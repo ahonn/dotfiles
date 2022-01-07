@@ -84,7 +84,10 @@ local function spec(use)
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
-				"L3MON4D3/LuaSnip",
+				"onsails/lspkind-nvim",
+				"hrsh7th/cmp-vsnip",
+				"hrsh7th/vim-vsnip",
+				"rafamadriz/friendly-snippets",
 			},
 			config = function()
 				require("modules.completion").setup()
