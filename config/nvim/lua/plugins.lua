@@ -33,11 +33,26 @@ local function spec(use)
 		end,
 	})
 
+	-- Doc
+	use({
+		"kkoomen/vim-doge",
+		cmd = { "DogeGenerate" },
+		run = function()
+			vim.fn["doge#install"]()
+		end,
+		setup = function()
+			vim.g.doge_enable_mappings = 0
+			vim.g.doge_comment_jump_modes = { "n" }
+		end,
+	})
+
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		requires = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			"p00f/nvim-ts-rainbow",
 			"nvim-treesitter/playground",
 		},
 		run = ":TSUpdate",
@@ -68,6 +83,7 @@ local function spec(use)
 			"folke/lua-dev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"jose-elias-alvarez/null-ls.nvim",
+			"jose-elias-alvarez/nvim-lsp-ts-utils",
 		},
 		config = function()
 			require("modules.lsp").setup()
@@ -120,6 +136,15 @@ local function spec(use)
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
 		"tpope/vim-commentary",
+		"mattn/emmet-vim",
+		"ygm2/rooter.nvim",
+		{
+			"goolord/alpha-nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
+			config = function()
+				require("alpha").setup(require("alpha.themes.startify").opts)
+			end,
+		},
 		{
 			"simnalamburt/vim-mundo",
 			cmd = "MundoInstall",
@@ -214,6 +239,7 @@ local function spec(use)
 	-- Misc
 	use({
 		"wakatime/vim-wakatime",
+		"dstein64/vim-startuptime",
 	})
 end
 

@@ -32,6 +32,29 @@ function M.setup()
 					}),
 				})
 			end,
+			["tsserver"] = function()
+				local tsutils = require("nvim-lsp-ts-utils")
+				return vim.tbl_deep_extend("force", default_opts, {
+					init_options = {
+						hostInfo = "neovim",
+						preferences = {
+							includeInlayParameterNameHints = "none",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = false,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+					on_attach = function(client, bufnr)
+						client.resolved_capabilities.document_formatting = false
+						on_attach(client, bufnr)
+						tsutils.setup({})
+						tsutils.setup_client(client)
+					end,
+				})
+			end,
 		}
 
 		server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
@@ -40,11 +63,11 @@ function M.setup()
 	local null_ls = require("null-ls")
 	null_ls.setup({
 		sources = {
-      null_ls.builtins.formatting.prettier,
+			null_ls.builtins.formatting.prettier,
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.diagnostics.shellcheck,
 			null_ls.builtins.completion.spell,
-      null_ls.builtins.code_actions.gitsigns,
+			null_ls.builtins.code_actions.gitsigns,
 		},
 		on_attach = on_attach,
 	})
