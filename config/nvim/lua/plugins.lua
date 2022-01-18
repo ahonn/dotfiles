@@ -92,7 +92,15 @@ local function spec(use)
 
 	-- Completion
 	use({
-		"github/copilot.vim",
+		{
+			"github/copilot.vim",
+			config = function()
+				vim.cmd([[
+          imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+          let g:copilot_no_tab_map = v:true
+        ]])
+			end,
+		},
 		{
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -103,6 +111,8 @@ local function spec(use)
 				"onsails/lspkind-nvim",
 				"hrsh7th/cmp-vsnip",
 				"hrsh7th/vim-vsnip",
+				"hrsh7th/cmp-copilot",
+        { "tzachar/cmp-tabnine", run = "./install.sh" },
 				"rafamadriz/friendly-snippets",
 			},
 			config = function()

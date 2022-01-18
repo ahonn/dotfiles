@@ -6,10 +6,12 @@ end
 
 local opts = { noremap = true, silent = true }
 
-for _, mode in pairs { "n", "v" } do
-  set_keymap(mode, "<", "<<", opts)
-  set_keymap(mode, ">", ">>", opts)
+set_keymap("n", "<", "<<", opts)
+set_keymap("n", ">", ">>", opts)
+set_keymap("v", "<", "<gv", opts)
+set_keymap("v", ">", ">gv", opts)
 
+for _, mode in pairs { "n", "v" } do
   set_keymap(mode, "J", "G", opts)
   set_keymap(mode, "K", "gg", opts)
   set_keymap(mode, "H", "^", opts)

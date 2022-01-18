@@ -12,10 +12,56 @@ end
 
 local M = {}
 
+local symbol_map = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "ﰠ",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+}
+
 function M.setup()
 	cmp.setup({
+		completion = {
+			keyword_length = 3,
+		},
 		formatting = {
-			format = lspkind.cmp_format(),
+			format = lspkind.cmp_format({
+				symbol_map = symbol_map,
+				before = function(entry, vim_item)
+					vim_item.kind = string.format("%s %s", symbol_map[vim_item.kind], vim_item.kind)
+					vim_item.menu = ({
+						buffer = "[Buffer]",
+						nvim_lsp = "[LSP]",
+						vsnip = "[Snip]",
+						nvim_lua = "[Lua]",
+						copilot = "[Copilot]",
+						cmp_tabnine = "[TabNine]",
+						path = "[Path]",
+					})[entry.source.name]
+					return vim_item
+				end,
+			}),
 		},
 		snippet = {
 			expand = function(args)
@@ -54,6 +100,8 @@ function M.setup()
 			end, { "i", "s" }),
 		},
 		sources = {
+			{ name = "copilot" },
+			{ name = "cmp_tabnine" },
 			{ name = "vsnip" },
 			{ name = "path" },
 			{ name = "nvim_lsp" },

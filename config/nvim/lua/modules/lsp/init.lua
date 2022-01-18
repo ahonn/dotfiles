@@ -37,22 +37,21 @@ function M.setup()
 				return vim.tbl_deep_extend("force", default_opts, {
 					init_options = {
 						hostInfo = "neovim",
-						preferences = {
-							includeInlayParameterNameHints = "none",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = false,
-							includeInlayVariableTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
 					},
 					on_attach = function(client, bufnr)
-						client.resolved_capabilities.document_formatting = false
 						on_attach(client, bufnr)
 						tsutils.setup({})
 						tsutils.setup_client(client)
 					end,
+				})
+			end,
+			["eslintls"] = function()
+				return vim.tbl_deep_extend("force", default_opts, {
+					settings = {
+						format = {
+							enable = true,
+						},
+					},
 				})
 			end,
 		}
