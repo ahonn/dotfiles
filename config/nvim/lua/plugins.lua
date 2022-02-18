@@ -246,6 +246,14 @@ local function spec(use)
 		},
 	})
 
+  use({
+    'David-Kunz/jester',
+    config = function()
+      vim.api.nvim_set_keymap("n", "<Leader>tn", "<CMD>lua require('jester').run()<CR>", { noremap = false })
+      vim.api.nvim_set_keymap("n", "<Leader>td", "<CMD>lua require('jester').debug()<CR>", { noremap = false })
+      vim.api.nvim_set_keymap("n", "<Leader>tf", "<CMD>lua require('jester').run_file()<CR>", { noremap = false })
+    end,
+  })
 	-- Misc
 	use({
 		"wakatime/vim-wakatime",
