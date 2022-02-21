@@ -1,10 +1,13 @@
 local lsp_installer = require("nvim-lsp-installer")
 local lsp_keymaps = require("modules.lsp.keymaps")
 local lsp_capabilities = require("modules.lsp.capabilities")
+local lsp_diagnostic = require("modules.lsp.diagnostic")
 
 local M = {}
 
 function M.setup()
+  lsp_diagnostic.setup()
+
 	local on_attach = function(client, bufnr)
 		require("lsp_signature").on_attach()
 		lsp_keymaps.buf_set_keymaps(bufnr)

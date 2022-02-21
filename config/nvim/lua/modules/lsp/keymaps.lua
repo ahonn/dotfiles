@@ -27,7 +27,7 @@ function M.buf_set_keymaps(bufnr)
     buf_set_keymap(mode, "[E", "<CMD>lua vim.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap(mode, "]E", "<CMD>lua vim.diagnostic.goto_next()<CR>", opts)
   end
-  buf_set_keymap("n", "].", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  buf_set_keymap("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
 return M

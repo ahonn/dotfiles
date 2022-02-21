@@ -52,5 +52,7 @@ vim.o.scrolloff = 10
 vim.o.encoding = "utf-8"
 vim.o.fileencodings = "utf-8,gbk,gb2312,gb18030"
 
+vim.o.updatetime = 250
+
 vim.cmd([[syntax on]])
 
