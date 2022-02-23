@@ -146,8 +146,14 @@ local function spec(use)
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
 		"tpope/vim-commentary",
-		"mattn/emmet-vim",
 		"ygm2/rooter.nvim",
+    {
+      "mattn/emmet-vim",
+      setup = function()
+        vim.g.emmet_enable_mappings = 0
+        vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>EmmetExpandAbbreviation<CR>", { noremap = true })
+      end,
+    },
 		{
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
