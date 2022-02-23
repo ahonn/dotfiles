@@ -6,10 +6,20 @@ local lsp_diagnostic = require("modules.lsp.diagnostic")
 local M = {}
 
 function M.setup()
-  lsp_diagnostic.setup()
-
 	local on_attach = function(client, bufnr)
 		require("lsp_signature").on_attach()
+    require("lspsaga").setup({
+      code_action_keys = {
+        quit = "<ESC>",
+        exec = "<CR>",
+      },
+      rename_action_keys = {
+        quit = "<ESC>",
+        exec = "<CR>",
+      },
+    })
+
+    lsp_diagnostic.setup()
 		lsp_keymaps.buf_set_keymaps(bufnr)
 	end
 

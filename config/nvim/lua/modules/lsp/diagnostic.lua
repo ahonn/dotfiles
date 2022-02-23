@@ -11,7 +11,7 @@ function M.setup()
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 	end
 
-	vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+	vim.cmd([[autocmd! CursorHold,CursorHoldI * Lspsaga show_line_diagnostics]])
 end
 
 return M
