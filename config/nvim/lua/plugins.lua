@@ -94,10 +94,10 @@ local function spec(use)
 	use({
 		{
 			"github/copilot.vim",
-			config = function()
+			setup = function()
 				vim.cmd([[
-          imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
           let g:copilot_no_tab_map = v:true
+          imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
         ]])
 			end,
 		},
@@ -112,7 +112,6 @@ local function spec(use)
 				"hrsh7th/cmp-vsnip",
 				"hrsh7th/vim-vsnip",
 				"hrsh7th/cmp-copilot",
-        { "tzachar/cmp-tabnine", run = "./install.sh" },
 				"rafamadriz/friendly-snippets",
 			},
 			config = function()

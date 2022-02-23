@@ -101,7 +101,6 @@ function M.setup()
 		},
 		sources = {
 			{ name = "copilot" },
-			{ name = "cmp_tabnine" },
 			{ name = "vsnip" },
 			{ name = "path" },
 			{ name = "nvim_lsp" },
