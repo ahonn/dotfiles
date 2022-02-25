@@ -20,7 +20,6 @@ echo -e "\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
-  ruby
   lua
   luarocks
   fish
@@ -33,11 +32,7 @@ formulas=(
   wget
   neovim
   cmake
-  fx
-  bat
-  fd
   reattach-to-user-namespace
-  ctags
   clojure-lsp
   borkdude/brew/clj-kondo
 )
@@ -53,7 +48,6 @@ done
 echo -e "\nInstalling homebrew casks..."
 echo "=============================="
 casks=(
-  hammerspoon
   squirrel
   upic
   kitty

@@ -17,5 +17,4 @@ source $DOTFILES/scripts/link.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
   source $DOTFILES/scripts/brew.sh
   source $DOTFILES/scripts/rime.sh
-  source $DOTFILES/scripts/hammerspoon.sh
 fi

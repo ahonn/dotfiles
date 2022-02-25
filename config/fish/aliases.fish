@@ -12,7 +12,3 @@ alias vim 'nvim'
 # git
 alias gst 'git status'
 alias gch 'git checkout'
-
-# better command
-alias cat  'bat'
-alias find 'fd'
