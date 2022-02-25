@@ -1,6 +1,0 @@
-package foreign-env
-package nvm
-package osx
-package rvm
-package z
-theme default
