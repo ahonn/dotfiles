@@ -12,6 +12,10 @@ set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git
 set -U fish_key_bindings fish_vi_key_bindings
 set -U fish_cursor_insert line
 
+set hydro_color_git green
+set hydro_color_pwd cyan
+set hydro_color_prompt white
+
 # disable greeting
 function fish_greeting
 end
