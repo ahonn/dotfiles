@@ -1,4 +1,4 @@
-nlocal install_path = ("%s/site/pack/packer-lib/opt/packer.nvim"):format(vim.fn.stdpath("data"))
+install_path = ("%s/site/pack/packer-lib/opt/packer.nvim"):format(vim.fn.stdpath("data"))
 
 local function install_packer()
 	vim.fn.termopen(("git clone https://github.com/wbthomason/packer.nvim %q"):format(install_path))
