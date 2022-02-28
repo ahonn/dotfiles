@@ -1,4 +1,4 @@
-local install_path = ("%s/site/pack/packer-lib/opt/packer.nvim"):format(vim.fn.stdpath("data"))
+nlocal install_path = ("%s/site/pack/packer-lib/opt/packer.nvim"):format(vim.fn.stdpath("data"))
 
 local function install_packer()
 	vim.fn.termopen(("git clone https://github.com/wbthomason/packer.nvim %q"):format(install_path))
@@ -52,7 +52,6 @@ local function spec(use)
 		requires = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"p00f/nvim-ts-rainbow",
 			"nvim-treesitter/playground",
 		},
 		run = ":TSUpdate",
