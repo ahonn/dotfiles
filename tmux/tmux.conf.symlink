@@ -88,7 +88,6 @@ bind v copy-mode
 bind -T copy-mode-vi 'v' send -X begin-selection
 bind -T copy-mode-vi Escape send -X cancel
 bind -T copy-mode-vi MouseDrag1Pane send -X begin-selection
-bind -T copy-mode-vi Y send-keys -X copy-pipe 'yank > #{pane_tty}'
 
 # ========== Colorscheme ========== #
 # mode
