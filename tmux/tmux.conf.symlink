@@ -85,10 +85,10 @@ set -g visual-activity off
 # ========== Copy Mode ========== #
 setw -g mode-keys vi
 bind v copy-mode
-bind -Tcopy-mode-vi 'v' send -X begin-selection
-bind -Tcopy-mode-vi Escape send -X cancel
-
-bind -Tcopy-mode-vi MouseDrag1Pane send -X begin-selection
+bind -T copy-mode-vi 'v' send -X begin-selection
+bind -T copy-mode-vi Escape send -X cancel
+bind -T copy-mode-vi MouseDrag1Pane send -X begin-selection
+bind -T copy-mode-vi Y send-keys -X copy-pipe 'yank > #{pane_tty}'
 
 # ========== Colorscheme ========== #
 # mode

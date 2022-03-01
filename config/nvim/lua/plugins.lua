@@ -263,6 +263,7 @@ local function spec(use)
 	use({
 		"wakatime/vim-wakatime",
 		"dstein64/vim-startuptime",
+    "ojroques/vim-oscyank",
 	})
 end
 
