@@ -34,12 +34,3 @@ for config in $DOTFILES/config/*; do
     ln -s $config $target
   fi
 done
-
-echo -e "\nCreating hammerspoon symlinks"
-echo "=============================="
-if [ -e $HOME/.hammerspoon ]; then
-  echo "$HOME/.hammerspoon already exists... skipping."
-else
-  echo "Creating symlink for $HOME/.hammerspoon"
-  ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
-fi
