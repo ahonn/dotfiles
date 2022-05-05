@@ -71,6 +71,8 @@ function M.setup()
 		mapping = {
 			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 			["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+      ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 			["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 			["<C-y>"] = cmp.config.disable,
 			["<C-e>"] = cmp.mapping({
@@ -89,7 +91,7 @@ function M.setup()
 				else
 					fallback()
 				end
-			end, { "i", "s" }),
+			end, { "i", "s", "c" }),
 
 			["<S-Tab>"] = cmp.mapping(function()
 				if cmp.visible() then
@@ -97,7 +99,7 @@ function M.setup()
 				elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 					feedkey("<Plug>(vsnip-jump-prev)", "")
 				end
-			end, { "i", "s" }),
+			end, { "i", "s", "c" }),
 		},
 		sources = {
 			{ name = "copilot" },
