@@ -4,8 +4,8 @@ echo -e "\nInstalling nerd font..."
 echo "=============================="
 
 formulas=(
-  font-fira-code-nerd-font
-  font-jetbrains-mono-nerd-font
+  font-fira-code
+  font-jetbrains-mono
 )
 
 brew tap homebrew/cask-fonts
