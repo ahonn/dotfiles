@@ -50,13 +50,15 @@ echo "=============================="
 casks=(
   squirrel
   upic
-  kitty
   fork
   dash
   wireshark
   raycast
   karabiner-elements
+  wez/wezterm/wezterm
 )
+
+brew tap wez/wezterm
 
 for cask in "${casks[@]}"; do
   if brew list "$cask" >/dev/null 2>&1; then

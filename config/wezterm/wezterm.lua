@@ -3,7 +3,7 @@ local wezterm = require 'wezterm';
 return {
   enable_tab_bar = false,
 
-  font = wezterm.font("JetBrains Mono"),
+  font = wezterm.font("Fira Code Retina"),
   font_size = 15,
 
   color_scheme = "Gruvbox",
