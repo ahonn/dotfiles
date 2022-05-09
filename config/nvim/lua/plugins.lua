@@ -22,7 +22,7 @@ local function spec(use)
 
 	-- Color scheme
 	use({
-		"gruvbox-community/gruvbox",
+		"ellisonleao/gruvbox.nvim",
 		setup = function()
 			vim.g.gruvbox_bold = true
 			vim.g.gruvbox_italic = true
@@ -220,15 +220,6 @@ local function spec(use)
 			end,
 		},
 		{
-			"akinsho/bufferline.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-			config = function()
-				require("bufferline").setup({})
-				vim.api.nvim_set_keymap("n", "[b", "<CMD>BufferLineCyclePrev<CR>", { noremap = true })
-				vim.api.nvim_set_keymap("n", "]b", "<CMD>BufferLineCycleNext<CR>", { noremap = true })
-			end,
-		},
-		{
 			"karb94/neoscroll.nvim",
 			config = function()
 				require("neoscroll").setup({
@@ -259,6 +250,16 @@ local function spec(use)
       vim.api.nvim_set_keymap("n", "<Leader>tf", "<CMD>lua require('jester').run_file()<CR>", { noremap = false })
     end,
   })
+
+  -- Git
+  use ({
+    "TimUntersberger/neogit",
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require("neogit").setup()
+    end,
+  })
+
 	-- Misc
 	use({
 		"wakatime/vim-wakatime",

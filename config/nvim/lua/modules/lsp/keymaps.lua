@@ -16,7 +16,7 @@ function M.buf_set_keymaps(bufnr)
   buf_set_keymap("n", "gh", "<CMD>Lspsaga hover_doc<CR>", opts)
 
   buf_set_keymap("n", "ga", "<CMD>Lspsaga code_action<CR>", opts)
-  buf_set_keymap("v", "ga", "<CMD><C-U>Lspsaga range_code_action<CR>", opts)
+  buf_set_keymap("v", "ga", "<CMD>Lspsaga range_code_action<CR>", opts)
 
   buf_set_keymap("n", "<Leader>f", "<CMD>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("v", "<Leader>f", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
