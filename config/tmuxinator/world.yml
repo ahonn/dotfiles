@@ -1,7 +1,0 @@
-# ~/.tmuxinator/world.yml
-
-name: world
-root: ~/
-
-windows:
-  - base: clear
