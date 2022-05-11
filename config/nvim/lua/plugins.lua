@@ -137,11 +137,17 @@ local function spec(use)
 				vim.api.nvim_set_keymap("n", "gm", "<CMD>GitMessenger<CR>", { noremap = true })
 			end,
 		},
+    {
+      "TimUntersberger/neogit",
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require("neogit").setup()
+      end,
+    }
 	})
 
 	-- Extensions
 	use({
-		"tomlion/vim-solidity",
 		"tpope/vim-repeat",
 		"tpope/vim-surround",
 		"tpope/vim-commentary",
@@ -251,20 +257,17 @@ local function spec(use)
     end,
   })
 
-  -- Git
-  use ({
-    "TimUntersberger/neogit",
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require("neogit").setup()
-    end,
-  })
-
 	-- Misc
 	use({
 		"wakatime/vim-wakatime",
 		"dstein64/vim-startuptime",
-    "ojroques/vim-oscyank",
+    {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup({})
+      end
+    }
 	})
 end
 
