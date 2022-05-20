@@ -3,7 +3,10 @@ local wezterm = require 'wezterm';
 return {
   enable_tab_bar = false,
 
-  font = wezterm.font("Fira Code Retina"),
+  font = wezterm.font_with_fallback({
+    "FiraCode Nerd Font"
+    "Fira Code Retina",
+  }),
   font_size = 15,
 
   color_scheme = "Gruvbox",
