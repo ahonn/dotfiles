@@ -3,26 +3,6 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local M = {}
 
 M.setup = function()
-	vim.g.nvim_tree_icons = {
-		default = "",
-		symlink = "",
-		git = {
-			unstaged = "✗",
-			staged = "✓",
-			unmerged = "",
-			renamed = "➜",
-			untracked = "?",
-		},
-		folder = {
-			default = "",
-			open = "",
-			empty = "",
-			empty_open = "",
-			symlink = "",
-			symlink_open = "",
-		},
-	}
-
 	vim.api.nvim_set_keymap("n", "<C-b>", "<CMD>NvimTreeToggle<CR>", { noremap = true })
 
 	require("nvim-tree").setup({
@@ -56,7 +36,31 @@ M.setup = function()
 				},
 			},
 		},
+    renderer = {
+      icons = {
+        glyphs = {
+          default = "",
+          symlink = "",
+          git = {
+            unstaged = "✗",
+            staged = "✓",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "?",
+          },
+          folder = {
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+        }
+      }
+    }
 	})
+
 	require("nvim-tree.events").on_node_renamed(function(payload)
 		local old_uri = vim.uri_from_fname(payload.old_name)
 		local new_uri = vim.uri_from_fname(payload.new_name)
