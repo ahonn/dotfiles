@@ -4,7 +4,7 @@ return {
   enable_tab_bar = false,
 
   font = wezterm.font_with_fallback({
-    "FiraCode Nerd Font"
+    "FiraCode Nerd Font",
     "Fira Code Retina",
   }),
   font_size = 15,
