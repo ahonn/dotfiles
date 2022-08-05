@@ -25,7 +25,6 @@ formulas=(
   fish
   ripgrep
   fzf
-  nginx
   tmux
   git
   tree
@@ -33,8 +32,9 @@ formulas=(
   neovim
   cmake
   reattach-to-user-namespace
-  clojure-lsp
-  borkdude/brew/clj-kondo
+  # nginx
+  # clojure-lsp
+  # borkdude/brew/clj-kondo
 )
 
 for formula in "${formulas[@]}"; do
