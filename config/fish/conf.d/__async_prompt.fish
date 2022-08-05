@@ -1,12 +1,7 @@
 status is-interactive
 or exit 0
 
-set -l xdg_runtime_dir "$XDG_RUNTIME_DIR"
-test -z "$xdg_runtime_dir"
-and set xdg_runtime_dir /tmp
-
-set -g __async_prompt_tmpdir "$xdg_runtime_dir/fish-async-prompt"
-mkdir -p $__async_prompt_tmpdir
+set -g __async_prompt_tmpdir (command mktemp -d)
 
 # Setup after the user defined prompt functions are loaded.
 function __async_prompt_setup_on_startup --on-event fish_prompt
@@ -20,8 +15,10 @@ function __async_prompt_setup_on_startup --on-event fish_prompt
     end
 end
 
-function __async_prompt_fire --on-event fish_prompt
-    set st $status
+not set -q async_prompt_on_variable
+and set async_prompt_on_variable fish_bind_mode
+function __async_prompt_fire --on-event fish_prompt (for var in $async_prompt_on_variable; printf '%s\n' --on-variable $var; end)
+    set -l __async_prompt_last_pipestatus $pipestatus
 
     for func in (__async_prompt_config_functions)
         set -l tmpfile $__async_prompt_tmpdir'/'$fish_pid'_'$func
@@ -31,32 +28,30 @@ function __async_prompt_fire --on-event fish_prompt
             eval (string escape -- $func'_loading_indicator' "$last_prompt") >$tmpfile
         end
 
-        __async_prompt_config_inherit_variables | __async_prompt_spawn $st \
+        __async_prompt_config_inherit_variables | __async_prompt_last_pipestatus=$__async_prompt_last_pipestatus __async_prompt_spawn \
             $func' | read -z prompt
             echo -n $prompt >'$tmpfile
     end
 end
 
-function __async_prompt_spawn
+function __async_prompt_spawn -a cmd
     set -l envs
     begin
-        set st $argv[1]
         while read line
             switch "$line"
+                case fish_bind_mode
+                    echo fish_bind_mode $fish_bind_mode
                 case FISH_VERSION PWD _ history 'fish_*' hostname version
-                case status
-                    echo status $st
+                case status pipestatus
+                    echo pipestatus $__async_prompt_last_pipestatus
                 case SHLVL
-                    set envs $envs SHLVL=(math $SHLVL - 1)
+                    set envs $envs SHLVL=$SHLVL
                 case '*'
                     echo $line (string escape -- $$line)
             end
         end
     end | read -lz vars
     echo $vars | env $envs fish -c '
-    function __async_prompt_set_status
-        return $argv
-    end
     function __async_prompt_signal
         kill -s "'(__async_prompt_config_internal_signal)'" '$fish_pid'
     end
@@ -64,17 +59,77 @@ function __async_prompt_spawn
         test -z "$line"
         and continue
 
-        if test "$line[1]" = status
-            set st $line[2]
+        if test "$line[1]" = pipestatus
+            set -f _pipestatus $line[2..]
         else
             eval set "$line"
         end
     end
 
-    not set -q st
-    and true
-    or __async_prompt_set_status $st
-    '$argv[2]'
+    function __async_prompt_set_status
+        return $argv
+    end
+    if set -q _pipestatus
+        switch (count $_pipestatus)
+            case 1
+                __async_prompt_set_status $_pipestatus[1]
+            case 2
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2]
+            case 3
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3]
+            case 4
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4]
+            case 5
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4] \
+                | __async_prompt_set_status $_pipestatus[5]
+            case 6
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4] \
+                | __async_prompt_set_status $_pipestatus[5] \
+                | __async_prompt_set_status $_pipestatus[6]
+            case 7
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4] \
+                | __async_prompt_set_status $_pipestatus[5] \
+                | __async_prompt_set_status $_pipestatus[6] \
+                | __async_prompt_set_status $_pipestatus[7]
+            case 8
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4] \
+                | __async_prompt_set_status $_pipestatus[5] \
+                | __async_prompt_set_status $_pipestatus[6] \
+                | __async_prompt_set_status $_pipestatus[7] \
+                | __async_prompt_set_status $_pipestatus[8]
+            default
+                __async_prompt_set_status $_pipestatus[1] \
+                | __async_prompt_set_status $_pipestatus[2] \
+                | __async_prompt_set_status $_pipestatus[3] \
+                | __async_prompt_set_status $_pipestatus[4] \
+                | __async_prompt_set_status $_pipestatus[5] \
+                | __async_prompt_set_status $_pipestatus[6] \
+                | __async_prompt_set_status $_pipestatus[7] \
+                | __async_prompt_set_status $_pipestatus[8] \
+                | __async_prompt_set_status $_pipestatus[-1]
+        end
+    else
+        true
+    end
+    '$cmd'
     __async_prompt_signal
     sleep 0.3
     __async_prompt_signal
@@ -94,14 +149,16 @@ function __async_prompt_config_inherit_variables
         end
     else
         echo status
+        echo pipestatus
         echo SHLVL
         echo CMD_DURATION
+        echo fish_bind_mode
     end
 end
 
 function __async_prompt_config_functions
     set -l funcs (
-        if set -q $async_prompt_functions
+        if set -q async_prompt_functions
             string join \n $async_prompt_functions
         else
             echo fish_prompt
