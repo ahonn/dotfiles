@@ -1,5 +1,6 @@
 # ========== Basic ========= #
 set -g default-terminal "screen-256color"
+set -g default-command "fish"
 set -g terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
 set -g display-time 3000
 set -g history-limit 10000
