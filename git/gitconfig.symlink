@@ -2,14 +2,19 @@
 [user]
 	name = ahonn
 	email = ahonn95@outlook.com
+
 [core]
 ignoreCase = false
 excludesfile = ~/.gitignore_global
+
 [push]
 default = current
 
 [includeIf "gitdir:~/Documents/work/"]
 path = ~/Documents/work/.gitconfig
+
+[includeIf "gitdir:~/work/"]
+path = ~/work/.gitconfig
 
 [include]
 path = ~/.gitconfig_proxy
