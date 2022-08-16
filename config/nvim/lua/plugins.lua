@@ -75,10 +75,11 @@ local function spec(use)
 
 	-- LSP
 	use({
-		"williamboman/nvim-lsp-installer",
+		"williamboman/mason.nvim",
 		requires = {
-      "tami5/lspsaga.nvim",
+      "williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
+      "tami5/lspsaga.nvim",
 			"ray-x/lsp_signature.nvim",
 			"folke/lua-dev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
