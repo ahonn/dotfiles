@@ -251,6 +251,7 @@ local function spec(use)
 		"wakatime/vim-wakatime",
 		"dstein64/vim-startuptime",
     "editorconfig/editorconfig-vim",
+    "danilamihailov/beacon.nvim",
     {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
