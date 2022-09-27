@@ -85,6 +85,7 @@ local function spec(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"jose-elias-alvarez/null-ls.nvim",
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
+      "lvimuser/lsp-inlayhints.nvim",
 		},
 		config = function()
 			require("modules.lsp").setup()
