@@ -81,7 +81,7 @@ local function spec(use)
 			"neovim/nvim-lspconfig",
       "tami5/lspsaga.nvim",
 			"ray-x/lsp_signature.nvim",
-			"folke/lua-dev.nvim",
+			"folke/neodev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"jose-elias-alvarez/null-ls.nvim",
 			"jose-elias-alvarez/nvim-lsp-ts-utils",

@@ -65,18 +65,16 @@ function M.setup()
     }
   })
 
-  lspconfig.sumneko_lua.setup(require("lua-dev").setup({
-    lspconfig = {
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
-      },
-    },
-  }))
+  require("neodev").setup({})
+  lspconfig.sumneko_lua.setup({
+    ettings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace"
+        }
+      }
+    }
+  })
 
   lspconfig.jsonls.setup({
     on_attach = on_attach,
