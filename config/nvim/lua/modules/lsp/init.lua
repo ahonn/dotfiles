@@ -46,7 +46,7 @@ function M.setup()
     },
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
       tsutils.setup({})
       tsutils.setup_client(client)
     end,
