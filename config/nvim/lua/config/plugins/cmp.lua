@@ -1,5 +1,17 @@
-local cmp = require("cmp")
-local lspkind = require("lspkind")
+local M = {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "onsails/lspkind-nvim",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
+    "rafamadriz/friendly-snippets",
+  },
+}
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -9,8 +21,6 @@ end
 local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
-
-local M = {}
 
 local symbol_map = {
 	Text = "",
@@ -40,8 +50,11 @@ local symbol_map = {
 	TypeParameter = "",
 }
 
-function M.setup()
-	cmp.setup({
+function M.config()
+  local cmp = require("cmp")
+  local lspkind = require("lspkind")
+
+  cmp.setup({
 		completion = {
 			keyword_length = 3,
 		},
@@ -55,7 +68,6 @@ function M.setup()
 						nvim_lsp = "[LSP]",
 						vsnip = "[Snip]",
 						nvim_lua = "[Lua]",
-						copilot = "[Copilot]",
 						cmp_tabnine = "[TabNine]",
 						path = "[Path]",
 					})[entry.source.name]
@@ -102,7 +114,6 @@ function M.setup()
 			end, { "i", "s", "c" }),
 		},
 		sources = {
-			{ name = "copilot" },
 			{ name = "vsnip" },
 			{ name = "path" },
 			{ name = "nvim_lsp" },

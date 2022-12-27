@@ -1,3 +1,5 @@
-require("settings")
-require("keymaps")
-require("plugins")
+vim.g.mapleader = " "
+
+require("config.options")
+require("config.lazy")
+require("config.mappings")

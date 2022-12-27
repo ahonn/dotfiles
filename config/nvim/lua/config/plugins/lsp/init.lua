@@ -1,14 +1,28 @@
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
-local lspconfig = require("lspconfig")
 
-local lsp_keymaps = require("modules.lsp.keymaps")
-local lsp_capabilities = require("modules.lsp.capabilities")
-local lsp_diagnostic = require("modules.lsp.diagnostic")
+local M = {
+  "neovim/nvim-lspconfig",
+  event = "BufReadPre",
+  dependencies = {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "tami5/lspsaga.nvim",
+    "ray-x/lsp_signature.nvim",
+    "folke/neodev.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
+    "lvimuser/lsp-inlayhints.nvim",
+  },
+}
 
-local M = {}
+function M.config()
+  local mason = require("mason")
+  local mason_lspconfig = require("mason-lspconfig")
+  local lspconfig = require("lspconfig")
 
-function M.setup()
+  local lsp_keymaps = require("config.plugins.lsp.keymaps")
+  local lsp_capabilities = require("config.plugins.lsp.capabilities")
+  local lsp_diagnostic = require("config.plugins.lsp.diagnostic")
+
   local on_attach = function(client, bufnr)
     require('lsp-inlayhints').on_attach(client, bufnr);
     require("lsp_signature").on_attach()

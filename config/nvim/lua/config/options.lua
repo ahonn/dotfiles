@@ -27,8 +27,6 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
--- vim.o.list = true
--- vim.o.listchars = "tab:»·,trail:·,nbsp:·"
 vim.o.fillchars = "vert:│,fold:▼"
 
 vim.o.backspace = "indent,eol,start"

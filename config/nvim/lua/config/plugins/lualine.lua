@@ -1,8 +1,12 @@
-local M = {}
+local M = {
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+  dependencies = {
+    "arkav/lualine-lsp-progress",
+  },
+}
 
-function M.setup()
-	local gps = require("nvim-gps")
-
+function M.config()
 	local diff = {
 		"diff",
 		diff_color = {
@@ -31,10 +35,7 @@ function M.setup()
 	require("lualine").setup({
 		sections = {
 			lualine_b = { "branch", diff },
-			lualine_c = {
-				filename(FilenamePath.relative_path),
-				{ gps.get_location, cond = gps.is_available },
-			},
+			lualine_c = { filename(FilenamePath.relative_path) },
 			lualine_x = {
 				"lsp_progress",
 				{ "diagnostics", sources = { "nvim_diagnostic" } },
