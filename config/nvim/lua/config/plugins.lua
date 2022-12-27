@@ -38,6 +38,11 @@ return {
       vim.api.nvim_set_keymap("n", "<C-e>", "<CMD>EmmetExpandAbbreviation<CR>", { noremap = true })
     end,
   },
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = "BufReadPost",
+  },
   "tpope/vim-repeat",
   "tpope/vim-surround",
   "tpope/vim-commentary",
