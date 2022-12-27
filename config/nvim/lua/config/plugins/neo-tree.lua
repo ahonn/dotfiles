@@ -15,6 +15,11 @@ return {
         ["o"] = "open",
         ["s"] = "open_split",
         ["i"] = "open_vsplit",
+        ["ma"] = "add",
+        ["md"] = "delete",
+        ["mm"] = "move",
+        ["mc"] = "copy",
+        ["mp"] = "paste_from_clipboard",
       },
     },
     filesystem = {

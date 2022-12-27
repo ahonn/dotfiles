@@ -1,4 +1,16 @@
 return {
+  "tpope/vim-repeat",
+  "tpope/vim-surround",
+  "jose-elias-alvarez/typescript.nvim",
+  {
+    "windwp/nvim-autopairs",
+    event = "BufReadPost",
+    config = {},
+  },
+  {
+    "tpope/vim-commentary",
+    event = "BufReadPost",
+  },
   {
     "ellisonleao/gruvbox.nvim",
     init = function()
@@ -25,10 +37,8 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = {
-      show_current_context = true,
-      show_current_context_start = true,
-    }
+    event = "VeryLazy",
+    config = {}
   },
   {
     "mattn/emmet-vim",
@@ -42,9 +52,6 @@ return {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
+    config = {}
   },
-  "tpope/vim-repeat",
-  "tpope/vim-surround",
-  "tpope/vim-commentary",
-  "windwp/nvim-autopairs",
 }
