@@ -2,6 +2,17 @@ return {
   "tpope/vim-repeat",
   "tpope/vim-surround",
   "jose-elias-alvarez/typescript.nvim",
+  "editorconfig/editorconfig-vim",
+  {
+    "wakatime/vim-wakatime",
+    event = "VeryLazy",
+  },
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").opts)
+    end,
+  },
   {
     "windwp/nvim-autopairs",
     event = "BufReadPost",

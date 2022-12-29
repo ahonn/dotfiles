@@ -1,14 +1,11 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "NeoTreeFocusToggle",
-  dependencies = { 
+  dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  init = function()
-    vim.api.nvim_set_keymap("n", "<C-b>", "<CMD>NeoTreeFocusToggle<CR>", { noremap = true })
-  end,
   config = {
     window = {
       mappings = {
@@ -26,5 +23,8 @@ return {
       follow_current_file = true,
       hijack_netrw_behavior = "open_current",
     },
+  },
+  keys = {
+    { "<C-b>", "<CMD>NeoTreeFocusToggle<CR>", desc = "NeoTree"},
   },
 }
