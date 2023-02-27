@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
 	vim.diagnostic.config({
-		virtual_text = false,
+		virtual_text = true,
 	})
 
 	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }

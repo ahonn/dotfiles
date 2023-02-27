@@ -1,8 +1,22 @@
-
 local M = {
   "neovim/nvim-lspconfig",
+  opts = {
+    servers = {
+      tailwindcss = {},
+      pyright = {},
+    }
+  },
   event = "BufReadPre",
   dependencies = {
+    {
+      "folke/trouble.nvim",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          use_diagnostic_signs = true
+        }
+      end
+    },
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "tami5/lspsaga.nvim",
@@ -24,7 +38,7 @@ function M.config()
   local lsp_diagnostic = require("config.plugins.lsp.diagnostic")
 
   local on_attach = function(client, bufnr)
-    require('lsp-inlayhints').on_attach(client, bufnr);
+    require('lsp-inlayhints').on_attach(client, bufnr, true);
     require("lsp_signature").on_attach()
     require("lspsaga").setup({
       code_action_keys = {
@@ -49,9 +63,12 @@ function M.config()
 
   mason.setup({})
   mason_lspconfig.setup({
-    ensure_installed = { "tsserver", "sumneko_lua", "jsonls" },
+    ensure_installed = { "tsserver", "lua_ls", "jsonls", "tailwindcss" },
     automatic_installation = true,
   })
+
+  lspconfig.jsonls.setup {}
+  lspconfig.tailwindcss.setup {}
 
   local tsutils = require("nvim-lsp-ts-utils")
   lspconfig.tsserver.setup({
@@ -80,7 +97,7 @@ function M.config()
   })
 
   require("neodev").setup({})
-  lspconfig.sumneko_lua.setup({
+  lspconfig.lua_ls.setup({
     ettings = {
       Lua = {
         completion = {
@@ -88,10 +105,6 @@ function M.config()
         }
       }
     }
-  })
-
-  lspconfig.jsonls.setup({
-    on_attach = on_attach,
   })
 
   local null_ls = require("null-ls")
