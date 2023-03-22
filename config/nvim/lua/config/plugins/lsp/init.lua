@@ -25,6 +25,7 @@ local M = {
     "jose-elias-alvarez/null-ls.nvim",
     "jose-elias-alvarez/nvim-lsp-ts-utils",
     "lvimuser/lsp-inlayhints.nvim",
+    "simrat39/rust-tools.nvim"
   },
 }
 
@@ -63,12 +64,12 @@ function M.config()
 
   mason.setup({})
   mason_lspconfig.setup({
-    ensure_installed = { "tsserver", "lua_ls", "jsonls", "tailwindcss" },
+    ensure_installed = { "tsserver", "lua_ls", "jsonls", "tailwindcss", "rust_analyzer" },
     automatic_installation = true,
   })
 
-  lspconfig.jsonls.setup {}
-  lspconfig.tailwindcss.setup {}
+  lspconfig.jsonls.setup({})
+  lspconfig.tailwindcss.setup({})
 
   local tsutils = require("nvim-lsp-ts-utils")
   lspconfig.tsserver.setup({
@@ -105,6 +106,15 @@ function M.config()
         }
       }
     }
+  })
+
+  local rt = require("rust-tools")
+  rt.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        vim.keymap.set("n", "ga", rt.code_action_group.code_action_group, { buffer = bufnr })
+      end,
+    },
   })
 
   local null_ls = require("null-ls")

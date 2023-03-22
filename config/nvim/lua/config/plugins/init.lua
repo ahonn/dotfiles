@@ -1,15 +1,25 @@
 return {
-  "tpope/vim-repeat",
-  "tpope/vim-surround",
   "jose-elias-alvarez/typescript.nvim",
-  "editorconfig/editorconfig-vim",
+  {
+    "tpope/vim-repeat",
+    event = "BufReadPost",
+  },
+  {
+    "tpope/vim-surround",
+    event = "BufReadPost",
+  },
+  {
+    "editorconfig/editorconfig-vim",
+    event = "BufReadPre",
+  },
   {
     "NvChad/nvim-colorizer.lua",
     opts = {
       user_default_options = {
         tailwind = true,
       }
-    }
+    },
+    event = "BufReadPost",
   },
   {
     "wakatime/vim-wakatime",
@@ -59,7 +69,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = {}
   },
   {
