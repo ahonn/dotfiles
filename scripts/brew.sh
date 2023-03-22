@@ -32,9 +32,7 @@ formulas=(
   neovim
   cmake
   reattach-to-user-namespace
-  # nginx
-  # clojure-lsp
-  # borkdude/brew/clj-kondo
+  universal-ctags/universal-ctags/universal-ctags
 )
 
 for formula in "${formulas[@]}"; do

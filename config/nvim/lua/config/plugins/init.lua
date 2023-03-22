@@ -75,7 +75,7 @@ return {
   {
     "mattn/emmet-vim",
     cmd = "EmmetExpandAbbreviation",
-    config = function()
+    init = function()
       vim.g.emmet_enable_mappings = 0
       vim.api.nvim_set_keymap("n", "<C-e>", "<CMD>EmmetExpandAbbreviation<CR>", { noremap = true })
     end,
@@ -85,5 +85,22 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     config = {}
+  },
+  {
+    "rhysd/git-messenger.vim",
+    cmd = { "GitMessenger" },
+    init = function()
+      vim.api.nvim_set_keymap("n", "gm", "<CMD>:GitMessenger<CR>", { noremap = true })
+    end,
+  },
+  {
+    "RRethy/vim-illuminate",
+    cmd = "IlluminateToggle",
+    init = function()
+      vim.api.nvim_set_keymap("n", "&", "<CMD>:IlluminateToggle<CR>", { noremap = true })
+      vim.cmd([[highlight link IlluminatedWordText LspReferenceText]])
+      vim.cmd([[highlight link IlluminatedWordRead LspReferenceRead]])
+      vim.cmd([[highlight link IlluminatedWordWrite LspReferenceWrite]])
+    end
   },
 }
