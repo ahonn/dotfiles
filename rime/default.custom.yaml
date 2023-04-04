@@ -1,19 +1,23 @@
 patch:
   schema_list:
     - schema: double_pinyin_flypy
-    - schema: luna_pinyin
 
   menu:
-    page_size: 8
+    page_size: 6
+
+  switcher:
+    hotkeys:
+      - Control+grave
 
   key_binder:
     bindings:
-      - { when: has_menu, accept: minus, send: Page_Up }
-      - { when: has_menu, accept: equal, send: Page_Down }
+      - { when: composing, accept: Shift+Tab, send: Left }
+      - { when: composing, accept: Tab, send: Right }
       - { when: has_menu, accept: "Control+k", send: Page_Up }
       - { when: has_menu, accept: "Control+j", send: Page_Down }
       - { when: has_menu, accept: "Control+h", send: Left }
       - { when: has_menu, accept: "Control+l", send: Right }
-      - { when: has_menu, accept: ";", send: 2 }
-      - { when: has_menu, accept: "'", send: 3 }
-      - { when: always, accept: Shift_L, toggle: ascii_mode }
+  ascii_composer:
+    good_old_caps_lock: false
+    switch_key:
+      Shift_L: commit_code

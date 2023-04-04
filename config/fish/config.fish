@@ -24,3 +24,11 @@ if test -e $DOTFILES/config/fish/proxy.fish
   # set proxy_auth false
   source $DOTFILES/config/fish/proxy.fish
 end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /Users/yuexunjiang/miniconda3/bin/conda
+    eval /Users/yuexunjiang/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
+

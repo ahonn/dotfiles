@@ -10,6 +10,3 @@ patch:
     corner_radius: 5
     candidate_format: "%c\u2005%@ \u2005"
 
-  # app_options:
-  #   io.alacritty:
-  #     ascii_mode: true
