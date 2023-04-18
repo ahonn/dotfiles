@@ -108,6 +108,8 @@ function M.config()
     }
   })
 
+  lspconfig.astro.setup({})
+
   local rt = require("rust-tools")
   rt.setup({
     server = {

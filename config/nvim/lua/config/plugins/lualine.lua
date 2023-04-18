@@ -29,7 +29,7 @@ function M.config()
 	end
 
 	local function attached_clients()
-		return "(" .. vim.tbl_count(vim.lsp.buf_get_clients(0)) .. ")"
+		return "(" .. vim.tbl_count(vim.lsp.get_active_clients()) .. ")"
 	end
 
 	require("lualine").setup({

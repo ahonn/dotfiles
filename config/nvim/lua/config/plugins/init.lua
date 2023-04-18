@@ -1,5 +1,12 @@
 return {
   "jose-elias-alvarez/typescript.nvim",
+  "wuelnerdotexe/vim-astro",
+  {
+    "rcarriga/nvim-notify",
+    init = function()
+      vim.notify = require("notify");
+    end
+  },
   {
     "tpope/vim-repeat",
     event = "BufReadPost",
@@ -21,6 +28,13 @@ return {
       }
     },
     event = "BufReadPost",
+  },
+  {
+    "ggandor/leap.nvim",
+    event = "BufReadPost",
+    config = function ()
+      require('leap').add_default_mappings();
+    end
   },
   {
     "wakatime/vim-wakatime",
