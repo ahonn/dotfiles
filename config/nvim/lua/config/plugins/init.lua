@@ -2,10 +2,13 @@ return {
   "jose-elias-alvarez/typescript.nvim",
   "wuelnerdotexe/vim-astro",
   {
-    "rcarriga/nvim-notify",
-    init = function()
-      vim.notify = require("notify");
-    end
+    "editorconfig/editorconfig-vim",
+    event = "BufReadPre",
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    config = {}
   },
   {
     "tpope/vim-repeat",
@@ -14,10 +17,6 @@ return {
   {
     "tpope/vim-surround",
     event = "BufReadPost",
-  },
-  {
-    "editorconfig/editorconfig-vim",
-    event = "BufReadPre",
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -32,9 +31,16 @@ return {
   {
     "ggandor/leap.nvim",
     event = "BufReadPost",
-    config = function ()
+    config = function()
       require('leap').add_default_mappings();
     end
+  },
+  {
+    "rcarriga/nvim-notify",
+    init = function()
+      vim.notify = require("notify");
+    end,
+    event = "VeryLazy"
   },
   {
     "wakatime/vim-wakatime",
@@ -83,17 +89,8 @@ return {
     }
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
-    config = {}
-  },
-  {
     "mattn/emmet-vim",
-    cmd = "EmmetExpandAbbreviation",
-    init = function()
-      vim.g.emmet_enable_mappings = 0
-      vim.api.nvim_set_keymap("n", "<C-e>", "<CMD>EmmetExpandAbbreviation<CR>", { noremap = true })
-    end,
+    event = "BufReadPost"
   },
   {
     "folke/todo-comments.nvim",
