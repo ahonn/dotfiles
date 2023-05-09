@@ -18,7 +18,7 @@ function M.buf_set_keymaps(bufnr)
   buf_set_keymap("n", "ga", "<CMD>Lspsaga code_action<CR>", opts)
   buf_set_keymap("v", "ga", "<CMD>Lspsaga range_code_action<CR>", opts)
 
-  buf_set_keymap("n", "<Leader>f", "<CMD>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<Leader>f", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", opts)
   buf_set_keymap("v", "<Leader>f", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
 
   for _, mode in pairs { "n", "v" } do
