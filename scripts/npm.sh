@@ -28,14 +28,13 @@ echo -e "\nInstalling npm packages..."
 echo "=============================="
 
 formulas=(
-  leetcode-cli
   neovim
   prettier
-  babel-eslint
   typescript
   commitizen
   cz-conventional-changelog
   eslint
+  babel-eslint
   eslint-config-standard
 )
 
