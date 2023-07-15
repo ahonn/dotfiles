@@ -1,6 +1,7 @@
 return {
   "jose-elias-alvarez/typescript.nvim",
   "wuelnerdotexe/vim-astro",
+  "prisma/vim-prisma",
   {
     "editorconfig/editorconfig-vim",
     event = "BufReadPre",

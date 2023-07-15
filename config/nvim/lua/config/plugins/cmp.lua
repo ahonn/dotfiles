@@ -1,6 +1,6 @@
 local M = {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = "BufReadPre",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -55,22 +55,18 @@ function M.config()
   local lspkind = require("lspkind")
 
   cmp.setup({
-    completion = {
-      keyword_length = 3,
-    },
     formatting = {
       format = lspkind.cmp_format({
         symbol_map = symbol_map,
         before = function(entry, vim_item)
           vim_item.kind = string.format("%s %s", symbol_map[vim_item.kind], vim_item.kind)
           vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                vsnip = "[Snip]",
-                nvim_lua = "[Lua]",
-                cmp_tabnine = "[TabNine]",
-                path = "[Path]",
-              })[entry.source.name]
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            vsnip = "[Snip]",
+            nvim_lua = "[Lua]",
+            path = "[Path]",
+          })[entry.source.name]
           return vim_item
         end,
       }),
@@ -81,7 +77,7 @@ function M.config()
       end,
     },
     mapping = {
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -4), { "i", "c" }),
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -108,26 +104,27 @@ function M.config()
       ["<S-Tab>"] = cmp.mapping(function()
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif vim.fn["vsnip#jumpable"]( -1) == 1 then
+        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
           feedkey("<Plug>(vsnip-jump-prev)", "")
         end
       end, { "i", "s", "c" }),
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = "vsnip" },
       { name = "path" },
+      { name = "buffer" },
       { name = "nvim_lsp" },
-      { name = "buffer" },
-    },
+    }),
   })
 
-  cmp.setup.cmdline("/", {
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = "buffer" },
-    },
+      { name = 'buffer' }
+    }
   })
 
-  cmp.setup.cmdline(":", {
+  cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
       { name = "path" },
     }, {
