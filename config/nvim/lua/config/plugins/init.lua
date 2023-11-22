@@ -1,4 +1,5 @@
 return {
+  "jparise/vim-graphql",
   "jose-elias-alvarez/typescript.nvim",
   "wuelnerdotexe/vim-astro",
   "prisma/vim-prisma",
