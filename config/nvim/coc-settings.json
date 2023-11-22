@@ -5,6 +5,7 @@
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": " ",
   "diagnostic.level": "hint",
+  "diagnostic.virtualText": true,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
@@ -32,5 +33,6 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
+  "eslint.autoFixOnSave": true,
   "Lua.diagnostics.globals": ["vim"]
 }

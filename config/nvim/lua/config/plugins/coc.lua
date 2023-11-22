@@ -12,6 +12,7 @@ local M = {
       "coc-yaml",
       "coc-markdownlint",
       "coc-sumneko-lua",
+      "@yaegassy/coc-tailwindcss3"
     }
   end,
   config = function()
@@ -49,6 +50,8 @@ local M = {
     keyset("n", "<leader>al", "<Plug>(coc-codeaction-line)", opts)
     keyset("n", "<leader>as", "<Plug>(coc-codeaction-source)", opts)
     keyset("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
+
+    keyset("n", "gt", "<Plug>(coc-translator-p)", opts)
 
     vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
   end,
