@@ -1,7 +1,7 @@
 return {
   "jparise/vim-graphql",
   "jose-elias-alvarez/typescript.nvim",
-  "wuelnerdotexe/vim-astro",
+  -- "wuelnerdotexe/vim-astro",
   "prisma/vim-prisma",
   {
     "editorconfig/editorconfig-vim",
@@ -38,20 +38,6 @@ return {
       }
     },
     event = "BufReadPost",
-  },
-  {
-    "ggandor/leap.nvim",
-    event = "BufReadPost",
-    config = function()
-      require('leap').add_default_mappings();
-    end
-  },
-  {
-    "rcarriga/nvim-notify",
-    init = function()
-      vim.notify = require("notify");
-    end,
-    event = "VeryLazy"
   },
   {
     "wakatime/vim-wakatime",
@@ -115,15 +101,5 @@ return {
     init = function()
       vim.api.nvim_set_keymap("n", "gm", "<CMD>:GitMessenger<CR>", { noremap = true })
     end,
-  },
-  {
-    "RRethy/vim-illuminate",
-    cmd = "IlluminateToggle",
-    init = function()
-      vim.api.nvim_set_keymap("n", "&", "<CMD>:IlluminateToggle<CR>", { noremap = true })
-      vim.cmd([[highlight link IlluminatedWordText LspReferenceText]])
-      vim.cmd([[highlight link IlluminatedWordRead LspReferenceRead]])
-      vim.cmd([[highlight link IlluminatedWordWrite LspReferenceWrite]])
-    end
   },
 }

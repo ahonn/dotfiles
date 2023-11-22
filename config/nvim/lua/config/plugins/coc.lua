@@ -3,6 +3,7 @@ local M = {
   branch = "release",
   init = function()
     vim.g.coc_global_extensions = {
+      "coc-marketplace",
       "coc-tsserver",
       "coc-eslint",
       "coc-prettier",
