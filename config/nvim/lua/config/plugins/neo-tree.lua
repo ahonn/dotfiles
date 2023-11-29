@@ -6,7 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  config = {
+  opts = {
     window = {
       mappings = {
         ["o"] = "open",

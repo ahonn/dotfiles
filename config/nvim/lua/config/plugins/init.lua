@@ -53,28 +53,16 @@ return {
     end,
   },
   {
-    "windwp/nvim-autopairs",
-    event = "BufReadPost",
-    config = {},
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
   },
   {
     "tpope/vim-commentary",
     event = "BufReadPost",
   },
   {
-    "ellisonleao/gruvbox.nvim",
-    init = function()
-      vim.g.gruvbox_bold = true
-      vim.g.gruvbox_italic = true
-      vim.g.gruvbox_invert_selection = false
-    end,
-    config = function()
-      vim.cmd([[colorscheme gruvbox]])
-    end
-  },
-  {
     "alexghergh/nvim-tmux-navigation",
-    config = {
+    opts = {
       keybindings = {
         left = "<C-h>",
         down = "<C-j>",
@@ -88,12 +76,6 @@ return {
   {
     "mattn/emmet-vim",
     event = "BufReadPost"
-  },
-  {
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "BufReadPost",
-    config = {}
   },
   {
     "rhysd/git-messenger.vim",

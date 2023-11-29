@@ -4,7 +4,7 @@ return {
   dependencies = {
     "sindrets/diffview.nvim",
   },
-  config = {
+  opts = {
     kind = "split",
     integrations = {
       diffview = true,
