@@ -1,7 +1,6 @@
 return {
-  "jparise/vim-graphql",
   "jose-elias-alvarez/typescript.nvim",
-  -- "wuelnerdotexe/vim-astro",
+  "jparise/vim-graphql",
   "prisma/vim-prisma",
   {
     "editorconfig/editorconfig-vim",
@@ -50,6 +49,7 @@ return {
     },
     config = function()
       require("alpha").setup(require("alpha.themes.startify").opts)
+      vim.cmd("autocmd FileType alpha setlocal statuscolumn=")
     end,
   },
   {
