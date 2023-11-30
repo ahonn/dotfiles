@@ -13,7 +13,7 @@ return {
     event = "BufReadPre",
     config = function()
       require("ibl").setup {
-        indent = { char = "|" },
+        indent = { char = "│" },
         whitespace = {
           remove_blankline_trail = false,
         },
@@ -55,6 +55,9 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup()
+    end,
   },
   {
     "tpope/vim-commentary",

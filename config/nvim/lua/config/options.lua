@@ -26,15 +26,16 @@ vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
-
-vim.o.fillchars = "vert:│,fold:▼"
-
 vim.o.backspace = "indent,eol,start"
 
-vim.o.foldenable = false
-vim.o.foldmethod = "syntax"
-vim.o.foldlevelstart = 2
-vim.o.conceallevel = 0
+vim.o.fillchars = "fold: ,foldopen:∨,foldclose:>,foldsep: "
+vim.o.foldnestmax = 4
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 1
+vim.o.foldlevelstart = 99
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldmethod = "expr"
+vim.o.foldenable = true
 
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
@@ -53,4 +54,3 @@ vim.o.fileencodings = "utf-8,gbk,gb2312,gb18030"
 vim.o.updatetime = 250
 
 vim.cmd([[syntax on]])
-
