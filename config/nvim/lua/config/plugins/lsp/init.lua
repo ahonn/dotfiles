@@ -43,37 +43,13 @@ local M = {
       })
 
       -- Typescript language server
-      lspconfig.tsserver.setup({
-        on_attach = function(client)
-          client.resolved_capabilities.document_formatting = false
-        end,
-        settings = {
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = 'none',
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            }
-          },
-          javascript = {
-            inlayHints = {
-              includeInlayParameterNameHints = 'none',
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            }
-          }
-        }
-      })
+      -- lspconfig.tsserver.setup({
+      --   on_attach = function(client)
+      --     client.resolved_capabilities.document_formatting = false
+      --   end,
+      --   settings = {
+      --   }
+      -- })
 
       lspconfig.tailwindcss.setup({})
       lspconfig.cssls.setup({
@@ -128,6 +104,27 @@ local M = {
     config = function(_, opts)
       require 'lsp_signature'.setup(opts)
     end
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup({
+        settings = {
+          expose_as_code_action = "all",
+          tsserver_file_preferences = {
+            includeInlayParameterNameHints = 'none',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          }
+        }
+      })
+    end,
   },
   {
     "folke/neodev.nvim",

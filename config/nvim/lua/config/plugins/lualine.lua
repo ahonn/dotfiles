@@ -1,6 +1,9 @@
 local M = {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  dependencies = {
+    "arkav/lualine-lsp-progress",
+  },
 }
 
 function M.config()
@@ -34,6 +37,7 @@ function M.config()
       lualine_b = { "branch", diff },
       lualine_c = { filename(FilenamePath.relative_path) },
       lualine_x = {
+        "lsp_progress",
         {
           "diagnostics",
           sources = { "nvim_diagnostic", "coc" },
