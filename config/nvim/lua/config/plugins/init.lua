@@ -1,7 +1,19 @@
 return {
-  "jose-elias-alvarez/typescript.nvim",
-  "jparise/vim-graphql",
-  "prisma/vim-prisma",
+  {
+    "jose-elias-alvarez/typescript.nvim",
+    event = "BufReadPre",
+    ft = { "typescript", "typescriptreact" },
+  },
+  {
+    "jparise/vim-graphql",
+    event = "BufReadPre",
+    ft = { "graphql" },
+  },
+  {
+    "prisma/vim-prisma",
+    event = "BufReadPre",
+    ft = { "prisma" },
+  },
   {
     "editorconfig/editorconfig-vim",
     event = "BufReadPre",
@@ -55,11 +67,9 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup({
-        map_cr = false,
-      })
-    end,
+    opts = {
+      map_cr = false,
+    },
   },
   {
     "tpope/vim-commentary",
@@ -85,6 +95,7 @@ return {
   {
     "rhysd/git-messenger.vim",
     cmd = { "GitMessenger" },
+    event = "BufReadPost",
     init = function()
       vim.api.nvim_set_keymap("n", "gm", "<CMD>:GitMessenger<CR>", { noremap = true })
     end,

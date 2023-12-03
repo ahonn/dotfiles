@@ -9,6 +9,7 @@ return {
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   },
   config = function()
+    ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup({
       ensure_installed = { "lua", "typescript", "javascript", "tsx" },
       sync_install = false,

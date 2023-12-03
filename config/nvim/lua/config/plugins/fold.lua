@@ -1,5 +1,6 @@
 local M = {
   'kevinhwang91/nvim-ufo',
+  Event = 'BufReadPre',
   dependencies = {
     'kevinhwang91/promise-async'
   },
@@ -48,6 +49,7 @@ local M = {
       return newVirtText
     end
 
+    ---@diagnostic disable-next-line: missing-fields
     require('ufo').setup({
       fold_virt_text_handler = handler,
       provider_selector = function()
