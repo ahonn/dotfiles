@@ -19,10 +19,16 @@ end
 source $DOTFILES/config/fish/aliases.fish
 source $DOTFILES/config/fish/path.fish
 
+# proxy
 if test -e $DOTFILES/config/fish/proxy.fish
   # set proxy_host 127.0.0.1:1080
   # set proxy_auth false
   source $DOTFILES/config/fish/proxy.fish
+end
+
+# secret keys
+if test -e $DOTFILES/config/fish/secret.fish
+  source $DOTFILES/config/fish/secret.fish
 end
 
 # >>> conda initialize >>>

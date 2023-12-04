@@ -4,24 +4,10 @@ local M = {
     event = "BufReadPre",
     dependencies = {
       {
-        "lvimuser/lsp-inlayhints.nvim",
-        config = function()
-          local inlayhints = require("lsp-inlayhints")
-          inlayhints.setup({})
-
-          vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-          vim.api.nvim_create_autocmd("LspAttach", {
-            group = "LspAttach_inlayhints",
-            callback = function(args)
-              if not (args.data and args.data.client_id) then
-                return
-              end
-              local bufnr = args.buf
-              local client = vim.lsp.get_client_by_id(args.data.client_id)
-              inlayhints.on_attach(client, bufnr)
-            end,
-          })
-        end,
+        "folke/neodev.nvim",
+        event = "BufReadPre",
+        ft = { "lua" },
+        opts = {}
       },
     },
     config = function()
@@ -42,39 +28,23 @@ local M = {
         end,
       })
 
-      -- Typescript language server
-      -- lspconfig.tsserver.setup({
-      --   on_attach = function(client)
-      --     client.resolved_capabilities.document_formatting = false
-      --   end,
-      --   settings = {
-      --   }
-      -- })
-
+      -- tailwindcss & css
       lspconfig.tailwindcss.setup({})
+      local unknownAtRules = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore"
+        }
+      }
       lspconfig.cssls.setup({
         settings = {
-          css = {
-            validate = true,
-            lint = {
-              unknownAtRules = "ignore"
-            }
-          },
-          scss = {
-            validate = true,
-            lint = {
-              unknownAtRules = "ignore"
-            }
-          },
-          less = {
-            validate = true,
-            lint = {
-              unknownAtRules = "ignore"
-            }
-          },
+          css = unknownAtRules,
+          scss = unknownAtRules,
+          less = unknownAtRules,
         },
         capabilities = capabilities,
       })
+
       lspconfig.jsonls.setup({})
       lspconfig.lua_ls.setup({})
     end
@@ -107,31 +77,50 @@ local M = {
   },
   {
     "pmizio/typescript-tools.nvim",
-    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("typescript-tools").setup({
         settings = {
           expose_as_code_action = "all",
-          tsserver_file_preferences = {
-            includeInlayParameterNameHints = 'none',
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          }
         }
       })
     end,
   },
   {
-    "folke/neodev.nvim",
-    event = "BufReadPre",
-    ft = { "lua" },
-    opts = {}
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.code_actions.eslint_d,
+          null_ls.builtins.code_actions.refactoring,
+          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.eslint_d,
+        },
+      })
+    end
   },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+  },
+  {
+    "piersolenski/wtf.nvim",
+    config = function()
+      local openai_key = os.getenv("OPENAI_KEY")
+      require("wtf").setup({
+        openai_api_key = openai_key,
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+    }
+  }
 }
 
 return M
