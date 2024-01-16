@@ -10,8 +10,9 @@ local M = {
       if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then return ' ' end
       return vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
     end
+
     _G.get_statuscol = function()
-      return get_fold(vim.v.lnum) .. " %s%l" .. " "
+      return get_fold(vim.v.lnum) .. " %s%=%{v:relnum?v:relnum:v:lnum} "
     end
 
     vim.o.statuscolumn = "%!v:lua.get_statuscol()"

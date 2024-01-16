@@ -1,4 +1,6 @@
 return {
+  "wakatime/vim-wakatime",
+  "nathangrigg/vim-beancount",
   {
     "jose-elias-alvarez/typescript.nvim",
     event = "BufReadPre",
@@ -49,10 +51,6 @@ return {
       }
     },
     event = "BufReadPost",
-  },
-  {
-    "wakatime/vim-wakatime",
-    event = "VeryLazy",
   },
   {
     "goolord/alpha-nvim",

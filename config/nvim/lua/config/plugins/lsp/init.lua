@@ -45,8 +45,12 @@ local M = {
         capabilities = capabilities,
       })
 
+      lspconfig.svelte.setup({})
+
       lspconfig.jsonls.setup({})
       lspconfig.lua_ls.setup({})
+      lspconfig.beancount.setup({})
+      lspconfig.astro.setup({})
     end
   },
   {
@@ -98,8 +102,10 @@ local M = {
           null_ls.builtins.code_actions.eslint_d,
           null_ls.builtins.code_actions.refactoring,
           null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.diagnostics.stylelint,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.eslint_d,
+          null_ls.builtins.formatting.stylelint,
         },
       })
     end

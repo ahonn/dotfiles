@@ -47,3 +47,4 @@ tags
 .tern-port
 
 .netrwhist
+.husky/prepare-commit-msg
