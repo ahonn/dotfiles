@@ -127,10 +127,6 @@ local M = {
       "MunifTanjim/nui.nvim",
     }
   },
-  {
-    "hinell/lsp-timeout.nvim",
-    dependencies = { "neovim/nvim-lspconfig" }
-  }
 }
 
 return M
