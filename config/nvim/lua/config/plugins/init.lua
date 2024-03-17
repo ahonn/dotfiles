@@ -63,13 +63,6 @@ return {
     end,
   },
   {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {
-      map_cr = false,
-    },
-  },
-  {
     "tpope/vim-commentary",
     event = "BufReadPost",
   },
