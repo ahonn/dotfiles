@@ -39,9 +39,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
-        fish
         devbox
-
         (let
           packages = with pkgs; [
             nodejs_20
@@ -65,7 +63,7 @@
       users.users.yuexunjiang = {
         name = "yuexunjiang";
         home = "/Users/yuexunjiang";
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
       };
     };
   in

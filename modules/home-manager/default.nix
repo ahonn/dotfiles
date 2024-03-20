@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./programs/zsh.nix
     ./programs/git.nix
     ./programs/tmux.nix
     ./programs/wezterm.nix
@@ -23,6 +24,7 @@
   };
 
   home.packages = with pkgs; [
+    zsh
     git
     neovim
     tmux
@@ -50,6 +52,7 @@
     };
   };
 
+  services.zsh.enable = true;
   services.git.enable = true;
   services.tmux.enable = true;
   services.wezterm.enable = true;
