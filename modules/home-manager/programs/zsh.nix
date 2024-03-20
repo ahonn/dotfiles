@@ -17,6 +17,7 @@ in {
       };
 
       shellAliases = {
+        vim = "nvim";
         update = "darwin-rebuild switch --flake .#macbook";
       };
       history.size = 10000;

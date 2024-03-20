@@ -20,7 +20,7 @@
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "nvim";
   };
 
   home.packages = with pkgs; [
@@ -36,9 +36,6 @@
   home.file = {
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
-    };
-    ".config/fish" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../../config/fish;
     };
     ".czrc" = {
       source = config.lib.file.mkOutOfStoreSymlink ../../symlink/czrc.symlink;

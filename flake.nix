@@ -14,19 +14,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, homebrew-core, homebrew-cask, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
   let
     configuration = { pkgs, ... }: {
       # Auto upgrade nix package and the daemon service.
@@ -50,25 +40,8 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
         devbox
-        (let
-          packages = with pkgs; [
-            nodejs_20
-            nodePackages.pnpm
-            fish
-          ];
-        in pkgs.runCommand "dev-shell" {
-          # Dependencies that should exist in the runtime environment
-          buildInputs = packages;
-          # Dependencies that should only exist in the build environment
-          nativeBuildInputs = [ pkgs.makeWrapper ];
-        } ''
-          mkdir -p $out/bin/
-          ln -s ${pkgs.fish}/bin/fish $out/bin/dev-shell
-          wrapProgram $out/bin/dev-shell --prefix PATH : ${pkgs.lib.makeBinPath packages}
-        '')
+        zsh
       ];
-
-      programs.fish.enable = true;
 
       users.users.yuexunjiang = {
         name = "yuexunjiang";
@@ -88,18 +61,6 @@
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
           home-manager.users.yuexunjiang = import ./modules/home-manager;
-        }
-        nix-homebrew.darwinModules.nix-homebrew {
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = "yuexunjiang";
-            taps = {
-              "homebrew/homebrew-core" = homebrew-core;
-              "homebrew/homebrew-cask" = homebrew-cask;
-            };
-            mutableTaps = false;
-          };
         }
       ];
     };

@@ -19,11 +19,11 @@ in {
       ];
       extraConfig =
         ''
-          set -g default-command "fish"
+          set -g default-command "zsh"
           set -g mouse on
 
           unbind r
-          bind r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+          bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded."
 
           # ========== window =========== #
           # create window in current path

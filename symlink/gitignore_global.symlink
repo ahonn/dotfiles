@@ -48,3 +48,6 @@ tags
 
 .netrwhist
 .husky/prepare-commit-msg
+devbox.json
+devbox.d/
+devbox.lock
