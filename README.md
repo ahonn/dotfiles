@@ -1,16 +1,12 @@
 # dotfiles
-My vim/neovim, fish, git, and tmux configuration files
+My vim/neovim, nix, git, and tmux configuration files
 
 ![screenshot](./screenshot.png)
 
 ## Install
 ```
-$ git clone https://github.com/ahonn/dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
-$ ./setup.sh
-```
-
-## Back up your configuration
-```
-$ ./script/backup.sh
+$ sh <(curl -L https://nixos.org/nix/install)
+$ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+$ ./result/bin/darwin-installer
+$ darwin-rebuild switch --flake .#macbook
 ```
