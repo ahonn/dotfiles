@@ -23,14 +23,20 @@ in {
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 
-      oh-my-zsh = {
+      zplug = {
         enable = true;
         plugins = [
-          "git"
-          "z"
-          "vi-mode"
+          { name = "plugins/git"; tags = [ from:oh-my-zsh ];}
+          { name = "plugins/z"; tags = [ from:oh-my-zsh ];}
+          { name = "jeffreytse/zsh-vi-mode"; }
         ];
-        theme = "robbyrussell";
+      };
+
+      antidote = {
+        enable = true;
+        plugins = [
+          "z-shell/zsh-eza"
+        ];
       };
     };
   };

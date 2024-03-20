@@ -9,6 +9,7 @@
     ./programs/git.nix
     ./programs/tmux.nix
     ./programs/wezterm.nix
+    ./programs/starship.nix
   ];
 
   home.username = "yuexunjiang";
@@ -29,8 +30,10 @@
     neovim
     tmux
     bat
+    eza
     ripgrep
     wezterm
+    starship
   ];
 
   home.file = {
@@ -52,4 +55,5 @@
   services.git.enable = true;
   services.tmux.enable = true;
   services.wezterm.enable = true;
+  services.starship.enable = true;
 }
