@@ -29,7 +29,6 @@
     neovim
     tmux
     bat
-    reattach-to-user-namespace
     ripgrep
     wezterm
   ];

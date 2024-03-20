@@ -11,19 +11,24 @@ in {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
+      autosuggestion = {
+        enable = true;
+      };
 
       shellAliases = {
-        ll = "ls -l";
-        update = "sudo nixos-rebuild switch";
+        update = "darwin-rebuild switch --flake .#macbook";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "thefuck" ];
+        plugins = [
+          "git"
+          "z"
+          "vi-mode"
+        ];
         theme = "robbyrussell";
       };
     };

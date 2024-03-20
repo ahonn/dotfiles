@@ -7,3 +7,4 @@ config/fish/secret.fish
 config/nvim/plugin
 .vimworkspace
 .undodir
+result
