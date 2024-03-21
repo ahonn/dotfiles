@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  stdenv,
   ...
 }:
 {
@@ -39,18 +40,14 @@
   ];
 
   home.file = {
-    ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
-    };
-    ".czrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../../symlink/czrc.symlink;
-    };
-    ".editorconfig" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../../symlink/editorconfig.symlink;
-    };
-    ".prettierrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../../symlink/prettierrc.symlink;
-    };
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
+    ".czrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/czrc.symlink;
+    ".editorconfig".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/editorconfig.symlink;
+    ".prettierrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/prettierrc.symlink;
+
+    # RIME
+    "Library/Rime/default.custom.yaml".source = config.lib.file.mkOutOfStoreSymlink ../../rime/default.custom.yaml;
+    "Library/Rime/squirrel.custom.yaml".source = config.lib.file.mkOutOfStoreSymlink ../../rime/squirrel.custom.yaml;
   };
 
   services.zsh.enable = true;
