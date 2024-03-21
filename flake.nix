@@ -41,7 +41,11 @@
       environment.systemPackages = with pkgs; [
         devbox
         zsh
+        neovim
+        tmux
       ];
+
+      programs.zsh.enable = true;
 
       users.users.yuexunjiang = {
         name = "yuexunjiang";

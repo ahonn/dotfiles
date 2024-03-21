@@ -18,10 +18,16 @@ in {
 
       shellAliases = {
         vim = "nvim";
+        cat = "bat";
         update = "darwin-rebuild switch --flake .#macbook";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
+
+      initExtra =
+        ''
+          ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+        '';
 
       zplug = {
         enable = true;
@@ -29,13 +35,7 @@ in {
           { name = "plugins/git"; tags = [ from:oh-my-zsh ];}
           { name = "plugins/z"; tags = [ from:oh-my-zsh ];}
           { name = "jeffreytse/zsh-vi-mode"; }
-        ];
-      };
-
-      antidote = {
-        enable = true;
-        plugins = [
-          "z-shell/zsh-eza"
+          { name = "birdhackor/zsh-exa-ls-plugin"; }
         ];
       };
     };

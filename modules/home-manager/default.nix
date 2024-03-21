@@ -34,6 +34,8 @@
     ripgrep
     wezterm
     starship
+    cz-cli
+    nodePackages.conventional-changelog-cli
   ];
 
   home.file = {
