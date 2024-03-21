@@ -14,9 +14,26 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, ... }:
   let
     configuration = { pkgs, ... }: {
       # Auto upgrade nix package and the daemon service.
@@ -66,6 +83,8 @@
           home-manager.verbose = true;
           home-manager.users.yuexunjiang = import ./modules/home-manager;
         }
+        nix-homebrew.darwinModules.nix-homebrew
+        ./modules/homebrew
       ];
     };
 

@@ -19,10 +19,8 @@ in {
       shellAliases = {
         vim = "nvim";
         cat = "bat";
-        update = "darwin-rebuild switch --flake .#macbook";
+        dev = "devbox shell";
       };
-      history.size = 10000;
-      history.path = "${config.xdg.dataHome}/zsh/history";
 
       initExtra =
         ''
