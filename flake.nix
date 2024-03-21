@@ -33,7 +33,17 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew, ... }:
+  outputs = inputs@{
+    self,
+    nix-darwin,
+    nixpkgs,
+    home-manager,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-bundle,
+    ...
+  }:
   let
     configuration = { pkgs, ... }: {
       # Auto upgrade nix package and the daemon service.
@@ -61,7 +71,6 @@
         neovim
         tmux
       ];
-
       programs.zsh.enable = true;
 
       users.users.yuexunjiang = {
@@ -72,9 +81,10 @@
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Yuexuns-MacBook-Air
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+      specialArgs = {
+        inherit inputs;
+      };
       modules = [
         configuration
         home-manager.darwinModules.home-manager  {

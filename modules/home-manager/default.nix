@@ -33,7 +33,6 @@
     bat
     eza
     ripgrep
-    wezterm
     starship
     cz-cli
     nodePackages.conventional-changelog-cli
