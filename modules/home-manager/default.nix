@@ -37,6 +37,7 @@
     starship
     cz-cli
     nodePackages.conventional-changelog-cli
+    difftastic
   ];
 
   home.file = {

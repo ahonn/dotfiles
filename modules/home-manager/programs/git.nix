@@ -23,6 +23,7 @@ in {
           default = "current";
         };
       };
+      difftastic.enable = true;
     };
 
     home.file.".gitignore_global" = {

@@ -13,7 +13,7 @@ in {
       settings = {
         docker_context.disabled = true;
         package.disabled = true;
-        nix_shell.format = "via [❄️ devbox](bold blue) ";
+        nix_shell.format = "via [❄️devbox](bold blue) ";
       };
     };
   };

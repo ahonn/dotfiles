@@ -24,7 +24,8 @@ in {
 
       initExtra =
         ''
-          ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+          export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+          export DIRENV_LOG_FORMAT=""
         '';
 
       zplug = {
