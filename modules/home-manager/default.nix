@@ -11,6 +11,7 @@
     ./programs/tmux.nix
     ./programs/wezterm.nix
     ./programs/starship.nix
+    ./programs/direnv.nix
   ];
 
   home.username = "yuexunjiang";
@@ -54,4 +55,5 @@
   services.tmux.enable = true;
   services.wezterm.enable = true;
   services.starship.enable = true;
+  services.direnv.enable = true;
 }

@@ -67,6 +67,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
         devbox
+        direnv
         zsh
         neovim
         tmux
