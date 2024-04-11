@@ -45,6 +45,7 @@ local M = {
         capabilities = capabilities,
       })
 
+      lspconfig.rust_analyzer.setup({})
       lspconfig.svelte.setup({})
 
       lspconfig.jsonls.setup({})
@@ -115,16 +116,25 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local null_ls = require("null-ls")
+      local eslint_actions = require("none-ls.code_actions.eslint");
+      local eslint_diagnostics = require("none-ls.diagnostics.eslint");
+      local eslint_formatting = require("none-ls.formatting.eslint");
+
+      local eslint_config = {
+        condition = function(utils)
+          return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+        end,
+        prefer_local = "node_modules/.bin",
+      }
+
       null_ls.setup({
         sources = {
           null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.diagnostics.stylelint,
-          null_ls.builtins.formatting.stylelint,
           null_ls.builtins.formatting.prettier,
 
-          require("none-ls.code_actions.eslint"),
-          require("none-ls.diagnostics.eslint"),
-          require("none-ls.formatting.eslint"),
+          eslint_actions.with(eslint_config),
+          eslint_diagnostics.with(eslint_config),
+          eslint_formatting.with(eslint_config),
         },
       })
     end

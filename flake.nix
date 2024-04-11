@@ -71,6 +71,9 @@
         zsh
         neovim
         tmux
+        cloc
+        nodejs
+        nerdfonts
       ];
       programs.zsh.enable = true;
 
