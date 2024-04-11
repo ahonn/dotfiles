@@ -1,14 +1,36 @@
+---@diagnostic disable: inject-field
+--
 local M = {
-  "github/copilot.vim",
-  event = "InsertEnter",
-  config = function()
-    vim.g.copilot_no_tab_map = true
-
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap("i", "<C-l>", "copilot#Accept('<CR>')", { noremap = true, silent = true, expr = true })
-    vim.api.nvim_set_keymap("i", "<C-j>", "<Plug>(copilot-next)", opts)
-    vim.api.nvim_set_keymap("i", "<C-k>", "<Plug>(copilot-previous)", opts)
-  end,
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    -- event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = false,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<C-j>",
+            prev = "<C-k>",
+            dismiss = "<C-h>",
+          },
+        },
+        server_opts_overrides = {
+          settings = {
+            advanced = {
+              listCount = 10,
+              inlineSuggestCount = 5,
+            }
+          },
+        }
+      })
+    end,
+  },
 }
 
 return M
