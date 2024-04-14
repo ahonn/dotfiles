@@ -4,7 +4,7 @@ local M = {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    -- event = "InsertEnter",
+    event = "InsertEnter",
     config = function()
       require("copilot").setup({
         suggestion = {
