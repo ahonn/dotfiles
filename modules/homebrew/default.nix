@@ -39,6 +39,7 @@ in
       "orbstack"
       "ollama"
       "wezterm"
+      "tailscale"
 
       # Fonts
       "font-fira-code"
