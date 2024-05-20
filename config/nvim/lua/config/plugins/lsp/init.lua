@@ -45,7 +45,13 @@ local M = {
         capabilities = capabilities,
       })
 
-      lspconfig.rust_analyzer.setup({})
+      lspconfig.rust_analyzer.setup({
+        settings = {
+          files = {
+            excludeDirs = { ".devbox", "node_modules" }
+          }
+        }
+      })
       lspconfig.svelte.setup({})
 
       lspconfig.jsonls.setup({})
