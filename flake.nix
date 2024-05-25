@@ -31,6 +31,8 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
   outputs = inputs@{
@@ -42,6 +44,7 @@
     homebrew-core,
     homebrew-cask,
     homebrew-bundle,
+    alacritty-theme,
     ...
   }:
   let
@@ -85,12 +88,15 @@
     };
   in
   {
-    darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
       specialArgs = {
         inherit inputs;
       };
       modules = [
         configuration
+        ({ config, pkgs, ...}: {
+          nixpkgs.overlays = [ alacritty-theme.overlays.default ];
+        })
         home-manager.darwinModules.home-manager  {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

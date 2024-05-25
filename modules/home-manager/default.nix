@@ -10,6 +10,7 @@
     ./programs/git.nix
     ./programs/tmux.nix
     ./programs/wezterm.nix
+    ./programs/alacritty.nix
     ./programs/starship.nix
     ./programs/direnv.nix
   ];
@@ -26,6 +27,8 @@
     EDITOR = "nvim";
   };
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     zsh
     git
@@ -38,6 +41,7 @@
     cz-cli
     nodePackages.conventional-changelog-cli
     difftastic
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
 
   home.file = {
@@ -54,7 +58,8 @@
   services.zsh.enable = true;
   services.git.enable = true;
   services.tmux.enable = true;
-  services.wezterm.enable = true;
+  services.wezterm.enable = false;
+  services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
 }

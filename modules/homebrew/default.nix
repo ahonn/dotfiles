@@ -29,21 +29,15 @@ in
     casks = [
       "setapp"
       "1password"
-      "discord"
       "google-chrome"
       "raycast"
-      "cloudflare-warp"
 
       # Dev
       "fork"
       "orbstack"
-      "ollama"
       "wezterm"
+      "alacritty"
       "tailscale"
-
-      # Fonts
-      "font-fira-code"
-      "font-jetbrains-mono"
     ];
   };
 }
