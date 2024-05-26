@@ -2,15 +2,6 @@
 with lib;
 let
   cfg = config.services.neovim;
-  lazy-nix-helper-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "lazy-nix-helper.nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "b-src";
-      repo = "lazy-nix-helper.nvim";
-      rev = "main";
-      hash = "sha256-TBDZGj0NXkWvJZJ5ngEqbhovf6RPm9N+Rmphz92CS3Q=";
-    };
-  };
 in {
   options.services.neovim = {
     enable = mkEnableOption "enable";
