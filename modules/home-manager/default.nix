@@ -9,6 +9,7 @@
     ./programs/zsh.nix
     ./programs/git.nix
     ./programs/tmux.nix
+    ./programs/neovim.nix
     ./programs/wezterm.nix
     ./programs/alacritty.nix
     ./programs/starship.nix
@@ -32,7 +33,6 @@
   home.packages = with pkgs; [
     zsh
     git
-    neovim
     tmux
     bat
     eza
@@ -45,7 +45,6 @@
   ];
 
   home.file = {
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../../config/nvim;
     ".czrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/czrc.symlink;
     ".editorconfig".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/editorconfig.symlink;
     ".prettierrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/prettierrc.symlink;
@@ -58,6 +57,7 @@
   services.zsh.enable = true;
   services.git.enable = true;
   services.tmux.enable = true;
+  services.neovim.enable = true;
   services.wezterm.enable = false;
   services.alacritty.enable = true;
   services.starship.enable = true;
