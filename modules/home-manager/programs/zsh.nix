@@ -17,7 +17,6 @@ in {
       };
 
       shellAliases = {
-        vim = "nvim";
         cat = "bat";
         dev = "devbox shell";
       };
