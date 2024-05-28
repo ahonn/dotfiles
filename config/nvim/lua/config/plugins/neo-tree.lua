@@ -1,6 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  cmd = "NeoTreeFocusToggle",
+  cmd = "Neotree",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -20,7 +20,10 @@ return {
       },
     },
     filesystem = {
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+        leave_dirs_open = true,
+      },
       hijack_netrw_behavior = "open_current",
     },
     event_handlers = {
@@ -35,6 +38,6 @@ return {
     }
   },
   keys = {
-    { "<C-b>", "<CMD>NeoTreeFocusToggle<CR>", desc = "NeoTree" },
+    { "<C-b>", "<CMD>Neotree show toggle<CR>", desc = "NeoTree" },
   },
 }
