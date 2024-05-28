@@ -20,10 +20,7 @@ in
     enable = true;
     onActivation.cleanup = "zap";
 
-    taps = [
-      "homebrew/cask-fonts"
-    ];
-
+    taps = [];
     brews = [];
 
     casks = [
