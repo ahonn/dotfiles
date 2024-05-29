@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -12,7 +12,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-homebrew = {
@@ -68,13 +68,7 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages = with pkgs; [
-        devbox
-        neovim
-        cloc
-        nodejs
-        nerdfonts
-      ];
+      environment.systemPackages = with pkgs; [];
       programs.zsh.enable = true;
 
       users.users.yuexunjiang = {
@@ -92,7 +86,9 @@
       modules = [
         configuration
         ({ config, pkgs, ...}: {
-          nixpkgs.overlays = [ alacritty-theme.overlays.default ];
+          nixpkgs.overlays = [
+            alacritty-theme.overlays.default
+          ];
         })
         home-manager.darwinModules.home-manager  {
           home-manager.useGlobalPkgs = true;

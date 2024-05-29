@@ -72,11 +72,19 @@ local M = {
     }
   },
   {
-    "tami5/lspsaga.nvim",
+    "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require("lspsaga").setup({})
-    end
+      require("lspsaga").setup({
+        code_action = {
+          show_server_name = false
+        },
+        ui = {
+          title = false,
+          code_action = ''
+        }
+      })
+    end,
   },
   {
     "ray-x/lsp_signature.nvim",
@@ -87,12 +95,30 @@ local M = {
     end
   },
   {
+    "MysticalDevil/inlay-hints.nvim",
+    event = "LspAttach",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      require("inlay-hints").setup()
+    end
+  },
+  {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("typescript-tools").setup({
         settings = {
           expose_as_code_action = "all",
+          tsserver_file_preferences = {
+            includeInlayParameterNameHints = "literals",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = false,
+            includeInlayVariableTypeHints = false,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = false,
+            includeInlayEnumMemberValueHints = true,
+          }
         }
       })
     end,

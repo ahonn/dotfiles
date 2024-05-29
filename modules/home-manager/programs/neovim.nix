@@ -10,16 +10,18 @@ in {
   config = mkIf cfg.enable {
     programs.neovim = {
       enable = true;
+      withNodeJs = true;
+      withPython3 = true;
+      withRuby = true;
       viAlias = true;
       vimAlias = true;
     };
 
     home.file = {
-      ".config/nvim/init.lua" = {
-        source = config.lib.file.mkOutOfStoreSymlink ../../../config/nvim/init.lua;
-      };
-      ".config/nvim/lua" = {
-        source = config.lib.file.mkOutOfStoreSymlink ../../../config/nvim/lua;
+      ".config/nvim" = {
+        source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
+        recursive = true;
       };
     };
   };

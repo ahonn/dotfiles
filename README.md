@@ -10,4 +10,5 @@ $ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installe
 $ ./result/bin/darwin-installer
 $ mkdir .config && git clone git@github.com:ahonn/dotfiles.git ~/.config/nix-drawin
 $ nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake ~/.config/nix-darwin#macos
+$ darwin-rebuild switch --flake .#macos
 ```

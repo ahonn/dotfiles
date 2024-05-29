@@ -28,11 +28,12 @@ in
       "1password"
       "google-chrome"
       "raycast"
+      "telegram"
+      "logseq"
 
       # Dev
       "fork"
       "orbstack"
-      "wezterm"
       "alacritty"
       "tailscale"
     ];

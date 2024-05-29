@@ -10,7 +10,6 @@
     ./programs/git.nix
     ./programs/tmux.nix
     ./programs/neovim.nix
-    ./programs/wezterm.nix
     ./programs/alacritty.nix
     ./programs/starship.nix
     ./programs/direnv.nix
@@ -31,13 +30,11 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    zsh
-    git
-    tmux
     bat
     eza
+    cloc
+    devbox
     ripgrep
-    starship
     cz-cli
     nodePackages.conventional-changelog-cli
     difftastic
@@ -58,7 +55,6 @@
   services.git.enable = true;
   services.tmux.enable = true;
   services.neovim.enable = true;
-  services.wezterm.enable = false;
   services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
