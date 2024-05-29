@@ -98,6 +98,7 @@
         }
         nix-homebrew.darwinModules.nix-homebrew
         ./modules/homebrew
+        ./modules/darwin
       ];
     };
 

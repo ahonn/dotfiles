@@ -22,7 +22,6 @@ in {
         };
         window = {
           startup_mode = "Fullscreen";
-          opacity = 0.8;
         };
         font = {
           normal = {

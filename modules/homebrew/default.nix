@@ -30,12 +30,15 @@ in
       "raycast"
       "telegram"
       "logseq"
+      "netnewswire"
 
       # Dev
       "fork"
       "orbstack"
       "alacritty"
       "tailscale"
+
+      "squirrel"
     ];
   };
 }
