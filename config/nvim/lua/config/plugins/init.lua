@@ -1,6 +1,10 @@
 return {
   "wakatime/vim-wakatime",
-  "nathangrigg/vim-beancount",
+  {
+    "nathangrigg/vim-beancount",
+    event = "BufReadPre",
+    ft = { "beancount" },
+  },
   {
     "jose-elias-alvarez/typescript.nvim",
     event = "BufReadPre",
@@ -23,7 +27,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event = "BufReadPre",
+    event = "BufReadPost",
     config = function()
       require("ibl").setup {
         indent = { char = "│" },

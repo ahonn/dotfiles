@@ -48,7 +48,7 @@
   "shadcn-ui-snippets": { "branch": "main", "commit": "188d91239daa689626169c2e555b1d9671f8fbda" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
   "telescope-project.nvim": { "branch": "master", "commit": "1aaf16580a614601a7f7077d9639aeb457dc5559" },
-  "telescope.nvim": { "branch": "master", "commit": "127159a52f4986827fcb5c606ff5389c65824647" },
+  "telescope.nvim": { "branch": "master", "commit": "90143d31f20e65179308198940f5c5caf4ecdbdf" },
   "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
   "trouble.nvim": { "branch": "main", "commit": "a8264a65a0b894832ea642844f5b7c30112c458f" },
   "typescript-tools.nvim": { "branch": "master", "commit": "c43d9580c3ff5999a1eabca849f807ab33787ea7" },

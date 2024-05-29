@@ -28,25 +28,25 @@ function M.config()
     }
   end
 
-  local function attached_clients()
-    return "(" .. vim.tbl_count(vim.lsp.get_active_clients()) .. ")"
-  end
-
   require("lualine").setup({
+    options = {
+      disabled_filetypes = { 'neo-tree' },
+    },
     sections = {
       lualine_b = { "branch", diff },
       lualine_c = { filename(FilenamePath.relative_path) },
       lualine_x = {
-        "lsp_progress",
+        {
+          'lsp_progress',
+          display_components = { 'lsp_client_name' }
+        },
         {
           "diagnostics",
           sources = { "nvim_diagnostic", "coc" },
           symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
         },
-        "g:coc_status",
         "encoding",
-        { "filetype",       separator = { right = "" }, right_padding = 0 },
-        { attached_clients, separator = { left = "" },  left_padding = 0 },
+        { "filetype", separator = { right = "" }, right_padding = 0 },
       },
     },
     inactive_sections = {

@@ -7,19 +7,19 @@ return {
     "MunifTanjim/nui.nvim",
   },
   opts = {
-    window = {
-      mappings = {
-        ["o"] = "open",
-        ["s"] = "open_split",
-        ["i"] = "open_vsplit",
-        ["ma"] = "add",
-        ["md"] = "delete",
-        ["mm"] = "move",
-        ["mc"] = "copy",
-        ["mp"] = "paste_from_clipboard",
-      },
-    },
     filesystem = {
+      window = {
+        mappings = {
+          ["o"] = "open",
+          ["s"] = "open_split",
+          ["i"] = "open_vsplit",
+          ["ma"] = "add",
+          ["md"] = "delete",
+          ["mm"] = "move",
+          ["mc"] = "copy",
+          ["mp"] = "paste_from_clipboard",
+        },
+      },
       follow_current_file = {
         enabled = true,
         leave_dirs_open = true,
@@ -38,6 +38,6 @@ return {
     }
   },
   keys = {
-    { "<C-b>", "<CMD>Neotree show toggle<CR>", desc = "NeoTree" },
+    { "<C-b>", "<CMD>Neotree toggle<CR>", desc = "NeoTree" },
   },
 }
