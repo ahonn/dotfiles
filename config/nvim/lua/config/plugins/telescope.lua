@@ -14,10 +14,17 @@ return {
       config = function()
         require("telescope").load_extension("ui-select")
       end
-    }
+    },
+    {
+      "folke/trouble.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      opts = {},
+    },
   },
   config = function()
     local actions = require("telescope.actions")
+    local open_with_trouble = require("trouble.sources.telescope").open
+
     require("telescope").setup({
       defaults = {
         mappings = {
@@ -27,7 +34,9 @@ return {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
             ["<Esc>"] = actions.close,
+            ["<c-t>"] = open_with_trouble,
           },
+          n = { ["<c-t>"] = open_with_trouble },
         },
       },
     })
