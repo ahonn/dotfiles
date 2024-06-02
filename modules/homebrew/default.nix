@@ -31,6 +31,7 @@ in
       "telegram"
       "logseq"
       "netnewswire"
+      "cloudflare-warp"
 
       # Dev
       "fork"
