@@ -38,6 +38,8 @@ in
       "orbstack"
       "alacritty"
       "tailscale"
+
+      "bob"
     ];
   };
 }
