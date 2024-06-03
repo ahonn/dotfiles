@@ -38,8 +38,6 @@ in
       "orbstack"
       "alacritty"
       "tailscale"
-
-      "squirrel"
     ];
   };
 }
