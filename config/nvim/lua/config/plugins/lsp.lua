@@ -18,7 +18,7 @@ local M = {
 
       mason.setup({})
       mason_lspconfig.setup({
-        ensure_installed = { 'tsserver', 'rust_analyzer', 'lua_ls' },
+        ensure_installed = { 'tsserver', 'rust_analyzer', 'lua_ls', 'ruby_lsp' },
         automatic_installation = true,
         handlers = {
           function(server_name)
