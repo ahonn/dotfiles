@@ -38,6 +38,7 @@ in
       "orbstack"
       "alacritty"
       "tailscale"
+      "visual-studio-code"
 
       "bob"
     ];
