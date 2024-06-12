@@ -31,6 +31,9 @@ in {
 
           shift + alt - h : yabai -m space --focus prev
           shift + alt - l : yabai -m space --focus next
+
+          shift + alt - f : yabai -m config layout stack
+          shift + alt - d : yabai -m config layout bsp
         '';
       };
     };
