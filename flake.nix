@@ -103,6 +103,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.macbook.pkgs;
+    darwinPackages = self.darwinConfigurations.macos.pkgs;
   };
 }
