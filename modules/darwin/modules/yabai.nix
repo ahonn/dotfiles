@@ -41,6 +41,7 @@ in {
 
           yabai -m rule --add app="^Setapp$"    manage=off
           yabai -m rule --add app="^Step Two$"    manage=off
+          yabai -m rule --add app="^Badgeify$"    manage=off
         '';
       };
     };
