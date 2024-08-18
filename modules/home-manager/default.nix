@@ -13,6 +13,7 @@
     ./programs/alacritty.nix
     ./programs/starship.nix
     ./programs/direnv.nix
+    ./programs/rustup.nix
   ];
 
   home.username = "yuexunjiang";
@@ -36,6 +37,7 @@
     devbox
     ripgrep
     cz-cli
+    rustup
     nodePackages.conventional-changelog-cli
     difftastic
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
@@ -54,4 +56,5 @@
   services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
+  services.rustup.enable = true;
 }

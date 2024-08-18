@@ -1,5 +1,8 @@
 return {
-  "wakatime/vim-wakatime",
+  {
+    'wakatime/vim-wakatime',
+    lazy = false
+  },
   {
     "nathangrigg/vim-beancount",
     event = "BufReadPre",
