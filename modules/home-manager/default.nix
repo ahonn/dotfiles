@@ -13,7 +13,6 @@
     ./programs/alacritty.nix
     ./programs/starship.nix
     ./programs/direnv.nix
-    ./programs/rustup.nix
   ];
 
   home.username = "yuexunjiang";
@@ -56,5 +55,4 @@
   services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
-  services.rustup.enable = true;
 }
