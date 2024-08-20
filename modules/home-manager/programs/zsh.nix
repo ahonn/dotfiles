@@ -25,6 +25,10 @@ in {
         ''
           export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
           export DIRENV_LOG_FORMAT=""
+
+          if [[ -r ~/.vars.zsh ]]; then
+            source ~/.vars.zsh
+          fi
         '';
 
       zplug = {

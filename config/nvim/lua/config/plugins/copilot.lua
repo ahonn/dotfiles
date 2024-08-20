@@ -1,5 +1,3 @@
----@diagnostic disable: inject-field
---
 local M = {
   {
     "zbirenbaum/copilot.lua",
@@ -32,11 +30,13 @@ local M = {
     end,
   },
   {
-    "yetone/avante.nvim",
+    dir = "~/Developer/ahonn/avante.nvim",
     event = "VeryLazy",
     build = "make",
     opts = {
-      -- add any opts here
+      hints = {
+        enabled = false,
+      }
     },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
