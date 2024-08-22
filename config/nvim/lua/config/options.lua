@@ -53,4 +53,6 @@ vim.o.fileencodings = "utf-8,gbk,gb2312,gb18030"
 
 vim.o.updatetime = 250
 
+vim.o.splitkeep = "screen"
+
 vim.cmd([[syntax on]])
