@@ -94,8 +94,8 @@ return {
     "rhysd/git-messenger.vim",
     cmd = { "GitMessenger" },
     event = "BufReadPost",
-    init = function()
-      vim.api.nvim_set_keymap("n", "gm", "<CMD>:GitMessenger<CR>", { noremap = true })
-    end,
+    keys = {
+      { "gm", "<CMD>GitMessenger<CR>", desc = "Git Messenger" },
+    },
   },
 }

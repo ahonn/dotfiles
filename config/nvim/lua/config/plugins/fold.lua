@@ -16,11 +16,6 @@ local M = {
     end
 
     vim.o.statuscolumn = "%!v:lua.get_statuscol()"
-
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
-    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
   end,
   config = function()
     local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -66,7 +61,13 @@ local M = {
         vim.wo.foldcolumn = "0"
       end
     })
-  end
+  end,
+  keys = {
+    { 'zR', function() require('ufo').openAllFolds() end, desc = 'Open all folds' },
+    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'Close all folds' },
+    { 'zr', function() require('ufo').openFoldsExceptKinds() end, desc = 'Open folds except kinds' },
+    { 'zm', function() require('ufo').closeFoldsWith() end, desc = 'Close folds with' },
+  },
 }
 
 return M

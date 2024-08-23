@@ -65,13 +65,15 @@ local M = {
         chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>a" },
       }
       require("gp").setup(conf)
-
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<Leader>aa", "<CMD>GpChatNew vsplit<CR>", opts)
-      vim.keymap.set("n", "<Leader>af", "<CMD>GpChatFinder<CR>", opts)
-      vim.keymap.set("v", "<Leader>aa", ":<C-u>'<,'>GpChatPaste vsplit<CR>", opts)
-      vim.keymap.set({ "n", "v" }, "<Leader>ab", "<CMD>GpBufferChatNew<CR>", opts)
     end,
+    keys = {
+      -- Visual mode mappings
+      { "<C-g>c", ":<C-u>'<,'>GpChatPaste vsplit<cr>", mode = "v", desc = "Visual Chat New" },
+      -- Normal mode mappings
+      { "<C-g>c", "<cmd>GpChatNew vsplit<cr>",         mode = "n", desc = "New Chat" },
+      { "<C-g>b", "<cmd>GpBufferChatNew vsplit<cr>",   mode = "n", desc = "New Buffer Chat" },
+      { "<C-g>f", "<cmd>GpChatFinder<cr>",             mode = "n", desc = "Chat Finder" },
+    },
   }
 }
 

@@ -5,13 +5,8 @@ local M = {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x'
-      }
     },
     config = function()
-      local lsp_zero = require('lsp-zero')
       local lspconfig = require('lspconfig')
       local mason = require('mason')
       local mason_lspconfig = require('mason-lspconfig')
@@ -44,24 +39,16 @@ local M = {
           })
         end,
       })
-
-      lsp_zero.on_attach(function(client, bufnr)
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-
-        vim.keymap.set("n", "<Leader>r", "<CMD>lua vim.lsp.buf.rename()<CR>", opts)
-
-        vim.keymap.set("n", "gh", "<CMD>lua vim.lsp.buf.hover()<CR>", opts)
-        vim.keymap.set("n", "gr", "<CMD>lua require('telescope.builtin').lsp_references()<CR>", opts);
-        vim.keymap.set("n", "gd", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", opts);
-        vim.keymap.set("n", "gi", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", opts);
-
-        vim.keymap.set("n", "ga", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
-        vim.keymap.set("v", "ga", "<CMD>lua vim.lsp.buf.range_code_action()<CR>", opts)
-
-        vim.keymap.set("n", "<Leader>f", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", opts)
-        vim.keymap.set("v", "<Leader>f", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
-      end)
     end,
+    keys = {
+      { "gh",        "<CMD>lua vim.lsp.buf.hover()<CR>",                                desc = "Show hover information" },
+      { "gr",        "<CMD>lua require('telescope.builtin').lsp_references()<CR>",      desc = "Find references" },
+      { "gd",        vim.diagnostic.open_float,                                         desc = "Lines definition" },
+      { "gi",        "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", desc = "Go to implementation" },
+      { "ga",        "<CMD>lua vim.lsp.buf.code_action()<CR>",                          mode = { "n", "v" },            desc = "Code action" },
+      { "<Leader>r", "<CMD>lua vim.lsp.buf.rename()<CR>",                               desc = "Rename symbol" },
+      { "<Leader>f", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>",               mode = { "n", "v" },            desc = "Format" },
+    },
   },
   {
     "nvimtools/none-ls.nvim",
