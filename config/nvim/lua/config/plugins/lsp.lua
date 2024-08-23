@@ -43,7 +43,7 @@ local M = {
     keys = {
       { "gh",        "<CMD>lua vim.lsp.buf.hover()<CR>",                                desc = "Show hover information" },
       { "gr",        "<CMD>lua require('telescope.builtin').lsp_references()<CR>",      desc = "Find references" },
-      { "gd",        vim.diagnostic.open_float,                                         desc = "Lines definition" },
+      { "gd",        "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>",     desc = "Find definitions" },
       { "gi",        "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", desc = "Go to implementation" },
       { "ga",        "<CMD>lua vim.lsp.buf.code_action()<CR>",                          mode = { "n", "v" },            desc = "Code action" },
       { "<Leader>r", "<CMD>lua vim.lsp.buf.rename()<CR>",                               desc = "Rename symbol" },

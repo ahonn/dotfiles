@@ -7,11 +7,7 @@ return {
       build = "make",
     },
     "nvim-telescope/telescope-ui-select.nvim",
-    {
-      "folke/trouble.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      opts = {},
-    },
+    "folke/trouble.nvim",
   },
   config = function()
     local telescope = require("telescope")
@@ -46,9 +42,8 @@ return {
     telescope.load_extension("ui-select")
   end,
   keys = {
-    { "<C-p>",           "<CMD>Telescope find_files<CR>",  desc = "Find Files" },
-    { "<C-f>",           "<CMD>Telescope live_grep<CR>",   desc = "Live Grep" },
-    { "<Leader><Space>", "<CMD>Telescope buffers<CR>",     desc = "Buffers" },
-    { "<Leader>d",       "<CMD>Trouble diagnostics<CR>",   desc = "Diagnostics" },
+    { "<C-p>",           "<CMD>Telescope find_files<CR>", desc = "Find Files" },
+    { "<C-f>",           "<CMD>Telescope live_grep<CR>",  desc = "Live Grep" },
+    { "<Leader><Space>", "<CMD>Telescope buffers<CR>",    desc = "Buffers" },
   },
 }
