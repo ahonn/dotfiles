@@ -9,11 +9,9 @@ local M = {
     }
   },
   {
-    'sontungexpt/better-diagnostic-virtual-text',
-    event = "LspAttach",
-    config = function()
-      require('better-diagnostic-virtual-text').setup({})
-    end
+    'dgagn/diagflow.nvim',
+    event = 'LspAttach',
+    opts = {}
   }
 }
 

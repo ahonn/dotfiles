@@ -91,11 +91,10 @@ return {
     event = "BufReadPost"
   },
   {
-    "rhysd/git-messenger.vim",
-    cmd = { "GitMessenger" },
-    event = "BufReadPost",
-    keys = {
-      { "gm", "<CMD>GitMessenger<CR>", desc = "Git Messenger" },
-    },
+    "m4xshen/smartcolumn.nvim",
+    opts = {
+      colorcolumn = '120',
+      disabled_filetypes = { "alpha" }
+    }
   },
 }

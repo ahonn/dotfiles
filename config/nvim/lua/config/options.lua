@@ -13,7 +13,7 @@ vim.o.showmode = false
 vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.showbreak = "->"
-vim.o.textwidth = 80
+vim.o.textwidth = 120
 vim.o.colorcolumn = ""
 
 vim.o.ignorecase = true
