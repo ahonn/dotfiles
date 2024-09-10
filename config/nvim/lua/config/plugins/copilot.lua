@@ -30,59 +30,37 @@ local M = {
     end,
   },
   {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    version = false,
-    opts = {
-      hints = { enabled = false }
-    },
-    build = "make",
+    "olimorris/codecompanion.nvim",
     dependencies = {
-      "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
       {
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
+        "stevearc/dressing.nvim",
+        opts = {},
       },
     },
-  },
-  -- {
-  --   "olimorris/codecompanion.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "hrsh7th/nvim-cmp",
-  --     "nvim-telescope/telescope.nvim",
-  --     {
-  --       "stevearc/dressing.nvim",
-  --       opts = {},
-  --     },
-  --   },
-  --   config = function()
-  --     require("codecompanion").setup({
-  --       strategies = {
-  --         chat = {
-  --           adapter = "anthropic",
-  --         },
-  --         inline = {
-  --           adapter = "copilot",
-  --         },
-  --         agent = {
-  --           adapter = "anthropic",
-  --         },
-  --       },
-  --     })
-  --   end,
-  --   keys = {
-  --     { "<Leader>cc", "<CMD>CodeCompanionChat<CR>",    desc = "Code Companion Chat" },
-  --     { "<Leader>ca", "<CMD>CodeCompanionActions<CR>", desc = "Code Companion Actions" },
-  --   },
-  -- }
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "anthropic",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+          agent = {
+            adapter = "anthropic",
+          },
+        },
+      })
+    end,
+    keys = {
+      { "<Leader>ac", "<CMD>CodeCompanionChat<CR>",    desc = "Code Companion Chat",   mode = { "n", "v" } },
+      { "<Leader>aa", "<CMD>CodeCompanionActions<CR>", desc = "Code Companion Actions" },
+    },
+  }
 }
 
 return M

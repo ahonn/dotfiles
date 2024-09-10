@@ -21,7 +21,10 @@ in
     onActivation.cleanup = "zap";
 
     taps = [];
-    brews = [];
+    brews = [
+      "gcc",
+      "luarocks"
+    ];
 
     casks = [
       "setapp"

@@ -13,7 +13,7 @@ local M = {
 
       mason.setup({})
       mason_lspconfig.setup({
-        ensure_installed = { 'tsserver', 'rust_analyzer', 'lua_ls' },
+        ensure_installed = { 'ts_ls', 'rust_analyzer', 'lua_ls' },
         automatic_installation = true,
         handlers = {
           function(server_name)
@@ -21,7 +21,7 @@ local M = {
           end,
         },
         tsserver = function()
-          lspconfig.tsserver.setup({
+          lspconfig.ts_ls.setup({
             settings = {
               typescript = {
                 inlayHints = {

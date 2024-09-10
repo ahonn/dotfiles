@@ -1,12 +1,6 @@
----@diagnostic disable: missing-fields
-
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
 local symbol_map = {
@@ -48,10 +42,15 @@ local M = {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "onsails/lspkind-nvim",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
+      "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
-      "nrjdalal/shadcn-ui-snippets",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
       {
         "zbirenbaum/copilot-cmp",
         dependencies = { "copilot.lua" },
@@ -77,7 +76,6 @@ local M = {
               vim_item.menu = ({
                 buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
-                vsnip = "[Snip]",
                 nvim_lua = "[Lua]",
                 path = "[Path]",
                 copilot = "[Copilot]",
@@ -88,7 +86,7 @@ local M = {
         },
         snippet = {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
+            require('luasnip').lsp_expand(args.body)
           end,
         },
         mapping = {
@@ -107,8 +105,6 @@ local M = {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif vim.fn["vsnip#available"](1) == 1 then
-              feedkey("<Plug>(vsnip-expand-or-jump)", "")
             elseif has_words_before() then
               cmp.complete()
             else
@@ -119,17 +115,16 @@ local M = {
           ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-              feedkey("<Plug>(vsnip-jump-prev)", "")
             end
           end, { "i", "s", "c" }),
         },
         sources = cmp.config.sources({
-          { name = "copilot" },
-          { name = "vsnip" },
-          { name = "path" },
-          { name = "buffer" },
           { name = "nvim_lsp" },
+          { name = "copilot" },
+          { name = "path" },
+          { name = 'luasnip' },
+          { name = "buffer" },
+          { name = "neorg" },
         }),
         sorting = {
           priority_weight = 2,
