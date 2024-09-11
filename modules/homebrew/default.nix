@@ -22,8 +22,7 @@ in
 
     taps = [];
     brews = [
-      "gcc",
-      "luarocks"
+      "zk"
     ];
 
     casks = [

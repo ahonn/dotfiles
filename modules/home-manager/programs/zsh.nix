@@ -26,8 +26,12 @@ in {
           export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
           export DIRENV_LOG_FORMAT=""
 
-          if [[ -r ~/.vars.zsh ]]; then
-            source ~/.vars.zsh
+          if [[ -r ~/env.zsh ]]; then
+            source ~/env.zsh
+          fi
+
+          if [[ $(uname -m) == 'arm64' ]]; then
+             eval "$(/opt/homebrew/bin/brew shellenv)"
           fi
         '';
 

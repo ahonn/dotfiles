@@ -54,6 +54,15 @@ local M = {
             adapter = "anthropic",
           },
         },
+        adapters = {
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = {
+                api_key = os.getenv("ANTHROPIC_API_KEY"),
+              },
+            })
+          end,
+        },
       })
     end,
     keys = {
