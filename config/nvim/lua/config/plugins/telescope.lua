@@ -7,13 +7,12 @@ return {
       build = "make",
     },
     "nvim-telescope/telescope-ui-select.nvim",
-    "folke/trouble.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
   },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local themes = require("telescope.themes")
-    local open_with_trouble = require("trouble.sources.telescope").open
 
     telescope.setup({
       defaults = {
@@ -24,9 +23,7 @@ return {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
             ["<Esc>"] = actions.close,
-            ["<c-t>"] = open_with_trouble,
           },
-          n = { ["<c-t>"] = open_with_trouble },
         },
       },
       extensions = {
@@ -40,6 +37,7 @@ return {
 
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
+    telescope.load_extension('media_files')
   end,
   keys = {
     { "<C-p>",           "<CMD>Telescope find_files<CR>", desc = "Find Files" },

@@ -55,4 +55,6 @@ vim.o.updatetime = 250
 
 vim.o.splitkeep = "screen"
 
+vim.o.conceallevel = 2
+
 vim.cmd([[syntax on]])
