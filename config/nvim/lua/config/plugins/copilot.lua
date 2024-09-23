@@ -69,7 +69,7 @@ local M = {
       { "<Leader>ac", "<CMD>CodeCompanionChat<CR>",    desc = "Code Companion Chat",   mode = { "n", "v" } },
       { "<Leader>aa", "<CMD>CodeCompanionActions<CR>", desc = "Code Companion Actions" },
     },
-  }
+  },
 }
 
 return M

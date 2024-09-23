@@ -1,31 +1,5 @@
 local M = {
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = 'markdown',
-    opts = {
-      heading = {
-        position = 'inline',
-        icons = { '◈ ', '◇ ', '◆ ', '⋄ ', '❖ ', '⟡ ' },
-      },
-      bullet = {
-        icons = { '○' },
-      },
-      checkbox = {
-        unchecked = {
-          icon = "(×)",
-        },
-        checked = {
-          icon = "(󰄬)",
-        },
-      },
-      link = {
-        hyperlink = '󰈙 ',
-      },
-      indent = { enabled = true },
-    },
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-  },
-  {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = false,
@@ -83,13 +57,18 @@ local M = {
           insert_link = "<Leader>ni",
         },
       },
+      ui = {
+        enable = false,
+      }
     },
     keys = {
       { "<Leader>np", "<CMD>ObsidianQuickSwitch<CR>", desc = "Quickly switch to (or open) note" },
-      { "<Leader>nn", ":ObsidianNew",                 desc = "Create a new note" },
+      { "<Leader>nf", "<CMD>ObsidianSearch<CR>",      desc = "Search for (or create) notes" },
+      { "<Leader>nn", "<CMD>ObsidianNew<CR>",         desc = "Create a new note" },
       { "<Leader>no", "<CMD>ObsidianToday<CR>",       desc = "Open today's note" },
       { "<Leader>ny", "<CMD>ObsidianYesterday<CR>",   desc = "Open yesterday's note" },
       { "<Leader>nt", "<CMD>ObsidianTomorrow<CR>",    desc = "Open tomorrow's note" },
+      { "<Leader>nb", "<CMD>ObsidianBacklinks<CR>",    desc = "Getting references to the current buffer" },
     }
   }
 }
