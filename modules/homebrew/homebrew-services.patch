@@ -1,0 +1,11 @@
+--- a/lib/service/formula_wrapper.rb	2024-06-08 17:48:09.693241764 -0500
++++ b/lib/service/formula_wrapper.rb	2024-06-08 17:49:08.262498938 -0500
+@@ -201,7 +201,7 @@
+     # and avoid nameclashes with the current Service module.
+     # It should be used instead of calling formula.service directly.
+     def load_service
+-      require_relative "../../../../../Homebrew/service"
++      require_relative "/opt/homebrew/Library/Homebrew/service"
+
+       formula.service
+     end

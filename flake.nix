@@ -31,6 +31,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-services = {
+      url = "github:homebrew/homebrew-services";
+      flake = false;
+    };
 
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
@@ -44,6 +48,7 @@
     homebrew-core,
     homebrew-cask,
     homebrew-bundle,
+    homebrew-services,
     alacritty-theme,
     ...
   }:

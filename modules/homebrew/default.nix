@@ -1,6 +1,11 @@
 { inputs, ... }:
 let
-  inherit (inputs) homebrew-core homebrew-cask homebrew-bundle;
+  inherit (inputs) nixpkgs homebrew-core homebrew-cask homebrew-bundle homebrew-services;
+  homebrew-services-patched = nixpkgs.legacyPackages."aarch64-darwin".applyPatches {
+    name = "homebrew-services-patched";
+    src = homebrew-services;
+    patches = [./homebrew-services.patch];
+  };
 in
 {
   nix-homebrew = {
@@ -11,6 +16,7 @@ in
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/bundle" = homebrew-bundle;
+      "homebrew/homebrew-services" = homebrew-services-patched;
     };
     mutableTaps = false;
     autoMigrate = true;
