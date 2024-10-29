@@ -11,17 +11,22 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-        import = [ pkgs.alacritty-theme.carbonfox ];
-        shell = {
-          program = "/run/current-system/sw/bin/bash";
-          args = [
-            "-l"
-            "-c"
-            "tmux attach || tmux"
-          ];
+        general = {
+          import = [ pkgs.alacritty-theme.carbonfox ];
+        };
+        terminal = {
+          shell = {
+            program = "/run/current-system/sw/bin/bash";
+            args = [
+              "-l"
+              "-c"
+              "tmux attach || tmux"
+            ];
+          };
         };
         window = {
-          startup_mode = "Fullscreen";
+          decorations = "None";
+          startup_mode = "Maximized";
         };
         font = {
           normal = {

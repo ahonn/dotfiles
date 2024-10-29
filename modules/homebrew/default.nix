@@ -18,12 +18,17 @@ in
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
 
-    taps = [];
-    brews = [
-      "zk"
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "uninstall";
+    };
+
+    taps = [
+      "nikitabobko/tap"
     ];
+
+    brews = [];
 
     casks = [
       "setapp"
@@ -31,18 +36,13 @@ in
       "google-chrome"
       "raycast"
       "telegram"
-      "logseq"
       "netnewswire"
-      "cloudflare-warp"
-
-      # Dev
       "fork"
       "orbstack"
       "alacritty"
       "tailscale"
       "visual-studio-code"
-
-      "bob"
+      "aerospace"
     ];
   };
 }

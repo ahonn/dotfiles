@@ -11,6 +11,7 @@
     ./programs/tmux.nix
     ./programs/neovim.nix
     ./programs/alacritty.nix
+    ./programs/aerospace.nix
     ./programs/starship.nix
     ./programs/direnv.nix
   ];
@@ -52,6 +53,7 @@
   services.git.enable = true;
   services.tmux.enable = true;
   services.neovim.enable = true;
+  services.aerospace.enable = true;
   services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
