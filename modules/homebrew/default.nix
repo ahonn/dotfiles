@@ -28,7 +28,9 @@ in
       "nikitabobko/tap"
     ];
 
-    brews = [];
+    brews = [
+      "nodejs"
+    ];
 
     casks = [
       "setapp"

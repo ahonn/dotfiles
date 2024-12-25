@@ -125,12 +125,14 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-cmd-1 = 'move-node-to-workspace 1'
-alt-cmd-2 = 'move-node-to-workspace 2'
-alt-cmd-3 = 'move-node-to-workspace 3'
-alt-cmd-4 = 'move-node-to-workspace 4'
+alt-shift-ctrl-1 = 'move-node-to-workspace 1'
+alt-shift-ctrl-2 = 'move-node-to-workspace 2'
+alt-shift-ctrl-3 = 'move-node-to-workspace 3'
+alt-shift-ctrl-4 = 'move-node-to-workspace 4'
+alt-shift-ctrl-5 = 'move-node-to-workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -161,6 +163,11 @@ alt-cmd-l = ['join-with right', 'mode main']
 2 = 'main'
 3 = ['secondary', 'main']
 4 = ['secondary', 'main']
+5 = ['secondary', 'main']
+
+[[on-window-detected]]
+if.app-id = 'com.google.chrome'
+run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
@@ -175,5 +182,9 @@ if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-id = 'com.anthropic.claudefordesktop'
+if.app-id = 'co.noteplan.NotePlan-setapp'
 run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = ['move-node-to-workspace 5']
