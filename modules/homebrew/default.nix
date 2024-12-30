@@ -21,7 +21,6 @@ in
 
     onActivation = {
       autoUpdate = true;
-      cleanup = "uninstall";
     };
 
     taps = [
