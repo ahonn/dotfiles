@@ -70,6 +70,11 @@ local M = {
       { "<Leader>aa", "<CMD>CodeCompanionActions<CR>", desc = "Code Companion Actions" },
     },
   },
+  {
+    "sourcegraph/sg.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    opts = {},
+  },
 }
 
 return M
