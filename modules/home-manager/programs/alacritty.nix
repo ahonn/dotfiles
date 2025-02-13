@@ -25,7 +25,7 @@ in {
           };
         };
         window = {
-          decorations = "None";
+          decorations = "Buttonless";
           startup_mode = "Maximized";
         };
         font = {
