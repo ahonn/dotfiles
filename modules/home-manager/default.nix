@@ -40,7 +40,10 @@
     rustup
     nodePackages.conventional-changelog-cli
     difftastic
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    # https://www.reddit.com/r/NixOS/comments/1h1nc2a/comment/lzdxhx5/
+    # (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
   ];
 
   home.file = {
