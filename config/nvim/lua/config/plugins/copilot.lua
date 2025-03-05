@@ -45,20 +45,22 @@ local M = {
       require("codecompanion").setup({
         strategies = {
           chat = {
-            adapter = "anthropic",
+            adapter = "copilot",
           },
           inline = {
             adapter = "copilot",
           },
           agent = {
-            adapter = "anthropic",
+            adapter = "copilot",
           },
         },
         adapters = {
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              env = {
-                api_key = os.getenv("ANTHROPIC_API_KEY"),
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = "claude-3.5-sonnet",
+                },
               },
             })
           end,
