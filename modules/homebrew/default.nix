@@ -28,7 +28,8 @@ in
     ];
 
     brews = [
-      "nodejs"
+      "make"
+      "gcc"
     ];
 
     casks = [
