@@ -2,7 +2,7 @@ local M = {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "InsertEnter",
+    event = "BufReadPost",
     config = function()
       require("copilot").setup({
         suggestion = {
@@ -74,6 +74,7 @@ local M = {
   },
   {
     "sourcegraph/sg.nvim",
+    event = "BufReadPost",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     opts = {},
   },

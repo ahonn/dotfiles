@@ -28,6 +28,7 @@ in
     ];
 
     brews = [
+      "nodejs"
       "make"
       "gcc"
     ];
