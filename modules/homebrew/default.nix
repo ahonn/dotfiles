@@ -31,6 +31,7 @@ in
       "nodejs"
       "make"
       "gcc"
+      "uv"
     ];
 
     casks = [
