@@ -34,15 +34,21 @@ local M = {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp",
-      "nvim-telescope/telescope.nvim",
-      {
-        "stevearc/dressing.nvim",
-        opts = {},
-      },
     },
     config = function()
       require("codecompanion").setup({
+        display = {
+          action_palette = {
+            width = 95,
+            height = 10,
+            prompt = "Prompt ",
+            provider = "default",
+            opts = {
+              show_default_actions = true,
+              show_default_prompt_library = true,
+            },
+          },
+        },
         strategies = {
           chat = {
             adapter = "copilot",
@@ -65,7 +71,7 @@ local M = {
             return require("codecompanion.adapters").extend("copilot", {
               schema = {
                 model = {
-                  default = "claude-3.5-sonnet",
+                  default = "claude-3.7-sonnet",
                 },
               },
             })

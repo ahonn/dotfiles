@@ -17,6 +17,9 @@ local M = {
         automatic_installation = true,
         handlers = {
           function(server_name)
+            if server_name == 'rust_analyzer' then
+              return
+            end
             require('lspconfig')[server_name].setup({})
           end,
         },
@@ -38,12 +41,19 @@ local M = {
             }
           })
         end,
-        rust_analyzer = function()
-          lspconfig.rust_analyzer.setup({
+        lua_ls = function()
+          lspconfig.lua_ls.setup({
             settings = {
-              ["rust-analyzer"] = {
-                checkOnSave = {
-                  extraArgs = { "--target-dir=target/analyzer" },
+              Lua = {
+                diagnostics = {
+                  globals = { 'vim' },
+                },
+                workspace = {
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+                telemetry = {
+                  enable = false,
                 },
               },
             }
@@ -60,6 +70,30 @@ local M = {
       { "<Leader>r", "<CMD>lua vim.lsp.buf.rename()<CR>",                               desc = "Rename symbol" },
       { "<Leader>f", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>",               mode = { "n", "v" },            desc = "Format" },
     },
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5',
+    lazy = false,
+    config = function()
+      vim.g.rustaceanvim = {
+        server = {
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                targetDir = true,
+                -- extraEnv = {
+                -- MACOSX_DEPLOYMENT_TARGET = "10.15"
+                -- },
+              },
+              check = {
+                command = "check",
+              },
+            }
+          }
+        }
+      }
+    end
   },
   {
     "nvimtools/none-ls.nvim",
@@ -118,6 +152,13 @@ local M = {
     config = function()
       require("inlay-hints").setup()
     end
+  },
+  {
+    "j-hui/fidget.nvim",
+    event = "BufRead",
+    config = function()
+      require("fidget").setup()
+    end,
   },
 }
 

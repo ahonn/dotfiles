@@ -2,58 +2,64 @@ local M = {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   dependencies = {
-    "arkav/lualine-lsp-progress",
+    "AndreM222/copilot-lualine",
+    "dokwork/lualine-ex"
   },
-}
-
-function M.config()
-  local diff = {
-    "diff",
-    diff_color = {
-      added = "LualineGitAdd",
-      modified = "LualineGitChange",
-      removed = "LualineGitDelete",
-    },
-  }
-  local FilenamePath = {
-    filename_only = 0,
-    relative_path = 1,
-    absolute_path = 2,
-  }
-
-  local function filename(path)
-    return {
-      "filename",
-      path = path,
-    }
-  end
-
-  require("lualine").setup({
-    options = {
-      disabled_filetypes = { 'neo-tree' },
-    },
-    sections = {
-      lualine_b = { "branch", diff },
-      lualine_c = { filename(FilenamePath.relative_path) },
-      lualine_x = {
-        {
-          'lsp_progress',
-          display_components = { 'lsp_client_name' }
-        },
-        {
-          "diagnostics",
-          sources = { "nvim_diagnostic", "coc" },
-          symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-        },
-        "encoding",
-        { "filetype", separator = { right = "" }, right_padding = 0 },
+  config = function()
+    local diff = {
+      "diff",
+      diff_color = {
+        added = "LualineGitAdd",
+        modified = "LualineGitChange",
+        removed = "LualineGitDelete",
       },
-    },
-    inactive_sections = {
-      lualine_c = { filename(FilenamePath.absolute_path) },
-    },
-    extensions = { "nvim-tree", "quickfix", "toggleterm", "fugitive" },
-  })
-end
+    }
+    local FilenamePath = {
+      filename_only = 0,
+      relative_path = 1,
+      absolute_path = 2,
+    }
+
+    local function filename(path)
+      return {
+        "filename",
+        path = path,
+      }
+    end
+
+    require("lualine").setup({
+      options = {
+        disabled_filetypes = { 'neo-tree' },
+      },
+      sections = {
+        lualine_b = { "branch", diff },
+        lualine_c = { filename(FilenamePath.relative_path) },
+        lualine_x = {
+          'ex.lsp.single',
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic", "coc" },
+            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+          },
+          "encoding",
+          { "filetype", separator = { right = "" }, right_padding = 0 },
+          {
+            'copilot',
+            symbols = {
+              spinners = "dots",
+              spinner_color = "#6272A4"
+            },
+            show_colors = true,
+            show_loading = true
+          },
+        },
+      },
+      inactive_sections = {
+        lualine_c = { filename(FilenamePath.absolute_path) },
+      },
+      extensions = { "nvim-tree", "quickfix", "toggleterm", "fugitive" },
+    })
+  end,
+}
 
 return M
