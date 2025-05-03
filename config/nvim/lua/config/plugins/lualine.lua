@@ -38,11 +38,10 @@ local M = {
           'ex.lsp.single',
           {
             "diagnostics",
-            sources = { "nvim_diagnostic", "coc" },
-            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+            sources = { "nvim_diagnostic" },
+            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
           },
-          "encoding",
-          { "filetype", separator = { right = "" }, right_padding = 0 },
+          "filetype",
           {
             'copilot',
             symbols = {

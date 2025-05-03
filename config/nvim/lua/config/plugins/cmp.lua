@@ -36,7 +36,7 @@ local symbol_map = {
 local M = {
   {
     "hrsh7th/nvim-cmp",
-    event = "BufReadPost",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",

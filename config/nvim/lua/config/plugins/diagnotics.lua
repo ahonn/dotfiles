@@ -35,7 +35,18 @@ local M = {
         virtual_text = true,
       })
 
-      vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN]  = "",
+            [vim.diagnostic.severity.INFO]  = "",
+            [vim.diagnostic.severity.HINT]  = "",
+          },
+        },
+      })
+
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         callback = toggle_virtual_lines_on_hover,
       })
     end,

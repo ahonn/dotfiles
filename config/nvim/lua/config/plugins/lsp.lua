@@ -140,7 +140,7 @@ local M = {
   },
   {
     "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     opts = {},
     config = function(_, opts)
       require 'lsp_signature'.setup(opts)

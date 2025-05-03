@@ -87,7 +87,7 @@ local M = {
   },
   {
     "sourcegraph/sg.nvim",
-    event = "BufReadPost",
+    event = "InsertEnter",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     opts = {},
   },
