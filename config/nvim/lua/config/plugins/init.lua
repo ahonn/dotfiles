@@ -1,13 +1,24 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     'wakatime/vim-wakatime',
     lazy = false
   },
-  {
-    "nathangrigg/vim-beancount",
-    event = "BufReadPre",
-    ft = { "beancount" },
-  },
+  -- {
+  --   "nathangrigg/vim-beancount",
+  --   event = "BufReadPre",
+  --   ft = { "beancount" },
+  -- },
   {
     "jose-elias-alvarez/typescript.nvim",
     event = "BufReadPre",
