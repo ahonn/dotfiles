@@ -35,6 +35,10 @@
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
+  nixConfig = {
+    sandbox = false;
+  };
+
   outputs = inputs@{
     self,
     nix-darwin,

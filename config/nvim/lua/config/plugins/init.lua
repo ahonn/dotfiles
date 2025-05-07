@@ -9,6 +9,17 @@ return {
     },
   },
   {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {}
+  },
+  {
     'wakatime/vim-wakatime',
     lazy = false
   },
