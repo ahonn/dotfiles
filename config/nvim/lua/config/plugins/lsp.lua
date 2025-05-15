@@ -5,6 +5,7 @@ local M = {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "pest-parser/pest.vim"
     },
     config = function()
       local lspconfig = require('lspconfig')
@@ -58,6 +59,9 @@ local M = {
               },
             }
           })
+        end,
+        pest_ls = function()
+          require('pest-vim').setup {}
         end,
       })
     end,

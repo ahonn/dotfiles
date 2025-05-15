@@ -170,11 +170,15 @@ if.app-id = 'com.google.chrome'
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
+if.app-id = 'com.kagi.kagimacOS'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
 if.app-id = 'org.alacritty'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.app-id = 'ru.keepcoder.Telegram'
+if.app-id = 'com.hnc.Discord'
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
@@ -182,9 +186,5 @@ if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-id = 'co.noteplan.NotePlan-setapp'
+if.app-id = 'ru.keepcoder.Telegram'
 run = ['move-node-to-workspace 4']
-
-[[on-window-detected]]
-if.app-id = 'com.anthropic.claudefordesktop'
-run = ['move-node-to-workspace 5']
