@@ -8,12 +8,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file = {
-      ".config/aerospace" = {
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/aerospace";
-        recursive = true;
-      };
+    programs.aerospace = {
+      enable = true;
+      userSettings = builtins.fromTOML (builtins.readFile ../../../config/aerospace/aerospace.toml);
     };
   };
 }

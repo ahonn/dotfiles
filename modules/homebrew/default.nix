@@ -12,20 +12,12 @@ in
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/bundle" = homebrew-bundle;
     };
-    mutableTaps = true;
+    mutableTaps = false;
     autoMigrate = true;
   };
 
   homebrew = {
     enable = true;
-
-    onActivation = {
-      autoUpdate = true;
-    };
-
-    taps = [
-      "nikitabobko/tap"
-    ];
 
     brews = [
       "nodejs"
@@ -38,15 +30,16 @@ in
       "setapp"
       "1password"
       "google-chrome"
+      "orion"
+      "badgeify"
       "raycast"
+      "discord"
       "telegram"
-      "netnewswire"
       "fork"
       "orbstack"
       "alacritty"
       "tailscale"
-      "visual-studio-code"
-      "aerospace"
+      "zed"
     ];
   };
 }

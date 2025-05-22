@@ -18,11 +18,7 @@ in {
     };
 
     home.file = {
-      ".config/nvim" = {
-        source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
-        recursive = true;
-      };
+      ".config/nvim".source = ../../../config/nvim;
     };
   };
 }
