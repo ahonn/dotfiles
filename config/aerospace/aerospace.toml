@@ -110,8 +110,8 @@ alt-cmd-k = 'move up'
 alt-cmd-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
-alt-shift-j = 'focus-monitor prev'
-alt-shift-k = 'focus-monitor next'
+alt-shift-j = 'focus-monitor next'
+alt-shift-k = 'focus-monitor prev'
 
 alt-shift-h = 'workspace prev'
 alt-shift-l = 'workspace next'
