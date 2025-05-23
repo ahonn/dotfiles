@@ -1,0 +1,52 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-k": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "v": "pane::SplitRight",
+      "x": "pane::SplitDown",
+      "ctrl-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Dock || Terminal || Editor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "H": "vim::StartOfLineDownward",
+      "J": "vim::EndOfDocument",
+      "K": "vim::StartOfDocument",
+      "L": "vim::EndOfLineDownward",
+      "ctrl-x": "workspace::ToggleRightDock",
+      "ctrl-b": "workspace::ToggleLeftDock",
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-p": "file_finder::Toggle",
+      "space space": "tab_switcher::Toggle",
+      "space r": "editor::Rename",
+      "g a": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-t": "workspace::ToggleBottomDock"
+    }
+  }
+]

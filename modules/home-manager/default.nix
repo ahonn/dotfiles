@@ -14,6 +14,7 @@
     ./programs/aerospace.nix
     ./programs/starship.nix
     ./programs/direnv.nix
+    ./programs/zed-editor.nix
   ];
 
   home.username = "yuexunjiang";
@@ -60,4 +61,5 @@
   services.alacritty.enable = true;
   services.starship.enable = true;
   services.direnv.enable = true;
+  services.zed-editor.enable = true;
 }

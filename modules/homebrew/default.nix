@@ -37,9 +37,7 @@ in
       "telegram"
       "fork"
       "orbstack"
-      "alacritty"
       "tailscale"
-      "zed"
     ];
   };
 }

@@ -1,0 +1,40 @@
+{
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_weight": 500,
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Carbonfox"
+  },
+  "vim_mode": true,
+  "relative_line_numbers": true,
+  "cursor_blink": false,
+  "vertical_scroll_margin": 0,
+  "tab_bar": {
+    "show": false
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false
+  },
+  "command_aliases": {
+    "W": "w",
+    "Wq": "wq",
+    "Q": "q"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  }
+}
