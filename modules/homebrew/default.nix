@@ -21,6 +21,8 @@ in
 
     brews = [
       "nodejs"
+      "python"
+      "pipx"
       "make"
       "gcc"
       "uv"

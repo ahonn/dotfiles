@@ -52,12 +52,6 @@ local M = {
         strategies = {
           chat = {
             adapter = "copilot",
-            tools = {
-              ["mcp"] = {
-                callback = function() return require("mcphub.extensions.codecompanion") end,
-                description = "Call tools and resources from the MCP Servers",
-              }
-            }
           },
           inline = {
             adapter = "copilot",
@@ -80,9 +74,9 @@ local M = {
       })
     end,
     keys = {
-      { "<Leader>ac", "<CMD>CodeCompanionChat<CR>",    desc = "Code Companion Chat",    mode = { "n", "v" } },
-      { "<Leader>aa", "<CMD>CodeCompanionActions<CR>", desc = "Code Companion Actions", mode = { "n", "v" } },
-      { "<Leader>ag", "<CMD>CodeCompanion /commit<CR>", desc = "Code Companion Commit", mode = { "n", "v" } },
+      { "<Leader>ac", "<CMD>CodeCompanionChat<CR>",     desc = "Code Companion Chat",    mode = { "n", "v" } },
+      { "<Leader>aa", "<CMD>CodeCompanionActions<CR>",  desc = "Code Companion Actions", mode = { "n", "v" } },
+      { "<Leader>ag", "<CMD>CodeCompanion /commit<CR>", desc = "Code Companion Commit",  mode = { "n", "v" } },
     },
   },
   {

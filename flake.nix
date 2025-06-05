@@ -25,6 +25,8 @@
     };
 
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
+
+    mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
   };
 
   nixConfig = {
