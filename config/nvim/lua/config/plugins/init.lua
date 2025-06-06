@@ -15,27 +15,6 @@ return {
     end
   },
   {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {
-      disable_mouse = false,
-      hints = {
-        ["K"] = {
-          message = function()
-            return "Use G to go to the beginning of the file"
-          end,
-          length = 1,
-        },
-        ["J"] = {
-          message = function()
-            return "Use gg to go to the end of the file"
-          end,
-          length = 1,
-        },
-      }
-    }
-  },
-  {
     'wakatime/vim-wakatime',
     lazy = false
   },
