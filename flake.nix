@@ -89,6 +89,7 @@
           nixpkgs.overlays = [
             alacritty-theme.overlays.default
           ];
+          nixpkgs.config.allowUnfree = true;
         })
         home-manager.darwinModules.home-manager  {
           home-manager.useGlobalPkgs = true;

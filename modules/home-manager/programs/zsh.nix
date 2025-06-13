@@ -35,6 +35,8 @@ in {
           fi
 
           export PATH=~/.cargo/bin:$PATH
+
+          alias claude=~/.claude/local/claude
         '';
 
       zplug = {

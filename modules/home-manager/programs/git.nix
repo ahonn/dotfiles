@@ -22,6 +22,9 @@ in {
         push = {
           default = "current";
         };
+        alias = {
+          cai = "!git commit -m \"$(claude -p 'Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.')\"";
+        };
       };
       difftastic.enable = true;
     };
