@@ -8,6 +8,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.sessionPath = [ "$HOME/.claude/local" ];
+    
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -35,8 +37,6 @@ in {
           fi
 
           export PATH=~/.cargo/bin:$PATH
-
-          alias claude=~/.claude/local/claude
         '';
 
       zplug = {

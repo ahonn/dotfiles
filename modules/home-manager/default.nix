@@ -15,7 +15,6 @@
     ./programs/starship.nix
     ./programs/direnv.nix
     ./programs/zed-editor.nix
-    ./programs/claude.nix
   ];
 
   home.username = "yuexunjiang";
@@ -63,5 +62,4 @@
   services.starship.enable = true;
   services.direnv.enable = true;
   services.zed-editor.enable = true;
-  services.claude-code.enable = true;
 }

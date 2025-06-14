@@ -26,6 +26,7 @@ in
       "make"
       "gcc"
       "uv"
+      "gh"
     ];
 
     casks = [
