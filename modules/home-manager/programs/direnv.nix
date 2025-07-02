@@ -10,6 +10,12 @@ in {
   config = mkIf cfg.enable {
     programs.direnv = {
       enable = true;
+      config = {
+        global = {
+            log_format = "-";
+            log_filter = "^$";
+        };
+      };
     };
   };
 }

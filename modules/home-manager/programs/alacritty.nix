@@ -14,16 +14,16 @@ in {
         general = {
           import = [ pkgs.alacritty-theme.carbonfox ];
         };
-        terminal = {
-          shell = {
-            program = "/run/current-system/sw/bin/bash";
-            args = [
-              "-l"
-              "-c"
-              "tmux attach || tmux"
-            ];
-          };
-        };
+        # terminal = {
+        #   shell = {
+        #     program = "/run/current-system/sw/bin/bash";
+        #     args = [
+        #       "-l"
+        #       "-c"
+        #       "tmux attach || tmux"
+        #     ];
+        #   };
+        # };
         window = {
           decorations = "Buttonless";
           startup_mode = "Maximized";

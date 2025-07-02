@@ -2,6 +2,8 @@
 {
   imports = [];
 
+  system.primaryUser = "yuexunjiang";
+
   system.defaults.dock.autohide = true;
   system.defaults.dock.orientation = "left";
   system.defaults.dock.persistent-apps = [];
