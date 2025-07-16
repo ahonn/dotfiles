@@ -12,7 +12,7 @@ in
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/bundle" = homebrew-bundle;
     };
-    mutableTaps = false;
+    mutableTaps = true;
     autoMigrate = true;
   };
 
@@ -27,6 +27,11 @@ in
       "gcc"
       "uv"
       "gh"
+      "tldx"
+    ];
+
+    taps = [
+      "brandonyoungdev/tldx"
     ];
 
     casks = [
