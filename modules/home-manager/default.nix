@@ -52,6 +52,7 @@
     ".czrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/czrc.symlink;
     ".editorconfig".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/editorconfig.symlink;
     ".prettierrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/prettierrc.symlink;
+    ".claude/agents".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/claude-agents.symlink;
   };
 
   services.zsh.enable = true;

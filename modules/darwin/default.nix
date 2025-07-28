@@ -16,4 +16,6 @@
   system.keyboard.remapCapsLockToControl = true;
 
   system.defaults.magicmouse.MouseButtonMode = "TwoButton";
+
+  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
 }
