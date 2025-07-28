@@ -27,18 +27,15 @@ in
       "gcc"
       "uv"
       "gh"
-      "tldx"
     ];
 
     taps = [
-      "brandonyoungdev/tldx"
     ];
 
     casks = [
       "setapp"
       "1password"
       "google-chrome"
-      "orion"
       "badgeify"
       "raycast"
       "discord"
