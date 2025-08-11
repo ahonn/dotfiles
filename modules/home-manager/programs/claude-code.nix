@@ -25,10 +25,7 @@ in {
       };
     };
 
-    # Claude Code agents symlink
+    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude-agents.symlink/CLAUDE.md;
     home.file.".claude/agents".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude-agents.symlink;
-
-    # Claude Code agents CLAUDE.md symlink
-    home.file.".claude/agents/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude-agents.symlink/CLAUDE.md;
   };
 }
