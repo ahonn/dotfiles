@@ -30,9 +30,8 @@
             gpgsign = true;
           };
           gpg = {
-            program = "${pkgs.gnupg}/bin/gpg";
+            program = "$(which gpg)";
             format = "openpgp";
-            openpgp.program = "${pkgs.gnupg}/bin/gpg";
           };
         };
         difftastic.enable = true;
