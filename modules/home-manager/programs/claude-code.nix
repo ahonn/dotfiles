@@ -25,7 +25,7 @@ in {
       };
     };
 
-    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude-agents.symlink/CLAUDE.md;
-    home.file.".claude/agents".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude-agents.symlink;
+    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude.symlink/CLAUDE.md;
+    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/claude.symlink/agents;
   };
 }
