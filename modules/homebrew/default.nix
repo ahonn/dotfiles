@@ -20,13 +20,15 @@ in
     enable = true;
 
     brews = [
-      "nodejs"
-      "python"
-      "pipx"
-      "make"
-      "gcc"
-      "uv"
+      # Keep macOS-specific tools
       "gh"
+      # Development tools moved to Nix where possible
+      # "nodejs" - available in nixpkgs
+      # "python" - available in nixpkgs
+      # "pipx" - available in nixpkgs
+      "make"  # Keep for compatibility
+      "gcc"   # Keep for system compilation
+      "uv"    # Python package manager
     ];
 
     taps = [
@@ -34,15 +36,14 @@ in
 
     casks = [
       "setapp"
-      "1password"
+      # "1password"
       "google-chrome"
       "badgeify"
       "raycast"
       "discord"
-      "telegram"
       "fork"
       "orbstack"
-      "tailscale"
+      # "tailscale"
     ];
   };
 }

@@ -33,43 +33,30 @@ local M = {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
       require("codecompanion").setup({
-        display = {
-          action_palette = {
-            width = 95,
-            height = 10,
-            prompt = "Prompt ",
-            provider = "default",
-            opts = {
-              show_default_actions = true,
-              show_default_prompt_library = true,
-            },
-          },
-        },
         strategies = {
           chat = {
-            adapter = "copilot",
+            adapter = "claude_code",
           },
           inline = {
             adapter = "copilot",
           },
-          agent = {
+          cmd = {
             adapter = "copilot",
-          },
+          }
         },
         adapters = {
-          copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              schema = {
-                model = {
-                  default = "claude-3.7-sonnet",
+          acp = {
+            claude_code = function()
+              return require("codecompanion.adapters").extend("claude_code", {
+                env = {
+                  CLAUDE_CODE_OAUTH_TOKEN = "cmd:op read op://Personal/claude-code/credential",
                 },
-              },
-            })
-          end,
+              })
+            end,
+          },
         },
       })
     end,
@@ -84,15 +71,6 @@ local M = {
     event = "InsertEnter",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     opts = {},
-  },
-  {
-    "greggh/claude-code.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("claude-code").setup()
-    end
   }
 }
 

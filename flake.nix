@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     home-manager = {
@@ -29,10 +29,6 @@
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
   };
 
-  nixConfig = {
-    sandbox = false;
-  };
-
   outputs = inputs@{
     self,
     nix-darwin,
@@ -46,15 +42,30 @@
     ...
   }:
   let
+    user = {
+      username = "yuexunjiang";
+      homeDirectory = "/Users/yuexunjiang";
+    };
+
     configuration = { pkgs, ... }: {
       # Auto upgrade nix package and the daemon service.
-      # services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
-      nix.enable = false;
+      services.nix-daemon.enable = true;
+      nix.package = pkgs.nix;
 
       # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        max-jobs = "auto";
+        cores = 0;
+        substituters = [
+          "https://cache.nixos.org"
+          "https://nix-community.cachix.org"
+        ];
+        trusted-public-keys = [
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -71,9 +82,9 @@
       environment.systemPackages = with pkgs; [];
       programs.zsh.enable = true;
 
-      users.users.yuexunjiang = {
-        name = "yuexunjiang";
-        home = "/Users/yuexunjiang";
+      users.users.${user.username} = {
+        name = user.username;
+        home = user.homeDirectory;
         shell = pkgs.zsh;
       };
     };
@@ -95,7 +106,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
-          home-manager.users.yuexunjiang = import ./modules/home-manager;
+          home-manager.users.${user.username} = import ./modules/home-manager;
         }
         nix-homebrew.darwinModules.nix-homebrew
         ./modules/homebrew

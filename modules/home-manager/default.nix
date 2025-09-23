@@ -33,15 +33,23 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    # Core CLI tools
     bat
     eza
     cloc
-    devbox
     ripgrep
+    difftastic
+
+    # Development tools
+    devbox
     cz-cli
     rustup
+    nodejs
+    python3
+    python3Packages.pipx
     nodePackages.conventional-changelog-cli
-    difftastic
+
+    # Fonts
     # https://www.reddit.com/r/NixOS/comments/1h1nc2a/comment/lzdxhx5/
     # (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
     nerd-fonts.fira-code
