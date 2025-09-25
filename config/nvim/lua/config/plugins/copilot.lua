@@ -68,9 +68,17 @@ local M = {
   },
   {
     "sourcegraph/sg.nvim",
-    event = "InsertEnter",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    opts = {},
+    build = "nvim -l build/init.lua",
+  },
+  {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("claude-code").setup()
+    end
   }
 }
 
