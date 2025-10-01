@@ -14,7 +14,6 @@
           user = {
             name = "ahonn";
             email = "yuexunjiang@gmail.com";
-            signingkey = "43EAF127BC5EEB2FA0C4134FBD5538FCA987E538";
           };
           core = {
             ignoreCase = false;
@@ -25,13 +24,6 @@
           };
           alias = {
             cai = "!git commit -m \"$(claude -p 'Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.')\"";
-          };
-          commit = {
-            gpgsign = true;
-          };
-          gpg = {
-            program = "$(which gpg)";
-            format = "openpgp";
           };
         };
         difftastic.enable = true;
