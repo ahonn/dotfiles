@@ -9,6 +9,7 @@
     ./programs/zsh.nix
     ./programs/git.nix
     ./programs/tmux.nix
+    ./programs/zellij.nix
     ./programs/neovim.nix
     ./programs/alacritty.nix
     ./programs/aerospace.nix
@@ -65,6 +66,7 @@
   services.zsh.enable = true;
   services.git.enable = true;
   services.tmux.enable = true;
+  services.zellij.enable = true;
   services.neovim.enable = true;
   services.aerospace.enable = true;
   services.alacritty.enable = true;

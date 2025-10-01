@@ -1,0 +1,74 @@
+// Zellij configuration
+// Note: Basic settings are managed by home-manager in zellij.nix
+// Add custom keybindings and layouts here
+
+keybinds {
+    normal {
+        // Quick navigation
+        bind "Ctrl a" { SwitchToMode "tmux"; }
+    }
+
+    tmux {
+        // Window management
+        bind "c" { NewTab; SwitchToMode "normal"; }
+        bind "," { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "n" { NewPane; SwitchToMode "normal"; }
+        bind "q" { CloseTab; SwitchToMode "normal"; }
+
+        // Pane navigation
+        bind "h" { MoveFocus "Left"; SwitchToMode "normal"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "normal"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "normal"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "normal"; }
+
+        // Pane splitting
+        bind "-" { NewPane "Down"; SwitchToMode "normal"; }
+        bind "\\" { NewPane "Right"; SwitchToMode "normal"; }
+
+        // Tab navigation
+        bind "Space" { GoToTab 1; SwitchToMode "normal"; }
+        bind "1" { GoToTab 1; SwitchToMode "normal"; }
+        bind "2" { GoToTab 2; SwitchToMode "normal"; }
+        bind "3" { GoToTab 3; SwitchToMode "normal"; }
+        bind "4" { GoToTab 4; SwitchToMode "normal"; }
+        bind "5" { GoToTab 5; SwitchToMode "normal"; }
+        bind "6" { GoToTab 6; SwitchToMode "normal"; }
+        bind "7" { GoToTab 7; SwitchToMode "normal"; }
+        bind "8" { GoToTab 8; SwitchToMode "normal"; }
+        bind "9" { GoToTab 9; SwitchToMode "normal"; }
+
+        // Session management
+        bind "s" { SwitchToMode "session"; }
+        bind "d" { Detach; }
+
+        // Resize
+        bind "r" { SwitchToMode "resize"; }
+
+        // Exit tmux mode
+        bind "Esc" { SwitchToMode "normal"; }
+    }
+
+    resize {
+        bind "h" { Resize "Increase Left"; }
+        bind "j" { Resize "Increase Down"; }
+        bind "k" { Resize "Increase Up"; }
+        bind "l" { Resize "Increase Right"; }
+        bind "H" { Resize "Decrease Left"; }
+        bind "J" { Resize "Decrease Down"; }
+        bind "K" { Resize "Decrease Up"; }
+        bind "L" { Resize "Decrease Right"; }
+        bind "Esc" { SwitchToMode "normal"; }
+    }
+}
+
+// UI configuration
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
+
+// Session configuration
+session_serialization false
+pane_frames true
+mirror_session true

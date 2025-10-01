@@ -30,40 +30,58 @@ local M = {
     end,
   },
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    "folke/sidekick.nvim",
+    opts = {
+      cli = {
+        mux = {
+          backend = "tmux",
+          enabled = true,
+        },
+      },
     },
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "claude_code",
-          },
-          inline = {
-            adapter = "copilot",
-          },
-          cmd = {
-            adapter = "copilot",
-          }
-        },
-        adapters = {
-          acp = {
-            claude_code = function()
-              return require("codecompanion.adapters").extend("claude_code", {
-                env = {
-                  CLAUDE_CODE_OAUTH_TOKEN = "cmd:op read op://Personal/claude-code/credential",
-                },
-              })
-            end,
-          },
-        },
-      })
-    end,
     keys = {
-      { "<Leader>ac", "<CMD>CodeCompanionChat<CR>",     desc = "Code Companion Chat",    mode = { "n", "v" } },
-      { "<Leader>aa", "<CMD>CodeCompanionActions<CR>",  desc = "Code Companion Actions", mode = { "n", "v" } },
-      { "<Leader>ag", "<CMD>CodeCompanion /commit<CR>", desc = "Code Companion Commit",  mode = { "n", "v" } },
+      {
+        "<Tab>",
+        function()
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>"
+          end
+        end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<Leader>at",
+        function()
+          require("sidekick.cli").focus()
+        end,
+        mode = { "n", "x", "i", "t" },
+        desc = "Sidekick Switch Focus",
+      },
+      {
+        "<Leader>aa",
+        function()
+          require("sidekick.cli").toggle({ focus = true })
+        end,
+        desc = "Sidekick Toggle CLI",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>ac",
+        function()
+          require("sidekick.cli").toggle({ name = "claude", focus = true })
+        end,
+        desc = "Sidekick Claude Toggle",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>ap",
+        function()
+          require("sidekick.cli").select_prompt()
+        end,
+        desc = "Sidekick Ask Prompt",
+        mode = { "n", "v" },
+      },
     },
   },
   {
@@ -71,15 +89,6 @@ local M = {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     build = "nvim -l build/init.lua",
   },
-  {
-    "greggh/claude-code.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("claude-code").setup()
-    end
-  }
 }
 
 return M
