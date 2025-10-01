@@ -51,7 +51,7 @@ local M = {
         desc = "Goto/Apply Next Edit Suggestion",
       },
       {
-        "<Leader>at",
+        "<Leader>aa",
         function()
           require("sidekick.cli").focus()
         end,
@@ -59,19 +59,11 @@ local M = {
         desc = "Sidekick Switch Focus",
       },
       {
-        "<Leader>aa",
+        "<Leader>ac",
         function()
           require("sidekick.cli").toggle({ focus = true })
         end,
         desc = "Sidekick Toggle CLI",
-        mode = { "n", "v" },
-      },
-      {
-        "<Leader>ac",
-        function()
-          require("sidekick.cli").toggle({ name = "claude", focus = true })
-        end,
-        desc = "Sidekick Claude Toggle",
         mode = { "n", "v" },
       },
       {
