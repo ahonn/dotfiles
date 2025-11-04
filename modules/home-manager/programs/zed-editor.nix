@@ -4,7 +4,7 @@ let
   cfg = config.services.zed-editor;
 in {
   options.services.zed-editor = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Zed high-performance code editor";
   };
 
   config = mkIf cfg.enable {

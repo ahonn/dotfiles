@@ -4,7 +4,7 @@ let
   cfg = config.services.aerospace;
 in {
   options.services.aerospace = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "AeroSpace tiling window manager for macOS";
   };
 
   config = mkIf cfg.enable {

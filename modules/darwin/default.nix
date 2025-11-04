@@ -16,7 +16,6 @@
 
   # Finder configuration
   system.defaults.finder = {
-    AppleShowAllExtensions = true;
     FXPreferredViewStyle = "Nlsv";
     FXEnableExtensionChangeWarning = false;
     ShowPathbar = true;

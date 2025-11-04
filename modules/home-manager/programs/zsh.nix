@@ -4,7 +4,7 @@ let
   cfg = config.services.zsh;
 in {
   options.services.zsh = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Zsh shell with vi-mode and custom plugins";
   };
 
   config = mkIf cfg.enable {

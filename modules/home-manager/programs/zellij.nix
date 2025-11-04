@@ -4,7 +4,7 @@ let
   cfg = config.services.zellij;
 in {
   options.services.zellij = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Zellij terminal workspace manager";
   };
 
   config = mkIf cfg.enable {

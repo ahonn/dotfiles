@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  stdenv,
   ...
 }:
 {
@@ -44,6 +43,7 @@
     # Development tools
     devbox
     cz-cli
+    codex
     rustup
     nodejs
     python3
@@ -66,7 +66,7 @@
   services.zsh.enable = true;
   services.git.enable = true;
   services.tmux.enable = true;
-  services.zellij.enable = true;
+  services.zellij.enable = false;
   services.neovim.enable = true;
   services.aerospace.enable = true;
   services.alacritty.enable = true;

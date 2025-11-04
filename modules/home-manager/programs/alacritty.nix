@@ -4,7 +4,7 @@ let
   cfg = config.services.alacritty;
 in {
   options.services.alacritty = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Alacritty GPU-accelerated terminal emulator";
   };
 
   config = mkIf cfg.enable {

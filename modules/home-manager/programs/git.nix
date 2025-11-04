@@ -4,13 +4,13 @@
     cfg = config.services.git;
   in {
     options.services.git = {
-      enable = mkEnableOption "enable";
+      enable = mkEnableOption "Git version control with difftastic integration";
     };
 
     config = mkIf cfg.enable {
       programs.git = {
         enable = true;
-        extraConfig = {
+        settings = {
           user = {
             name = "ahonn";
             email = "yuexunjiang@gmail.com";
@@ -23,10 +23,14 @@
             default = "current";
           };
           alias = {
-            cai = "!git commit -m \"$(claude -p 'Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.')\"";
+            cai = "!git commit -m \"$(claude -p '/commit')\"";
           };
         };
-        difftastic.enable = true;
+      };
+
+      programs.difftastic = {
+        enable = true;
+        git.enable = true;
       };
 
       home.file.".gitignore_global" = {

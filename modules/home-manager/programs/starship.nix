@@ -4,7 +4,7 @@ let
   cfg = config.services.starship;
 in {
   options.services.starship = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Starship cross-shell prompt";
   };
 
   config = mkIf cfg.enable {

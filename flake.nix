@@ -83,7 +83,7 @@
       };
       modules = [
         configuration
-        ({ config, pkgs, ...}: {
+        ({ pkgs, ... }: {
           nixpkgs.overlays = [
             alacritty-theme.overlays.default
           ];

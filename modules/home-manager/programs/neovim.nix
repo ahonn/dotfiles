@@ -4,7 +4,7 @@ let
   cfg = config.services.neovim;
 in {
   options.services.neovim = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "Neovim editor with language support and plugins";
   };
 
   config = mkIf cfg.enable {

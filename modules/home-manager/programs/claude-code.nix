@@ -8,7 +8,7 @@ with lib; let
   cfg = config.services.claude-code;
 in {
   options = {
-    services.claude-code.enable = mkEnableOption "claude-code configuration";
+    services.claude-code.enable = mkEnableOption "Claude Code CLI configuration and settings";
   };
 
   config = mkIf cfg.enable {

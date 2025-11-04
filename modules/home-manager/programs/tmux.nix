@@ -4,7 +4,7 @@ let
   cfg = config.services.tmux;
 in {
   options.services.tmux = {
-    enable = mkEnableOption "enable";
+    enable = mkEnableOption "tmux terminal multiplexer with custom keybindings";
   };
 
   config = mkIf cfg.enable {
