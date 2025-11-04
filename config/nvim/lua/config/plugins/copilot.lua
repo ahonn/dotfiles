@@ -34,8 +34,8 @@ local M = {
     opts = {
       cli = {
         mux = {
-          backend = "zellij",
-          enabled = true,
+          backend = "tmux",
+          enabled = false,
         },
       },
     },
