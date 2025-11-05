@@ -23,7 +23,7 @@
             default = "current";
           };
           alias = {
-            cai = "!git commit -m \"$(claude -p '/commit')\"";
+            cai = "claude -p '/commit' --model haiku";
           };
         };
       };
