@@ -25,6 +25,7 @@ in
     ];
 
     taps = [
+      "BarutSRB/tap"
     ];
 
     casks = [
@@ -37,6 +38,7 @@ in
       "fork"
       "orbstack"
       "tailscale"
+      "BarutSRB/tap/hyprspace"
     ];
   };
 }

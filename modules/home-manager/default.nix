@@ -12,6 +12,7 @@
     ./programs/neovim.nix
     ./programs/alacritty.nix
     ./programs/aerospace.nix
+    ./programs/hyprspace.nix
     ./programs/starship.nix
     ./programs/direnv.nix
     ./programs/zed-editor.nix
@@ -68,7 +69,8 @@
   my.tmux.enable = true;
   my.zellij.enable = false;
   my.neovim.enable = true;
-  my.aerospace.enable = true;
+  my.aerospace.enable = false;
+  my.hyprspace.enable = true;
   my.alacritty.enable = true;
   my.starship.enable = true;
   my.direnv.enable = true;

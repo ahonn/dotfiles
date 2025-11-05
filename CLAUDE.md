@@ -36,7 +36,7 @@ git cz
 - **modules/darwin/**: macOS system-level settings
 - **modules/home-manager/**: User-level program configurations
 - **modules/homebrew/**: Homebrew package management
-- **config/**: Direct application configuration files (nvim, aerospace, zed)
+- **config/**: Direct application configuration files (nvim, hyprspace, zed)
 - **symlink/**: Dotfiles managed via out-of-store symlinks
 
 ### Program Configuration Pattern
@@ -51,7 +51,7 @@ All services are toggled in `modules/home-manager/default.nix`:
 - **zsh**: Shell with starship prompt
 - **git**: Version control with difftastic integration
 - **tmux**: Terminal multiplexer
-- **aerospace**: Tiling window manager
+- **hyprspace**: Tiling window manager (enhanced AeroSpace fork)
 - **alacritty**: Terminal emulator
 - **claude-code**: Claude Code CLI integration
 
@@ -83,7 +83,7 @@ Dotfiles in `symlink/` are managed via `config.lib.file.mkOutOfStoreSymlink` all
 
 ### Configuration Updates
 - **Nix modules**: Require system rebuild after changes
-- **Direct configs** (nvim, aerospace): Take effect immediately
+- **Direct configs** (nvim, hyprspace): Take effect immediately
 - **Symlinked files**: Changes reflected immediately
 
 ## Platform Specifics
