@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.aerospace;
+  cfg = config.my.aerospace;
 in {
-  options.services.aerospace = {
+  options.my.aerospace = {
     enable = mkEnableOption "AeroSpace tiling window manager for macOS";
   };
 

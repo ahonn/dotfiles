@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.starship;
+  cfg = config.my.starship;
 in {
-  options.services.starship = {
+  options.my.starship = {
     enable = mkEnableOption "Starship cross-shell prompt";
   };
 
@@ -13,7 +13,7 @@ in {
       settings = {
         docker_context.disabled = true;
         package.disabled = true;
-        nix_shell.format = "via [❄️devbox](bold blue) ";
+        nix_shell.format = "via [❄️devenv](bold blue) ";
       };
     };
   };

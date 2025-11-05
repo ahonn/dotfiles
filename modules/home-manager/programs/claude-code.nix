@@ -5,10 +5,10 @@
   ...
 }:
 with lib; let
-  cfg = config.services.claude-code;
+  cfg = config.my.claude-code;
 in {
   options = {
-    services.claude-code.enable = mkEnableOption "Claude Code CLI configuration and settings";
+    my.claude-code.enable = mkEnableOption "Claude Code CLI configuration and settings";
   };
 
   config = mkIf cfg.enable {

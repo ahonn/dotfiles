@@ -41,7 +41,7 @@
     difftastic
 
     # Development tools
-    devbox
+    devenv
     cz-cli
     codex
     rustup
@@ -63,15 +63,15 @@
     ".prettierrc".source = config.lib.file.mkOutOfStoreSymlink ../../symlink/prettierrc.symlink;
   };
 
-  services.zsh.enable = true;
-  services.git.enable = true;
-  services.tmux.enable = true;
-  services.zellij.enable = false;
-  services.neovim.enable = true;
-  services.aerospace.enable = true;
-  services.alacritty.enable = true;
-  services.starship.enable = true;
-  services.direnv.enable = true;
-  services.zed-editor.enable = false;
-  services.claude-code.enable = true;
+  my.zsh.enable = true;
+  my.git.enable = true;
+  my.tmux.enable = true;
+  my.zellij.enable = false;
+  my.neovim.enable = true;
+  my.aerospace.enable = true;
+  my.alacritty.enable = true;
+  my.starship.enable = true;
+  my.direnv.enable = true;
+  my.zed-editor.enable = false;
+  my.claude-code.enable = true;
 }

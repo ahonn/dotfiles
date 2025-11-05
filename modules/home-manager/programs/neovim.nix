@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.neovim;
+  cfg = config.my.neovim;
 in {
-  options.services.neovim = {
+  options.my.neovim = {
     enable = mkEnableOption "Neovim editor with language support and plugins";
   };
 

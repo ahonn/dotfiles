@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.direnv;
+  cfg = config.my.direnv;
 in {
-  options.services.direnv = {
+  options.my.direnv = {
     enable = mkEnableOption "direnv for automatic environment loading";
   };
 

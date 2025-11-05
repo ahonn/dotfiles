@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.zsh;
+  cfg = config.my.zsh;
 in {
-  options.services.zsh = {
+  options.my.zsh = {
     enable = mkEnableOption "Zsh shell with vi-mode and custom plugins";
   };
 
@@ -20,7 +20,7 @@ in {
 
       shellAliases = {
         cat = "bat";
-        dev = "devbox shell";
+        dev = "devenv shell";
       };
 
       initContent =

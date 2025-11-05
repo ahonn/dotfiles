@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.alacritty;
+  cfg = config.my.alacritty;
 in {
-  options.services.alacritty = {
+  options.my.alacritty = {
     enable = mkEnableOption "Alacritty GPU-accelerated terminal emulator";
   };
 

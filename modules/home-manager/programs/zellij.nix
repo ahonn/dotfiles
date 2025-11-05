@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.zellij;
+  cfg = config.my.zellij;
 in {
-  options.services.zellij = {
+  options.my.zellij = {
     enable = mkEnableOption "Zellij terminal workspace manager";
   };
 

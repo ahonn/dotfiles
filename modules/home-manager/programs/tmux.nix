@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.tmux;
+  cfg = config.my.tmux;
 in {
-  options.services.tmux = {
+  options.my.tmux = {
     enable = mkEnableOption "tmux terminal multiplexer with custom keybindings";
   };
 

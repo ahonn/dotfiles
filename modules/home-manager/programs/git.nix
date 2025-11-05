@@ -1,9 +1,9 @@
  { lib, pkgs, config, ... }:
   with lib;
   let
-    cfg = config.services.git;
+    cfg = config.my.git;
   in {
-    options.services.git = {
+    options.my.git = {
       enable = mkEnableOption "Git version control with difftastic integration";
     };
 
