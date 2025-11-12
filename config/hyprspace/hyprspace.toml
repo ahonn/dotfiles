@@ -1,6 +1,19 @@
 # HyprSpace configuration file
 # This is compatible with AeroSpace config as HyprSpace is an enhanced fork
 # See: https://github.com/BarutSRB/HyprSpace
+#
+# HyprSpace Exclusive Features:
+# 1. Centered Workspace Bar: Enable via menu bar → "Experimental UI Settings" → "Enable centered workspace bar"
+#    - Shows workspace numbers with GUI app icons
+#    - Customizable position (overlapping/below menu bar)
+#    - Notch-aware positioning for MacBook Pro
+#    - Deduplicate icons with badge count
+#    - Hide empty workspaces option
+#
+# 2. New Layouts (see default-root-container-layout below):
+#    - Dwindle: Hyprland-style binary tree tiling
+#    - Scroll (Niri): Carousel layout with centered focus
+#    - Master: Classic master-stack paradigm
 
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
@@ -17,12 +30,17 @@ start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# HyprSpace Layout Configuration
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
 accordion-padding = 30
 
-# Possible values: tiles|accordion
+# HyprSpace supports additional layouts beyond AeroSpace:
+# - 'tiles': Traditional tiling layout (AeroSpace default)
+# - 'accordion': Accordion-style layout (AeroSpace default)
+# - 'dwindle': Hyprland-style binary tree tiling (HyprSpace exclusive)
+# - 'scroll': Niri-style carousel layout with centered focus (HyprSpace exclusive)
+# - 'master': Classic master-stack paradigm (HyprSpace exclusive)
 default-root-container-layout = 'tiles'
 
 # Possible values: horizontal|vertical|auto
@@ -92,9 +110,15 @@ outer.right =      5
 # end tell'
 # '''
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+# Layout switching - HyprSpace enhanced
+# Traditional layouts (AeroSpace compatible)
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
+
+# HyprSpace exclusive layouts
+alt-d = 'layout dwindle'        # Hyprland-style binary tree tiling
+alt-s = 'layout scroll'         # Niri-style carousel (centered focus window)
+alt-m = 'layout master'         # Master-stack layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
