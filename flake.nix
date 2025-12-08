@@ -27,8 +27,6 @@
       flake = false;
     };
 
-    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
-
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
   };
 
@@ -41,7 +39,6 @@
     homebrew-core,
     homebrew-cask,
     homebrew-bundle,
-    alacritty-theme,
     ...
   }:
   let
@@ -84,9 +81,6 @@
       modules = [
         configuration
         ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            alacritty-theme.overlays.default
-          ];
           nixpkgs.config.allowUnfree = true;
         })
         home-manager.darwinModules.home-manager  {

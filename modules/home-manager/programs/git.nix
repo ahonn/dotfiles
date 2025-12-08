@@ -1,8 +1,9 @@
- { lib, pkgs, config, ... }:
-  with lib;
-  let
-    cfg = config.my.git;
-  in {
+{ lib, pkgs, config, ... }:
+with lib;
+let
+  cfg = config.my.git;
+  dotfilesPath = "${config.home.homeDirectory}/.config/nix-darwin";
+in {
     options.my.git = {
       enable = mkEnableOption "Git version control with difftastic integration";
     };
@@ -34,7 +35,7 @@
       };
 
       home.file.".gitignore_global" = {
-        source = config.lib.file.mkOutOfStoreSymlink ../../../symlink/gitignore_global.symlink;
+        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/gitignore_global.symlink";
       };
     };
   }

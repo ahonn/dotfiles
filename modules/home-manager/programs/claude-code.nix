@@ -4,8 +4,10 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.my.claude-code;
+  dotfilesPath = "${config.home.homeDirectory}/.config/nix-darwin";
 in {
   options = {
     my.claude-code.enable = mkEnableOption "Claude Code CLI configuration and settings";
@@ -25,8 +27,8 @@ in {
       };
     };
 
-    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink ../../../config/claude/CLAUDE.md;
-    home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink ../../../config/claude/commands;
-    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink ../../../config/claude/agents;
+    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/commands";
+    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/agents";
   };
 }

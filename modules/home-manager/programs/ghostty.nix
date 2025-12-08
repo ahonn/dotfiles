@@ -12,14 +12,20 @@ in {
       enable = true;
       package = null;
       enableZshIntegration = true;
-      installBatSyntax = true;
+      installBatSyntax = false;
       settings = {
-        font-family = "JetBrainsMono Nerd Font";
+        font-family = [
+          "JetBrainsMono Nerd Font"
+          "PingFang SC"
+        ];
         font-size = 15;
-        window-decoration = false;
+        font-feature = "calt";
+        font-style = "Light";
+        font-style-bold = "Regular";
+        font-style-italic = "Italic";
+        font-thicken = true;
+        window-decoration = true;
         macos-titlebar-style = "hidden";
-        window-padding-x = 10;
-        window-padding-y = 10;
         theme = "carbonfox";
         shell-integration = "zsh";
         macos-option-as-alt = true;
