@@ -17,6 +17,7 @@
     ./programs/direnv.nix
     ./programs/zed-editor.nix
     ./programs/claude-code.nix
+    ./programs/ghostty.nix
   ];
 
   home.username = "yuexunjiang";
@@ -76,4 +77,5 @@
   my.direnv.enable = true;
   my.zed-editor.enable = false;
   my.claude-code.enable = true;
+  my.ghostty.enable = true;
 }

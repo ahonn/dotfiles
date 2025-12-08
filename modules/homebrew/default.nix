@@ -38,6 +38,7 @@ in
       "fork"
       "orbstack"
       "tailscale"
+      "ghostty"
       "BarutSRB/tap/hyprspace"
     ];
   };
