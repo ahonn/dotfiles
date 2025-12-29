@@ -3,10 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     home-manager = {
@@ -34,68 +37,56 @@
     self,
     nix-darwin,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     nix-homebrew,
-    homebrew-core,
-    homebrew-cask,
-    homebrew-bundle,
     ...
   }:
   let
+    system = "aarch64-darwin";
     user = {
       username = "yuexunjiang";
       homeDirectory = "/Users/yuexunjiang";
     };
-
-    configuration = { pkgs, ... }: {
-      # Disable nix-darwin's Nix management for Determinate Systems compatibility
-      nix.enable = false;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 4;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages = with pkgs; [];
-      programs.zsh.enable = true;
-
-      users.users.${user.username} = {
-        name = user.username;
-        home = user.homeDirectory;
-        shell = pkgs.zsh;
-      };
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
     };
   in
   {
-    darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
-      specialArgs = {
-        inherit inputs;
-      };
+    darwinConfigurations.workstation = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs self user; };
       modules = [
-        configuration
-        ({ pkgs, ... }: {
-          nixpkgs.config.allowUnfree = true;
-        })
-        home-manager.darwinModules.home-manager  {
+        ./hosts/workstation/default.nix
+        home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
-          home-manager.users.${user.username} = import ./modules/home-manager;
+          home-manager.users.${user.username} = import ./hosts/workstation/home.nix;
         }
         nix-homebrew.darwinModules.nix-homebrew
-        ./modules/homebrew
+        ./hosts/workstation/homebrew.nix
         ./modules/darwin
       ];
     };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.macos.pkgs;
+    darwinConfigurations.homelab = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs self user pkgs-stable; };
+      modules = [
+        ./hosts/homelab/default.nix
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.verbose = true;
+          home-manager.extraSpecialArgs = { inherit pkgs-stable; };
+          home-manager.users.${user.username} = import ./hosts/homelab/home.nix;
+        }
+        nix-homebrew.darwinModules.nix-homebrew
+        ./hosts/homelab/homebrew.nix
+        ./hosts/homelab/darwin.nix
+      ];
+    };
+
+    darwinPackages = self.darwinConfigurations.workstation.pkgs;
   };
 }
