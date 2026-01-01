@@ -42,8 +42,8 @@ in {
       zplug = {
         enable = true;
         plugins = [
-          { name = "plugins/git"; tags = [ from:oh-my-zsh ];}
-          { name = "plugins/z"; tags = [ from:oh-my-zsh ];}
+          { name = "plugins/git"; tags = [ "from:oh-my-zsh" ];}
+          { name = "plugins/z"; tags = [ "from:oh-my-zsh" ];}
           { name = "jeffreytse/zsh-vi-mode"; }
           { name = "birdhackor/zsh-exa-ls-plugin"; }
         ];
