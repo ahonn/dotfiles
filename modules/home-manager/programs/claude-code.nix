@@ -65,9 +65,9 @@ in {
       };
     };
 
-    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
-    home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/commands";
-    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/agents";
-    home.file.".claude/skills/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/skills";
+    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+    home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/commands";
+    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/agents";
+    home.file.".claude/skills/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/skills";
   };
 }
