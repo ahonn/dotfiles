@@ -1,0 +1,27 @@
+#!/bin/bash
+# Search for a library in Context7
+# Usage: context7-search <library-name> [query]
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: context7-search <library-name> [query]" >&2
+  echo "Example: context7-search react 'useState hooks'" >&2
+  exit 1
+fi
+
+if [ -z "$CONTEXT7_API_KEY" ]; then
+  echo "Error: CONTEXT7_API_KEY not set" >&2
+  echo "Run: fetch-secrets" >&2
+  exit 1
+fi
+
+LIBRARY_NAME="$1"
+QUERY="${2:-$1}"
+
+# URL encode the parameters
+ENCODED_LIBRARY=$(echo -n "$LIBRARY_NAME" | jq -sRr @uri)
+ENCODED_QUERY=$(echo -n "$QUERY" | jq -sRr @uri)
+
+curl -s "https://context7.com/api/v2/libs/search?libraryName=${ENCODED_LIBRARY}&query=${ENCODED_QUERY}" \
+  -H "Authorization: Bearer $CONTEXT7_API_KEY"

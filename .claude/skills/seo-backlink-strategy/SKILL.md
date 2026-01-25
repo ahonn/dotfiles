@@ -1,8 +1,8 @@
 ---
 name: seo-backlink-strategy
-description: Plan and execute backlink acquisition strategies to build domain authority. Use when developing link building campaigns, analyzing competitor backlinks, or deciding which link building tactics to prioritize based on available resources.
+description: "Backlink acquisition strategies. Use when: developing link building campaigns, analyzing competitor backlinks. Triggers on: 'backlinks', 'link building', 'domain authority'."
 allowed-tools:
-  - WebSearch
+  - webfetch
   - Read
 ---
 

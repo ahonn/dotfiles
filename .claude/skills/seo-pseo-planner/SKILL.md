@@ -1,8 +1,8 @@
 ---
 name: seo-pseo-planner
-description: Plan and design Programmatic SEO (PSEO) strategies for scalable content generation. Use when planning to create hundreds of pages automatically, building content directories, galleries, or curation sites. Helps identify opportunities, design page structures, and plan data pipelines.
+description: "Programmatic SEO strategies. Use when: creating scalable content, building directories/galleries. Triggers on: 'PSEO', 'programmatic SEO', 'content at scale'."
 allowed-tools:
-  - WebSearch
+  - webfetch
   - Read
   - Write
   - mcp__gsc__search_analytics

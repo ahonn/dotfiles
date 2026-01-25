@@ -4,91 +4,70 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a **nix-darwin dotfiles repository** that manages a complete macOS development environment using Nix flakes. It provides declarative system configuration through modular Nix expressions.
+nix-darwin dotfiles repository managing macOS development environments via Nix flakes. Supports multiple hosts with shared base modules and host-specific overrides.
 
 ## Essential Commands
 
-### System Configuration
 ```bash
-# Apply configuration changes (main command)
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#macos
+# Apply configuration (workstation - primary dev machine)
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#workstation
 
-# Update all flake inputs
+# Apply configuration (homelab - Mac Mini server)
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#homelab
+
+# Update flake inputs
 nix flake update
 
-# Check configuration without applying
+# Validate without applying
 nix flake check
+
+# Fetch secrets from 1Password (run after rebuild or manually)
+fetch-secrets
 ```
 
-### Git Workflow
-This repository uses conventional commits via cz-cli:
-```bash
-# Create conventional commits
-cz commit
-# or
-git cz
-```
+Git uses conventional commits via `cz commit` or `git cz`.
 
 ## Architecture
 
-### Modular Structure
-- **flake.nix**: Main entry point defining system configuration
-- **modules/darwin/**: macOS system-level settings
-- **modules/home-manager/**: User-level program configurations
-- **modules/homebrew/**: Homebrew package management
-- **config/**: Direct application configuration files (nvim, hyprspace, zed)
-- **symlink/**: Dotfiles managed via out-of-store symlinks
+### Host Configuration Flow
+```
+flake.nix
+├── hosts/workstation/     # Primary dev machine
+│   ├── home.nix          # Imports base + workstation programs
+│   └── homebrew.nix      # Workstation-specific casks/brews
+└── hosts/homelab/         # Mac Mini (macOS 13, uses stable neovim)
+    ├── home.nix
+    └── homebrew.nix
+```
 
-### Program Configuration Pattern
-Each program follows this pattern in `modules/home-manager/programs/`:
-- Individual `.nix` file per program
-- Enable/disable via `services.{program}.enable = true/false` in `default.nix`
-- Configuration either inline in Nix or referencing files in `config/`
+### Module Layers
+- **modules/darwin/**: System-level (nix settings, system defaults)
+- **modules/home-manager/base.nix**: Shared user config (zsh, git, tmux, starship, direnv, claude-code)
+- **modules/home-manager/programs/**: Individual program modules
+- **modules/homebrew/base.nix**: Shared homebrew config
 
-### Key Services
-All services are toggled in `modules/home-manager/default.nix`:
-- **neovim**: Primary editor with extensive Lua configuration
-- **zsh**: Shell with starship prompt
-- **git**: Version control with difftastic integration
-- **tmux**: Terminal multiplexer
-- **hyprspace**: Tiling window manager (enhanced AeroSpace fork)
-- **alacritty**: Terminal emulator
-- **claude-code**: Claude Code CLI integration
+### Program Toggle Pattern
+Programs use `my.{program}.enable` in host's `home.nix`:
+```nix
+my.neovim.enable = true;      # workstation: unstable neovim
+my.neovim-stable.enable = true; # homelab: stable for macOS 13
+my.hyprspace.enable = true;
+```
 
-## Development Environment
+### File Types
+| Location | Rebuild Required | Use Case |
+|----------|-----------------|----------|
+| `modules/**/*.nix` | Yes | Nix expressions |
+| `config/` | No | App configs (nvim, hyprspace, zed) |
+| `symlink/` | No | Dotfiles via mkOutOfStoreSymlink |
 
-### Core Tools
-- **Editor**: Neovim (config in `config/nvim/`) with LSP, treesitter, and plugin ecosystem
-- **Shell**: Zsh with starship prompt and custom aliases
-- **Terminal**: Alacritty with tmux integration
-- **Languages**: Node.js, Python (via homebrew), Rust (via rustup)
-- **Git**: Enhanced with difftastic for diffs, conventional commits for messages
+## Secrets Management
 
-### Neovim Configuration
-The Neovim setup (`config/nvim/`) is extensively configured with:
-- Lazy.nvim for plugin management
-- LSP integration with multiple language servers
-- Treesitter for syntax highlighting
-- Telescope for fuzzy finding
-- Git integration (gitsigns, git-blame)
-- Copilot for AI assistance
-
-## File Management
-
-### Symlink Strategy
-Dotfiles in `symlink/` are managed via `config.lib.file.mkOutOfStoreSymlink` allowing:
-- Live editing without rebuilds
-- Version control of configuration files
-- Consistent management across different file types
-
-### Configuration Updates
-- **Nix modules**: Require system rebuild after changes
-- **Direct configs** (nvim, hyprspace): Take effect immediately
-- **Symlinked files**: Changes reflected immediately
-
-## Platform Specifics
-
-- **Target**: Apple Silicon macOS (aarch64-darwin)
-- **Nix**: Flakes enabled with experimental features
-- **Homebrew**: Integrated via nix-homebrew for macOS-specific applications
-- **Fonts**: Nerd Fonts (Fira Code, JetBrains Mono) managed via Nix
+Secrets fetched from 1Password via `fetch-secrets` script. Configure in `modules/home-manager/base.nix`:
+```nix
+opSecrets = {
+  CONTEXT7_API_KEY = "op://Personal/Context7/credential";
+  EXA_API_KEY = "op://Personal/Exa/credential";
+};
+```
+Secrets stored in `~/.config/nix-secrets/env.zsh`, sourced by zsh.

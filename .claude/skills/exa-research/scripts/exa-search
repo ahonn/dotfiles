@@ -1,0 +1,118 @@
+#!/bin/bash
+# Search the web using Exa AI
+# Usage: exa-search <query> [options]
+
+set -e
+
+usage() {
+  cat >&2 <<EOF
+Usage: exa-search <query> [options]
+
+Options:
+  -t, --type TYPE        Search type: auto (default), fast, deep, neural
+  -n, --num NUM          Number of results (default: 10, max: 100)
+  -c, --category CAT     Filter by category: company, research paper, news, pdf,
+                         github, tweet, personal site, financial report, people
+  --include-domains D    Comma-separated domains to include
+  --exclude-domains D    Comma-separated domains to exclude
+  --start-date DATE      Filter by publish date (ISO 8601)
+  --end-date DATE        Filter by publish date (ISO 8601)
+  --text                 Include full text in results
+  --context              Return combined context for LLM
+  -h, --help             Show this help
+
+Examples:
+  exa-search "latest LLM research" --type deep --text
+  exa-search "React 19 features" --category news --num 5
+  exa-search "OpenAI competitors" --include-domains techcrunch.com,wired.com
+EOF
+  exit 1
+}
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+  usage
+fi
+
+if [ -z "$EXA_API_KEY" ]; then
+  echo "Error: EXA_API_KEY not set" >&2
+  echo "Run: fetch-secrets" >&2
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  usage
+fi
+
+QUERY="$1"
+shift
+
+# Defaults
+TYPE="auto"
+NUM_RESULTS=10
+CATEGORY=""
+INCLUDE_DOMAINS=""
+EXCLUDE_DOMAINS=""
+START_DATE=""
+END_DATE=""
+TEXT="false"
+CONTEXT="false"
+
+# Parse options
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -t|--type) TYPE="$2"; shift 2 ;;
+    -n|--num) NUM_RESULTS="$2"; shift 2 ;;
+    -c|--category) CATEGORY="$2"; shift 2 ;;
+    --include-domains) INCLUDE_DOMAINS="$2"; shift 2 ;;
+    --exclude-domains) EXCLUDE_DOMAINS="$2"; shift 2 ;;
+    --start-date) START_DATE="$2"; shift 2 ;;
+    --end-date) END_DATE="$2"; shift 2 ;;
+    --text) TEXT="true"; shift ;;
+    --context) CONTEXT="true"; shift ;;
+    -h|--help) usage ;;
+    *) echo "Unknown option: $1" >&2; usage ;;
+  esac
+done
+
+# Build JSON payload
+JSON=$(jq -n \
+  --arg query "$QUERY" \
+  --arg type "$TYPE" \
+  --argjson numResults "$NUM_RESULTS" \
+  --argjson text "$TEXT" \
+  --argjson context "$CONTEXT" \
+  '{
+    query: $query,
+    type: $type,
+    numResults: $numResults,
+    text: $text,
+    context: $context
+  }')
+
+# Add optional fields
+if [ -n "$CATEGORY" ]; then
+  JSON=$(echo "$JSON" | jq --arg cat "$CATEGORY" '. + {category: $cat}')
+fi
+
+if [ -n "$INCLUDE_DOMAINS" ]; then
+  IFS=',' read -ra DOMAINS <<< "$INCLUDE_DOMAINS"
+  JSON=$(echo "$JSON" | jq --argjson domains "$(printf '%s\n' "${DOMAINS[@]}" | jq -R . | jq -s .)" '. + {includeDomains: $domains}')
+fi
+
+if [ -n "$EXCLUDE_DOMAINS" ]; then
+  IFS=',' read -ra DOMAINS <<< "$EXCLUDE_DOMAINS"
+  JSON=$(echo "$JSON" | jq --argjson domains "$(printf '%s\n' "${DOMAINS[@]}" | jq -R . | jq -s .)" '. + {excludeDomains: $domains}')
+fi
+
+if [ -n "$START_DATE" ]; then
+  JSON=$(echo "$JSON" | jq --arg date "$START_DATE" '. + {startPublishedDate: $date}')
+fi
+
+if [ -n "$END_DATE" ]; then
+  JSON=$(echo "$JSON" | jq --arg date "$END_DATE" '. + {endPublishedDate: $date}')
+fi
+
+curl -s "https://api.exa.ai/search" \
+  -H "x-api-key: $EXA_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "$JSON"

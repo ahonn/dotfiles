@@ -20,7 +20,6 @@ in
   home.packages = with pkgs; [
     cloc
     python3Packages.pipx
-    nodePackages.repomix
   ];
 
   home.file = {

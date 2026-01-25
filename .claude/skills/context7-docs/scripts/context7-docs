@@ -1,0 +1,29 @@
+#!/bin/bash
+# Get documentation from Context7
+# Usage: context7-docs <library-id> <query> [type]
+
+set -e
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "Usage: context7-docs <library-id> <query> [type]" >&2
+  echo "Example: context7-docs /vercel/next.js 'server actions'" >&2
+  echo "Types: txt (default), json" >&2
+  exit 1
+fi
+
+if [ -z "$CONTEXT7_API_KEY" ]; then
+  echo "Error: CONTEXT7_API_KEY not set" >&2
+  echo "Run: fetch-secrets" >&2
+  exit 1
+fi
+
+LIBRARY_ID="$1"
+QUERY="$2"
+TYPE="${3:-txt}"
+
+# URL encode the parameters
+ENCODED_LIBRARY_ID=$(echo -n "$LIBRARY_ID" | jq -sRr @uri)
+ENCODED_QUERY=$(echo -n "$QUERY" | jq -sRr @uri)
+
+curl -s "https://context7.com/api/v2/context?libraryId=${ENCODED_LIBRARY_ID}&query=${ENCODED_QUERY}&type=${TYPE}" \
+  -H "Authorization: Bearer $CONTEXT7_API_KEY"

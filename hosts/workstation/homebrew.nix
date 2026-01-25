@@ -5,6 +5,7 @@
   homebrew = {
     brews = [
       "gh"
+      "repomix"
       "uv"
     ];
 

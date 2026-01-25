@@ -1,11 +1,7 @@
 ---
 name: react-best-practices
-description: Guide React development with best practices from react.dev and Vercel Engineering. Use when reviewing code, debugging performance, or making architectural decisions.
-allowed-tools:
-  - Read
-  - Grep
-  - mcp__context7__resolve-library-id
-  - mcp__context7__query-docs
+description: "React best practices from react.dev and Vercel. Use when: reviewing code, debugging performance. Triggers on: React performance, re-render, bundle size."
+user-invocable: false
 ---
 
 # React Best Practices

@@ -1,6 +1,8 @@
 ---
-description: Create a conventional commit following the Conventional Commits 1.0.0 specification
-allowed-tools: bash
+name: commit
+description: "Create conventional commits. Use when: committing staged changes. Triggers on: '/commit', 'conventional commit'."
+allowed-tools: Bash
+disable-model-invocation: true
 argument-hint: <type>[scope]: <description> [optional body] [optional footer]
 ---
 
@@ -10,8 +12,8 @@ I'll help you create a commit following the Conventional Commits 1.0.0 specifica
 
 ## Checking current changes
 
-!git status --short
-!git diff --cached --stat
+!`git status --short`
+!`git diff --cached --stat`
 
 ## Analyzing changes
 
@@ -57,10 +59,12 @@ Based on the staged changes and any specific requirements in "$ARGUMENTS", I'll:
 5. Include any necessary footers (BREAKING CHANGE, Refs, etc.)
 
 Then execute the commit with:
-!git commit -m "$(cat <<'EOF'
+```bash
+git commit -m "$(cat <<'EOF'
 [generated commit message here]
 EOF
 )"
+```
 
 **Important**: The commit message will be clean and professional, containing:
 

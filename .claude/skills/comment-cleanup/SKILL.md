@@ -1,10 +1,12 @@
 ---
-description: Clean up file and add appropriate comments following documentation philosophy
+name: comment-cleanup
+description: "Clean up code comments. Use when: improving comment quality, removing redundant comments. Triggers on: 'clean up comments', 'comment cleanup'."
 allowed-tools: Read, Edit, Glob, Grep
+disable-model-invocation: true
 argument-hint: <file_path>
 ---
 
-# Documentation Cleanup Command
+# Comment Cleanup
 
 I'll analyze and improve the documentation in the specified file following strategic documentation principles.
 

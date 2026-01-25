@@ -1,8 +1,8 @@
 ---
 name: seo-keyword-analysis
-description: Analyze keywords for SEO potential using Google Search Console data and proven SEO methodology. Use when evaluating keywords, validating niches, analyzing search performance, finding quick wins, or deciding whether to pursue a keyword opportunity.
+description: "Keyword analysis using GSC data. Use when: evaluating keywords, validating niches, finding quick wins. Triggers on: 'keyword analysis', 'SEO analysis', 'quick wins'."
 allowed-tools:
-  - WebSearch
+  - webfetch
   - Read
   - mcp__gsc__list_sites
   - mcp__gsc__search_analytics
