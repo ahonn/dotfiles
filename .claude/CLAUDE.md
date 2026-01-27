@@ -104,6 +104,7 @@ Assume code is processed by auto-formatters (`prettier`, `biome`, `cargo fmt`).
 - **Core rule**: WHY over WHAT, zero redundancy
 - **DO**: Design decisions, non-obvious behavior, interface contracts, gotchas
 - **DON'T**: What code literally does, well-named variables, standard patterns
+- **Post-edit cleanup**: After modifying code files, run `/comment-cleanup <file_path>` on changed files to ensure comment quality
 
 ### React Performance (Quick Reference)
 - **Critical**: Eliminate waterfalls, parallel data fetching, avoid barrel imports
@@ -140,4 +141,5 @@ The following skills contain detailed rules and references, automatically applie
 | code-quality | Writing/reviewing code | `.claude/skills/code-quality/` |
 | plan-code-workflow | Non-trivial implementations | `.claude/skills/plan-code-workflow/` |
 | comment-guidelines | Modifying code | `.claude/skills/comment-guidelines/` |
+| comment-cleanup | After modifying code (run on changed files) | `.claude/skills/comment-cleanup/` |
 | react-best-practices | React-related work | `.claude/skills/react-best-practices/` |
