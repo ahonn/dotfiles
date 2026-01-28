@@ -143,3 +143,4 @@ The following skills contain detailed rules and references, automatically applie
 | comment-guidelines | Modifying code | `.claude/skills/comment-guidelines/` |
 | comment-cleanup | After modifying code (run on changed files) | `.claude/skills/comment-cleanup/` |
 | react-best-practices | React-related work | `.claude/skills/react-best-practices/` |
+| rust-design-patterns | Rust code, borrow checker issues, API design | `.claude/skills/rust-design-patterns/` |
