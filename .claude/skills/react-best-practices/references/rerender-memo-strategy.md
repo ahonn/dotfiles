@@ -6,6 +6,26 @@
 
 ---
 
+## React Compiler Changes Everything
+
+> **React 19+**: If using [React Compiler](react-compiler.md), skip manual memoization. The compiler handles `memo()`, `useMemo()`, and `useCallback()` automatically.
+
+```javascript
+// With React Compiler - just write simple code
+function Parent() {
+  const [count, setCount] = useState(0);
+  const items = expensiveSort(data);
+  const handleClick = (id) => selectItem(id);
+
+  return <ExpensiveList items={items} onClick={handleClick} />;
+}
+// Compiler auto-memoizes everything correctly
+```
+
+**Without Compiler**: Continue reading for manual optimization strategies.
+
+---
+
 ## When to Use memo()
 
 ### Good Candidates
@@ -202,4 +222,5 @@ const MemoizedComponent = memo(
 
 ## Related Rules
 
+- [react-compiler.md](react-compiler.md) - Automatic memoization (React 19+)
 - [rerender-context-splitting.md](rerender-context-splitting.md)
