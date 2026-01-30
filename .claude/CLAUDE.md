@@ -61,8 +61,14 @@ Assume code is processed by auto-formatters (`prettier`, `biome`, `cargo fmt`).
 - For low-level errors (syntax, formatting, missing imports): fix directly without asking
 - Only seek confirmation for: large deletions, API changes, schema modifications, git history rewrites
 
-### Response Structure (Non-Trivial Tasks)
+### Response Structure
 
+**Always start with context header**:
+```
+[Complexity: trivial/moderate/complex] [Mode: Direct/Plan/Code] [Risk: low/high]
+```
+
+For non-trivial tasks, then structure as:
 1. **Direct Conclusion** — what should be done
 2. **Brief Reasoning** — key premises, trade-offs
 3. **Alternative Options** — 1–2 alternatives with applicable scenarios
@@ -106,9 +112,18 @@ Assume code is processed by auto-formatters (`prettier`, `biome`, `cargo fmt`).
 - **DON'T**: What code literally does, well-named variables, standard patterns
 - **Post-edit cleanup**: After modifying code files, run `/comment-cleanup <file_path>` on changed files to ensure comment quality
 
-### React Performance (Quick Reference)
+### React Best Practices (Quick Reference)
+
+**Performance Priority**:
 - **Critical**: Eliminate waterfalls, parallel data fetching, avoid barrel imports
 - **High**: Dynamic imports, preload on intent, strategic memo(), server caching
+
+**Effect Decision (CRITICAL - most common anti-pattern)**:
+- Derived data? → Compute during render, NOT effect + state
+- User event response? → Event handler, NOT effect
+- Expensive calculation? → useMemo, NOT effect + state
+- Reset state on prop change? → Use `key` prop, NOT effect
+- Sync with external system? → ✅ Effect is correct
 
 ---
 
