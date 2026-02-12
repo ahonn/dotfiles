@@ -9,10 +9,9 @@ let
   cfg = config.my.claude-code;
   dotfilesPath = "${config.home.homeDirectory}/.config/nix-darwin";
 
-  statuslineScript = pkgs.writeShellScript "claude-statusline" ''
+  statuslineScript = pkgs.writeShellScriptBin "claude-statusline" ''
     input=$(cat)
 
-    # ANSI colors
     RESET=$'\033[0m'
     CYAN=$'\033[1;36m'
     GREEN=$'\033[32m'
@@ -25,7 +24,6 @@ let
     DIR=$(echo "$input" | ${pkgs.jq}/bin/jq -r '.workspace.current_dir' | xargs basename)
     CONTEXT=$(echo "$input" | ${pkgs.jq}/bin/jq -r '.context_window.used_percentage // 0' | cut -d'.' -f1)
 
-    # Context color based on usage
     if [ "$CONTEXT" -lt 50 ]; then
       CTX_COLOR=$GREEN
     elif [ "$CONTEXT" -lt 80 ]; then
@@ -48,23 +46,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Claude Code user settings
-    home.file.".claude/settings.json" = {
-      text = builtins.toJSON {
-        "includeCoAuthoredBy" = false;
-        "env" = {
-          "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR" = "1";
-        };
-        "permissions" = {
-          "defaultMode" = "bypassPermissions";
-        };
-        "statusLine" = {
-          "type" = "command";
-          "command" = "${statuslineScript}";
-        };
-      };
-    };
+    home.packages = [ statuslineScript ];
 
+    home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
     home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
     home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/commands";
     home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/agents";

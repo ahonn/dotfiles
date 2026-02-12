@@ -1,0 +1,16 @@
+{
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true
+  },
+  "includeCoAuthoredBy": false,
+  "env": {
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
+  },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "claude-statusline"
+  }
+}
