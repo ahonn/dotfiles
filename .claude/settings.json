@@ -1,16 +1,19 @@
 {
-  "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true
-  },
-  "includeCoAuthoredBy": false,
   "env": {
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
   "statusLine": {
     "type": "command",
     "command": "claude-statusline"
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "ralph-loop@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
   }
 }
