@@ -35,14 +35,6 @@ in {
             source ~/env.zsh
           fi
 
-          # Source managed secrets from nix-darwin
-          # Auto-fetch if missing (interactive shell only)
-          if [[ -r ~/.config/nix-secrets/env.zsh ]]; then
-            source ~/.config/nix-secrets/env.zsh
-          elif [[ -o interactive ]] && command -v fetch-secrets &> /dev/null; then
-            echo "Secrets file missing. Running fetch-secrets..."
-            fetch-secrets && source ~/.config/nix-secrets/env.zsh
-          fi
 
           if [[ $(uname -m) == 'arm64' ]]; then
              eval "$(/opt/homebrew/bin/brew shellenv)"

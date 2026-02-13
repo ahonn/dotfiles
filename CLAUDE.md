@@ -20,9 +20,6 @@ nix flake update
 
 # Validate without applying
 nix flake check
-
-# Fetch secrets from 1Password (run after rebuild or manually)
-fetch-secrets
 ```
 
 Git uses conventional commits via `cz commit` or `git cz`.
@@ -60,14 +57,3 @@ my.hyprspace.enable = true;
 | `modules/**/*.nix` | Yes | Nix expressions |
 | `config/` | No | App configs (nvim, hyprspace, zed) |
 | `symlink/` | No | Dotfiles via mkOutOfStoreSymlink |
-
-## Secrets Management
-
-Secrets fetched from 1Password via `fetch-secrets` script. Configure in `modules/home-manager/base.nix`:
-```nix
-opSecrets = {
-  CONTEXT7_API_KEY = "op://Personal/Context7/credential";
-  EXA_API_KEY = "op://Personal/Exa/credential";
-};
-```
-Secrets stored in `~/.config/nix-secrets/env.zsh`, sourced by zsh.
