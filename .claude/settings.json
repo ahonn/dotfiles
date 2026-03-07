@@ -14,6 +14,8 @@
     "superpowers@superpowers-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "expo-app-design@expo-plugins": true,
+    "expo-deployment@expo-plugins": true
   }
 }
