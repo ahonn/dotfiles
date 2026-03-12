@@ -6,6 +6,7 @@
     brews = [
       "gh"
       "repomix"
+      "rtk"
       "uv"
     ];
 

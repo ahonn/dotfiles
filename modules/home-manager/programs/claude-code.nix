@@ -50,6 +50,8 @@ in {
 
     home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
     home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+    home.file.".claude/RTK.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/RTK.md";
+    home.file.".claude/hooks/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/hooks";
     home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/commands";
     home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/agents";
     home.file.".claude/skills/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/skills";

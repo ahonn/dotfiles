@@ -6,6 +6,19 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "claude-statusline"
@@ -16,6 +29,18 @@
     "sentry@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
     "expo-app-design@expo-plugins": true,
-    "expo-deployment@expo-plugins": true
-  }
+    "expo-deployment@expo-plugins": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "react-native-best-practices@callstack-agent-skills": true,
+    "impeccable@impeccable": true
+  },
+  "extraKnownMarketplaces": {
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
