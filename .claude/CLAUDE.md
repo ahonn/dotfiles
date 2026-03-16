@@ -10,8 +10,7 @@
 
 ## Language Rules
 
-- Explanations, discussions, analysis: **Simplified Chinese**
-- Code, comments, identifiers, commit messages: **English only**
+- Code, comments, identifiers, commit messages: **English only** (discussions use Chinese via `settings.json`)
 
 ---
 
