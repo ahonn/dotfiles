@@ -86,52 +86,13 @@ For non-trivial tasks, then structure as:
 
 ## Core Principles (Always Applied)
 
-### Reasoning Framework
+Detailed rules live in skills (loaded on demand). Below are one-line triggers — if relevant, load the full skill.
 
-- **Priority order**: Rules/constraints > Operation order > Prerequisites > User preferences
-- **Risk assessment**: Low-risk (proceed directly) vs high-risk (state risks, offer alternatives)
-- **Problem solving**: Form 1-3 hypotheses ordered by likelihood, verify most likely first
-- **Information sources**: Problem description > Code/errors > Constraints > Knowledge > Ask user (last resort)
-
-### Code Quality Standards
-
-- **Priority**: Readability/Maintainability > Correctness > Performance > Code length
-- **Complexity formula**: Dependencies + Obscurity = Complexity
-- **Watch for**: Change amplification, cognitive load, unknown unknowns
-- **Design**: Deep modules, information hiding, avoid classitis
-
-### Plan/Code Workflow
-
-| Complexity             | Strategy           |
-| ---------------------- | ------------------ |
-| Trivial (<10 lines)    | Answer directly    |
-| Moderate (single file) | Plan then Code     |
-| Complex (cross-module) | Must use Plan/Code |
-
-- **Plan mode**: Analyze top-down, list 1-3 options with pros/cons
-- **Code mode**: Concrete implementation, minimal reviewable changes
-
-### Comment Guidelines
-
-- **Core rule**: WHY over WHAT, zero redundancy
-- **DO**: Design decisions, non-obvious behavior, interface contracts, gotchas
-- **DON'T**: What code literally does, well-named variables, standard patterns
-- **Post-edit cleanup**: After modifying code files, run `/comment-cleanup <file_path>` on changed files to ensure comment quality
-
-### React Best Practices (Quick Reference)
-
-**Performance Priority**:
-
-- **Critical**: Eliminate waterfalls, parallel data fetching, avoid barrel imports
-- **High**: Dynamic imports, preload on intent, strategic memo(), server caching
-
-**Effect Decision (CRITICAL - most common anti-pattern)**:
-
-- Derived data? → Compute during render, NOT effect + state
-- User event response? → Event handler, NOT effect
-- Expensive calculation? → useMemo, NOT effect + state
-- Reset state on prop change? → Use `key` prop, NOT effect
-- Sync with external system? → ✅ Effect is correct
+- **Reasoning**: Prioritize constraints > operation order > prerequisites > preferences → `reasoning-framework` skill
+- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality` skill
+- **Workflow**: **MANDATORY Research → Plan → Code.** Never modify code without first searching codebase + docs → `deep-research` + `plan-code-workflow` skills
+- **Comments**: WHY over WHAT, zero redundancy; after edits run `/comment-cleanup` → `comment-guidelines` skill
+- **React**: Eliminate waterfalls, avoid unnecessary effects, check decision tree → `react-best-practices` skill
 
 ---
 
@@ -162,6 +123,7 @@ The following skills contain detailed rules and references, automatically applie
 
 | Skill                | Applied When                                 | Path                                   |
 | -------------------- | -------------------------------------------- | -------------------------------------- |
+| deep-research        | Before any moderate+ code modification       | `.claude/skills/deep-research/`        |
 | reasoning-framework  | Complex task analysis                        | `.claude/skills/reasoning-framework/`  |
 | code-quality         | Writing/reviewing code                       | `.claude/skills/code-quality/`         |
 | plan-code-workflow   | Non-trivial implementations                  | `.claude/skills/plan-code-workflow/`   |
