@@ -2,7 +2,6 @@
 name: commit
 description: "Create conventional commits. Use when: committing staged changes. Triggers on: '/commit', 'conventional commit'."
 allowed-tools: Bash
-disable-model-invocation: true
 argument-hint: <type>[scope]: <description> [optional body] [optional footer]
 ---
 
