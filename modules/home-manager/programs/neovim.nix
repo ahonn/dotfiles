@@ -15,6 +15,7 @@ in {
       withRuby = true;
       viAlias = true;
       vimAlias = true;
+      extraPackages = [ pkgs.tree-sitter ];
     };
 
     home.file = {
