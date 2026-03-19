@@ -16,4 +16,4 @@ jobs:
       - name: Check flake
         run: nix flake check
       - name: Check formatting
-        run: nix fmt -- --check .
+        run: nix fmt -- --ci .
