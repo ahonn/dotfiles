@@ -23,7 +23,8 @@ in
   ];
 
   home.file = {
-    ".prettierrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/prettierrc.symlink";
+    ".prettierrc".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/prettierrc.symlink";
   };
 
   # workstation-specific programs

@@ -1,8 +1,9 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.my.zed-editor;
-in {
+in
+{
   options.my.zed-editor = {
     enable = mkEnableOption "Zed high-performance code editor";
   };

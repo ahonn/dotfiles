@@ -1,14 +1,13 @@
-{ pkgs, ... }:
+{ user, ... }:
 {
-  imports = [];
+  system.primaryUser = user.username;
 
-  system.primaryUser = "yuexunjiang";
 
   # Dock configuration
   system.defaults.dock = {
     autohide = true;
     orientation = "left";
-    persistent-apps = [];
+    persistent-apps = [ ];
     show-recents = false;
     minimize-to-application = true;
     tilesize = 48;

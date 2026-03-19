@@ -1,4 +1,9 @@
-{ self, pkgs, user, ... }:
+{
+  self,
+  pkgs,
+  user,
+  ...
+}:
 {
   # Disable nix-darwin's Nix management for Determinate Systems compatibility
   nix.enable = false;
@@ -14,7 +19,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [ ];
   programs.zsh.enable = true;
 
   users.users.${user.username} = {

@@ -1,8 +1,9 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.my.ghostty;
-in {
+in
+{
   options.my.ghostty = {
     enable = mkEnableOption "Ghostty GPU-accelerated terminal emulator";
   };

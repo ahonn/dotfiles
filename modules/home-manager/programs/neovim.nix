@@ -1,8 +1,14 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.my.neovim;
-in {
+in
+{
   options.my.neovim = {
     enable = mkEnableOption "Neovim editor with language support and plugins";
   };
@@ -19,7 +25,8 @@ in {
     };
 
     home.file = {
-      ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
+      ".config/nvim".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
     };
   };
 }

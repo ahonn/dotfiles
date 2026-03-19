@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  user,
   ...
 }:
 let
@@ -16,8 +17,8 @@ in
     ./programs/claude-code.nix
   ];
 
-  home.username = "yuexunjiang";
-  home.homeDirectory = "/Users/yuexunjiang";
+  home.username = user.username;
+  home.homeDirectory = user.homeDirectory;
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
@@ -45,7 +46,8 @@ in
 
   home.file = {
     ".czrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/czrc.symlink";
-    ".editorconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/editorconfig.symlink";
+    ".editorconfig".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/editorconfig.symlink";
   };
 
   my.zsh.enable = true;

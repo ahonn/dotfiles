@@ -40,7 +40,8 @@ let
 
     echo "$DIM[$RESET$CYAN$MODEL$RESET$DIM]$RESET $GREEN$DIR$RESET$BRANCH $DIM|$RESET $CTX_COLOR$CONTEXT%$RESET"
   '';
-in {
+in
+{
   options = {
     my.claude-code.enable = mkEnableOption "Claude Code CLI configuration and settings";
   };
@@ -48,12 +49,19 @@ in {
   config = mkIf cfg.enable {
     home.packages = [ statuslineScript ];
 
-    home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
-    home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
-    home.file.".claude/RTK.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/RTK.md";
-    home.file.".claude/hooks/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/hooks";
-    home.file.".claude/commands/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/commands";
-    home.file.".claude/agents/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/agents";
-    home.file.".claude/skills/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/skills";
+    home.file.".claude/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
+    home.file.".claude/CLAUDE.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+    home.file.".claude/RTK.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/RTK.md";
+    home.file.".claude/hooks/".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/hooks";
+    home.file.".claude/commands/".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/commands";
+    home.file.".claude/agents/".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/agents";
+    home.file.".claude/skills/".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/skills";
   };
 }

@@ -1,41 +1,42 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.my.git;
   dotfilesPath = "${config.home.homeDirectory}/.config/nix-darwin";
-in {
-    options.my.git = {
-      enable = mkEnableOption "Git version control with difftastic integration";
-    };
+in
+{
+  options.my.git = {
+    enable = mkEnableOption "Git version control with difftastic integration";
+  };
 
-    config = mkIf cfg.enable {
-      programs.git = {
-        enable = true;
-        settings = {
-          user = {
-            name = "ahonn";
-            email = "yuexunjiang@gmail.com";
-          };
-          core = {
-            ignoreCase = false;
-            excludesfile = "~/.gitignore_global";
-          };
-          push = {
-            default = "current";
-          };
-          alias = {
-            cai = "!claude -p '/commit' --model haiku";
-          };
+  config = mkIf cfg.enable {
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "ahonn";
+          email = "yuexunjiang@gmail.com";
+        };
+        core = {
+          ignoreCase = false;
+          excludesfile = "~/.gitignore_global";
+        };
+        push = {
+          default = "current";
+        };
+        alias = {
+          cai = "!claude -p '/commit' --model haiku";
         };
       };
-
-      programs.difftastic = {
-        enable = true;
-        git.enable = true;
-      };
-
-      home.file.".gitignore_global" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/gitignore_global.symlink";
-      };
     };
-  }
+
+    programs.difftastic = {
+      enable = true;
+      git.enable = true;
+    };
+
+    home.file.".gitignore_global" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/gitignore_global.symlink";
+    };
+  };
+}

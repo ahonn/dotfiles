@@ -31,62 +31,83 @@
     };
 
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{
-    self,
-    nix-darwin,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    nix-homebrew,
-    ...
-  }:
-  let
-    system = "aarch64-darwin";
-    user = {
-      username = "yuexunjiang";
-      homeDirectory = "/Users/yuexunjiang";
-    };
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in
-  {
-    darwinConfigurations.workstation = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs self user; };
-      modules = [
-        ./hosts/workstation/default.nix
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.verbose = true;
-          home-manager.users.${user.username} = import ./hosts/workstation/home.nix;
-        }
-        nix-homebrew.darwinModules.nix-homebrew
-        ./hosts/workstation/homebrew.nix
-        ./modules/darwin
-      ];
-    };
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      nix-homebrew,
+      treefmt-nix,
+      ...
+    }:
+    let
+      system = "aarch64-darwin";
+      user = {
+        username = "yuexunjiang";
+        homeDirectory = "/Users/yuexunjiang";
+      };
 
-    darwinConfigurations.homelab = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs self user pkgs-stable; };
-      modules = [
-        ./hosts/homelab/default.nix
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.verbose = true;
-          home-manager.extraSpecialArgs = { inherit pkgs-stable; };
-          home-manager.users.${user.username} = import ./hosts/homelab/home.nix;
-        }
-        nix-homebrew.darwinModules.nix-homebrew
-        ./hosts/homelab/homebrew.nix
-        ./hosts/homelab/darwin.nix
+      overlays = [
+        (_final: prev: {
+          stable = import nixpkgs-stable {
+            inherit (prev) system;
+            inherit (prev) config;
+          };
+        })
       ];
-    };
 
-    darwinPackages = self.darwinConfigurations.workstation.pkgs;
-  };
+      mkDarwinConfig =
+        {
+          hostname,
+          extraModules ? [ ],
+        }:
+        nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs self user; };
+          modules = [
+            { nixpkgs.overlays = overlays; }
+            ./hosts/${hostname}/default.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.verbose = true;
+              home-manager.extraSpecialArgs = { inherit user; };
+              home-manager.users.${user.username} = import ./hosts/${hostname}/home.nix;
+            }
+            nix-homebrew.darwinModules.nix-homebrew
+            ./hosts/${hostname}/homebrew.nix
+            ./modules/darwin
+          ]
+          ++ extraModules;
+        };
+
+      treefmtEval = treefmt-nix.lib.evalModule (import nixpkgs { inherit system; }) {
+        programs.nixfmt.enable = true;
+        programs.deadnix.enable = true;
+        programs.statix.enable = true;
+      };
+    in
+    {
+      darwinConfigurations.workstation = mkDarwinConfig {
+        hostname = "workstation";
+      };
+
+      darwinConfigurations.homelab = mkDarwinConfig {
+        hostname = "homelab";
+        extraModules = [ ./hosts/homelab/darwin.nix ];
+      };
+
+      darwinPackages = self.darwinConfigurations.workstation.pkgs;
+      formatter.${system} = treefmtEval.config.build.wrapper;
+      checks.${system}.formatting = treefmtEval.config.build.check self;
+    };
 }

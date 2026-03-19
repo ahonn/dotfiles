@@ -1,8 +1,9 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.my.starship;
-in {
+in
+{
   options.my.starship = {
     enable = mkEnableOption "Starship cross-shell prompt";
   };

@@ -1,8 +1,9 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.my.direnv;
-in {
+in
+{
   options.my.direnv = {
     enable = mkEnableOption "direnv for automatic environment loading";
   };
@@ -12,8 +13,8 @@ in {
       enable = true;
       config = {
         global = {
-            log_format = "-";
-            log_filter = "^$";
+          log_format = "-";
+          log_filter = "^$";
         };
       };
     };
