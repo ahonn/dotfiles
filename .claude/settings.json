@@ -2,8 +2,6 @@
   "env": {
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
-  "effortLevel": "high",
-  "language": "chinese",
   "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "bypassPermissions"
@@ -34,7 +32,10 @@
     "expo-deployment@expo-plugins": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "react-native-best-practices@callstack-agent-skills": true,
-    "impeccable@impeccable": true
+    "impeccable@impeccable": true,
+    "skill-creator@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "claude-seo@claude-seo": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -42,7 +43,15 @@
         "source": "github",
         "repo": "pbakaus/impeccable"
       }
+    },
+    "claude-seo": {
+      "source": {
+        "source": "github",
+        "repo": "ahonn/claude-seo"
+      }
     }
   },
+  "language": "chinese",
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true
 }

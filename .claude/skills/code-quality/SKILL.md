@@ -58,3 +58,21 @@ When identifying code smells:
 - **Mask exceptions** at low levels to protect higher layers
 - **Aggregate exceptions** with general-purpose handlers
 - **Just crash** for rare, unrecoverable errors
+
+## Comment Standards
+
+- **Self-documenting code first** — improve naming and structure before adding comments
+- **WHY over WHAT** — comments explain intent and reasoning, not mechanics
+- **Reduce cognitive load** — make implicit knowledge explicit
+- **Zero redundancy** — never restate what code already expresses
+
+**DO comment**: design decisions/trade-offs, non-obvious behavior, interface contracts, gotchas/edge cases, cross-module dependencies
+
+**DON'T comment**: self-evident code, well-named variables/functions, standard patterns, implementation details visible in code
+
+When modifying code:
+1. **Remove** comments that restate what code does
+2. **Keep** comments that explain WHY
+3. **Add** comments only for non-obvious behavior or design decisions
+4. **Update** stale comments when code changes invalidate them
+5. **Never** add comments just to fill space or appear thorough

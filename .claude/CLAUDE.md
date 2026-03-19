@@ -49,10 +49,9 @@ For non-trivial tasks:
 
 Detailed rules in skills (loaded on demand). One-line triggers below:
 
-- **Workflow**: **MANDATORY Research → Plan → Code.** Never modify code without first searching codebase + docs → `deep-research` + `plan-code-workflow`
-- **Reasoning**: Constraints > operation order > prerequisites > preferences → `reasoning-framework`
-- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`
-- **Comments**: WHY over WHAT, zero redundancy; after edits run `/comment-cleanup` → `comment-guidelines`
+- **Workflow**: **MANDATORY Research → Plan → Code.** Reasoning, research, planning unified → `slow-is-fast`
+- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding, comment standards → `code-quality`
+- **Comments**: After edits run `/comment-cleanup` on changed files → `comment-cleanup`
 - **React**: Eliminate waterfalls, avoid unnecessary effects → `react-best-practices`
 - **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
 
@@ -62,11 +61,8 @@ Detailed rules in skills (loaded on demand). One-line triggers below:
 
 | Skill                | Applied When                           |
 | -------------------- | -------------------------------------- |
-| deep-research        | Before any moderate+ code modification |
-| reasoning-framework  | Complex task analysis                  |
+| slow-is-fast         | Before any moderate+ code modification |
 | code-quality         | Writing/reviewing code                 |
-| plan-code-workflow   | Non-trivial implementations            |
-| comment-guidelines   | Modifying code                         |
 | comment-cleanup      | After modifying code (run on changed files) |
 | react-best-practices | React-related work                     |
 | rust-design-patterns | Rust code, borrow checker, API design  |
