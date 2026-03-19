@@ -2,7 +2,6 @@
 {
   system.primaryUser = user.username;
 
-
   # Dock configuration
   system.defaults.dock = {
     autohide = true;
