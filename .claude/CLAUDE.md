@@ -27,7 +27,7 @@ For non-trivial tasks:
 
 1. **Direct Conclusion** → 2. **Brief Reasoning** → 3. **Alternative Options** (1-2) → 4. **Next Steps**
 
-**Style**: No beginner explanations. Fix trivial errors (syntax, imports) directly without asking. Only confirm for: large deletions, API changes, schema changes, git history rewrites.
+**Style**: No beginner explanations. Only confirm for: large deletions, API changes, schema changes, git history rewrites.
 
 ---
 
@@ -48,19 +48,23 @@ For non-trivial tasks:
 
 ## Core Principles
 
-Detailed rules in skills (loaded on demand). One-line triggers below:
-
+### Planning & Execution
 - **Workflow**: **MANDATORY Research → Plan → Code.** Reasoning, research, planning unified → `slow-is-fast`
-- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding, comment standards → `code-quality`
-- **Comments**: After edits run `/comment-cleanup` on changed files → `comment-cleanup`
-- **React**: Eliminate waterfalls, avoid unnecessary effects → `react-best-practices`
-- **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
-- **Subagents**: Use liberally to keep main context clean. Offload research, exploration, and parallel analysis. One task per subagent for focused execution
-- **Autonomous fixing**: Bugs, failing tests, CI errors — diagnose and fix directly. No hand-holding; zero context-switching from user
-- **Debugging**: Reproduce first, hypothesize second, verify third. Never apply speculative fixes — prove the root cause before changing code
-- **Self-review**: Before presenting work as done, self-check: diff clean? Requirements met? Edge cases handled? No regressions?
-- **Review rigor**: When receiving code review feedback, verify technical correctness before implementing. Don't blindly agree — push back if the suggestion is wrong
 - **Plan checkpoints**: For multi-step plans, pause and review after each phase. Don't execute all steps without checking intermediate results
+- **Subagents**: Use liberally to keep main context clean. Offload research, exploration, and parallel analysis. One task per subagent
+
+### Coding Standards
+- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`
+- **Complete by default**: When AI marginal cost is near-zero, default to complete implementation — full test coverage, proper error handling, cleanup of related dead code
+- **Comments**: After edits run `/comment-cleanup` on changed files → `comment-cleanup`
+- **React**: Eliminate waterfalls, ban direct useEffect → `react-best-practices`, `no-useeffect`
+- **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
+
+### Quality & Fixing
+- **Fix directly**: Trivial errors, dead code, stale imports, failing tests, CI errors — diagnose and fix without asking. Only confirm genuinely ambiguous decisions
+- **Debugging**: Reproduce first, hypothesize second, verify third. Never apply speculative fixes — prove the root cause
+- **Self-review**: Before presenting work as done: diff clean? Requirements met? Edge cases handled? No regressions?
+- **Review rigor**: When receiving review feedback, verify technical correctness before implementing. Push back if the suggestion is wrong
 
 ---
 
