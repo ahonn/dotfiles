@@ -37,6 +37,7 @@ in
     cz-cli
     codex
     rustup
+    bun
     nodejs
     python3
     nodePackages.conventional-changelog-cli
