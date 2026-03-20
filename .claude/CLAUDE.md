@@ -10,7 +10,8 @@
 
 ## Language Rules
 
-- Code, comments, identifiers, commit messages: **English only** (discussions use Chinese via `settings.json`)
+- Explanations, discussions, analysis: **Simplified Chinese**
+- Code, comments, identifiers, commit messages: **English only**
 
 ---
 
@@ -40,7 +41,7 @@ For non-trivial tasks:
 
 ## Testing
 
-- Non-trivial logic: prioritize adding/updating tests
+- Non-trivial logic: write/update tests **before** implementation (TDD mindset). Red → Green → Refactor
 - Never claim to have actually run tests
 
 ---
@@ -54,6 +55,12 @@ Detailed rules in skills (loaded on demand). One-line triggers below:
 - **Comments**: After edits run `/comment-cleanup` on changed files → `comment-cleanup`
 - **React**: Eliminate waterfalls, avoid unnecessary effects → `react-best-practices`
 - **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
+- **Subagents**: Use liberally to keep main context clean. Offload research, exploration, and parallel analysis. One task per subagent for focused execution
+- **Autonomous fixing**: Bugs, failing tests, CI errors — diagnose and fix directly. No hand-holding; zero context-switching from user
+- **Debugging**: Reproduce first, hypothesize second, verify third. Never apply speculative fixes — prove the root cause before changing code
+- **Self-review**: Before presenting work as done, self-check: diff clean? Requirements met? Edge cases handled? No regressions?
+- **Review rigor**: When receiving code review feedback, verify technical correctness before implementing. Don't blindly agree — push back if the suggestion is wrong
+- **Plan checkpoints**: For multi-step plans, pause and review after each phase. Don't execute all steps without checking intermediate results
 
 ---
 
