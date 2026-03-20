@@ -36,7 +36,6 @@
     "command": "claude-statusline"
   },
   "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
@@ -47,8 +46,7 @@
     "impeccable@impeccable": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "claude-seo@claude-seo": true,
-    "discord@claude-plugins-official": true
+    "claude-seo@claude-seo": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
