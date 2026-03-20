@@ -17,6 +17,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/check-useeffect.sh",
+            "statusMessage": "Checking for useEffect violations..."
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -35,7 +47,8 @@
     "impeccable@impeccable": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "claude-seo@claude-seo": true
+    "claude-seo@claude-seo": true,
+    "discord@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
