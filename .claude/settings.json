@@ -18,6 +18,17 @@
         ]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/english-mode.sh",
+            "statusMessage": "Checking English mode..."
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
@@ -46,7 +57,8 @@
     "impeccable@impeccable": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "claude-seo@claude-seo": true
+    "claude-seo@claude-seo": true,
+    "nowledge-mem@nowledge-community": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -59,6 +71,12 @@
       "source": {
         "source": "github",
         "repo": "ahonn/claude-seo"
+      }
+    },
+    "nowledge-community": {
+      "source": {
+        "source": "github",
+        "repo": "nowledge-co/community"
       }
     }
   },
