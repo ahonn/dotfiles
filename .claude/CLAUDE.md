@@ -74,6 +74,8 @@ For non-trivial tasks:
 | -------------------- | -------------------------------------- |
 | slow-is-fast         | Before any moderate+ code modification |
 | code-quality         | Writing/reviewing code                 |
+| review               | Pre-push self-review (`/review`)       |
+| investigate          | Root-cause debugging (`/investigate`)  |
 | comment-cleanup      | After modifying code (run on changed files) |
 | react-best-practices | React-related work                     |
 | rust-design-patterns | Rust code, borrow checker, API design  |
