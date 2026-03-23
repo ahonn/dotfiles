@@ -2,7 +2,7 @@
 name: review
 description: "Pre-push self-review of current branch changes. Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR. Triggers on: '/review', 'review my changes', 'review this branch', 'self-review', 'pre-push review'."
 allowed-tools: Bash, Read, Edit, Grep, Glob, Agent
-argument-hint: "[--base <branch>] [--fix] [--report-only]"
+argument-hint: "[--base <branch>] [--fix] [--report-only] [--peer]"
 ---
 
 # Pre-Push Self-Review
@@ -14,6 +14,7 @@ Structured two-pass code review with Fix-First approach. Integrates with `code-q
 - `--base <branch>`: Override base branch (default: auto-detect via `gh` or `main`/`master`)
 - `--fix`: Auto-fix mode — apply mechanical fixes without asking
 - `--report-only`: Report only, no fixes
+- `--peer`: Spawn a parallel Codex CLI peer review via background Agent (requires `codex` CLI installed)
 - No arguments: default interactive mode (auto-fix mechanical, ask for judgment calls)
 
 ## Step 0: Detect Base Branch and Diff
@@ -28,6 +29,25 @@ git fetch origin "$BASE" 2>/dev/null
 - On the base branch itself (no feature branch)
 - No diff against base (`git diff origin/$BASE...HEAD` is empty)
 - Unstaged changes exist — ask user to commit or stash first
+
+## Step 0.5: Spawn Peer Review (if --peer)
+
+If `--peer` flag is set, **immediately** spawn a background Agent before starting Claude's own review. This runs Codex in parallel while Claude proceeds with Steps 1-4.
+
+```
+Agent(
+  description: "Codex peer review",
+  run_in_background: true,
+  prompt: "Run a Codex CLI peer review on this repo. Execute:
+    codex exec review --base $BASE --ephemeral -o /tmp/peer-review-output.md \
+      'Review this code as a strict peer reviewer. Focus on: logic bugs, security vulnerabilities, error handling gaps, performance concerns, and type safety issues. For each finding: severity (CRITICAL/WARNING/INFO), file:line, problem, suggested fix. Be concise — issues only, no praise.'
+    Then read /tmp/peer-review-output.md and return the full contents."
+)
+```
+
+**Do not wait** for the background Agent — proceed immediately to Step 1. The Codex results will be integrated at Step 5.
+
+If `codex` is not installed, log a warning and skip (do not abort the review).
 
 ## Step 1: Scope Check
 
@@ -151,3 +171,20 @@ Remaining:
 - [ASK] <items awaiting decision>
 - [NOTE] <items for awareness>
 ```
+
+### Peer Review Integration (if --peer)
+
+If a background peer-review Agent was spawned in Step 0.5, check if it has completed by now. If so, append:
+
+```
+## Peer Review (Codex CLI)
+
+{Codex findings, organized by severity}
+
+### Cross-Reference
+- **Both flagged**: <issues found by both Claude and Codex — highest priority>
+- **Codex only**: <issues only Codex found — evaluate and note agree/disagree>
+- **Claude only**: <issues only Claude found>
+```
+
+Apply the same Iron Rule from Step 4: verify Codex findings for technical correctness before recommending action. Disagree with evidence when Codex is wrong.
