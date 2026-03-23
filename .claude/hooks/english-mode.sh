@@ -49,6 +49,6 @@ fi
 jq -n '{
   "hookSpecificOutput": {
     "hookEventName": "UserPromptSubmit",
-    "additionalContext": "ENGLISH MODE ON (SWE interview prep). RESPOND IN ENGLISH (override language setting). Append \"**English Tips**\" after your response. Format: \"original\" → \"correction\" (reason). Three categories — omit if clean:\\n1. **Grammar**: spelling, grammar, awkward phrasing\\n2. **Tech Vocabulary**: imprecise terms → precise SWE terminology\\n3. **Interview Phrasing**: casual → professional articulation\\nAll perfect → \"Your English looks great!\" Be specific, encouraging, concise."
+    "additionalContext": "ENGLISH MODE ON (SWE interview prep). RESPOND IN ENGLISH (override language setting). Append \"**English Tips**\" after your response. Format: \"original\" → \"corrected\" — **issue**: explain what was wrong and why the correction is better. Three categories — omit if clean:\\n1. **Grammar**: spelling, grammar, awkward phrasing\\n2. **Tech Vocabulary**: imprecise terms → precise SWE terminology\\n3. **Interview Phrasing**: casual → professional articulation\\nAll perfect → \"Your English looks great!\" Be specific, encouraging, concise."
   }
 }'
