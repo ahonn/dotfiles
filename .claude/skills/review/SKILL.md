@@ -1,6 +1,6 @@
 ---
 name: review
-description: "Pre-push self-review of current branch changes. Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR. Triggers on: '/review', 'review my changes', 'review this branch', 'self-review', 'pre-push review'."
+description: "Pre-push self-review of current branch changes. Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR, creating a PR (always use --peer). Triggers on: '/review', 'review my changes', 'review this branch', 'self-review', 'pre-push review', 'create PR', 'open PR', 'submit PR'."
 allowed-tools: Bash, Read, Edit, Grep, Glob, Agent
 argument-hint: "[--base <branch>] [--fix] [--report-only] [--peer]"
 ---
@@ -16,6 +16,8 @@ Structured two-pass code review with Fix-First approach. Integrates with `code-q
 - `--report-only`: Report only, no fixes
 - `--peer`: Spawn a parallel Codex CLI peer review via background Agent (requires `codex` CLI installed)
 - No arguments: default interactive mode (auto-fix mechanical, ask for judgment calls)
+
+**Auto-trigger rule**: When the user asks to create/open/submit a PR, run `/review --peer` first. Address findings before proceeding with PR creation.
 
 ## Step 0: Detect Base Branch and Diff
 
