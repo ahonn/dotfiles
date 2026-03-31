@@ -59,7 +59,8 @@
     "plugin-dev@claude-plugins-official": true,
     "nowledge-mem@nowledge-community": true,
     "claude-mermaid-ascii@claude-mermaid-ascii": true,
-    "codex@openai-codex": true
+    "superpowers@claude-plugins-official": true,
+    "claude-code-wakatime@wakatime": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -86,10 +87,10 @@
         "repo": "ahonn/claude-mermaid-ascii"
       }
     },
-    "openai-codex": {
+    "wakatime": {
       "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
+        "source": "git",
+        "url": "https://github.com/wakatime/claude-code-wakatime.git"
       }
     }
   },
