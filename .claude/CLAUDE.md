@@ -65,6 +65,7 @@ For non-trivial tasks:
 - **Debugging**: Reproduce first, hypothesize second, verify third. Never apply speculative fixes — prove the root cause
 - **Self-review**: Before presenting work as done: diff clean? Requirements met? Edge cases handled? No regressions?
 - **Review rigor**: When receiving review feedback, verify technical correctness before implementing. Push back if the suggestion is wrong
+- **Third-party evaluation**: When an independent second opinion is needed (complex reviews, stuck debugging, architectural validation), delegate to `codex-plugin-cc` (`/codex:review`, `/codex:rescue`)
 
 ---
 
