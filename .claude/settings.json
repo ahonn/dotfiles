@@ -57,8 +57,9 @@
     "impeccable@impeccable": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "claude-seo@claude-seo": true,
-    "nowledge-mem@nowledge-community": true
+    "nowledge-mem@nowledge-community": true,
+    "claude-mermaid-ascii@claude-mermaid-ascii": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -67,16 +68,28 @@
         "repo": "pbakaus/impeccable"
       }
     },
+    "nowledge-community": {
+      "source": {
+        "source": "github",
+        "repo": "nowledge-co/community"
+      }
+    },
     "claude-seo": {
       "source": {
         "source": "github",
         "repo": "ahonn/claude-seo"
       }
     },
-    "nowledge-community": {
+    "claude-mermaid-ascii": {
       "source": {
         "source": "github",
-        "repo": "nowledge-co/community"
+        "repo": "ahonn/claude-mermaid-ascii"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },
