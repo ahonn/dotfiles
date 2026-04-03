@@ -14,7 +14,7 @@ Delegate a single coding task to OpenCode via ACP, then review the result.
 **Core loop**: Record baseline → construct prompt → acpx exec → review diff → pass or incremental fix (max 3 attempts) → report outcome.
 
 **Prerequisites**:
-- `acpx` installed and in PATH (on Nix systems, `npx acpx` may not work; use `npx -y acpx@latest` or ensure `acpx` is directly available)
+- `acpx` installed (`npm install -g acpx`)
 - `opencode` available as an ACP-compatible agent
 - Current directory is a git repo with a clean or committed working tree
 
