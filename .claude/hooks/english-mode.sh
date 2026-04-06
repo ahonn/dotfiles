@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # UserPromptSubmit hook: enforce English-only input with grammar feedback
-# Reads english-mode flag from $PROJECT/.claude/features.json
+# Reads english-mode flag from ~/.claude/projects/<encoded-cwd>/features.json
 # Requires: jq
 
 if ! command -v jq &>/dev/null; then
@@ -13,8 +13,9 @@ PROMPT=$(echo "$INPUT" | jq -r '.prompt // empty')
 
 [ -z "$CWD" ] || [ -z "$PROMPT" ] && exit 0
 
-# Check project-level feature flag
-FEATURES_FILE="$CWD/.claude/features.json"
+# Check feature flag in Claude project directory
+ENCODED_CWD=$(echo "$CWD" | tr '/.' '-')
+FEATURES_FILE="$HOME/.claude/projects/$ENCODED_CWD/features.json"
 if [ ! -f "$FEATURES_FILE" ]; then
   exit 0
 fi

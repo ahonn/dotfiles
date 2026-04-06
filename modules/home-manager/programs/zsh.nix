@@ -11,6 +11,7 @@ in
   config = mkIf cfg.enable {
     home.sessionPath = [
       "$HOME/.claude/local"
+      "$HOME/.npm-global/bin"
       "$HOME/.local/bin"
     ];
 

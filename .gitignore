@@ -8,3 +8,4 @@ config/nvim/plugin
 .vimworkspace
 .undodir
 result
+docs/

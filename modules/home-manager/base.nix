@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   user,
   ...
@@ -40,10 +41,17 @@ in
     bun
     nodejs
     python3
-    nodePackages.conventional-changelog-cli
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
   ];
+
+  home.activation.installAcpx = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+    export PATH="${pkgs.nodejs}/bin:$PATH"
+    if ! npm list -g acpx &>/dev/null; then
+      npm install -g acpx
+    fi
+  '';
 
   home.file = {
     ".czrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/symlink/czrc.symlink";
