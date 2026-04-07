@@ -38,6 +38,28 @@ Use binary search thinking:
 - **Bisect in space**: Which module/layer? Add strategic logging or assertions
 - **Bisect in data**: Which inputs trigger it? Minimal reproduction case
 
+### 1.4 Verify, Don't Recall
+
+**Never state environment details from memory.** Before diagnosing OS, compiler, SDK, runtime, or tool version issues, run the detection command first:
+
+```bash
+sw_vers              # macOS version
+xcodebuild -version  # Xcode / SDK
+node --version       # Node
+rustc --version      # Rust
+```
+
+State the actual output. A diagnosis built on an assumed version is not a diagnosis.
+
+**External tool / MCP failure: diagnose before switching.** When an MCP tool, CLI dependency, or external API is unavailable or returning errors, **do not** immediately try an alternative method. First determine why it failed:
+
+- Is the server running?
+- Is the API key valid or expired?
+- Is the config pointing to the right endpoint?
+- Is a proxy needed?
+
+Switching to a workaround without diagnosing the original failure leaves the real bug intact and wastes the next session too.
+
 Output after Phase 1:
 ```
 Root cause hypothesis: <one sentence>
@@ -96,12 +118,34 @@ After **3 failed hypotheses**:
 - Consider: is this an architectural issue, not a bug?
 - Present findings to user and ask for guidance
 
-### Red Flags (you're on the wrong track)
+### Same Symptom After Fix = Hard Stop
 
-- Fix works but you don't understand why
-- Fix requires touching 5+ files for a "simple" bug
-- You're adding workarounds instead of fixing root cause
-- The "fix" breaks something else
+If the user reports the same symptom after a patch was applied, **do not patch again**. Treat it as a new investigation:
+
+- The previous hypothesis was wrong — discard it completely
+- Re-read the execution path from scratch; do not continue from the prior mental model
+- Three rounds of "fixed but still broken" in the same area means the **abstraction is wrong**, not the specific line
+
+**Self-regulation triggers** — stop and reassess if you catch yourself:
+
+- Reverting the same area twice
+- A "single bug" fix touching more than 3 files
+- Each fix surfacing a new problem in a different module
+- Writing the fix before finishing the trace
+
+### Rationalization Watch
+
+These phrases are diagnostic failures in disguise. When one surfaces, **stop and re-examine**:
+
+| What you're thinking | What it actually means | Required action |
+|---|---|---|
+| "I'll just try this one thing" | No hypothesis, random-walking | Stop. Write the hypothesis first. |
+| "I'm confident it's X" | Confidence is not evidence | Run an instrument that proves it. |
+| "Probably the same issue as before" | Treating a new symptom as a known pattern | Re-read the execution path from scratch. |
+| "It works on my machine" | Environment difference IS the bug | Enumerate every env diff before dismissing it. |
+| "One more restart should fix it" | Avoiding the error message | Read the last error verbatim. Never restart more than twice without new evidence. |
+| "Fix works but I don't understand why" | Coincidental success, root cause unknown | Revert the fix. Resume hypothesis testing. |
+| "It's a framework bug" | Likely your code, not the dependency | Reproduce in isolation against your own code first. |
 
 ## Phase 4: Implementation
 
@@ -147,3 +191,5 @@ Confidence: <high — verified | medium — likely but edge cases possible>
 - **Blame the framework**: Assuming the bug is in a dependency before checking your own code
 - **Stale hypothesis**: Continuing to pursue a theory after evidence contradicts it
 - **Over-logging**: Adding 50 log statements instead of thinking about the problem
+- **Diagnosing from memory**: Asserting OS / runtime / SDK version state without running the detection command first
+- **Workaround over diagnosis**: Switching to an alternative tool or path when one fails, without finding out why the original failed

@@ -12,7 +12,7 @@ Two-step diffx review workflow controlled by an explicit subcommand the user typ
 |---|---|
 | `/diffx-review start [diffx-args...]` | Launch the diffx server in the background and open the browser UI |
 | `/diffx-review finish` | Fetch open comments from the running diffx server, apply each one, mark resolved |
-| `/diffx-review` (no subcommand) | Ask the user which one they want — do not guess |
+| `/diffx-review` (no subcommand) | Default to `start` with auto-detected diff target (see below) |
 
 ## start
 
@@ -22,7 +22,25 @@ Run diffx via `npx` (no global install needed). Use the Bash tool with `run_in_b
 npx -y diffx-cli
 ```
 
-Anything the user typed after `start` should be forwarded to the diffx CLI verbatim. diffx accepts its own flags (e.g. `-p 8080`, `--no-open`) and a `--` separator after which everything is forwarded to `git diff`.
+### Auto-detect diff target when no args given
+
+If the user invoked `/diffx-review` (or `/diffx-review start`) **without** any extra arguments, decide the diff target before launching:
+
+1. Check for uncommitted changes: `git status --porcelain`
+2. **Has uncommitted changes** → default behavior, review the working tree:
+   ```bash
+   npx -y diffx-cli
+   ```
+3. **Clean working tree** → diff the current branch against the main branch. Detect the main branch first, then launch:
+   ```bash
+   # Detect main branch (prefer remote HEAD, fall back to main/master)
+   MAIN=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+   MAIN=${MAIN:-$(git show-ref --verify --quiet refs/heads/main && echo main || echo master)}
+   npx -y diffx-cli -- "$MAIN..HEAD"
+   ```
+   If the current branch IS the main branch and the tree is clean, there is nothing to review — tell the user and stop.
+
+If the user passed any arguments after `start`, forward them to the diffx CLI verbatim and skip the auto-detection. diffx accepts its own flags (e.g. `-p 8080`, `--no-open`) and a `--` separator after which everything is forwarded to `git diff`.
 
 Common shapes:
 
