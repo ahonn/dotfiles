@@ -57,9 +57,7 @@
     "impeccable@impeccable": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "nowledge-mem@nowledge-community": true,
     "claude-mermaid-ascii@claude-mermaid-ascii": true,
-    "superpowers@claude-plugins-official": true,
     "claude-code-wakatime@wakatime": true,
     "codex@openai-codex": true
   },
