@@ -1,0 +1,38 @@
+[tracking]
+enabled = true
+history_days = 90
+
+[display]
+colors = true
+emoji = true
+max_width = 120
+
+[filters]
+ignore_dirs = [
+    ".git",
+    "node_modules",
+    "target",
+    "__pycache__",
+    ".venv",
+    "vendor",
+]
+ignore_files = [
+    "*.lock",
+    "*.min.js",
+    "*.min.css",
+]
+
+[tee]
+enabled = true
+mode = "failures"
+max_files = 20
+max_file_size = 1048576
+
+[telemetry]
+enabled = true
+
+[hooks]
+# Skip rtk rewrites for these commands. `npx` is excluded because rtk's npx
+# wrapper currently mis-routes invocations to `npm run` instead of `npm exec`,
+# which breaks `npx -y <pkg>` for non-package.json directories.
+exclude_commands = ["npx"]
