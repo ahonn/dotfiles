@@ -18,8 +18,10 @@ Two-step diffx review workflow controlled by an explicit subcommand the user typ
 
 Run diffx via `npx` (no global install needed). Use the Bash tool with `run_in_background: true` so the server stays alive while the user reviews in the browser.
 
+**Always prefix the command with `GIT_CONFIG_GLOBAL=/dev/null`.** This user has `diff.external = difftastic` in their global git config, which makes `git diff` emit difftastic's structural format instead of unified diff. diffx's frontend can't parse that and shows a blank page. Setting `GIT_CONFIG_GLOBAL=/dev/null` tells the diffx child process to skip the global git config, restoring standard unified diff output. It does NOT affect your interactive shell or the user's git config.
+
 ```bash
-npx -y diffx-cli
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli
 ```
 
 ### Auto-detect diff target when no args given
@@ -29,28 +31,28 @@ If the user invoked `/diffx-review` (or `/diffx-review start`) **without** any e
 1. Check for uncommitted changes: `git status --porcelain`
 2. **Has uncommitted changes** → default behavior, review the working tree:
    ```bash
-   npx -y diffx-cli
+   GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli
    ```
 3. **Clean working tree** → diff the current branch against the main branch. Detect the main branch first, then launch:
    ```bash
    # Detect main branch (prefer remote HEAD, fall back to main/master)
    MAIN=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
    MAIN=${MAIN:-$(git show-ref --verify --quiet refs/heads/main && echo main || echo master)}
-   npx -y diffx-cli -- "$MAIN..HEAD"
+   GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli -- "$MAIN..HEAD"
    ```
    If the current branch IS the main branch and the tree is clean, there is nothing to review — tell the user and stop.
 
 If the user passed any arguments after `start`, forward them to the diffx CLI verbatim and skip the auto-detection. diffx accepts its own flags (e.g. `-p 8080`, `--no-open`) and a `--` separator after which everything is forwarded to `git diff`.
 
-Common shapes:
+Common shapes (remember the `GIT_CONFIG_GLOBAL=/dev/null` prefix on every one):
 
 ```bash
-npx -y diffx-cli                       # Working tree (default)
-npx -y diffx-cli -- --staged           # Only staged changes
-npx -y diffx-cli -- HEAD~3             # Last 3 commits
-npx -y diffx-cli -- main..HEAD         # Current branch vs main
-npx -y diffx-cli -p 8080               # Custom port (default: random available port)
-npx -y diffx-cli --no-open             # Don't auto-open browser
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli                       # Working tree (default)
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli -- --staged           # Only staged changes
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli -- HEAD~3             # Last 3 commits
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli -- main..HEAD         # Current branch vs main
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli -p 8080               # Custom port (default: random available port)
+GIT_CONFIG_GLOBAL=/dev/null npx -y diffx-cli --no-open             # Don't auto-open browser
 ```
 
 After launching, read the server log to find the actual port (e.g. `diffx server running at http://127.0.0.1:54321`) and tell the user briefly:
