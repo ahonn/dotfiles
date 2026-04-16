@@ -26,6 +26,7 @@ in
       extraConfig = ''
         set -g default-command "zsh"
         set -g mouse on
+        set -g focus-events on
 
         unbind r
         bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded."
