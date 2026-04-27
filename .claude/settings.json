@@ -100,6 +100,14 @@
     }
   },
   "language": "chinese",
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true
+  "effortLevel": "xhigh",
+  "alwaysThinkingEnabled": true,
+  "showThinkingSummaries": true,
+  "editorMode": "vim",
+  "cleanupPeriodDays": 60,
+  "attribution": {
+    "commit": ""
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "tui": "fullscreen"
 }
