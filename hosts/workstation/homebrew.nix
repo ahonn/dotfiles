@@ -3,17 +3,6 @@
   imports = [ ../../modules/homebrew/base.nix ];
 
   homebrew = {
-    brews = [
-      "gh"
-      "repomix"
-      "rtk"
-      "uv"
-    ];
-
-    taps = [
-      "BarutSRB/tap"
-    ];
-
     casks = [
       "setapp"
       "1password"

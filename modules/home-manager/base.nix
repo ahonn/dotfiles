@@ -42,6 +42,9 @@ in
     bun
     nodejs
     python3
+    gh
+    uv
+    rtk
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
   ];

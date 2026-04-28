@@ -58,6 +58,22 @@
         "type": "github"
       }
     },
+    "homebrew-barutsrb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776811039,
+        "narHash": "sha256-wAa2jvYqmb4LtU5vTwY1sgu9A7TUxlYdwAUCOdYo1BI=",
+        "owner": "BarutSRB",
+        "repo": "homebrew-tap",
+        "rev": "30784e862fa4c183f2ad067217e78349be6db6b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BarutSRB",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "homebrew-bundle": {
       "flake": false,
       "locked": {
@@ -214,6 +230,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "homebrew-barutsrb": "homebrew-barutsrb",
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",

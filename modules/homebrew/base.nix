@@ -1,20 +1,42 @@
-{ inputs, user, ... }:
+{
+  inputs,
+  user,
+  config,
+  ...
+}:
 let
-  inherit (inputs) homebrew-core homebrew-cask homebrew-bundle;
+  inherit (inputs)
+    homebrew-core
+    homebrew-cask
+    homebrew-bundle
+    homebrew-barutsrb
+    ;
 in
 {
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
     user = user.username;
+    autoMigrate = true;
+    mutableTaps = false;
     taps = {
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
-      "homebrew/bundle" = homebrew-bundle;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
+      "BarutSRB/homebrew-tap" = homebrew-barutsrb;
     };
-    mutableTaps = true;
-    autoMigrate = true;
   };
 
-  homebrew.enable = true;
+  homebrew = {
+    enable = true;
+    taps = builtins.attrNames config.nix-homebrew.taps;
+
+    onActivation = {
+      autoUpdate = false;
+      upgrade = false;
+      cleanup = "check";
+    };
+
+    global.brewfile = true;
+  };
 }

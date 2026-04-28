@@ -27,7 +27,7 @@ flake.nix
 │   │   ├── programs/hyprspace.nix      (workstation only)
 │   │   ├── programs/zed-editor.nix     (workstation only)
 │   │   └── programs/ghostty.nix        (workstation only)
-│   └── homebrew: gh, repomix, rtk + GUI casks
+│   └── homebrew: GUI casks (declarative via nix-homebrew)
 │
 └── homelab (darwinConfigurations)
     ├── modules/darwin/default.nix

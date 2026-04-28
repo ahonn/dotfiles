@@ -29,6 +29,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-barutsrb = {
+      url = "github:BarutSRB/homebrew-tap";
+      flake = false;
+    };
 
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 
@@ -59,8 +63,10 @@
       overlays = [
         (_final: prev: {
           stable = import nixpkgs-stable {
-            inherit (prev) system;
-            inherit (prev) config;
+            inherit (prev.stdenv.hostPlatform) system;
+            config = {
+              allowUnfree = true;
+            };
           };
         })
       ];
