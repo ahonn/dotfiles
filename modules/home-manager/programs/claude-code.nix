@@ -49,6 +49,15 @@ in
   config = mkIf cfg.enable {
     home.packages = [ statuslineScript ];
 
+    home.activation.relocateClobberedClaudeSettings =
+      lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+        f="$HOME/.claude/settings.json"
+        if [ -f "$f" ] && [ ! -L "$f" ]; then
+          ts=$(date +%Y%m%d-%H%M%S)
+          run mv -v "$f" "$f.pre-rebuild.$ts"
+        fi
+      '';
+
     home.file.".claude/settings.json".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
     home.file.".claude/CLAUDE.md".source =

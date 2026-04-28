@@ -86,6 +86,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.verbose = true;
+              home-manager.backupFileExtension = "hm-backup";
               home-manager.extraSpecialArgs = { inherit user; };
               home-manager.users.${user.username} = import ./hosts/${hostname}/home.nix;
             }
