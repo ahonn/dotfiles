@@ -3,6 +3,14 @@
   imports = [ ../../modules/homebrew/base.nix ];
 
   homebrew = {
+    brews = [
+      "gh"
+      "node"
+      "repomix"
+      "rtk"
+      "uv"
+    ];
+
     casks = [
       "setapp"
       "1password"
