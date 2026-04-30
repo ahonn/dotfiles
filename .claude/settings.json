@@ -1,6 +1,10 @@
 {
+  "cleanupPeriodDays": 60,
   "env": {
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
+  },
+  "attribution": {
+    "commit": ""
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -100,14 +104,13 @@
     }
   },
   "language": "chinese",
-  "effortLevel": "xhigh",
   "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "showThinkingSummaries": true,
-  "editorMode": "vim",
-  "cleanupPeriodDays": 60,
-  "attribution": {
-    "commit": ""
-  },
   "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen"
+  "editorMode": "vim",
+  "skipAutoPermissionPrompt": true,
+  "theme": "dark-daltonized",
+  "agentPushNotifEnabled": true
 }
