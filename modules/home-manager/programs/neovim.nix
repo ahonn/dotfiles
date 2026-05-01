@@ -14,19 +14,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.neovim = {
-      enable = true;
-      withNodeJs = true;
-      withPython3 = true;
-      withRuby = true;
-      viAlias = true;
-      vimAlias = true;
-      extraPackages = [ pkgs.tree-sitter ];
+    home.packages = with pkgs; [
+      neovim
+      tree-sitter
+    ];
+
+    programs.zsh.shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
     };
 
-    home.file = {
-      ".config/nvim".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
-    };
+    home.file.".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin/config/nvim";
   };
 }
