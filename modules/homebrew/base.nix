@@ -9,6 +9,7 @@ let
     homebrew-core
     homebrew-cask
     homebrew-bundle
+    homebrew-nikitabobko
     ;
 in
 {
@@ -22,6 +23,7 @@ in
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
+      "nikitabobko/homebrew-tap" = homebrew-nikitabobko;
     };
   };
 

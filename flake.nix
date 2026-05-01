@@ -29,6 +29,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-nikitabobko = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
 
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 
