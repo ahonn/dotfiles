@@ -11,7 +11,7 @@ in
     ../../modules/home-manager/base.nix
     ../../modules/home-manager/programs/zellij.nix
     ../../modules/home-manager/programs/neovim.nix
-    ../../modules/home-manager/programs/hyprspace.nix
+    ../../modules/home-manager/programs/aerospace.nix
     ../../modules/home-manager/programs/zed-editor.nix
     ../../modules/home-manager/programs/ghostty.nix
   ];
@@ -30,7 +30,7 @@ in
   # workstation-specific programs
   my.zellij.enable = false;
   my.neovim.enable = true;
-  my.hyprspace.enable = true;
+  my.aerospace.enable = true;
   my.zed-editor.enable = false;
   my.ghostty.enable = true;
 }

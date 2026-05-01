@@ -48,12 +48,12 @@ Programs use `my.{program}.enable` in host's `home.nix`:
 ```nix
 my.neovim.enable = true;      # workstation: unstable neovim
 my.neovim-stable.enable = true; # homelab: stable for macOS 13
-my.hyprspace.enable = true;
+my.aerospace.enable = true;
 ```
 
 ### File Types
 | Location | Rebuild Required | Use Case |
 |----------|-----------------|----------|
 | `modules/**/*.nix` | Yes | Nix expressions |
-| `config/` | No | App configs (nvim, hyprspace, zed) |
+| `config/` | No | App configs (nvim, aerospace, zed) |
 | `symlink/` | No | Dotfiles via mkOutOfStoreSymlink |

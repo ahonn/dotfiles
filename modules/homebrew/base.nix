@@ -9,7 +9,6 @@ let
     homebrew-core
     homebrew-cask
     homebrew-bundle
-    homebrew-barutsrb
     ;
 in
 {
@@ -23,7 +22,6 @@ in
       "homebrew/homebrew-core" = homebrew-core;
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
-      "BarutSRB/homebrew-tap" = homebrew-barutsrb;
     };
   };
 

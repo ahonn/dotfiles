@@ -22,7 +22,7 @@
       "orbstack"
       "tailscale"
       "ghostty"
-      "BarutSRB/tap/hyprspace"
+      "nikitabobko/tap/aerospace"
     ];
   };
 }

@@ -52,7 +52,7 @@ my.neovim.enable = true;
 
 | Method | When to Use | Example |
 |--------|-------------|---------|
-| `mkOutOfStoreSymlink` | Config that changes without rebuild | nvim, hyprspace |
+| `mkOutOfStoreSymlink` | Config that changes without rebuild | nvim, aerospace |
 | `builtins.readFile` | Config loaded into nix store | zed-editor |
 | Inline nix | Simple, nix-native config | ghostty, starship |
 

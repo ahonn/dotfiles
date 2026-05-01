@@ -29,10 +29,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-barutsrb = {
-      url = "github:BarutSRB/homebrew-tap";
-      flake = false;
-    };
 
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 

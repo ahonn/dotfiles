@@ -24,7 +24,7 @@ flake.nix
 │   │   │   ├── programs/direnv.nix     (shared)
 │   │   │   └── programs/claude-code.nix (shared)
 │   │   ├── programs/neovim.nix         (unstable, workstation only)
-│   │   ├── programs/hyprspace.nix      (workstation only)
+│   │   ├── programs/aerospace.nix      (workstation only)
 │   │   ├── programs/zed-editor.nix     (workstation only)
 │   │   └── programs/ghostty.nix        (workstation only)
 │   └── homebrew: GUI casks (declarative via nix-homebrew)
@@ -45,7 +45,7 @@ flake.nix
 | System (darwin) | `modules/darwin/` | macOS defaults, dock, finder, keyboard | Yes |
 | User (home-manager) | `modules/home-manager/` | Programs, dotfiles, shell | Yes |
 | Homebrew | `modules/homebrew/` | GUI apps, CLI not in nixpkgs | Yes |
-| App configs | `config/` | nvim, hyprspace, zed | No (symlinked) |
+| App configs | `config/` | nvim, aerospace, zed | No (symlinked) |
 | Dotfiles | `symlink/` | editorconfig, gitignore, prettier | No (symlinked) |
 | Claude configs | `.claude/` | Skills, agents, hooks, settings | No (symlinked) |
 
@@ -55,7 +55,7 @@ flake.nix
 homelab runs macOS 13 which can't use some unstable packages. `pkgs-stable` passed via `extraSpecialArgs` only to homelab.
 
 **Why `mkOutOfStoreSymlink`?**
-Allows editing configs (nvim, hyprspace) without `darwin-rebuild switch`. Changes take effect immediately.
+Allows editing configs (nvim, aerospace) without `darwin-rebuild switch`. Changes take effect immediately.
 
 **Why nix-homebrew with pinned taps?**
 `flake = false` inputs pin exact homebrew tap versions. `mutableTaps = true` still allows manual `brew install` for quick experiments.
