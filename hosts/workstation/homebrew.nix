@@ -22,6 +22,8 @@
       "orbstack"
       "tailscale"
       "ghostty"
+      "codex"
+      "zed"
       "nikitabobko/tap/aerospace"
     ];
   };
