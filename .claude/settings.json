@@ -4,7 +4,8 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "attribution": {
-    "commit": ""
+    "commit": "",
+    "pr": ""
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -63,7 +64,9 @@
     "plugin-dev@claude-plugins-official": true,
     "claude-mermaid-ascii@claude-mermaid-ascii": true,
     "claude-code-wakatime@wakatime": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "figma@claude-plugins-official": true,
+    "daily-report@session-tools": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -101,6 +104,12 @@
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "session-tools": {
+      "source": {
+        "source": "github",
+        "repo": "Suto-Michimasa/cc-session-tools"
+      }
     }
   },
   "language": "chinese",
@@ -109,8 +118,8 @@
   "tui": "fullscreen",
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "editorMode": "vim",
-  "skipAutoPermissionPrompt": true,
   "theme": "dark-daltonized",
-  "agentPushNotifEnabled": true
+  "editorMode": "vim",
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
