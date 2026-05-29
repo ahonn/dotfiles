@@ -34,8 +34,6 @@
       flake = false;
     };
 
-    mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
