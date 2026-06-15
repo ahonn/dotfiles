@@ -39,6 +39,10 @@ local M = {
         highlight_group = "CursorLineBlame",
       }
     end
+  },
+  {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
   }
 }
 
