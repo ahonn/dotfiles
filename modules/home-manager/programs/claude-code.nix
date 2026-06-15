@@ -40,6 +40,19 @@ let
 
     echo "$DIM[$RESET$CYAN$MODEL$RESET$DIM]$RESET $GREEN$DIR$RESET$BRANCH $DIM|$RESET $CTX_COLOR$CONTEXT%$RESET"
   '';
+
+  # Stamp the current Claude Code state onto its tmux session so the
+  # tmux-claude-session-manager picker can show live status. Mirrors the
+  # plugin's scripts/state.sh, but as a stable command name on PATH (the
+  # plugin itself lives at an unstable nix store path that hooks can't reference).
+  stateScript = pkgs.writeShellScriptBin "claude-tmux-state" ''
+    [ -z "$TMUX_PANE" ] && exit 0
+    session=$(${pkgs.tmux}/bin/tmux display-message -p -t "$TMUX_PANE" '#{session_name}' 2>/dev/null) || exit 0
+    [ -z "$session" ] && exit 0
+    ${pkgs.tmux}/bin/tmux set-option -t "$session" @claude_state "''${1:-idle}"
+    ${pkgs.tmux}/bin/tmux set-option -t "$session" @claude_state_at "$(date +%s)"
+    exit 0
+  '';
 in
 {
   options = {
@@ -47,7 +60,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ statuslineScript ];
+    home.packages = [
+      statuslineScript
+      stateScript
+    ];
 
     home.activation.relocateClobberedClaudeSettings = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
       f="$HOME/.claude/settings.json"

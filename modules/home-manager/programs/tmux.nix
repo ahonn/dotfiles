@@ -7,6 +7,22 @@
 with lib;
 let
   cfg = config.my.tmux;
+
+  # craftzdog/tmux-claude-session-manager: list, monitor, and jump across nested
+  # Claude Code sessions from a single popup. Not in nixpkgs, so package it here.
+  # rtpFilePath is explicit because the entry file uses an underscore, which the
+  # default "${pluginName}.tmux" glob would miss.
+  claude-session-manager = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "claude-session-manager";
+    version = "unstable-2026-06-15";
+    rtpFilePath = "claude_session_manager.tmux";
+    src = pkgs.fetchFromGitHub {
+      owner = "craftzdog";
+      repo = "tmux-claude-session-manager";
+      rev = "25373ee521ca473f068fb7f7de9f1007db0fbb6d";
+      hash = "sha256-+I4y4Jrihq1ShFYP6qGdbMRHCwdWBUzcPi8eQjpdgCo=";
+    };
+  };
 in
 {
   options.my.tmux = {
@@ -14,6 +30,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # fzf powers the session picker (and the existing C-s session switcher).
+    home.packages = [ pkgs.fzf ];
+
     programs.tmux = {
       enable = true;
       shortcut = "a";
@@ -22,6 +41,7 @@ in
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         yank
+        claude-session-manager
       ];
       extraConfig = ''
         set -g default-command "zsh"

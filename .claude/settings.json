@@ -21,6 +21,15 @@
             "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
           }
         ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "claude-tmux-state waiting"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -30,6 +39,14 @@
             "type": "command",
             "command": "$HOME/.claude/hooks/english-mode.sh",
             "statusMessage": "Checking English mode..."
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "claude-tmux-state working"
           }
         ]
       }
@@ -42,6 +59,28 @@
             "type": "command",
             "command": "$HOME/.claude/hooks/check-useeffect.sh",
             "statusMessage": "Checking for useEffect violations..."
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "claude-tmux-state waiting"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "claude-tmux-state idle"
           }
         ]
       }
