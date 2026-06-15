@@ -63,13 +63,18 @@ in
         bind C-l send-keys 'C-l'
 
         # fast switch windows
-        bind Space choose-tree -w
+        # -f filter: hide C-a+y managed claude-* sessions from the tree (reach them via C-a u)
+        bind Space choose-tree -w -f '#{?#{m:claude-*,#{session_name}},0,1}'
         bind C-a last-window
         bind C-j previous-window
         bind C-k next-window
 
-        # fast switch session
-        bind C-s run-shell "tmux list-session | fzf-tmux | cut -d \":\" -f 1 | xargs tmux switch-client -t"
+        # override default session (s) / window (w) choosers to hide claude-* sessions too
+        bind s choose-tree -Zs -f '#{?#{m:claude-*,#{session_name}},0,1}'
+        bind w choose-tree -Zw -f '#{?#{m:claude-*,#{session_name}},0,1}'
+
+        # fast switch session (exclude claude-* managed sessions)
+        bind C-s run-shell "tmux list-sessions | grep -v '^claude-' | cut -d ':' -f 1 | fzf-tmux | xargs -r tmux switch-client -t"
 
         # ========== pane ========== #
         # split window
