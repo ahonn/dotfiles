@@ -79,8 +79,6 @@ in
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
     home.file.".claude/AGENTS.md".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
-    home.file.".claude/RTK.md".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/RTK.md";
     home.file.".claude/hooks/".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/hooks";
     home.file.".claude/commands/".source =

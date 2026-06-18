@@ -86,5 +86,3 @@ For non-trivial tasks:
 ## Compact Instructions
 
 When compacting, always preserve: the full list of modified files, test commands, current plan/task state, and the Research → Plan → Code workflow requirement.
-
-@RTK.md

@@ -7,7 +7,6 @@
       "gh"
       "node"
       "repomix"
-      "rtk"
       "uv"
     ];
 
