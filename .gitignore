@@ -12,3 +12,7 @@ docs/
 
 # Codex-managed system skills (auto-installed at runtime, not source)
 .claude/skills/.system/
+
+# Codex live config: continuously rewritten by Codex (machine-specific paths,
+# local project trust state). Symlinked from the repo but not versioned.
+.codex/config.toml
