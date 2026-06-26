@@ -16,6 +16,7 @@ in
     ./programs/starship.nix
     ./programs/direnv.nix
     ./programs/claude-code.nix
+    ./programs/codex.nix
   ];
 
   home.username = user.username;
@@ -67,5 +68,6 @@ in
   my.starship.enable = true;
   my.direnv.enable = true;
   my.claude-code.enable = true;
+  my.codex.enable = true;
 
 }

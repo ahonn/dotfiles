@@ -76,9 +76,9 @@ in
     home.file.".claude/settings.json".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
     home.file.".claude/CLAUDE.md".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/AGENTS.md";
     home.file.".claude/AGENTS.md".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/AGENTS.md";
     home.file.".claude/hooks/".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/hooks";
     home.file.".claude/commands/".source =

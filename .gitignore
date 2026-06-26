@@ -9,3 +9,6 @@ config/nvim/plugin
 .undodir
 result
 docs/
+
+# Codex-managed system skills (auto-installed at runtime, not source)
+.claude/skills/.system/
