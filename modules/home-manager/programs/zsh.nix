@@ -15,6 +15,16 @@ in
       "$HOME/.local/bin"
     ];
 
+    # zplug caches its load step under ~/.zplug/cache. A nix flake update can
+    # swap the zplug/oh-my-zsh store paths out from under that cache, leaving it
+    # stale so `zplug load` sources empty files and no plugin aliases (gst, z,
+    # ls, ...) get defined. Invalidate the cache on every switch so it rebuilds
+    # against the current store paths.
+    home.activation.clearZplugCache =
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        rm -rf "$HOME/.zplug/cache"
+      '';
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
