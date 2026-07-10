@@ -20,10 +20,9 @@ in
     # stale so `zplug load` sources empty files and no plugin aliases (gst, z,
     # ls, ...) get defined. Invalidate the cache on every switch so it rebuilds
     # against the current store paths.
-    home.activation.clearZplugCache =
-      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        rm -rf "$HOME/.zplug/cache"
-      '';
+    home.activation.clearZplugCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      rm -rf "$HOME/.zplug/cache"
+    '';
 
     programs.zsh = {
       enable = true;
