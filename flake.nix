@@ -10,6 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    homebrew-brew = {
+      url = "github:Homebrew/brew/6.0.9";
+      flake = false;
+    };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     home-manager = {
