@@ -11,6 +11,7 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -72,6 +73,30 @@
           {
             "type": "command",
             "command": "claude-tmux-state idle"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ccclub sync --silent",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ccclub sync --silent",
+            "timeout": 30,
+            "async": true
           }
         ]
       }
