@@ -7,7 +7,14 @@ local M = {
 }
 
 function M.config()
+  local hl_cursor_line = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+  local hl_comment = vim.api.nvim_get_hl(0, { name = "Comment" })
+  local hl_blame = vim.tbl_extend("force", hl_comment, { bg = hl_cursor_line.bg })
+  vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", hl_blame)
+
   require("gitsigns").setup({
+    current_line_blame = true,
+    current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
     signs = {
       add          = { text = '┃' },
       change       = { text = '┃' },

@@ -22,7 +22,7 @@ local M = {
     },
     indent = { enabled = true },
   },
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 
 return M

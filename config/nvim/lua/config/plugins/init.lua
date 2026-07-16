@@ -24,23 +24,28 @@ return {
   --   ft = { "beancount" },
   -- },
   {
-    "jose-elias-alvarez/typescript.nvim",
-    event = "BufReadPre",
-    ft = { "typescript", "typescriptreact" },
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    opts = {
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "literals",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
   },
   {
     "jparise/vim-graphql",
     event = "BufReadPre",
     ft = { "graphql" },
-  },
-  {
-    "prisma/vim-prisma",
-    event = "BufReadPre",
-    ft = { "prisma" },
-  },
-  {
-    "editorconfig/editorconfig-vim",
-    event = "BufReadPre",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -83,10 +88,6 @@ return {
       require("alpha").setup(require("alpha.themes.startify").opts)
       vim.cmd("autocmd FileType alpha setlocal statuscolumn=")
     end,
-  },
-  {
-    "tpope/vim-commentary",
-    event = "BufReadPost",
   },
   {
     "alexghergh/nvim-tmux-navigation",

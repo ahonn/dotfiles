@@ -19,4 +19,5 @@ require("lazy").setup({
     { import = "config/plugins" },
   },
   install = { colorscheme = { "carbonfox" } },
+  rocks = { enabled = false },
 })

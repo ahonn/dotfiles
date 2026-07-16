@@ -3,7 +3,6 @@ local M = {
   event = "VeryLazy",
   dependencies = {
     "AndreM222/copilot-lualine",
-    "dokwork/lualine-ex"
   },
   config = function()
     local diff = {
@@ -35,7 +34,7 @@ local M = {
         lualine_b = { "branch", diff },
         lualine_c = { filename(FilenamePath.relative_path) },
         lualine_x = {
-          'ex.lsp.single',
+          "lsp_status",
           {
             "diagnostics",
             sources = { "nvim_diagnostic" },

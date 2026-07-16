@@ -30,7 +30,6 @@ local symbol_map = {
   Operator = "󰆕",
   TypeParameter = "",
   Copilot = "",
-  Cody = ''
 }
 
 local M = {
@@ -80,7 +79,6 @@ local M = {
                 nvim_lua = "[Lua]",
                 path = "[Path]",
                 copilot = "[Copilot]",
-                cody = "[Cody]",
               })[entry.source.name]
               return vim_item
             end,
@@ -121,7 +119,6 @@ local M = {
           end, { "i", "s", "c" }),
         },
         sources = cmp.config.sources({
-          { name = "cody" },
           { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "path" },

@@ -23,26 +23,43 @@ local M = {
     },
   },
   {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    opts = function()
-      local hl_cursor_line = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      local hl_comment = vim.api.nvim_get_hl(0, { name = "Comment" })
-      local hl_combined = vim.tbl_extend("force", hl_comment, { bg = hl_cursor_line.bg })
-      vim.api.nvim_set_hl(0, "CursorLineBlame", hl_combined)
-
-      return {
-        enabled = true,
-        message_template = "<author> • <date> • <summary>",
-        date_format = "%r",
-        virtual_text_column = 1,
-        highlight_group = "CursorLineBlame",
-      }
-    end
-  },
-  {
     "esmuellert/codediff.nvim",
     cmd = "CodeDiff",
+    opts = {
+      diff = {
+        compute_moves = true,
+        hide_merge_artifacts = true,
+      },
+      explorer = {
+        view_mode = "tree",
+      },
+      history = {
+        view_mode = "tree",
+      },
+      keymaps = {
+        view = {
+          toggle_explorer = "<C-b>",
+        },
+        explorer = {
+          select = "o",
+          toggle_view_mode = false,
+          fold_toggle = "<space>",
+          fold_close = "C",
+          fold_close_all = "z",
+        },
+        history = {
+          select = "o",
+          toggle_view_mode = false,
+          fold_toggle = "<space>",
+          fold_close = "C",
+          fold_close_all = "z",
+        },
+      },
+    },
+    keys = {
+      { "<Leader>gd", "<CMD>CodeDiff<CR>",           desc = "CodeDiff" },
+      { "<Leader>gh", "<CMD>CodeDiff history %<CR>", desc = "CodeDiff file history" },
+    },
   }
 }
 
