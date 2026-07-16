@@ -2,9 +2,8 @@
 {
   imports = [
     ../../modules/home-manager/base.nix
-    ../../modules/home-manager/programs/neovim-stable.nix
+    ../../modules/home-manager/programs/neovim.nix
   ];
 
-  # homelab-specific: use stable neovim for macOS 13 compatibility
-  my.neovim-stable.enable = true;
+  my.neovim.enable = true;
 }

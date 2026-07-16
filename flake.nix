@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -49,7 +48,6 @@
       self,
       nix-darwin,
       nixpkgs,
-      nixpkgs-stable,
       home-manager,
       nix-homebrew,
       treefmt-nix,
@@ -62,17 +60,6 @@
         homeDirectory = "/Users/yuexunjiang";
       };
 
-      overlays = [
-        (_final: prev: {
-          stable = import nixpkgs-stable {
-            inherit (prev.stdenv.hostPlatform) system;
-            config = {
-              allowUnfree = true;
-            };
-          };
-        })
-      ];
-
       mkDarwinConfig =
         {
           hostname,
@@ -81,7 +68,6 @@
         nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs self user; };
           modules = [
-            { nixpkgs.overlays = overlays; }
             ./hosts/${hostname}/default.nix
             home-manager.darwinModules.home-manager
             {
