@@ -17,6 +17,7 @@ in
     ./programs/direnv.nix
     ./programs/claude-code.nix
     ./programs/codex.nix
+    ./programs/agent-skills.nix
   ];
 
   home.username = user.username;
@@ -69,5 +70,6 @@ in
   my.direnv.enable = true;
   my.claude-code.enable = true;
   my.codex.enable = true;
+  my.agent-skills.enable = true;
 
 }
