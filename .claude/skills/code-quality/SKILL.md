@@ -1,7 +1,7 @@
 ---
 name: code-quality
-description: "Code quality standards. Defines complexity management, modular design, code smell detection. Applied automatically when writing or reviewing code."
-user-invocable: false
+description: "Code quality standards. Defines complexity management, modular design, code smell detection, comment standards. Applied automatically when writing or reviewing code. Invoke directly to clean up comments in a file. Triggers on: 'clean up comments', 'comment cleanup', '/code-quality'."
+argument-hint: "[file_path]"
 ---
 
 # Programming Philosophy and Quality Standards
@@ -76,3 +76,13 @@ When modifying code:
 3. **Add** comments only for non-obvious behavior or design decisions
 4. **Update** stale comments when code changes invalidate them
 5. **Never** add comments just to fill space or appear thorough
+
+## Comment Cleanup Procedure
+
+When invoked directly with a file path (`/code-quality <file>`), clean up its comments per the Comment Standards above:
+
+1. **Read the file** to understand its purpose and structure
+2. **Suggest naming improvements** that make code self-documenting, applying them if safe
+3. **Remove** comments that restate code, add noise, or are outdated
+4. **Add** comments only where they explain non-obvious behavior, design decisions, complex algorithms, or essential interface contracts
+5. Leave the file cleaner than found

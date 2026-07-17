@@ -56,7 +56,7 @@ For non-trivial tasks:
 ### Coding Standards
 - **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`
 - **Complete by default**: When AI marginal cost is near-zero, default to complete implementation — full test coverage, proper error handling, cleanup of related dead code
-- **Comments**: After edits run `/comment-cleanup` on changed files → `comment-cleanup`
+- **Comments**: After edits run `/code-quality <file>` comment cleanup on changed files → `code-quality`
 - **React**: Eliminate waterfalls, ban direct useEffect → `react-best-practices`, `no-useeffect`
 - **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
 
@@ -74,10 +74,9 @@ For non-trivial tasks:
 | Skill                | Applied When                           |
 | -------------------- | -------------------------------------- |
 | slow-is-fast         | Before any moderate+ code modification |
-| code-quality         | Writing/reviewing code                 |
-| review               | Pre-push self-review (`/review`)       |
+| code-quality         | Writing/reviewing code; `/code-quality <file>` cleans comments |
+| self-review          | Pre-push self-review (`/self-review`); deep bug-hunt goes to built-in `/code-review` |
 | investigate          | Root-cause debugging (`/investigate`)  |
-| comment-cleanup      | After modifying code (run on changed files) |
 | react-best-practices | React-related work                     |
 | rust-design-patterns | Rust code, borrow checker, API design  |
 | emil-design-eng      | UI polish, component design, animation decisions |

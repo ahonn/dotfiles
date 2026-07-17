@@ -1,13 +1,15 @@
 ---
-name: review
-description: "Self-review of code changes (branch diff, staged, or uncommitted). Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR, creating a PR (always use --peer), reviewing uncommitted work. Triggers on: '/review', 'review my changes', 'review this branch', 'self-review', 'pre-push review', 'review uncommitted', 'review staged', 'create PR', 'open PR', 'submit PR'."
+name: self-review
+description: "Self-review of code changes (branch diff, staged, or uncommitted). Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR, creating a PR (always use --peer), reviewing uncommitted work. Triggers on: '/self-review', 'review my changes', 'review this branch', 'self-review', 'pre-push review', 'review uncommitted', 'review staged', 'create PR', 'open PR', 'submit PR'."
 allowed-tools: Bash, Read, Edit, Grep, Glob, Agent
 argument-hint: "[--base <branch>] [--scope <branch|staged|uncommitted>] [--fix] [--report-only] [--peer]"
 ---
 
-# Code Review
+# Self-Review
 
 Structured two-pass code review with Fix-First approach. Supports branch diffs, staged, and uncommitted changes. Integrates with `code-quality` skill standards.
+
+**Scope note**: this skill orchestrates the pre-push workflow (two-pass review, Fix-First, Codex peer review). For deep bug-hunting on a diff, prefer the built-in `/code-review`; for reviewing a GitHub PR, use the built-in `/review`.
 
 ## Arguments
 
@@ -21,7 +23,7 @@ Structured two-pass code review with Fix-First approach. Supports branch diffs, 
 - `--peer`: Spawn a parallel Codex CLI peer review via background Agent (requires `codex-plugin-cc`)
 - No arguments: default interactive mode (auto-fix mechanical, ask for judgment calls)
 
-**Auto-trigger rule**: When the user asks to create/open/submit a PR, run `/review --peer` first. Address findings before proceeding with PR creation.
+**Auto-trigger rule**: When the user asks to create/open/submit a PR, run `/self-review --peer` first. Address findings before proceeding with PR creation.
 
 ## Step 0: Detect Review Mode and Diff
 
