@@ -80,6 +80,12 @@ For non-trivial tasks:
 | comment-cleanup      | After modifying code (run on changed files) |
 | react-best-practices | React-related work                     |
 | rust-design-patterns | Rust code, borrow checker, API design  |
+| emil-design-eng      | UI polish, component design, animation decisions |
+| apple-design         | Apple-style motion, gestures, springs, materials (web) |
+| review-animations    | Strict animation review (`/review-animations`) |
+| improve-animations   | Codebase-wide animation audit and improvement plans |
+| find-animation-opportunities | Finding where motion is missing (read-only) |
+| animation-vocabulary | Naming a motion effect precisely       |
 
 ---
 
