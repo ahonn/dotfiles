@@ -35,6 +35,7 @@ For non-trivial tasks:
 
 - **NEVER** proactively suggest `git rebase`, `git reset --hard`, `git push --force`
 - Prefer `gh` CLI; conventional commits via `cz-cli`
+- Branch names: `<type>/<kebab-description>` using conventional-commit types (e.g. `feat/user-auth`); **never** agent prefixes like `codex/...` or `claude/...` → `branch`
 - Destructive operations: state risks, provide safer alternatives
 
 ---
@@ -91,6 +92,7 @@ For non-trivial tasks:
 | prototype            | Throwaway prototype to answer a design question |
 | resolving-merge-conflicts | In-progress merge/rebase conflict resolution |
 | handoff              | Compact session into a cross-agent handoff doc (`/handoff`) |
+| branch               | Creating/naming git branches (`/branch`)  |
 
 ---
 
