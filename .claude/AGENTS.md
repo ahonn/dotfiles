@@ -86,6 +86,7 @@ For non-trivial tasks:
 | improve-animations   | Codebase-wide animation audit and improvement plans |
 | find-animation-opportunities | Finding where motion is missing (read-only) |
 | animation-vocabulary | Naming a motion effect precisely       |
+| grilling             | Stress-testing a plan or decision via one-at-a-time questioning (`/grilling`) |
 
 ---
 
