@@ -34,10 +34,7 @@ Complexity = Dependencies + Obscurity
 
 ## Modular Design Principles
 
-- **Deep Modules**: Powerful functionality through simple interfaces
-- **Information Hiding**: Encapsulate design decisions within implementations
-- **General-Purpose Design**: Combat over-specialization
-- **Avoid "Classitis"**: More classes/components ≠ better design
+Design deep modules: a lot of behaviour behind a small interface, placed at a clean seam. Hide design decisions inside implementations; combat over-specialization and "classitis". For the full vocabulary (module, interface, seam, adapter, depth, leverage, locality) and design procedures, use the `codebase-design` skill.
 
 ## Code Smells to Watch For
 

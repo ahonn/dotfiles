@@ -41,7 +41,7 @@ For non-trivial tasks:
 
 ## Testing
 
-- Non-trivial logic: write/update tests **before** implementation (TDD mindset). Red → Green → Refactor
+- Non-trivial logic: write/update tests **before** implementation (TDD mindset). Red → Green → Refactor → `tdd`
 - Never claim to have actually run tests
 
 ---
@@ -54,7 +54,7 @@ For non-trivial tasks:
 - **Subagents**: Use liberally to keep main context clean. Offload research, exploration, and parallel analysis. One task per subagent
 
 ### Coding Standards
-- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`
+- **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`, `codebase-design`
 - **Complete by default**: When AI marginal cost is near-zero, default to complete implementation — full test coverage, proper error handling, cleanup of related dead code
 - **Comments**: After edits run `/code-quality <file>` comment cleanup on changed files → `code-quality`
 - **React**: Eliminate waterfalls, ban direct useEffect → `react-best-practices`, `no-useeffect`
@@ -86,6 +86,11 @@ For non-trivial tasks:
 | find-animation-opportunities | Finding where motion is missing (read-only) |
 | animation-vocabulary | Naming a motion effect precisely       |
 | grilling             | Stress-testing a plan or decision via one-at-a-time questioning (`/grilling`) |
+| tdd                  | Test-first development: seams, red-green loop, test anti-patterns |
+| codebase-design      | Designing module interfaces, seams, deep modules |
+| prototype            | Throwaway prototype to answer a design question |
+| resolving-merge-conflicts | In-progress merge/rebase conflict resolution |
+| handoff              | Compact session into a cross-agent handoff doc (`/handoff`) |
 
 ---
 
