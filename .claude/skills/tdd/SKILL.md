@@ -1,13 +1,25 @@
 ---
 name: tdd
-description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
+description: "Red-green test-first workflow for behavior with a clear, user-confirmed seam. Use when: user asks for TDD/test-first/red-green, adding non-trivial domain logic with an existing test harness, or fixing a bug that needs a regression test under mode tdd. Do NOT use when: config/docs/Nix/home-manager only, pure styling/copy, renames, scaffolding, prototypes, no test runner for this surface, user said skip tests, verification is build/flake-check only, or AGENTS test mode is skip|verify-only|add-tests-after."
 ---
 
 # Test-Driven Development
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every section applies on every cycle — consult them before and during the loop, not after.
 
+**Not the default workflow.** Most tasks use AGENTS.md test modes `skip`, `verify-only`, or `add-tests` without this skill. Only continue past the gate when mode is `tdd` (or the user explicitly ordered test-first).
+
 When exploring the codebase, read the project's domain docs if they exist (`CLAUDE.md`, glossary, ADRs) so test names and interface vocabulary match the project's domain language.
+
+## Gate (before any red test)
+
+Answer all three before writing a failing test:
+
+1. **Harness?** Is there a runnable test runner for this change surface (or is the user asking to introduce one for real domain logic)?
+2. **Logic-bearing?** Is the behavior domain logic / regression-worthy — not config, docs, Nix, pure UI chrome, rename, or scaffolding?
+3. **Opt-in?** Did the user ask for TDD/test-first/red-green, or is AGENTS test mode explicitly `tdd`?
+
+If any answer is no → **stop**. State `Test mode: skip | verify-only | add-tests` and a one-line rationale. Do not invent a harness, force red→green, or load the rest of this skill as a mandatory process.
 
 ## What a good test is
 

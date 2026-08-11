@@ -103,21 +103,22 @@ Name the mode at the start of Plan phase. The mode shapes how aggressively to ex
 ## Phase 2: Plan Mode (Analysis / Alignment)
 
 1. Briefly restate: objective, key constraints, current state, and the **Scope Mode** for this task
-2. Analyze top-down, find root causes, not just patch symptoms
-3. Provide **2–3 feasible options**, each including:
+2. **State test mode** (from AGENTS.md): `Test mode: skip | verify-only | add-tests | tdd — <rationale>`. Do not default to `tdd`. Code mode must honor this choice.
+3. Analyze top-down, find root causes, not just patch symptoms
+4. Provide **2–3 feasible options**, each including:
    - Summary approach
    - Impact scope (modules/interfaces involved)
    - Pros and cons
    - Potential risks
-   - Verification methods
+   - Verification methods (aligned with the chosen test mode)
 
    **Always include one minimal option and one architecturally complete option.** A homogeneous list of three near-identical plans is not a plan set.
 
-4. **Self-attack the recommendation.** Before presenting, ask what would make the chosen option fail. If the attack holds, present the deformed version. If the attack shatters it, discard and pick again — and tell the user why.
-5. **Mark hard-to-undo decisions.** Slow down on those; spend more analysis on anything that cannot be cheaply reversed.
-6. **State explicit non-goals.** Name what is being deliberately not built, so scope can stay honest later.
-7. Only ask clarifying questions when missing info would block progress
-8. Avoid providing essentially identical plans
+5. **Self-attack the recommendation.** Before presenting, ask what would make the chosen option fail. If the attack holds, present the deformed version. If the attack shatters it, discard and pick again — and tell the user why.
+6. **Mark hard-to-undo decisions.** Slow down on those; spend more analysis on anything that cannot be cheaply reversed.
+7. **State explicit non-goals.** Name what is being deliberately not built, so scope can stay honest later.
+8. Only ask clarifying questions when missing info would block progress
+9. Avoid providing essentially identical plans
 
 ### No Placeholders in Approved Plans
 
@@ -144,8 +145,9 @@ If all three are solid AND (user explicitly chose an option OR one option is cle
 
 1. Before providing code, briefly state which files/modules will be modified and why
 2. Prefer **minimal, reviewable changes**: local snippets/patches over complete files
-3. Indicate how to verify: tests/commands to run, new test cases if needed
-4. If major problems discovered → pause, switch back to Plan mode
+3. Verify according to the planned **test mode** only: invoke `tdd` solely when mode is `tdd`; do not invent tests under `skip` / `verify-only`
+4. Indicate how to verify: commands to run, new tests only if mode requires them
+5. If major problems discovered → pause, switch back to Plan mode
 
 ### Output Should Include
 

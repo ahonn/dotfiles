@@ -42,7 +42,17 @@ For non-trivial tasks:
 
 ## Testing
 
-- Non-trivial logic: write/update tests **before** implementation (TDD mindset). Red → Green → Refactor → `tdd`
+Decide **test mode** before writing code. Do **not** default to TDD. "Has tests" ≠ "must use red→green"; "non-trivial" ≠ "must test".
+
+| Mode | When | What to do |
+|------|------|------------|
+| **skip** | Config/docs/dotfiles/Nix, pure rename, UI polish without logic, one-shot scripts, no harness for this surface | No new tests. State why. |
+| **verify-only** | Existing suite/build already covers the path (`nix flake check`, typecheck, e2e already green) | Run existing checks only; don't invent tests |
+| **add-tests** | Bug fix needing regression, pure domain logic, parsers, money/auth, public API — harness exists | Tests required; TDD optional if test-first fits |
+| **tdd** | User asks for TDD/test-first/red-green, **or** non-trivial new behavior with a clear seam **and** existing test infrastructure | Invoke `tdd` skill |
+
+- Only invoke `tdd` for mode **tdd**, or **add-tests** when test-first is clearly better than tests-after
+- In Plan phase, state: `Test mode: <skip|verify-only|add-tests|tdd> — <one-line rationale>`
 - Never claim to have actually run tests
 
 ---
@@ -56,7 +66,7 @@ For non-trivial tasks:
 
 ### Coding Standards
 - **Code quality**: Readability > Correctness > Performance; deep modules, information hiding → `code-quality`, `codebase-design`
-- **Complete by default**: When AI marginal cost is near-zero, default to complete implementation — full test coverage, proper error handling, cleanup of related dead code
+- **Complete by default**: When AI marginal cost is near-zero, finish the implementation properly — error handling, related dead-code cleanup, and tests **only when test mode requires them** (not blanket full coverage)
 - **Comments**: After edits run `/code-quality <file>` comment cleanup on changed files → `code-quality`
 - **React**: Eliminate waterfalls, ban direct useEffect → `react-best-practices`, `no-useeffect`
 - **Rust**: Idiomatic patterns, ownership, API design → `rust-design-patterns`
@@ -87,7 +97,7 @@ For non-trivial tasks:
 | find-animation-opportunities | Finding where motion is missing (read-only) |
 | animation-vocabulary | Naming a motion effect precisely       |
 | grilling             | Stress-testing a plan or decision via one-at-a-time questioning (`/grilling`) |
-| tdd                  | Test-first development: seams, red-green loop, test anti-patterns |
+| tdd                  | Opt-in red-green only (mode `tdd`); not default for all work |
 | codebase-design      | Designing module interfaces, seams, deep modules |
 | prototype            | Throwaway prototype to answer a design question |
 | resolving-merge-conflicts | In-progress merge/rebase conflict resolution |
