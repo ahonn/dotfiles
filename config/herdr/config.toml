@@ -20,12 +20,29 @@ new_cwd = "follow"
 name = "catppuccin"
 # theme.custom.sidebar_bg needs post-0.8.0 (unreleased). Stay on stable for CJK IME;
 # re-add when a release includes sidebar_bg without the HEAD IME regression.
+#
+# Border + active row (catppuccin mocha blue family):
+#   sidebar │ / ─ + active space/agent row bg → surface_dim (shared token)
+#   unfocused pane border + agent index/"grok" → overlay0 (agent label always +DIM)
+#   focused pane / tab bg                      → accent
+# overlay0 must stay high-luminance: agent_style is fg=overlay0+DIM on surface_dim.
+[theme.custom]
+panel_bg = "#1e1e2e"
+surface0 = "#313244"
+surface1 = "#45475a"
+surface_dim = "#2a4060"  # deeper blue active bg so light labels pop
+overlay0 = "#e0e7ff"     # near-white: index "1" + agent "grok" (+DIM still readable)
+overlay1 = "#ffffff"
+accent = "#89b4fa"        # tab / focused border (bright blue)
+text = "#ffffff"         # active workspace name (bold)
+subtext0 = "#a6adc8"     # inactive names
+mauve = "#cba6f7"        # active branch label
 
 [ui]
 mouse_capture = true
 copy_on_select = true
 tab_bar_position = "top"
-accent = "cyan"
+accent = "#89b4fa"
 pane_borders = true
 pane_gaps = true
 show_agent_labels_on_pane_borders = true
