@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{report_title}}</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #fbfcfd;
+      --ink: #17191f;
+      --muted: #626976;
+      --faint: #8c94a3;
+      --line: #dfe3ea;
+      --line-soft: #edf0f4;
+      --accent: #0f766e;
+      --accent-ink: #0b4f49;
+      --accent-soft: #e8f4f2;
+      --danger: #b42318;
+      --danger-soft: #fff1f0;
+      --warning: #a15c07;
+      --warning-soft: #fff7e6;
+      --success: #137333;
+      --success-soft: #edf8f0;
+      --info: #175cd3;
+      --info-soft: #eff6ff;
+      --radius: 10px;
+    }
+
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #eef2f3 0, var(--bg) 250px),
+        var(--bg);
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ── Layout ── */
+    header, main, footer {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      min-width: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #101418;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-top: 34px;
+      padding-bottom: 28px;
+      margin-bottom: 0;
+      max-width: 100%;
+      box-shadow: 0 22px 45px rgba(16,20,24,0.16);
+    }
+    header .inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .report-badge {
+      display: inline-block;
+      background: rgba(15,118,110,0.18);
+      color: #9de2dc;
+      border: 1px solid rgba(157,226,220,0.24);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      max-width: 900px;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 700;
+      color: #f7fafc;
+      margin-bottom: 10px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #c9d0d8;
+    }
+    .meta-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.045);
+    }
+    .meta-row span strong {
+      color: #8994a3;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Main content ── */
+    main {
+      padding-top: 32px;
+      padding-bottom: 56px;
+    }
+
+    /* ── Section ── */
+    section {
+      max-width: 100%;
+      min-width: 0;
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+      box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+      /* 不用 overflow:hidden，否则小屏下表格横向滚动会被裁切 */
+    }
+    section > h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, #ffffff, var(--panel-soft));
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    section > .section-body {
+      max-width: 100%;
+      min-width: 0;
+      padding: 20px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Executive summary ── */
+    .summary-verdict {
+      max-width: 78ch;
+      font-size: 15px;
+      color: #313843;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .summary-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .summary-group {
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .summary-group.critical { background: var(--danger-soft); border: 1px solid #ffd7d2; }
+    .summary-group.warnings { background: var(--warning-soft); border: 1px solid #f7d99a; }
+    .summary-group.passing  { background: var(--success-soft); border: 1px solid #bddfca; }
+    .summary-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 8px;
+    }
+    .summary-group.critical .summary-group-label { color: var(--danger); }
+    .summary-group.warnings .summary-group-label { color: var(--warning); }
+    .summary-group.passing  .summary-group-label { color: var(--success); }
+    .summary-group ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .summary-group ul li {
+      font-size: 13px;
+      color: #2f3642;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      line-height: 1.45;
+    }
+    .summary-group ul li:last-child { border-bottom: none; }
+    .summary-group ul li::before {
+      margin-right: 5px;
+    }
+    .summary-group.critical ul li::before { content: "✕"; color: var(--danger); font-weight: 700; }
+    .summary-group.warnings ul li::before { content: "!"; color: var(--warning); font-weight: 700; }
+    .summary-group.passing  ul li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .summary-empty {
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* ── Page Speed module ── */
+    .pagespeed-overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .pagespeed-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+      padding: 16px;
+      min-width: 0;
+    }
+    .pagespeed-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .pagespeed-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+    }
+    .pagespeed-url {
+      font-size: 13px;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      margin-top: -6px;
+      margin-bottom: 14px;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .score-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+      min-width: 0;
+    }
+    .score-card .label,
+    .metric-card .label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 5px;
+    }
+    .score-card .value {
+      display: block;
+      font-size: 24px;
+      font-weight: 750;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .metric-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: #fff;
+      padding: 11px 12px;
+      min-width: 0;
+    }
+    .metric-card .value {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: #202631;
+    }
+    .pagespeed-screenshot {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .pagespeed-screenshot img {
+      display: block;
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid var(--line-soft);
+      background: #f8fafb;
+      margin-top: 10px;
+    }
+    .pagespeed-actions {
+      grid-column: 1 / -1;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px 16px;
+    }
+    .pagespeed-actions h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+      margin-bottom: 8px;
+    }
+    .pagespeed-actions ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #313843;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .pagespeed-actions li { margin-bottom: 4px; }
+    .pagespeed-actions li:last-child { margin-bottom: 0; }
+    .pagespeed-actions a {
+      color: var(--accent-ink);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(15,118,110,0.35);
+    }
+    .pagespeed-actions a:hover { border-bottom-color: var(--accent); }
+
+    /* ── Check table ── */
+    .table-scroll {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 0 12px;
+    }
+    .table-scroll:last-child { margin-bottom: 0; }
+    .check-table {
+      width: 100%;
+      min-width: 32rem;
+      background: var(--panel);
+      border-collapse: collapse;
+      font-size: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    /* E-E-A-T 等四列表格需要更宽的最小宽度 */
+    .check-table:has(thead tr th:nth-child(4)) {
+      min-width: 42rem;
+    }
+    .check-table th {
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafb;
+    }
+    .check-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .check-table tbody tr:hover td { background: #fbfcfd; }
+    .check-table td:first-child {
+      font-weight: 650;
+      color: #202631;
+    }
+    .check-table th:nth-child(1),
+    .check-table td:nth-child(1) { min-width: 6.5rem; }
+    .check-table th:nth-child(2),
+    .check-table td:nth-child(2) { width: 5.5rem; white-space: nowrap; }
+    .check-table th:nth-child(3),
+    .check-table td:nth-child(3) { min-width: 8rem; }
+    .sitemap-inventory-table th:nth-child(1),
+    .sitemap-inventory-table td:nth-child(1) { width: 8rem; }
+    .sitemap-inventory-table th:nth-child(2),
+    .sitemap-inventory-table td:nth-child(2) { width: 6rem; white-space: nowrap; }
+    .sitemap-inventory-table th:nth-child(3),
+    .sitemap-inventory-table td:nth-child(3) { width: 12rem; }
+    .sitemap-inventory-table th:nth-child(4),
+    .sitemap-inventory-table td:nth-child(4) { min-width: 18rem; }
+    .check-table tr:last-child td { border-bottom: none; }
+    /* Detail cell: issue description + fix suggestion */
+    .detail-issue {
+      font-size: 13px;
+      color: #313843;
+      line-height: 1.55;
+    }
+    .detail-fix {
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--accent-ink);
+      line-height: 1.5;
+    }
+    .detail-fix::before {
+      content: "Fix: ";
+      font-weight: 700;
+    }
+
+    /* ── Status badges ── */
+    .status {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 750;
+      padding: 3px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .status-pass  { background: var(--success-soft); color: var(--success); }
+    .status-fail  { background: var(--danger-soft); color: var(--danger); }
+    .status-warn  { background: var(--warning-soft); color: var(--warning); }
+    .status-info  { background: var(--info-soft); color: var(--info); }
+    .status-na    { background: #eef1f4; color: #596170; }
+
+    /* ── Finding articles ── */
+    article.finding {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    article.finding:last-child { margin-bottom: 0; }
+    .finding-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #f8fafb;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .finding-header h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      flex: 1;
+    }
+    .finding-body {
+      padding: 14px 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .finding-field {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .finding-field .label {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-top: 2px;
+    }
+    .finding-field .value { color: #313843; }
+
+    /* ── Priority actions ── */
+    ol.priority-list {
+      padding-left: 20px;
+      font-size: 14px;
+      color: #313843;
+      line-height: 1.8;
+    }
+    ol.priority-list li { margin-bottom: 6px; }
+
+    /* ── Sub-section label (within Site Checks) ── */
+    .subsection-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      padding: 7px 10px;
+      margin: 20px 0 12px;
+      border-radius: 0 6px 6px 0;
+    }
+    .subsection-label:first-child { margin-top: 0; }
+    .inventory-note {
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* ── Limitations ── */
+
+    /* ── Advanced data note ── */
+    .upgrade-box {
+      background: #f8fafb;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: #313843;
+    }
+    .upgrade-box strong { color: var(--accent-ink); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #7b8491;
+      padding-top: 16px;
+      padding-bottom: 32px;
+      border-top: 1px solid var(--line);
+      margin-top: 0;
+      max-width: 100%;
+      background: #ffffff;
+    }
+    footer .inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .summary-groups {
+        grid-template-columns: 1fr;
+      }
+      .pagespeed-overview {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header, main, footer,
+      header .inner {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      header { padding-top: 26px; padding-bottom: 22px; }
+      header h1 { font-size: 24px; line-height: 1.25; }
+      .meta-row { flex-direction: column; gap: 8px; }
+      .meta-row span {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+      }
+      .meta-row span strong { margin-right: 4px; }
+      main { padding-top: 20px; padding-bottom: 32px; }
+      section > h2 { padding: 12px 16px; }
+      section > .section-body { padding: 14px 16px; }
+      .check-table {
+        min-width: 28rem;
+        font-size: 13px;
+      }
+      .check-table th,
+      .check-table td { padding: 8px 10px; }
+      .score-grid,
+      .metric-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .finding-header {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .finding-header h3 { font-size: 13px; }
+      .finding-field {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .finding-field .label { padding-top: 0; }
+      .upgrade-box { padding: 14px 16px; font-size: 13px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      .summary-groups { gap: 10px; }
+      .summary-group { padding: 10px 12px; }
+      .check-table { min-width: 26rem; }
+      .check-table:has(thead tr th:nth-child(4)) { min-width: 34rem; }
+      .score-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <span class="report-badge">Full SEO Audit Report</span>
+    <h1>{{report_title}}</h1>
+    <div class="meta-row">
+      <span><strong>URL:</strong> {{url}}</span>
+      <span><strong>Audit Level:</strong> {{audit_level}}</span>
+      <span><strong>Created:</strong> {{generated_date}}</span>
+      <span><strong>Powered by:</strong> Jeff</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Audit Summary -->
+  <section>
+    <h2>Audit Summary</h2>
+    <div class="section-body">
+
+      <!-- One-line verdict: e.g. "Found 2 critical issues and 1 warning across 6 checks." -->
+      <p class="summary-verdict">{{summary_verdict}}</p>
+
+      <div class="summary-groups">
+
+        <!-- Critical issues (status: fail) — one <li> per issue, e.g. "Missing H1 tag" -->
+        <div class="summary-group critical">
+          <div class="summary-group-label">Critical</div>
+          <ul>
+            {{summary_critical_html}}
+            <!-- e.g. <li>Title tag missing</li><li>No H1 found</li> -->
+            <!-- If none: <li class="summary-empty">None</li> -->
+          </ul>
+        </div>
+
+        <!-- Warnings (status: warn) — one <li> per warning, e.g. "Title too long (78 chars)" -->
+        <div class="summary-group warnings">
+          <div class="summary-group-label">Warnings</div>
+          <ul>
+            {{summary_warnings_html}}
+            <!-- e.g. <li>Title is 78 chars (> 60)</li> -->
+            <!-- If none: <li class="summary-empty">None</li> -->
+          </ul>
+        </div>
+
+        <!-- Passing checks (status: pass) — one <li> per check -->
+        <div class="summary-group passing">
+          <div class="summary-group-label">Passing</div>
+          <ul>
+            {{summary_passing_html}}
+            <!-- e.g. <li>Single H1 present</li><li>Canonical correct</li> -->
+            <!-- If none: <li class="summary-empty">None</li> -->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Speed Checks -->
+  <section>
+    <h2>Page Speed</h2>
+    <div class="section-body">
+      {{pagespeed_checks_html}}
+      <!--
+        Expected format for pagespeed_checks_html:
+        - PageSpeed is required for seo-audit-full.
+        - If no PageSpeed API key is configured, stop before rendering the full report and ask the user to set PAGESPEED_API_KEY, GOOGLE_PAGESPEED_API_KEY, or pass --api-key.
+
+        <div class="pagespeed-overview">
+          <div class="pagespeed-panel">
+            <div class="pagespeed-head">
+              <div class="pagespeed-title">Lighthouse Scores</div>
+              <span class="status status-warn">Warning</span>
+            </div>
+            <div class="pagespeed-url">Final URL: https://tapvid.ai/</div>
+            <div class="score-grid">
+              <div class="score-card">
+                <span class="label">Performance</span>
+                <span class="value">82</span>
+              </div>
+              <div class="score-card">
+                <span class="label">Accessibility</span>
+                <span class="value">84</span>
+              </div>
+              <div class="score-card">
+                <span class="label">Best Practices</span>
+                <span class="value">100</span>
+              </div>
+              <div class="score-card">
+                <span class="label">SEO</span>
+                <span class="value">100</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagespeed-panel">
+            <div class="pagespeed-head">
+              <div class="pagespeed-title">Core Lab Metrics</div>
+              <span class="status status-pass">Screenshot</span>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-card">
+                <span class="label">FCP</span>
+                <span class="value">1.2 s</span>
+              </div>
+              <div class="metric-card">
+                <span class="label">LCP</span>
+                <span class="value">3.6 s</span>
+              </div>
+              <div class="metric-card">
+                <span class="label">TBT</span>
+                <span class="value">280 ms</span>
+              </div>
+              <div class="metric-card">
+                <span class="label">CLS</span>
+                <span class="value">0.001</span>
+              </div>
+              <div class="metric-card">
+                <span class="label">Speed Index</span>
+                <span class="value">4.1 s</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagespeed-actions">
+            <h3>Priority Actions</h3>
+            <ul>
+              <li>Improve LCP by compressing the hero media, preloading the primary image, and reducing render-blocking CSS.</li>
+              <li>Reduce Speed Index by deferring non-critical scripts and shipping less JavaScript above the fold.</li>
+              <li>Lower TBT by splitting long tasks and delaying third-party tags until after initial interaction readiness.</li>
+              <li>Review more diagnostics in the official test: <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a>.</li>
+            </ul>
+          </div>
+        </div>
+
+        Status mapping:
+        - Overall Page Speed status uses check-pagespeed.py "status".
+        - Lighthouse Scores badge uses check-pagespeed.py "category_status".
+        - Core Lab Metrics badge uses check-pagespeed.py "metric_status".
+        - Example: Performance 60 + Accessibility 84 + Best Practices 100 + SEO 100 → category_status "warn", not "fail".
+        - LCP 6.5s or Speed Index 5.9s may make metric_status "fail" and overall status "fail".
+        - Use final_url for the Final URL line.
+        - Use categories.performance/accessibility/best-practices/seo.score for score cards.
+        - Use compact_metrics.fcp/lcp/tbt/cls/si.display_value for lab metrics.
+        - If screenshot is present, show screenshot availability or render <img src="..."> inside .pagespeed-screenshot.
+        - Add a short Priority Actions list based on failing or warning PageSpeed fields.
+        - Keep PageSpeed actions concise: 2–4 items, focused on LCP, Speed Index, TBT, image delivery, render-blocking resources, JS execution, or third-party scripts.
+        - Include the official diagnostic link: https://pagespeed.web.dev/
+      -->
+    </div>
+  </section>
+
+  <!-- Site-Level Checks -->
+  <section>
+    <h2>Site Checks</h2>
+    <div class="section-body">
+
+      <!-- Sitemap Inventory + Crawlability + Canonicalization + i18n + Schema -->
+      {{site_checks_html}}
+      <!--
+        Use <div class="subsection-label">Label</div> to separate check groups.
+        Labels: Sitemap URL Inventory · Crawlability · URL Canonicalization · i18n / hreflang · Schema (JSON-LD)
+        Pass rows: ONE short phrase. No divs.
+        Warn / Fail rows: <div class="detail-issue"> ≤2 points + <div class="detail-fix">.
+
+        <div class="subsection-label">Sitemap URL Inventory</div>
+        <table class="check-table sitemap-inventory-table">
+          <thead>
+            <tr><th>Directory</th><th>URL Count</th><th>Page Type</th><th>Example Page</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/blog/</td>
+              <td>300</td>
+              <td>Blog / Content Pages</td>
+              <td>https://xx.ai/blog/best-ai-video-tools</td>
+            </tr>
+            <tr>
+              <td>/tools/</td>
+              <td>80</td>
+              <td>Tool Pages</td>
+              <td>https://xx.ai/tools/image-generator</td>
+            </tr>
+            <tr>
+              <td>/alternatives/</td>
+              <td>40</td>
+              <td>Alternative / Competitor Pages</td>
+              <td>https://xx.ai/alternatives/synthesia</td>
+            </tr>
+            <tr>
+              <td>/templates/</td>
+              <td>65</td>
+              <td>Template Pages</td>
+              <td>https://xx.ai/templates/tiktok-video</td>
+            </tr>
+            <tr>
+              <td>/use-cases/</td>
+              <td>25</td>
+              <td>Use Case / Solution Pages</td>
+              <td>https://xx.ai/use-cases/ecommerce</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="inventory-note">This sitemap inventory is a site-level map, not a full page audit. Continue with deeper full audits by selecting one representative URL from each important directory.</p>
+
+        <div class="subsection-label">Crawlability</div>
+        <table class="check-table">
+          <thead>
+            <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Staging Subdomain Indexation</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>No public staging/test subdomain detected, or staging is protected from crawler access.</td>
+            </tr>
+            <tr>
+              <td>Staging Subdomain Indexation</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· test.example.com is publicly accessible and appears to mirror the production site.</div>
+                <div class="detail-issue">· Indexed staging pages can compete with production URLs and split ranking signals.</div>
+                <div class="detail-fix">Protect staging with authentication, or block crawlers in staging robots.txt: User-agent: * / Disallow: /</div>
+              </td>
+            </tr>
+            <tr>
+              <td>robots.txt</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>User-Agent: * / Allow: / · Sitemap directive present · Googlebot not blocked.</td>
+            </tr>
+            <tr>
+              <td>sitemap.xml</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Valid XML urlset · 104 URLs · referenced in robots.txt.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="check-table">
+          <thead>
+            <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>robots.txt</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· No Sitemap: directive — crawlers cannot auto-discover sitemap.</div>
+                <div class="detail-fix">Add: Sitemap: https://example.com/sitemap.xml</div>
+              </td>
+            </tr>
+            <tr>
+              <td>sitemap.xml</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· HTTP 200 but body is HTML, not valid XML — Google cannot parse it.</div>
+                <div class="detail-fix">Generate a valid XML sitemap and submit via Google Search Console.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>404 Handling</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Non-existent URL returns 404 — correctly signals missing page to crawlers.</td>
+            </tr>
+            <tr>
+              <td>404 Handling</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· Non-existent URL returns 200 (soft 404) — Google cannot distinguish missing pages from real content.</div>
+                <div class="detail-fix">Return proper HTTP 404 status for missing pages.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>404 Handling</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· Non-existent URL redirects 301 to homepage — dilutes crawl budget and masks missing pages.</div>
+                <div class="detail-fix">Return 404 directly instead of redirecting to homepage.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>URL Canonicalization</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>HTTPS enforced · www consistent · trailing slash consistent · canonical matches URL.</td>
+            </tr>
+            <tr>
+              <td>URL Canonicalization</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· http://example.com returns 200 instead of 301 → https — duplicate indexable version.</div>
+                <div class="detail-fix">Force 301 redirect from HTTP to HTTPS at server/CDN level.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>URL Canonicalization</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· www and non-www both return 200 — two indexable versions of the site.</div>
+                <div class="detail-fix">Pick one (preferably non-www unless brand uses www), 301 the other, set canonical accordingly.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>URL Canonicalization</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· Canonical tag points to https://example.com/page but actual URL served is https://example.com/page/ — trailing slash mismatch.</div>
+                <div class="detail-fix">Align canonical tag with the exact URL being served, or 301 one form to the other.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>i18n / hreflang</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>3 hreflang tags (en, zh-TW, ja) · reciprocal links verified · x-default present · html[lang] matches.</td>
+            </tr>
+            <tr>
+              <td>i18n / hreflang</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· hreflang="zh" used — should be "zh-CN" or "zh-TW" (region required for Chinese). · zh-TW version missing reciprocal link back to en page.</div>
+                <div class="detail-fix">Use BCP 47 codes (zh-CN / zh-TW). Ensure every hreflang URL also references all other language variants.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>i18n / hreflang</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· Default language (en) served at /en/page — redundant prefix adds crawl depth. Recommended: / (en) + /zh/ + /es/.</div>
+                <div class="detail-fix">Move en content to root path, keep subpaths for other languages. Update hreflang and canonical accordingly.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>i18n / hreflang</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· hreflang tags present but reciprocal links broken — /zh page does not reference /en, Google will ignore the entire hreflang set.</div>
+                <div class="detail-fix">All language variants must reference each other. Add missing hreflang entries to /zh page.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>i18n / hreflang</td>
+              <td><span class="status status-na">N/A</span></td>
+              <td>Single-language site — hreflang not applicable.</td>
+            </tr>
+          </tbody>
+        </table>
+      -->
+
+      <!-- E-E-A-T Infrastructure: trust pages existence + reachability -->
+      {{eeat_checks_html}}
+      <!--
+        Start with: <div class="subsection-label">E-E-A-T Trust Pages</div>
+        Two layers per trust page:
+          Layer 1 — Exists     : HTTP 200 = pass, 404/redirect = fail
+          Layer 2 — Reachable  : linked from footer or main nav = pass, not linked = warn
+
+        Required: About Us, Contact, Privacy Policy, Terms of Service
+        Optional bonus: Media/Partners, Pricing (missing = N/A, not penalized)
+
+        Contact row exception — dedicated /contact page is NOT required:
+          Pass if contact is reachable via dedicated page, About page contact details,
+          or footer/nav mailto, email, social links, or contact form.
+          Fail only when no contact pathway exists anywhere.
+
+        <table class="check-table">
+          <thead>
+            <tr><th>E-E-A-T Page</th><th>Exists</th><th>Reachable (footer/nav)</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>About Us</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>/about · linked in footer.</td>
+            </tr>
+            <tr>
+              <td>Contact</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>/contact returns 404 · contact exposed via mailto:team@example.com in footer and About page.</td>
+            </tr>
+            <tr>
+              <td>Privacy Policy</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· /privacy returns 404.</div>
+                <div class="detail-fix">Create Privacy Policy page and link it in the footer.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Terms of Service</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>/terms · linked in footer.</td>
+            </tr>
+          </tbody>
+        </table>
+      -->
+
+    </div>
+  </section>
+
+  <!-- Page-Level Checks -->
+  <section>
+    <h2>Page Checks</h2>
+    <div class="section-body">
+      {{page_checks_html}}
+      <!--
+        Expected format for page_checks_html:
+        - Pass rows: ONE short phrase. No div wrappers needed. Badge already says it passed.
+        - Warn / Fail rows: <div class="detail-issue"> with ≤2 bullet points (lead with "·").
+                            <div class="detail-fix"> with the fix. No SEO 101 explanations.
+        - N/A rows: one short phrase explaining why check was skipped.
+
+        <table class="check-table">
+          <thead>
+            <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>URL Slug</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>/blog/best-running-shoes · lowercase, hyphenated, keyword present.</td>
+            </tr>
+            <tr>
+              <td>URL Slug</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· /the-best-and-most-popular-running-shoes-of-2025 — stop words (the, and, of) + overly long.</div>
+                <div class="detail-fix">Simplify: /running-shoes or /blog/running-shoes</div>
+              </td>
+            </tr>
+            <tr>
+              <td>URL Slug</td>
+              <td><span class="status status-na">N/A</span></td>
+              <td>Homepage — slug check not applicable.</td>
+            </tr>
+            <tr>
+              <td>Title Tag</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Homepage · "Acme | AI Workflow Automation" · brand + keyword, 34 chars.</td>
+            </tr>
+            <tr>
+              <td>Title Tag</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· Inner page · keyword buried at position 42 · 78 chars may truncate.</div>
+                <div class="detail-fix">Lead with keyword: "AI Workflow Automation for Teams — Acme" · shorten to 50–60 chars.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Meta Description</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>153 chars · keyword present · specific and non-generic.</td>
+            </tr>
+            <tr>
+              <td>Meta Description</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· 95 chars — below 120 minimum.</div>
+                <div class="detail-fix">Expand to 120–160 chars with a concrete value statement.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>H1 Tag</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Single H1 · "Best Running Shoes 2025" · keyword present.</td>
+            </tr>
+            <tr>
+              <td>H1 Tag</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· 3 H1 tags found: "Home", "Welcome", "Our Products".</div>
+                <div class="detail-fix">Keep one H1 with the primary keyword. Demote others to H2.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Canonical Tag</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Self-referencing canonical present.</td>
+            </tr>
+            <tr>
+              <td>Image Alt Text</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>12 images found · all have alt attributes · no empty alt on content images.</td>
+            </tr>
+            <tr>
+              <td>Image Alt Text</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· 3 of 12 images missing alt attribute.</div>
+                <div class="detail-fix">Add descriptive alt text to all content images. Decorative images use alt="".</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Image Alt Text</td>
+              <td><span class="status status-info">Unverified</span></td>
+              <td>0 images in static HTML — likely JavaScript-rendered. Cannot verify alt text from static analysis. Check via browser DevTools or GSC URL Inspection.</td>
+            </tr>
+            <tr>
+              <td>Word Count</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>1,420 words.</td>
+            </tr>
+            <tr>
+              <td>Word Count</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· 320 words — thin (recommended ≥ 500).</div>
+                <div class="detail-fix">Expand to 500+ words with substantive content.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Word Count</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· 43 words — below 100-word minimum, not meaningful for indexing.</div>
+                <div class="detail-fix">Expand content significantly.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Keyword Placement</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>Keyword appears at word 87 — within first 100 words.</td>
+            </tr>
+            <tr>
+              <td>Keyword Placement</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· Keyword first appears at word 210 — should be within first 100 words.</div>
+                <div class="detail-fix">Add keyword or natural variant to the opening paragraph.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Heading Structure</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>6 H2s · keyword in 3 H2s · avg 2 H3s/H2.</td>
+            </tr>
+            <tr>
+              <td>Heading Structure</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· 2 H2s — sparse (recommended 5–7). · Keyword not in any H2.</div>
+                <div class="detail-fix">Expand to 5–7 H2 sections. Include keyword or natural variant in at least 1 H2.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Internal Links</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>8 internal links.</td>
+            </tr>
+            <tr>
+              <td>Internal Links</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· 1 internal link — too few for link equity distribution.</div>
+                <div class="detail-fix">Add 2+ internal links to related pages.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Schema (JSON-LD)</td>
+              <td><span class="status status-pass">Pass</span></td>
+              <td>BlogPosting detected · required fields present · localized schema matches page language.</td>
+            </tr>
+            <tr>
+              <td>Schema (JSON-LD)</td>
+              <td><span class="status status-warn">Warning</span></td>
+              <td>
+                <div class="detail-issue">· BlogPosting present but missing recommended fields: dateModified, publisher, and mainEntityOfPage.</div>
+                <div class="detail-fix">Add recommended rich-result fields and validate the JSON-LD with Google's Rich Results Test.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Schema (JSON-LD)</td>
+              <td><span class="status status-fail">Fail</span></td>
+              <td>
+                <div class="detail-issue">· Schema fields are missing or misconfigured, so Google may ignore the structured data.</div>
+                <div class="detail-issue">· Localized pages reuse schema from another language instead of matching inLanguage, URL, and page content.</div>
+                <div class="detail-fix">Fix required fields and generate language-specific JSON-LD for each localized URL.</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Schema (JSON-LD)</td>
+              <td><span class="status status-na">N/A</span></td>
+              <td>Generic landing page — no widely-supported schema type, skip.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        On-page content check logic (LLM reads page HTML for all 4 checks):
+
+        Word Count — visible body text only (exclude nav/footer/boilerplate):
+          < 100      → Fail · 100–499 → Warn · ≥ 500 → Pass
+
+        Keyword Placement — primary keyword or close variant in first 100 body words:
+          Present → Pass · Absent → Warn
+
+        Heading Structure — three sub-rules, report as separate bullets if any fail:
+          H2 count  : 0 → Warn · 1–4 → Warn · 5–7 → Pass · ≥ 8 → Warn
+          H3/H2     : 0 → OK · 1–3 → Pass · ≥ 4 → Warn (split this H2)
+          Keyword in H2 : ≥ 1 H2 contains keyword/variant → Pass · 0 → Warn
+          Pass summary: "Y H2s · keyword in N H2s · avg Z H3s/H2"
+
+        Internal Links — <a href> pointing to same-origin URLs (exclude nav/footer):
+          < 2 → Warn · 2–20 → Pass · > 20 → Warn
+
+        Schema (JSON-LD) — output AFTER the above 4 checks:
+
+        Schema check logic (LLM must follow this order):
+        1. Detect page type from URL pattern + H1 + page content:
+           - Homepage        → expect: WebSite + Organization
+           - Blog / Article  → expect: Article or BlogPosting
+           - Product page    → expect: Product (with Offer, AggregateRating)
+           - FAQ page        → expect: FAQPage
+           - How-to page     → expect: HowTo
+           - Local business  → expect: LocalBusiness
+           - Generic landing → N/A (skip, do not penalize)
+        2. Check if expected @type is present in page JSON-LD blocks
+        3. Validate required fields per type:
+           - Article/BlogPosting : headline, datePublished, author, image
+           - Product             : name, image, offers (price, priceCurrency)
+           - FAQPage             : mainEntity[].name + acceptedAnswer.text
+           - WebSite             : name, url
+           - Organization        : name, url, logo
+        4. Flag malformed JSON-LD, misspelled/missing schema properties, incomplete nested fields, and conflicts
+        5. For multilingual pages, validate localized schema:
+           - inLanguage should match html[lang]
+           - url / mainEntityOfPage should match the current canonical URL
+           - headline / description should be in the current page language when present
+           - Each localized URL should generate its own language-specific JSON-LD
+      -->
+    </div>
+  </section>
+
+  <!-- Priority Actions -->
+  <section>
+    <h2>Priority Actions</h2>
+    <div class="section-body">
+      {{priority_actions_html}}
+      <!--
+        Expected format:
+        <ol class="priority-list">
+          <li>Shorten the title tag to under 60 characters, leading with the primary keyword.</li>
+          <li>Expand the meta description to 120–160 characters with a clear call to action.</li>
+          <li>Add a Sitemap directive to robots.txt pointing to /sitemap.xml.</li>
+        </ol>
+      -->
+    </div>
+  </section>
+
+  <!-- Insights -->
+  <section>
+    <h2>Insight Walkthrough <span style="font-size:11px;font-weight:400;color:#aaa;letter-spacing:0;text-transform:none;margin-left:6px;">optional — detailed evidence &amp; reasoning</span></h2>
+    <div class="section-body">
+      {{insights_html}}
+      <!--
+        Expected format for insights_html (repeat <article> per insight):
+
+        <article class="finding">
+          <div class="finding-header">
+            <span class="status status-fail">Critical</span>
+            <h3>Title Tag Too Long</h3>
+          </div>
+          <div class="finding-body">
+            <div class="finding-field">
+              <span class="label">Evidence</span>
+              <span class="value">Current title is 78 characters: "Best Running Shoes 2025 — Free Shipping | AcmeSports Online Store". Google typically truncates titles beyond 60 characters in SERPs.</span>
+            </div>
+            <div class="finding-field">
+              <span class="label">Impact</span>
+              <span class="value">Truncated titles reduce click-through rates and may fail to communicate the page's primary value proposition in search results.</span>
+            </div>
+            <div class="finding-field">
+              <span class="label">Fix</span>
+              <span class="value">Rewrite title to 50–60 characters. Prioritize primary keyword near the front. Example: "Best Running Shoes 2025 | Free Shipping — AcmeSports"</span>
+            </div>
+          </div>
+        </article>
+      -->
+    </div>
+  </section>
+
+  <!-- Advanced Data Note -->
+  <section>
+    <h2>Advanced Data Note</h2>
+    <div class="section-body">
+      <div class="upgrade-box">
+        This is the <strong>seo-audit-full</strong> report format. Advanced modules can include social tags, content quality analysis, GSC crawl status, crawl exports, Core Web Vitals, and competitor benchmarks when the required data is supplied.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    Powered by OpenSource Project - <strong><a href="https://github.com/JeffLi1993/seo-audit-skill">seo-audit-skill</a></strong> · Full SEO Audit Report · {{generated_date}}
+  </div>
+</footer>
+
+</body>
+</html>

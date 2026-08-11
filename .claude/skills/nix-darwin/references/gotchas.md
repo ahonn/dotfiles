@@ -87,6 +87,20 @@ security.pam.services.sudo_local.touchIdAuth = lib.mkForce false;
 programs.neovim.extraPackages = with pkgs; [ tree-sitter nodejs ];
 ```
 
+### Homebrew brew pin lags homebrew-core (DSL errors)
+
+**Symptom:** `undefined method 'if_path_exists'`, `openssl@3: unknown keyword: :overwrite`, `brew bundle` fails mid-install.
+
+**Cause:** `homebrew-brew` is pinned to a release tag while `homebrew-core` floats. Updating core alone leaves brew on an older InstallSteps DSL.
+
+**Fix:** Co-update (never update core alone):
+```bash
+./scripts/update-homebrew-inputs.sh
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#workstation
+./scripts/update-homebrew-inputs.sh --check
+```
+Brew version is only declared in `flake.nix` (`github:Homebrew/brew/<tag>`); `modules/homebrew/base.nix` reads it from `flake.lock`.
+
 ### Homebrew cleanup removes nix-managed packages
 
 **Symptom:** After `darwin-rebuild switch`, some brew packages disappear.

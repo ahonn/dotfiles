@@ -29,6 +29,11 @@ nix flake update
 nix flake update nixpkgs
 nix flake update nix-darwin
 
+# Homebrew: always co-update brew tag + core/cask (do NOT update core alone)
+./scripts/update-homebrew-inputs.sh
+./scripts/update-homebrew-inputs.sh --check   # after rebuild: parse openssl@3/node
+./scripts/update-homebrew-inputs.sh --dry-run
+
 # Show flake metadata
 nix flake metadata
 

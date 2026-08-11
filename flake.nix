@@ -9,8 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Pin to a stable brew *tag* (not master). Version is the single source of truth;
+    # modules/homebrew/base.nix reads it from flake.lock. Never update homebrew-core
+    # without also bumping this tag — use: ./scripts/update-homebrew-inputs.sh
     homebrew-brew = {
-      url = "github:Homebrew/brew/6.0.9";
+      url = "github:Homebrew/brew/6.0.15";
       flake = false;
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
@@ -20,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Always co-update with homebrew-brew (see scripts/update-homebrew-inputs.sh).
+    # Floating core + stale brew pin → DSL errors (if_path_exists, overwrite:).
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;

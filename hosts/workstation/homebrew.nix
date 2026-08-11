@@ -1,17 +1,15 @@
-{ inputs, ... }:
+{ ... }:
 {
   imports = [ ../../modules/homebrew/base.nix ];
 
-  # Core formulas can adopt newer DSL features before nix-homebrew updates its pin.
-  nix-homebrew.package = inputs.homebrew-brew // {
-    name = "brew-6.0.9";
-    version = "6.0.9";
-  };
+  # Brew pin lives in flake.nix + modules/homebrew/base.nix.
+  # Co-update brew/core/cask: ./scripts/update-homebrew-inputs.sh
 
   homebrew = {
     brews = [
       "cocoapods"
       "gh"
+      "herdr"
       "node"
       "repomix"
       "uv"
@@ -23,10 +21,8 @@
       "google-chrome"
       "badgeify"
       "raycast"
-      "discord"
       "fork"
-      "orbstack"
-      "tailscale"
+      "tailscale-app"
       "ghostty"
       "codex"
       "zed"

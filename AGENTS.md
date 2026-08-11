@@ -18,6 +18,9 @@ sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#homelab
 # Update flake inputs
 nix flake update
 
+# Co-update Homebrew brew tag + core/cask (avoid brew/core DSL drift)
+./scripts/update-homebrew-inputs.sh
+
 # Validate without applying
 nix flake check
 ```

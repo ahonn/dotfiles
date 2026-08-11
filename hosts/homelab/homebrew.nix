@@ -7,7 +7,7 @@
       "1password"
       "raycast"
       "orbstack"
-      "tailscale"
+      "tailscale-app"
     ];
   };
 }

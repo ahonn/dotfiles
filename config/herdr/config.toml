@@ -1,0 +1,93 @@
+# Herdr config aligned to this machine's tmux muscle memory
+# (modules/home-manager/programs/tmux.nix: prefix Ctrl-a).
+#
+# Semantic map:
+#   tmux window  ≈ herdr tab
+#   tmux session ≈ herdr workspace
+#   tmux pane    ≈ herdr pane
+#
+# Edit freely; symlink is out-of-store so no rebuild needed.
+# Reload a running server: herdr server reload-config  (or prefix+r)
+
+onboarding = false
+
+[terminal]
+default_shell = "zsh"
+shell_mode = "auto"
+new_cwd = "follow"
+
+[theme]
+name = "catppuccin"
+# theme.custom.sidebar_bg needs post-0.8.0 (unreleased). Stay on stable for CJK IME;
+# re-add when a release includes sidebar_bg without the HEAD IME regression.
+
+[ui]
+mouse_capture = true
+copy_on_select = true
+tab_bar_position = "top"
+accent = "cyan"
+pane_borders = true
+pane_gaps = true
+show_agent_labels_on_pane_borders = true
+confirm_close = true
+prompt_new_tab_name = false
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[session]
+resume_agents_on_restore = true
+
+# CJK IME (stable 0.8.0 — worked before HEAD upgrade)
+[experimental]
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex", "grok", "opencode", "cursor"]
+switch_ascii_input_source_in_prefix = true
+
+[keys]
+# --- prefix (matches programs.tmux.shortcut = "a") ---
+prefix = "ctrl+a"
+
+# --- tabs (tmux windows) ---
+new_tab = "prefix+c"
+previous_tab = "prefix+ctrl+j"
+next_tab = "prefix+ctrl+k"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+ctrl+q"
+rename_tab = "prefix+shift+t"
+
+# --- workspaces (tmux sessions) ---
+# prefix+n was next_tab in herdr defaults; here it matches tmux new-session
+new_workspace = "prefix+n"
+close_workspace = "prefix+shift+q"
+rename_workspace = "prefix+shift+w"
+workspace_picker = ["prefix+w", "prefix+space"]
+goto = "prefix+s"
+settings = "prefix+comma"
+
+# --- panes ---
+split_horizontal = "prefix+minus"
+split_vertical = ["prefix+backslash", "prefix+v"]
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
+# tmux: q kill-pane; herdr default was detach on q — swapped to tmux semantics
+close_pane = "prefix+q"
+detach = "prefix+d"
+last_pane = "prefix+ctrl+a"
+zoom = "prefix+z"
+resize_mode = "prefix+shift+r"
+copy_mode = "prefix+["
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+
+# --- session / config ---
+reload_config = "prefix+r"
+toggle_sidebar = "prefix+b"
+help = "prefix+?"

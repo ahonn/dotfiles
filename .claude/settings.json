@@ -1,7 +1,8 @@
 {
   "cleanupPeriodDays": 60,
   "env": {
-    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus"
   },
   "attribution": {
     "commit": "",
@@ -74,9 +75,32 @@
             "command": "claude-tmux-state idle"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx --yes ccclub@0.6.13 sync --silent",
+            "timeout": 30,
+            "async": true
+          }
+        ]
       }
     ],
-    "SessionEnd": []
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx --yes ccclub@0.6.13 sync --silent",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",
@@ -152,5 +176,6 @@
   "theme": "dark-daltonized",
   "editorMode": "vim",
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }

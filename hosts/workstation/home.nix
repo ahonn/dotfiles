@@ -14,6 +14,7 @@ in
     ../../modules/home-manager/programs/aerospace.nix
     ../../modules/home-manager/programs/zed-editor.nix
     ../../modules/home-manager/programs/ghostty.nix
+    ../../modules/home-manager/programs/herdr.nix
   ];
 
   # workstation-specific packages
@@ -33,4 +34,5 @@ in
   my.aerospace.enable = true;
   my.zed-editor.enable = false;
   my.ghostty.enable = true;
+  my.herdr.enable = true;
 }
