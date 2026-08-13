@@ -79,25 +79,36 @@ rename_tab = "prefix+shift+t"
 new_workspace = "prefix+n"
 close_workspace = "prefix+shift+q"
 rename_workspace = "prefix+shift+w"
-workspace_picker = ["prefix+w", "prefix+space"]
-goto = "prefix+s"
+# tmux: bind s choose-tree -Zs is a session picker, so prefix+s belongs on
+# workspace_picker (spaces only). goto opens the navigator, which also walks
+# tabs and panes; it keeps herdr's own default key.
+workspace_picker = ["prefix+w", "prefix+space", "prefix+s"]
+goto = "prefix+g"
 settings = "prefix+comma"
 
 # --- panes ---
+# herdr names splits after the resulting stack, tmux after the split axis:
+# split_horizontal opens below (tmux -v), split_vertical opens right (tmux -h).
+# Inverse names, same layout.
 split_horizontal = "prefix+minus"
 split_vertical = ["prefix+backslash", "prefix+v"]
 focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
-swap_pane_left = "prefix+shift+h"
-swap_pane_down = "prefix+shift+j"
-swap_pane_up = "prefix+shift+k"
-swap_pane_right = "prefix+shift+l"
+# tmux binds swap-pane to C-u/C-d and has no left/right swap; shift+hjkl is
+# resize there, so it stays free for the resize binds at the end of this file.
+swap_pane_up = "prefix+ctrl+u"
+swap_pane_down = "prefix+ctrl+d"
+swap_pane_left = ""
+swap_pane_right = ""
 # tmux: q kill-pane; herdr default was detach on q — swapped to tmux semantics
 close_pane = "prefix+q"
 detach = "prefix+d"
-last_pane = "prefix+ctrl+a"
+# tmux default is prefix+; for last-pane. prefix+ctrl+a would be tmux's
+# last-window, but herdr has no last-tab action and rejects a doubled prefix
+# (it sends a literal prefix key instead).
+last_pane = "prefix+semicolon"
 zoom = "prefix+z"
 resize_mode = "prefix+shift+r"
 copy_mode = "prefix+["
@@ -108,3 +119,33 @@ cycle_pane_previous = "prefix+shift+tab"
 reload_config = "prefix+r"
 toggle_sidebar = "prefix+b"
 help = "prefix+?"
+
+# --- pane resize (tmux: bind -r H/J/K/L resizep -L/-D/-U/-R 5) ---
+# herdr exposes no directional resize action, only resize_mode (prefix+shift+r)
+# for continuous adjustment. These shell binds call the socket API to keep
+# tmux's one-shot feel; --amount defaults to a 0.05 split-ratio step.
+# Keep at the end of the file: TOML assigns any bare key written after an
+# [[keys.command]] table to that table instead of [keys].
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = "herdr pane resize --direction left --current"
+description = "resize pane left"
+
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = "herdr pane resize --direction down --current"
+description = "resize pane down"
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = "herdr pane resize --direction up --current"
+description = "resize pane up"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = "herdr pane resize --direction right --current"
+description = "resize pane right"
