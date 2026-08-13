@@ -16,3 +16,6 @@ docs/
 # Codex live config: continuously rewritten by Codex (machine-specific paths,
 # local project trust state). Symlinked from the repo but not versioned.
 .codex/config.toml
+
+# Bytecode from skill helper scripts (.claude/skills/**/scripts/*.py)
+__pycache__/
