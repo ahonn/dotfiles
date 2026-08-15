@@ -86,6 +86,12 @@ rename_workspace = "prefix+shift+w"
 workspace_picker = ["prefix+w", "prefix+space", "prefix+s"]
 goto = "prefix+g"
 settings = "prefix+comma"
+# Navigate mode (prefix+s/w/space): defaults are arrows for the space list
+# and hjkl for panes. Rebind j/k onto the list so the picker is vim-shaped;
+# h/l still move panes. Workspace bindings are checked first, so they win
+# over the default navigate_pane_down/up = j/k.
+navigate_workspace_up = ["k", "up"]
+navigate_workspace_down = ["j", "down"]
 
 # --- panes ---
 # herdr names splits after the resulting stack, tmux after the split axis:
