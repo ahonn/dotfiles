@@ -49,6 +49,7 @@ show_agent_labels_on_pane_borders = true
 confirm_close = true
 prompt_new_tab_name = false
 
+agent_panel_sort = "priority"
 [ui.toast]
 delivery = "herdr"
 delay_seconds = 1
@@ -92,10 +93,14 @@ settings = "prefix+comma"
 # Inverse names, same layout.
 split_horizontal = "prefix+minus"
 split_vertical = ["prefix+backslash", "prefix+v"]
-focus_pane_left = "prefix+h"
+# prefix+h/j/k/l matches tmux `bind h/j/k/l`.
+# prefix+ctrl+h/l matches the "don't release Ctrl after C-a" chord.
+# prefix+ctrl+j/k stay on previous_tab/next_tab — that is tmux
+# `bind C-j/C-k previous/next-window`, not pane focus.
+focus_pane_left = ["prefix+h", "prefix+ctrl+h"]
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
-focus_pane_right = "prefix+l"
+focus_pane_right = ["prefix+l", "prefix+ctrl+l"]
 # tmux binds swap-pane to C-u/C-d and has no left/right swap; shift+hjkl is
 # resize there, so it stays free for the resize binds at the end of this file.
 swap_pane_up = "prefix+ctrl+u"
