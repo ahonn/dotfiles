@@ -2,8 +2,8 @@
 {
   imports = [ ../../modules/homebrew/base.nix ];
 
-  # Brew pin lives in flake.nix + modules/homebrew/base.nix.
-  # Co-update brew/core/cask: ./scripts/update-homebrew-inputs.sh
+  # Third-party packages need their tap declared as a flake input and
+  # registered in modules/homebrew/base.nix (mutableTaps = false).
 
   homebrew = {
     brews = [
@@ -12,6 +12,7 @@
       "herdr"
       "node"
       "repomix"
+      "rjyo/moshi/moshi-hook"
       "uv"
     ];
 

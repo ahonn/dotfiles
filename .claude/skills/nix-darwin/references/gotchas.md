@@ -87,19 +87,27 @@ security.pam.services.sudo_local.touchIdAuth = lib.mkForce false;
 programs.neovim.extraPackages = with pkgs; [ tree-sitter nodejs ];
 ```
 
-### Homebrew brew pin lags homebrew-core (DSL errors)
+### Homebrew brew lags a tap (DSL errors)
 
-**Symptom:** `undefined method 'if_path_exists'`, `openssl@3: unknown keyword: :overwrite`, `brew bundle` fails mid-install.
+**Symptom:** `undefined method 'if_path_exists'`, `openssl@3: unknown keyword: :overwrite`, `Cask 'aerospace' is unreadable: unknown keyword: :must_succeed`; `brew bundle` fails during activation.
 
-**Cause:** `homebrew-brew` is pinned to a release tag while `homebrew-core` floats. Updating core alone leaves brew on an older InstallSteps DSL.
+**Cause:** brew and every tap are separate flake inputs. A tap updated past the locked brew uses keywords brew does not know yet. brew tracks `master` so a plain `nix flake update` keeps them aligned; drift only happens when a tap is updated alone (`nix flake update homebrew-cask`).
 
-**Fix:** Co-update (never update core alone):
+**Fix:** Update brew and the taps together:
 ```bash
-./scripts/update-homebrew-inputs.sh
+./scripts/update-homebrew-inputs.sh   # or a full `nix flake update`
 sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#workstation
 ./scripts/update-homebrew-inputs.sh --check
 ```
-Brew version is only declared in `flake.nix` (`github:Homebrew/brew/<tag>`); `modules/homebrew/base.nix` reads it from `flake.lock`.
+If brew `master` itself is broken, pin it temporarily in `flake.nix` (`github:Homebrew/brew/<tag>`) and drop the pin once fixed. `modules/homebrew/base.nix` names the build after the locked rev, so both forms work.
+
+### brew bundle cleanup: "No available formula ... requires the tap"
+
+**Symptom:** `Error: No available formula with the name "rjyo/moshi/moshi-hook". This command requires the tap rjyo/moshi.`
+
+**Cause:** `mutableTaps = false`: nix-homebrew lays down only the declared taps, so a manually `brew tap`-ped tap vanishes on rebuild while its installed keg stays. `brew bundle --force-cleanup` then cannot load the orphaned keg's formula.
+
+**Fix:** Declare the tap: add a `flake = false` input in `flake.nix`, register it in `nix-homebrew.taps` (`modules/homebrew/base.nix`), and list the package fully qualified (`tap/name`) in the host's `homebrew.brews`. If the tool is unwanted, delete `$(brew --cellar)/<name>` plus its `opt/` and `bin/` symlinks by hand instead.
 
 ### Homebrew cleanup removes nix-managed packages
 

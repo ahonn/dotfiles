@@ -11,12 +11,12 @@ let
     homebrew-cask
     homebrew-bundle
     homebrew-nikitabobko
+    homebrew-moshi
     ;
 
-  # Single source of truth: flake.nix `homebrew-brew` URL tag (locked in flake.lock).
-  # Do not hardcode the version here — bump via scripts/update-homebrew-inputs.sh.
-  flakeLock = builtins.fromJSON (builtins.readFile ../../flake.lock);
-  brewVersion = flakeLock.nodes.homebrew-brew.original.ref;
+  # homebrew-brew floats (see flake.nix); name the build after the locked rev
+  # so `brew-<date>-<rev>-patched` in the store tells which brew is installed.
+  brewVersion = "${builtins.substring 0 8 homebrew-brew.lastModifiedDate}-${homebrew-brew.shortRev}";
 in
 {
   nix-homebrew = {
@@ -25,7 +25,7 @@ in
     user = user.username;
     autoMigrate = true;
     mutableTaps = false;
-    # Pin brew to the flake input so core/cask DSL stays parseable.
+    # Build brew from the flake input so it is locked together with the taps.
     package = homebrew-brew // {
       name = "brew-${brewVersion}";
       version = brewVersion;
@@ -35,6 +35,7 @@ in
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-bundle" = homebrew-bundle;
       "nikitabobko/homebrew-tap" = homebrew-nikitabobko;
+      "rjyo/homebrew-moshi" = homebrew-moshi;
     };
   };
 

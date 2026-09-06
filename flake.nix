@@ -9,11 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Pin to a stable brew *tag* (not master). Version is the single source of truth;
-    # modules/homebrew/base.nix reads it from flake.lock. Never update homebrew-core
-    # without also bumping this tag — use: ./scripts/update-homebrew-inputs.sh
+    # brew tracks master so a plain `nix flake update` moves it together with the
+    # taps below. A brew pin that lags the taps breaks on new DSL keywords
+    # (if_path_exists, overwrite:, must_succeed:). If master itself is broken,
+    # pin temporarily: url = "github:Homebrew/brew/<tag>" — base.nix copes with both.
     homebrew-brew = {
-      url = "github:Homebrew/brew/6.0.15";
+      url = "github:Homebrew/brew";
       flake = false;
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
@@ -23,8 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Always co-update with homebrew-brew (see scripts/update-homebrew-inputs.sh).
-    # Floating core + stale brew pin → DSL errors (if_path_exists, overwrite:).
+    # Taps. Update them together with homebrew-brew: `nix flake update`, or
+    # scripts/update-homebrew-inputs.sh to touch only the homebrew-* inputs.
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -39,6 +40,10 @@
     };
     homebrew-nikitabobko = {
       url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
+    homebrew-moshi = {
+      url = "github:rjyo/homebrew-moshi";
       flake = false;
     };
 
