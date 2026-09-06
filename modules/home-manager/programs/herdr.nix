@@ -13,7 +13,6 @@ in
   config = mkIf cfg.enable {
     # Package is installed via Homebrew (hosts/*/homebrew.nix) for a newer
     # release track than nixpkgs; this module only manages config.
-    xdg.configFile."herdr/config.toml".source =
-      config.lib.file.mkOutOfStoreSymlink herdrConfig;
+    xdg.configFile."herdr/config.toml".source = config.lib.file.mkOutOfStoreSymlink herdrConfig;
   };
 }
