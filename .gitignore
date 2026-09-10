@@ -19,3 +19,7 @@ docs/
 
 # Bytecode from skill helper scripts (.claude/skills/**/scripts/*.py)
 __pycache__/
+
+# Paseo-managed skills: rewritten by the paseo daemon at runtime, not source
+.claude/skills/paseo/
+.claude/skills/paseo-*/
