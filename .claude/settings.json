@@ -133,7 +133,8 @@
     "claude-code-wakatime@wakatime": true,
     "codex@openai-codex": true,
     "figma@claude-plugins-official": true,
-    "daily-report@session-tools": true
+    "daily-report@session-tools": true,
+    "nowledge-mem@nowledge-community": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
@@ -182,6 +183,11 @@
   "language": "chinese",
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    }
+  },
   "tui": "fullscreen",
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
