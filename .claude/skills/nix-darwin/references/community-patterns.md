@@ -4,6 +4,8 @@ Best practices from high-star nix-darwin repos on GitHub. Reference these when t
 
 ## mkDarwinConfig Helper (malob 455★, kclejeune 515★)
 
+**Status in this repo:** adopted — `mkDarwinConfig` is defined inline in `flake.nix`.
+
 Wrap host creation in a helper function to reduce flake.nix boilerplate:
 
 ```nix
@@ -130,6 +132,8 @@ darwinConfigurations.githubCI = self.darwinConfigurations.MaloBookPro.override {
 **When to adopt:** When setting up CI for your nix config.
 
 ## treefmt in Flake (kclejeune 515★)
+
+**Status in this repo:** adopted — nixfmt, deadnix, and statix via `treefmt-nix`; run `nix fmt`.
 
 Integrated formatting and linting:
 

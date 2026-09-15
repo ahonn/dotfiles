@@ -2,61 +2,27 @@
 
 This file provides guidance to coding agents when working with code in this repository.
 
-## Overview
+nix-darwin dotfiles repository managing macOS development environments via Nix flakes. Two hosts, `workstation` (primary dev machine) and `homelab` (Mac Mini), share base modules and add host-specific overrides.
 
-nix-darwin dotfiles repository managing macOS development environments via Nix flakes. Supports multiple hosts with shared base modules and host-specific overrides.
+## Where to Look
 
-## Essential Commands
+- Nix modules, hosts, packages, Homebrew, or `darwin-rebuild` failures: use the `nix-darwin` skill.
+- `.claude/`, `config/`, and `symlink/` are linked with `mkOutOfStoreSymlink`, so edits apply without a rebuild. Adding or removing a skill directory is the exception: `~/.agents/skills` links are generated at evaluation time.
+- Changes under `flake.nix`, `hosts/`, or `modules/` apply only after `darwin-rebuild switch`.
 
-```bash
-# Apply configuration (workstation - primary dev machine)
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#workstation
+## Permissions
 
-# Apply configuration (homelab - Mac Mini server)
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#homelab
+Run these without asking, and fix failures caused by your change:
 
-# Update flake inputs
-nix flake update
+- `nix eval --raw .#darwinConfigurations.<host>.system.drvPath` for each affected host. This is the evaluation check; `nix flake check` only checks formatting.
+- `nix flake check` and `nix fmt`.
 
-# Update only the Homebrew inputs (brew tracks master; taps float — keep them together)
-./scripts/update-homebrew-inputs.sh
+Confirm before running:
 
-# Validate without applying
-nix flake check
-```
+- `darwin-rebuild switch`: requires sudo and changes the live system.
+- `nix-collect-garbage`: deletes rollback generations.
+- `brew install`, `brew uninstall`, or `brew cleanup` against managed packages: Homebrew state is declared in `hosts/<host>/homebrew.nix`.
+
+Update flake inputs only when the task is about updating them; `./scripts/update-homebrew-inputs.sh` keeps brew and its taps in step.
 
 Git uses conventional commits via `cz commit` or `git cz`.
-
-## Architecture
-
-### Host Configuration Flow
-```
-flake.nix
-├── hosts/workstation/     # Primary dev machine
-│   ├── home.nix          # Imports base + workstation programs
-│   └── homebrew.nix      # Workstation-specific casks/brews
-└── hosts/homelab/         # Mac Mini (macOS 13, uses stable neovim)
-    ├── home.nix
-    └── homebrew.nix
-```
-
-### Module Layers
-- **modules/darwin/**: System-level (nix settings, system defaults)
-- **modules/home-manager/base.nix**: Shared user config (zsh, git, tmux, starship, direnv, claude-code)
-- **modules/home-manager/programs/**: Individual program modules
-- **modules/homebrew/base.nix**: Shared homebrew config
-
-### Program Toggle Pattern
-Programs use `my.{program}.enable` in host's `home.nix`:
-```nix
-my.neovim.enable = true;      # workstation: unstable neovim
-my.neovim-stable.enable = true; # homelab: stable for macOS 13
-my.aerospace.enable = true;
-```
-
-### File Types
-| Location | Rebuild Required | Use Case |
-|----------|-----------------|----------|
-| `modules/**/*.nix` | Yes | Nix expressions |
-| `config/` | No | App configs (nvim, aerospace, zed) |
-| `symlink/` | No | Dotfiles via mkOutOfStoreSymlink |

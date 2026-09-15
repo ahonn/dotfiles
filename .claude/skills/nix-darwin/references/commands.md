@@ -19,8 +19,13 @@ sudo nix run nix-darwin/master#darwin-rebuild -- switch --rollback
 ## Flake Management
 
 ```bash
-# Validate flake
+# Evaluate a host without building — catches option and type errors (run for each changed host)
+nix eval --raw .#darwinConfigurations.workstation.system.drvPath
+nix eval --raw .#darwinConfigurations.homelab.system.drvPath
+
+# Formatting check only (nixfmt, deadnix, statix); does NOT evaluate darwinConfigurations
 nix flake check
+nix fmt   # fix formatting
 
 # Update all inputs
 nix flake update
@@ -43,9 +48,6 @@ nix flake show
 ## Debugging
 
 ```bash
-# Evaluate without building (fast syntax check)
-nix eval .#darwinConfigurations.workstation.system
-
 # Build with verbose output
 sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#workstation --show-trace
 

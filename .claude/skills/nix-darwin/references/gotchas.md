@@ -53,17 +53,13 @@ sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#hostname
 
 ## macOS Compatibility
 
-### Unstable packages fail on homelab (macOS 13)
+### A package fails on homelab but builds on workstation
 
-**Symptom:** Build error mentioning macOS version requirement.
+**Symptom:** homelab build error mentioning a minimum macOS version.
 
-**Cause:** homelab runs macOS 13 (Ventura), some unstable packages require 14+.
+**Cause:** Both hosts share nixpkgs-unstable, and homelab (Mac Mini) can run an older macOS than a package supports. There is no `nixpkgs-stable` input or `pkgs-stable` argument in this flake.
 
-**Fix:** Use `pkgs-stable` for homelab-specific packages:
-```nix
-# In flake.nix, pass pkgs-stable via extraSpecialArgs
-# In module, use pkgs-stable.neovim instead of pkgs.neovim
-```
+**Fix:** Keep the package in a workstation-only module or install it through homelab's Homebrew. Add a second nixpkgs channel only when several homelab modules need it; see Multi-Channel Overlay in `community-patterns.md`.
 
 ### PAM services not available on all hosts
 
