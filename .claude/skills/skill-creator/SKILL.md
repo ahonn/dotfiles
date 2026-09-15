@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: "Guide for creating Claude skills. Use when: creating or updating skills. Triggers on: 'create skill', 'new skill', 'skill template'."
+description: Write or restructure a skill's SKILL.md, frontmatter, and bundled resources. For evals or trigger benchmarking, use the skill-creator plugin.
 license: Complete terms in LICENSE.txt
 ---
 

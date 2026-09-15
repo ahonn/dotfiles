@@ -1,6 +1,6 @@
 ---
 name: commit
-description: "Create conventional commits. Use when: committing staged changes. Triggers on: '/commit', 'conventional commit'."
+description: Create a conventional commit from staged changes.
 allowed-tools: Bash
 argument-hint: <type>[scope]: <description> [optional body] [optional footer]
 ---
