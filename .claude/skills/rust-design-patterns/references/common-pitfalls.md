@@ -4,9 +4,23 @@ Anti-patterns and common mistakes in Rust code.
 
 ## Table of Contents
 
+- [Review Checklist](#review-checklist)
 - [Clone to Satisfy Borrow Checker](#clone-to-satisfy-borrow-checker)
 - [deny(warnings) in Libraries](#denywarnings-in-libraries)
 - [Deref Polymorphism](#deref-polymorphism)
+
+---
+
+## Review Checklist
+
+Scan for these first; the sections below explain the ones that need more than a line.
+
+- **Clone to satisfy borrow checker** — usually an ownership design issue. Consider `mem::take`, `Rc`/`Arc`, or refactoring.
+- **`#![deny(warnings)]` in a library** — breaks downstream on new Rust versions. Use `RUSTFLAGS="-D warnings"` in CI instead.
+- **`Deref` for inheritance** — surprising behavior without true subtyping. Use composition + delegation or traits.
+- **`&String` or `&Vec<T>` parameters** — accept `&str` or `&[T]` instead.
+- **Manual `drop()` calls** — usually unnecessary. If ordering matters, prefer a scoped block.
+- **Ignored clippy `.clone()` suggestions** — run `cargo clippy` to find unnecessary clones.
 
 ---
 

@@ -9,6 +9,7 @@ Patterns for working with Rust's ownership system and borrow checker.
 - [RAII Guards](#raii-guards)
 - [Rc/Arc Decision Guide](#rcarc-decision-guide)
 - [Finalisation in Destructors](#finalisation-in-destructors)
+- [Contain Unsafety in Small Modules](#contain-unsafety-in-small-modules)
 
 ---
 
