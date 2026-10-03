@@ -46,6 +46,10 @@
       url = "github:rjyo/homebrew-moshi";
       flake = false;
     };
+    homebrew-owo-network = {
+      url = "github:owo-network/homebrew-brew";
+      flake = false;
+    };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";

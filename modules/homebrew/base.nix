@@ -12,6 +12,7 @@ let
     homebrew-bundle
     homebrew-nikitabobko
     homebrew-moshi
+    homebrew-owo-network
     ;
 
   # homebrew-brew floats (see flake.nix); name the build after the locked rev
@@ -36,6 +37,7 @@ in
       "homebrew/homebrew-bundle" = homebrew-bundle;
       "nikitabobko/homebrew-tap" = homebrew-nikitabobko;
       "rjyo/homebrew-moshi" = homebrew-moshi;
+      "owo-network/homebrew-brew" = homebrew-owo-network;
     };
   };
 

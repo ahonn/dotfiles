@@ -12,6 +12,7 @@
       "herdr"
       "node"
       "repomix"
+      "owo-network/brew/tokens"
       "rjyo/moshi/moshi-hook"
       "uv"
     ];

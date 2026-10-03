@@ -133,6 +133,22 @@
         "type": "github"
       }
     },
+    "homebrew-owo-network": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790145494,
+        "narHash": "sha256-U9qHrsFkgVSjQd2Jyt+eHFGGhau1jzEjcGtZiL0L8h0=",
+        "owner": "owo-network",
+        "repo": "homebrew-brew",
+        "rev": "cb87ae10af1569f5568bdaafaf2786b1b523b3ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "owo-network",
+        "repo": "homebrew-brew",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -196,6 +212,7 @@
         "homebrew-core": "homebrew-core",
         "homebrew-moshi": "homebrew-moshi",
         "homebrew-nikitabobko": "homebrew-nikitabobko",
+        "homebrew-owo-network": "homebrew-owo-network",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
