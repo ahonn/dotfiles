@@ -1,23 +1,23 @@
-# Research Patterns
+# Research for Reuse Decisions
 
-## Anti-Rationalization Table
+Use this reference when choosing between an existing abstraction, a dependency, and a new implementation.
 
-When you catch yourself thinking any of these, **stop and do the work**:
+## Evidence to Gather
 
-| Shortcut Thought | Reality | Required Action |
-|---|---|---|
-| "I already know how this API works" | Knowledge may be outdated or wrong for this version | Check docs via context7 or WebSearch |
-| "This is a simple change" | Simple changes in unfamiliar code cause subtle bugs | Grep for usages, read the surrounding context |
-| "I've seen this pattern before" | This codebase may use a different convention | Search for how the project actually does it |
-| "The docs probably haven't changed" | Libraries release breaking changes regularly | Verify against current docs, check version |
-| "I'll just read one file and start" | Cross-file dependencies are invisible from one file | Search for imports, usages, and related tests |
-| "No one else has solved this" | You likely haven't searched enough | Try at least 3 different search queries |
-| "Research will take too long" | Fixing wrong assumptions takes longer | Do the research — "slow is fast" |
+- **Existing callers:** Does the current abstraction serve the same behavior and lifecycle, or only have a similar name?
+- **Contract fit:** Which required behaviors are supported, and which would need adaptation? A percentage of matching features does not establish suitability.
+- **Dependency cost:** Consider compatibility, ownership, deployment constraints, and ongoing maintenance alongside implementation effort.
+- **Reversibility:** Can the choice remain behind a small interface, or will callers become tied to implementation details?
 
-## Reuse Decision Matrix
+| Finding | Candidate approach |
+|---------|--------------------|
+| Existing code meets the contract | Reuse it and verify the new caller's assumptions. |
+| A small extension fits the abstraction's purpose | Extend it without making unrelated callers understand the new use case. |
+| A dependency provides substantial relevant behavior | Check version compatibility and project dependency conventions. |
+| Existing options impose more complexity than they remove | Implement the required behavior locally and record non-obvious tradeoffs. |
 
-| Match Quality | Action | Example |
-|---|---|---|
-| **Exact match** — existing code/library solves the problem | Adopt directly, do not rewrite | Utility already in project, well-maintained package |
-| **Partial match** — covers 70%+ of requirements | Wrap/extend the existing solution | Existing helper needs one more parameter |
-| **No match** — nothing suitable found | Write custom, document why alternatives were rejected | Novel business logic, no prior art |
+## When to Revisit an Assumption
+
+Follow evidence that could change the decision: a conflicting caller, an unsupported installed API, an unexplained failure, or an unhandled lifecycle. Search for the missing fact rather than performing a fixed number of searches.
+
+Stop researching when the remaining uncertainty does not affect the next reversible step. If a necessary fact cannot be obtained locally, state the gap and seek the specific information needed.

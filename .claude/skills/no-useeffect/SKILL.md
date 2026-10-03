@@ -1,157 +1,36 @@
 ---
 name: no-useeffect
-description: >
-  Enforce a strict ban on direct useEffect calls in React code. Replace with derived state,
-  event handlers, data-fetching libraries, useMountEffect, or key-based remounting.
-  Use when: (1) Writing new React components, (2) Reviewing React code for effect usage,
-  (3) Refactoring existing useEffect calls, (4) AI agent is about to add useEffect.
-  Triggers on: useEffect, effect hook, side effect, sync state, dependency array,
-  infinite loop, race condition, effect cleanup.
+description: Apply the user's ban on direct React useEffect calls when implementing or refactoring component synchronization.
 ---
 
 # No Direct useEffect
 
-**Rule: Never call `useEffect` directly.** All 5 replacement patterns below cover every legitimate use case.
+Do not call `useEffect` directly in application components or feature hooks. Use the project's approved primitives and lifecycle architecture. This is the user's coding preference; it does not imply React has no legitimate effect use cases.
 
-## useMountEffect — The Only Allowed Effect Wrapper
+Inspect project guidance and lint exemptions first. A project may permit direct effects inside designated low-level primitives such as `useMountEffect`, `useSharedValueSync`, or `useDelayedFlag`. Respect those explicit boundaries instead of imposing a single global wrapper. Do not introduce an unapproved wrapper simply to evade the ban.
 
-```typescript
-export function useMountEffect(effect: () => void | (() => void)) {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(effect, []);
-}
-```
+## Choose by the behavior needed
 
-Use `useMountEffect` only for one-time external system sync (DOM, third-party widgets, browser APIs). For anything else, use Rules 1-3 or 5.
+| Need | Preferred approach |
+|------|--------------------|
+| Compute a value from props or state | Derive during render; memoize only when the computation warrants it |
+| Respond to a user action | Run the action in its event handler or store action |
+| Fetch and cache server data | Use the project's query library or framework loader |
+| Read a mutable external store | Use its supported hook or `useSyncExternalStore` |
+| Initialize an external resource for a mount | Use the approved mount primitive with cleanup |
+| Synchronize a changing input with an external resource | Use an approved reactive primitive or the resource's lifecycle API |
+| Reset all local state for a new entity | Use `key` when a full remount matches the intended behavior |
 
-## Rule 1: Derive State, Don't Sync It
+These are decision aids, not an exhaustive replacement theorem. When none fits, inspect the external system's lifecycle and existing primitives before proposing a design. Follow global AGENTS.md authorization rules; this skill adds no confirmation requirement for established project patterns.
 
-Smell: `useEffect(() => setX(deriveFromY(y)), [y])` or state that mirrors other state/props.
+## Preserve semantics during refactoring
 
-```typescript
-// BAD: two render cycles
-const [filtered, setFiltered] = useState([]);
-useEffect(() => {
-  setFiltered(products.filter((p) => p.inStock));
-}, [products]);
+- Derived state should have a single source of truth. Avoid storing values that can be computed from current inputs.
+- User-triggered work belongs in the action path; do not relay it through a state flag and an effect.
+- Use query keys and options consistent with the installed data library. Cancellation requires the query function or transport to honor the relevant signal; a library alone does not make every request cancellable.
+- A mount primitive is appropriate only when setup belongs to that mounted instance. It is not a drop-in replacement for synchronization that must react to changing dependencies.
+- Mount setup may run again after remounts and during development lifecycle checks. Return cleanup, release subscriptions and resources, and handle async completion after disposal.
+- A `key` resets the entire subtree, including focus, playback, animations, and local state. Use it only when those resets are intended; do not remount solely to avoid reasoning about updates.
+- Do not replace `useEffect` with `useLayoutEffect` merely to bypass the rule. Use the project's approved layout mechanism only when synchronous layout work is actually required.
 
-// GOOD: compute inline
-const filtered = products.filter((p) => p.inStock);
-```
-
-```typescript
-// BAD: effect chain creates loop risk
-useEffect(() => { setTax(subtotal * 0.1); }, [subtotal]);
-useEffect(() => { setTotal(subtotal + tax); }, [subtotal, tax]);
-
-// GOOD: plain derivation
-const tax = subtotal * 0.1;
-const total = subtotal + tax;
-```
-
-## Rule 2: Use Data-Fetching Libraries
-
-Smell: `useEffect` with `fetch()` + `setState()`, or re-implementing caching/cancellation/retries.
-
-```typescript
-// BAD: race condition when productId changes fast
-useEffect(() => {
-  fetchProduct(productId).then(setProduct);
-}, [productId]);
-
-// GOOD: library handles cancellation, caching, staleness
-const { data: product } = useQuery(
-  ['product', productId],
-  () => fetchProduct(productId)
-);
-```
-
-Acceptable libraries: TanStack Query, SWR, Apollo, RTK Query, tRPC, Relay, or framework loaders (Next.js/Remix/Expo Router).
-
-## Rule 3: Event Handlers, Not Effects
-
-Smell: state used as a flag so an effect can do the real work ("set flag → effect runs → reset flag").
-
-```typescript
-// BAD: effect as action relay
-const [liked, setLiked] = useState(false);
-useEffect(() => {
-  if (liked) { postLike(); setLiked(false); }
-}, [liked]);
-
-// GOOD: direct handler
-<button onClick={() => postLike()}>Like</button>
-```
-
-If a user action triggers the work, do it in the handler.
-
-## Rule 4: useMountEffect for One-Time External Sync
-
-Valid uses: DOM focus/scroll, third-party widget init, browser API subscriptions.
-
-```typescript
-// BAD: guard inside effect
-useEffect(() => {
-  if (!isLoading) playVideo();
-}, [isLoading]);
-
-// GOOD: conditional mounting — mount only when preconditions met
-function VideoPlayerWrapper({ isLoading }) {
-  if (isLoading) return <LoadingScreen />;
-  return <VideoPlayer />;
-}
-
-function VideoPlayer() {
-  useMountEffect(() => playVideo());
-}
-```
-
-Parent owns orchestration; child assumes preconditions are met.
-
-## Rule 5: Reset with key, Not Dependency Choreography
-
-Smell: effect whose only job is to reset local state when an ID/prop changes.
-
-```typescript
-// BAD: manual reset on ID change
-useEffect(() => { loadVideo(videoId); }, [videoId]);
-
-// GOOD: key forces clean remount
-<VideoPlayer key={videoId} videoId={videoId} />
-
-function VideoPlayer({ videoId }) {
-  useMountEffect(() => loadVideo(videoId));
-}
-```
-
-If the requirement is "start fresh when X changes", use React's remount semantics via `key`.
-
-## Quick Decision Tree
-
-```
-Need to compute a value from state/props?
-  → Rule 1: Derive inline
-
-Need to fetch data?
-  → Rule 2: Use a query library
-
-Responding to a user action?
-  → Rule 3: Event handler
-
-One-time setup on mount (DOM, external system)?
-  → Rule 4: useMountEffect
-
-Need to reset when an ID/entity changes?
-  → Rule 5: key prop on parent
-
-None of the above?
-  → Rethink. The answer is almost never useEffect.
-```
-
-## Why This Rule Exists
-
-- **Brittleness**: dependency arrays hide coupling; unrelated refactors break effects silently
-- **Infinite loops**: `state update → render → effect → state update` chains
-- **Race conditions**: effect-based fetching without cancellation
-- **Debugging pain**: "why did this run?" has no clear entrypoint like a handler does
-- `useMountEffect` failures are binary and loud; `useEffect` failures degrade gradually and show up as flaky behavior
+For a new low-level primitive, keep its contract explicit about updates, cleanup, and ownership, and follow project rules for effect exemptions. Select validation through global AGENTS.md; do not add tests solely because an effect was removed.

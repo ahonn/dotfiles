@@ -1,85 +1,43 @@
 ---
 name: code-quality
-description: "Code quality standards. Defines complexity management, modular design, code smell detection, comment standards. Applied automatically when writing or reviewing code. Invoke directly to clean up comments in a file. Triggers on: 'clean up comments', 'comment cleanup', '/code-quality'."
+description: Review maintainability or clean up comments in specified code without expanding the change's scope.
 argument-hint: "[file_path]"
 ---
 
-# Programming Philosophy and Quality Standards
+# Code Quality and Comment Cleanup
 
-## Core Philosophy
+Meet the requested behavior and correctness constraints first. Within those constraints, prefer readability and maintainability over speculative optimization or shorter code.
 
-- Code is primarily written for humans to read and maintain; machine execution is a by-product
-- Priority: **Readability & Maintainability > Correctness > Performance > Code length**
-- Follow idiomatic practices of each language community
+## Maintainability Review
 
-## Complexity Management
+Look for problems with a concrete cost to callers or future changes:
 
-```
-Complexity = Dependencies + Obscurity
-```
+- Change amplification: one behavior requires coordinated edits across unrelated modules.
+- Cognitive load: callers must know implementation details to use an interface correctly.
+- Hidden coupling: dependencies or shared state make the effects of a change hard to locate.
+- Redundant or speculative abstractions: indirection adds concepts without hiding useful complexity.
 
-### Symptoms to Watch For
+Explain the affected behavior or maintenance cost before recommending a refactor. Preserve useful existing patterns and idiomatic language conventions. Offer alternatives only when their tradeoffs matter; do not treat every code smell as a defect or permission to rewrite adjacent code.
 
-| Symptom | Description |
-|---------|-------------|
-| **Change Amplification** | Small changes require modifications in many places |
-| **Cognitive Load** | Developers need excessive information to complete tasks |
-| **Unknown Unknowns** | Unclear what code needs modification (worst symptom) |
+For interface design decisions, the `codebase-design` skill provides more detailed criteria when available.
 
-### Mitigation Strategies
+## Error Handling
 
-- "Zero tolerance" for incremental complexity growth
-- Invest time upfront in design
-- Avoid tactical shortcuts that create technical debt
+- Prefer representations that make invalid states difficult to create.
+- Recover at a layer that can restore the operation's contract; propagate failures when recovery is unavailable.
+- Preserve diagnostic context when translating errors. Do not hide a failure behind an apparent success.
+- Choose fatal handling only for a demonstrated unrecoverable invariant and in line with the runtime and project's conventions.
 
-## Modular Design Principles
+## Comments
 
-Design deep modules: a lot of behaviour behind a small interface, placed at a clean seam. Hide design decisions inside implementations; combat over-specialization and "classitis". For the full vocabulary (module, interface, seam, adapter, depth, leverage, locality) and design procedures, use the `codebase-design` skill.
+Keep explanations of intent, tradeoffs, contracts, non-obvious behavior, and constraints that the code cannot express clearly. Update comments made stale by the change.
 
-## Code Smells to Watch For
+Remove redundant narration where naming and structure already communicate the behavior. Preserve licenses, tooling directives, required documentation, and historical context that still explains a constraint.
 
-Proactively identify and flag:
-- Duplicated logic / copy-paste code
-- Over-tight coupling or circular dependencies
-- Fragile designs where one change breaks unrelated parts
-- Unclear intent, confused abstractions, vague naming
-- Over-engineering without real benefit
+When invoked for comment cleanup on a file:
 
-When identifying code smells:
-- Explain the problem concisely
-- Provide 1–2 refactoring directions with pros/cons
+1. Read enough surrounding code to understand the comments' purpose.
+2. Edit misleading or redundant comments and retain useful rationale.
+3. Keep runtime behavior unchanged. Suggest larger naming or structural improvements separately unless the user also requested them.
 
-## Error Handling Strategy
-
-- **Define errors out of existence** — design APIs with no exceptions when possible
-- **Mask exceptions** at low levels to protect higher layers
-- **Aggregate exceptions** with general-purpose handlers
-- **Just crash** for rare, unrecoverable errors
-
-## Comment Standards
-
-- **Self-documenting code first** — improve naming and structure before adding comments
-- **WHY over WHAT** — comments explain intent and reasoning, not mechanics
-- **Reduce cognitive load** — make implicit knowledge explicit
-- **Zero redundancy** — never restate what code already expresses
-
-**DO comment**: design decisions/trade-offs, non-obvious behavior, interface contracts, gotchas/edge cases, cross-module dependencies
-
-**DON'T comment**: self-evident code, well-named variables/functions, standard patterns, implementation details visible in code
-
-When modifying code:
-1. **Remove** comments that restate what code does
-2. **Keep** comments that explain WHY
-3. **Add** comments only for non-obvious behavior or design decisions
-4. **Update** stale comments when code changes invalidate them
-5. **Never** add comments just to fill space or appear thorough
-
-## Comment Cleanup Procedure
-
-When invoked directly with a file path (`/code-quality <file>`), clean up its comments per the Comment Standards above:
-
-1. **Read the file** to understand its purpose and structure
-2. **Suggest naming improvements** that make code self-documenting, applying them if safe
-3. **Remove** comments that restate code, add noise, or are outdated
-4. **Add** comments only where they explain non-obvious behavior, design decisions, complex algorithms, or essential interface contracts
-5. Leave the file cleaner than found
+Follow the global test policy. Comment-only edits need diff inspection rather than new behavior tests. Report supported findings and actual changes; use the format that best fits their size.

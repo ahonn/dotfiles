@@ -1,131 +1,40 @@
 ---
 name: ios-app-design
-description: "iOS app design guidelines based on Apple HIG and iOS 26 Liquid Glass. Use when: (1) Designing iOS app interfaces, (2) Reviewing iOS UI code, (3) Building SwiftUI/UIKit views, (4) Adopting Liquid Glass design, (5) Creating app icons. Triggers on: iOS design, SwiftUI layout, tab bar, navigation bar, Liquid Glass, SF Symbols, Dynamic Type, safe area, app icon, HIG."
+description: Design or review iOS navigation, layout, accessibility, and system materials using the project's target OS and UI framework.
 user-invocable: true
 ---
 
-# iOS App Design Guidelines
+# iOS App Design
 
-Apple Human Interface Guidelines + iOS 26 Liquid Glass design system reference.
+Choose interface behavior that fits the product, target OS, and existing UI framework. Inspect deployment targets and current components before proposing new APIs or visual-system adoption.
 
-## Quick Reference (Priority Order)
+## Design Criteria
 
-### CRITICAL - Must Follow
+- Use familiar system navigation and controls when they support the task. Preserve established product behavior unless a redesign is requested.
+- Keep content readable and actions reachable across supported sizes, orientations, text sizes, and appearances.
+- Include accessibility semantics, sufficient contrast, and reduced-motion behavior appropriate to the interaction.
+- Give immediate feedback for actions. Distinguish motion polish from actual rendering, network, or input latency.
+- Treat Liquid Glass adoption as a compatibility and design decision. Do not replace opaque backgrounds or custom controls merely to match a newer OS style; consider readability, accessibility settings, and the requested scope.
+- Apply SwiftUI, UIKit, and React Native examples only within the matching implementation environment. Verify version-sensitive APIs against installed tooling and official Apple documentation before use.
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| Liquid Glass adoption | Visual consistency with iOS 26 | [liquid-glass.md](references/liquid-glass.md) |
-| Navigation patterns | Usability, platform conventions | [navigation.md](references/navigation.md) |
-| Safe areas & layout | Content visibility, device compat | [layout.md](references/layout.md) |
-| Accessibility | Inclusivity, App Store compliance | [accessibility.md](references/accessibility.md) |
+## Read by Decision
 
-### HIGH - Strongly Recommended
+| Decision | Reference |
+|----------|-----------|
+| Adopting or tuning Liquid Glass materials | [Liquid Glass](references/liquid-glass.md) |
+| Choosing tabs, navigation stacks, modals, or search | [Navigation](references/navigation.md) |
+| Safe areas, adaptive layout, or iPad presentation | [Layout](references/layout.md) |
+| Text hierarchy and Dynamic Type | [Typography](references/typography.md) |
+| Semantic colors, contrast, or theme behavior | [Color and theme](references/color-and-theme.md) |
+| Symbols, imagery, or app icons | [Icons and imagery](references/icons-and-imagery.md) |
+| Transitions, springs, or gesture continuity | [Motion](references/motion.md) |
+| VoiceOver, contrast, and accessibility settings | [Accessibility](references/accessibility.md) |
+| Haptic and visual feedback | [Haptics and feedback](references/haptics-and-feedback.md) |
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| Typography & Dynamic Type | Readability, user preference | [typography.md](references/typography.md) |
-| Color system & themes | Visual coherence, dark mode | [color-and-theme.md](references/color-and-theme.md) |
-| SF Symbols & icons | Platform-native feel | [icons-and-imagery.md](references/icons-and-imagery.md) |
+Read only references relevant to the current decision. Their examples and preferred values are starting points, not universal adoption requirements.
 
-### MEDIUM - Recommended
+## Completion
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| Motion & animation | Polish, perceived performance | [motion.md](references/motion.md) |
-| Haptics & feedback | Tactile experience | [haptics-and-feedback.md](references/haptics-and-feedback.md) |
+For implementation, inspect the affected interface in the available runtime and check relevant interaction and accessibility states. Use the global test policy; do not add logic tests for visual polish alone.
 
----
-
-## iOS 26 Liquid Glass - Key Principles
-
-Three foundational pillars of iOS 26's design system:
-
-### 1. Content Leads
-Controls float above content using translucent glass layers. Content is never obscured by opaque chrome. The UI recedes; the user's content advances.
-
-### 2. Concentricity
-UI elements echo the rounded geometry of Apple hardware — rounded corners, circular buttons, pill shapes. Software and hardware share a unified visual rhythm.
-
-### 3. Fluid Responsiveness
-Elements dynamically adapt: tab bars shrink on scroll, glass refracts surrounding colors, controls morph contextually. Nothing is static.
-
----
-
-## Quick Decision Tree
-
-```
-iOS Design Issue?
-├── Building navigation?
-│   ├── Top-level sections → Tab Bar (≤5 tabs)
-│   ├── Hierarchical drill-down → NavigationStack
-│   ├── Focused task / decision → Modal (.sheet, .fullScreenCover)
-│   └── Secondary actions → Toolbar items
-├── Adopting Liquid Glass?
-│   ├── Tab bar / toolbar → Use system defaults, remove custom backgrounds
-│   ├── Custom controls → Apply .glassEffect modifier
-│   ├── App icon → Use Icon Composer, multi-layer design
-│   └── Existing solid chrome → Replace with system materials
-├── Typography choices?
-│   ├── Body text → San Francisco, support Dynamic Type
-│   ├── Display / title → SF Pro Rounded or system serif
-│   └── Fixed-size text → Almost never correct, justify carefully
-├── Color decisions?
-│   ├── Semantic colors → Use system colors (label, secondaryLabel, etc.)
-│   ├── Brand accent → Tint color, one dominant hue
-│   ├── Backgrounds → System background + materials, not hardcoded
-│   └── Dark mode → Must work; use adaptive colors
-├── Layout issues?
-│   ├── Content clipped → Check safe area insets
-│   ├── Landscape broken → Use GeometryReader / adaptive layout
-│   └── iPad / large screen → Use NavigationSplitView, responsive columns
-├── Accessibility?
-│   ├── Text too small → Support Dynamic Type (all text categories)
-│   ├── Low contrast → Check against WCAG AA (4.5:1 body, 3:1 large)
-│   ├── VoiceOver → Add accessibility labels, traits, hints
-│   └── Reduce Motion → Provide alternative to animations
-└── Performance feel?
-    ├── Janky scrolling → Lazy containers, async image loading
-    ├── Slow transitions → Use matched geometry, spring animations
-    └── Unresponsive taps → Haptic feedback, immediate visual response
-```
-
----
-
-## Design Aesthetics for iOS
-
-### DO
-- **Embrace depth and translucency** — Liquid Glass, vibrancy, materials
-- **Use system components** — they automatically adopt Liquid Glass
-- **Design for multiple appearances** — light, dark, tinted, high contrast
-- **Let content breathe** — generous spacing, clear hierarchy
-- **Use SF Symbols** — consistent with system, support Dynamic Type scaling
-- **Design for touch** — minimum 44pt tap targets
-- **Use platform idioms** — swipe-to-delete, pull-to-refresh, long press menus
-
-### DON'T
-- **Don't fight the platform** — custom tab bars that break expected behavior
-- **Don't use opaque chrome** — solid navigation bars feel dated in iOS 26
-- **Don't ignore Dynamic Type** — fixed font sizes break accessibility
-- **Don't hardcode colors** — use semantic system colors for theme adaptation
-- **Don't replicate Android/web patterns** — hamburger menus, FABs, bottom sheets as primary nav
-- **Don't over-customize** — heavy custom styling that loses Liquid Glass coherence
-- **Don't use thin/ultralight fonts for body** — San Francisco is optimized at regular/medium weights
-- **Don't put critical actions in hard-to-reach areas** — bottom of screen is easier than top for one-handed use
-
----
-
-## Reference Files
-
-| File | Content |
-|------|---------|
-| [liquid-glass.md](references/liquid-glass.md) | Liquid Glass material, modifiers, adoption strategy |
-| [navigation.md](references/navigation.md) | Tab bars, navigation stacks, modals, search |
-| [layout.md](references/layout.md) | Safe areas, spacing, adaptive layout, iPad |
-| [typography.md](references/typography.md) | San Francisco, Dynamic Type, text styles |
-| [color-and-theme.md](references/color-and-theme.md) | System colors, dark mode, materials, vibrancy |
-| [icons-and-imagery.md](references/icons-and-imagery.md) | SF Symbols, app icons, Icon Composer |
-| [motion.md](references/motion.md) | Spring animations, transitions, matched geometry |
-| [accessibility.md](references/accessibility.md) | VoiceOver, Dynamic Type, contrast, Reduce Motion |
-| [haptics-and-feedback.md](references/haptics-and-feedback.md) | Haptic engine, feedback patterns |
-
-**Search rules**: `grep -l "keyword" references/`
+For review, separate observable usability or accessibility defects from aesthetic suggestions. Report what was inspected and any device or OS coverage gaps; do not claim visual verification from source inspection.

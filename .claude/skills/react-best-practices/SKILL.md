@@ -1,94 +1,41 @@
 ---
 name: react-best-practices
-description: "React best practices from react.dev and Vercel. Use when: (1) Reviewing React code, (2) Debugging performance issues, (3) Optimizing bundle size, (4) Writing effects or state logic. Triggers on: React performance, re-render, bundle size, waterfalls, code splitting, memo, useCallback, useMemo, useEffect, SSR flicker, initial load slow, React Compiler, state structure, immutable update, setState array object."
+description: Diagnose React performance problems or review and improve state and effect design.
 user-invocable: false
 ---
 
-# React Best Practices
+# React Performance and State Design
 
-Performance patterns and guidelines from react.dev and Vercel Engineering.
+Start from the reported behavior and relevant implementation. Select only the references that address the task; the catalog is not a checklist to apply to every component.
 
-## Quick Reference (Priority Order)
+## Establish applicability
 
-### CRITICAL - Must Follow
+- Inspect the installed React version, framework, target platform, build configuration, and existing compiler setup before proposing version-dependent changes.
+- Identify the bottleneck with a reproduction, profiler trace, bundle report, or concrete dependency path. If measurement is unavailable, label the diagnosis as a hypothesis and explain how to validate it.
+- Prefer a focused change with an observable benefit. Do not add or remove memoization, introduce caching, change build tooling, or preload resources without a reason tied to the task.
+- Follow the project's state, effect, and data-fetching conventions. Web rendering, SSR, and framework-specific examples do not automatically apply to React Native or a different framework.
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| Avoid unnecessary effects | Render cycles, bugs | [effect-pitfalls.md](references/effect-pitfalls.md) |
-| Eliminate waterfalls | First paint, TTI | [async-waterfall-elimination.md](references/async-waterfall-elimination.md) |
-| Parallel data fetching | Load time | [async-parallel-requests.md](references/async-parallel-requests.md) |
-| Avoid barrel imports | Bundle size | [bundle-barrel-imports.md](references/bundle-barrel-imports.md) |
+## Read by problem
 
-### HIGH - Strongly Recommended
+| Problem or decision | Relevant references |
+|---------------------|---------------------|
+| Redundant state or synchronization bugs | [State structure](references/state-structure.md), [immutable updates](references/immutable-updates.md), [effect pitfalls](references/effect-pitfalls.md) |
+| A specific hook lifecycle or API question | [Hooks guide](references/hooks-guide.md) |
+| Requests wait on independent work | [Waterfall elimination](references/async-waterfall-elimination.md), [parallel requests](references/async-parallel-requests.md) |
+| Bundle report shows costly imports or initial code | [Barrel imports](references/bundle-barrel-imports.md), [dynamic imports](references/bundle-dynamic-import.md) |
+| Resource loading delays a likely user action | [Preload on intent](references/bundle-preload.md) |
+| Profiler shows costly repeated rendering | [Memoization strategy](references/rerender-memo-strategy.md), [context splitting](references/rerender-context-splitting.md) |
+| Non-urgent rendering blocks an interaction | [Transitions](references/rerender-transitions.md) |
+| Compiler adoption or compilation behavior is in scope | [React Compiler](references/react-compiler.md) |
+| Repeated lookup cost is significant | [Set and Map lookups](references/js-set-map-lookups.md) |
+| List identity or unexpected remounts | [Key patterns](references/rendering-key-patterns.md) |
+| Expensive off-screen web content | [Content visibility](references/rendering-content-visibility.md) |
+| Server-rendered web content visibly changes on hydration | [Hydration flicker](references/rendering-hydration-flicker.md) |
+| Repeated static JSX creation is relevant to a measured cost | [Hoist static JSX](references/rendering-hoist-static-jsx.md) |
+| Repeated server work or cache correctness | [Server caching](references/server-cache-patterns.md) |
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| React Compiler (19+) | Auto memoization | [react-compiler.md](references/react-compiler.md) |
-| Dynamic imports | Code splitting | [bundle-dynamic-import.md](references/bundle-dynamic-import.md) |
-| Preload on user intent | Perceived latency | [bundle-preload.md](references/bundle-preload.md) |
-| Strategic memo() | Render perf | [rerender-memo-strategy.md](references/rerender-memo-strategy.md) |
-| Server caching | Server response | [server-cache-patterns.md](references/server-cache-patterns.md) |
+Reference priority labels and examples describe possible interventions, not mandatory changes. Verify version-sensitive APIs and configuration against the installed toolchain and current official documentation before using them. React version alone is not a reason to enable React Compiler.
 
-### MEDIUM - Recommended
+## Complete the change
 
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| State structure | Maintainability | [state-structure.md](references/state-structure.md) |
-| Immutable updates | Avoid mutation bugs | [immutable-updates.md](references/immutable-updates.md) |
-| Context splitting | Avoid rerenders | [rerender-context-splitting.md](references/rerender-context-splitting.md) |
-| startTransition | UI responsiveness | [rerender-transitions.md](references/rerender-transitions.md) |
-| Set/Map lookups | O(1) vs O(n) | [js-set-map-lookups.md](references/js-set-map-lookups.md) |
-| Key patterns | List rendering | [rendering-key-patterns.md](references/rendering-key-patterns.md) |
-
-### LOW - Nice to Have
-
-| Rule | Impact | Reference |
-|------|--------|-----------|
-| content-visibility | Long list render | [rendering-content-visibility.md](references/rendering-content-visibility.md) |
-| Hydration flicker | SSR stability | [rendering-hydration-flicker.md](references/rendering-hydration-flicker.md) |
-| Hoist static JSX | Avoid re-creation | [rendering-hoist-static-jsx.md](references/rendering-hoist-static-jsx.md) |
-
----
-
-## Quick Decision Tree
-
-```
-React Issue?
-├── Writing useEffect?
-│   └── Check if needed → effect-pitfalls.md (CRITICAL)
-├── Designing state?
-│   └── Follow 5 principles → state-structure.md
-├── Updating state?
-│   └── Use immutable patterns → immutable-updates.md
-├── Using React 19+?
-│   └── Enable React Compiler → react-compiler.md
-├── Slow initial load?
-│   ├── Check for waterfalls → async-waterfall-elimination.md
-│   ├── Check bundle size → bundle-barrel-imports.md
-│   └── Preload on intent → bundle-preload.md
-├── Slow interactions?
-│   ├── Check re-renders → rerender-memo-strategy.md
-│   ├── Check Context usage → rerender-context-splitting.md
-│   └── Use transitions → rerender-transitions.md
-├── Long list jank?
-│   └── Use content-visibility → rendering-content-visibility.md
-├── SSR flicker?
-│   └── Inline script pattern → rendering-hydration-flicker.md
-└── Slow server?
-    └── Check caching → server-cache-patterns.md
-```
-
----
-
-## Reference Files
-
-| File | Content |
-|------|---------|
-| [hooks-guide.md](references/hooks-guide.md) | Hook patterns, decision guides, pitfalls |
-| [effect-pitfalls.md](references/effect-pitfalls.md) | When NOT to use useEffect |
-| [react-compiler.md](references/react-compiler.md) | React 19+ auto memoization |
-| [state-structure.md](references/state-structure.md) | 5 principles for state design |
-| [immutable-updates.md](references/immutable-updates.md) | Array/object update patterns |
-| [references/](references/) | All reference files (19 total) |
-
-**Search rules**: `grep -l "keyword" references/`
+Preserve required behavior and use the applicable AGENTS.md test mode. For performance changes, compare the affected interaction or load path before and after when feasible; otherwise state the remaining verification gap. Report the concrete benefit and relevant limitations without claiming an unmeasured speedup.

@@ -6,9 +6,9 @@
 
 ---
 
-## React Compiler Changes Everything
+## Check the Existing Compiler Setup
 
-> **React 19+**: If using [React Compiler](react-compiler.md), skip manual memoization. The compiler handles `memo()`, `useMemo()`, and `useCallback()` automatically.
+> If [React Compiler](react-compiler.md) is configured, confirm the affected code is compiled before considering manual optimization. React version alone does not imply compilation. Keep existing memoization unless a focused change and verification justify its removal.
 
 ```javascript
 // With React Compiler - just write simple code
@@ -19,10 +19,10 @@ function Parent() {
 
   return <ExpensiveList items={items} onClick={handleClick} />;
 }
-// Compiler auto-memoizes everything correctly
+// Verify compilation coverage and the affected interaction
 ```
 
-**Without Compiler**: Continue reading for manual optimization strategies.
+**Without Compiler, or for code it does not compile**: Use the strategies below only when evidence shows a useful optimization. A re-render alone does not establish a performance problem.
 
 ---
 
@@ -207,9 +207,9 @@ const MemoizedComponent = memo(
     return <div>{user.name} - {settings.theme}</div>;
   },
   (prevProps, nextProps) => {
-    // Return true if props are equal (skip re-render)
+    // Compare every value used by this component.
     return (
-      prevProps.user.id === nextProps.user.id &&
+      prevProps.user.name === nextProps.user.name &&
       prevProps.settings.theme === nextProps.settings.theme
     );
   }
@@ -222,5 +222,5 @@ const MemoizedComponent = memo(
 
 ## Related Rules
 
-- [react-compiler.md](react-compiler.md) - Automatic memoization (React 19+)
+- [react-compiler.md](react-compiler.md) - Compiler applicability and adoption
 - [rerender-context-splitting.md](rerender-context-splitting.md)

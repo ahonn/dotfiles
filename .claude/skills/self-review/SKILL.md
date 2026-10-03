@@ -1,241 +1,63 @@
 ---
 name: self-review
-description: "Self-review of code changes (branch diff, staged, or uncommitted). Use when: reviewing code before pushing, checking diff quality, self-reviewing a PR, creating a PR (always use --peer), reviewing uncommitted work. Triggers on: '/self-review', 'review my changes', 'review this branch', 'self-review', 'pre-push review', 'review uncommitted', 'review staged', 'create PR', 'open PR', 'submit PR'."
+description: Review branch, staged, or uncommitted changes for actionable defects before commit, push, or PR creation.
 allowed-tools: Bash, Read, Edit, Grep, Glob, Agent
 argument-hint: "[--base <branch>] [--scope <branch|staged|uncommitted>] [--fix] [--report-only] [--peer]"
 ---
 
 # Self-Review
 
-Structured two-pass code review with Fix-First approach. Supports branch diffs, staged, and uncommitted changes. Integrates with `code-quality` skill standards.
+Review the requested diff against its intended behavior and surrounding contracts. Prioritize correctness, security, and maintainability. Use `code-quality` for relevant standards; avoid speculative findings or changes that only satisfy a preferred style.
 
-**Scope note**: this skill orchestrates the pre-push workflow (two-pass review, Fix-First, Codex peer review). For deep bug-hunting on a diff, prefer the built-in `/code-review`; for reviewing a GitHub PR, use the built-in `/review`.
+Follow global AGENTS.md for authorization and test mode. PR creation warrants a local review, not an automatic independent-review requirement. Existing permission to implement or fix the work carries into review.
 
-## Arguments
+## Arguments and scope
 
-- `--base <branch>`: Override base branch (default: auto-detect via `gh` or `main`/`master`)
-- `--scope <branch|staged|uncommitted>`: Control what diff to review (default: auto-detect)
-  - `branch`: committed diff between current branch and base — requires feature branch
-  - `staged`: only staged changes (`git diff --cached`) — useful before committing
-  - `uncommitted`: all working tree changes (`git diff --cached` + `git diff`)
-- `--fix`: Auto-fix mode — apply mechanical fixes without asking
-- `--report-only`: Report only, no fixes
-- `--peer`: Spawn a parallel Codex CLI peer review via background Agent (requires `codex-plugin-cc`)
-- No arguments: default interactive mode (auto-fix mechanical, ask for judgment calls)
+- `--base <branch>`: Use the specified base. Otherwise inspect the PR base or repository default branch; verify the ref exists rather than guessing from a shell fallback.
+- `--scope branch`: Review committed changes relative to the merge base with the selected base.
+- `--scope staged`: Review `git diff --cached`.
+- `--scope uncommitted`: Review staged and unstaged changes, including relevant untracked files.
+- `--fix`: Apply technically verified fixes within the requested scope.
+- `--report-only`: Report findings without editing.
+- `--peer`: Request an independent review of the same scope using available reviewer tools.
+- Without a fix flag, preserve the session's authorization. A review-only request produces findings; an implementation or fix request permits relevant corrections.
 
-**Auto-trigger rule**: When the user asks to create/open/submit a PR, run `/self-review --peer` first. Address findings before proceeding with PR creation.
+Inspect `git status`, the current branch, and available refs before selecting scope. Without an explicit scope, cover the requested work's final state: include relevant branch commits and staged, unstaged, or untracked changes that belong to the task. Do not omit a newly implemented fix because earlier work is already committed. Keep unrelated user changes outside the review. An explicitly requested revision or scope limits the review to that selection.
 
-## Step 0: Detect Review Mode and Diff
+Use the remote-tracking base when current enough for the task; fetch when freshness matters. For committed branch changes, use `git diff <base>...HEAD` and inspect the associated commits. When the default task scope also includes local work, inspect `git diff HEAD` and relevant untracked files, then read the combined final implementation. If the requested scope is empty or the base cannot be established, report that limitation rather than silently reviewing another scope.
 
-```bash
-# Detect base branch
-BASE=$(gh pr view --json baseRefName -q .baseRefName 2>/dev/null || git rev-parse --verify main 2>/dev/null && echo main || echo master)
-CURRENT=$(git branch --show-current)
-git fetch origin "$BASE" 2>/dev/null
-```
+## Inspect the change
 
-**Three review scopes** (`--scope` overrides auto-detection):
+Read the full relevant diff and enough surrounding code to understand callers, dependencies, and error paths. Compare implementation with the requested outcome and, where relevant, the PR description or commit messages.
 
-| Scope | Diff source | `--peer` | Auto-selected when |
-|-------|------------|----------|--------------------|
-| `branch` | `git diff origin/$BASE...HEAD` | Yes (via `/codex:review`) | On feature branch with commits ahead of base |
-| `staged` | `git diff --cached` | Yes (via `/codex:rescue`) | — (explicit only) |
-| `uncommitted` | `git diff --cached` + `git diff` | Yes (via `/codex:rescue`) | On base branch, or branch with no commits ahead |
+Prioritize checks according to the change:
 
-**Auto-detection** (when `--scope` is omitted):
-1. If on feature branch with commits ahead → `branch`
-2. Otherwise, if working tree has changes → `uncommitted`
+- Correctness: invariants, edge cases, nullability, state transitions, and async ordering.
+- Data and security: authorization, input handling, secret exposure, unsafe writes, and concurrency.
+- Contracts: API compatibility, error semantics, lifecycle cleanup, and dependency direction.
+- Maintainability: misleading names or comments, unnecessary indirection, duplication, and related dead code.
+- Performance: concrete expensive work or regressions on the affected path; do not request memoization without a reason.
+- Validation: missing evidence for changed behavior under the chosen test mode, not missing tests merely because code changed.
 
-**Abort conditions** — stop and inform user:
-- `--scope branch` but on base branch or no commits ahead
-- `--scope staged` but no staged changes
-- No diff in any applicable scope
+For each actionable finding, include the affected file and location, failure conditions, consequence, supporting evidence, and a suggested correction. Separate confirmed defects from unresolved questions. Pre-existing issues outside scope and subjective preferences should not become blockers.
 
-## Step 0.5: Spawn Peer Review (if --peer)
+## Independent review
 
-If `--peer` flag is set, **immediately** spawn a background Agent before starting Claude's own review. This runs Codex in parallel while Claude proceeds with Steps 1-4.
+Use an independent reviewer when `--peer` is requested, or when complex or high-risk changes need a second opinion. Do not require it for routine PRs. Give the reviewer a bounded scope, exact diff or revision, expected behavior, and relevant constraints; request findings without edits.
 
-Requires `codex-plugin-cc` plugin installed (`/plugin install codex@openai-codex`).
+If available, `codex-plugin-cc` provides `/codex:review` for branch review and `/codex:rescue` for targeted analysis. Use capabilities actually installed in the current environment; do not assume a plugin or specific tool is present. If an explicitly requested reviewer is unavailable, disclose the limitation and complete the useful local review.
 
-**Branch mode** — use `/codex:review` (Codex native reviewer):
-```
-Agent(
-  description: "Codex peer review",
-  run_in_background: true,
-  prompt: "Invoke the /codex:review skill with --base $BASE.
-    Return the full structured output (verdict, findings, next_steps).
-    Do not interpret or act on findings — just return raw results."
-)
-```
+Run local review alongside an independent review only when they can proceed independently. Integrate the returned findings before declaring the requested peer review complete. Verify each finding rather than accepting it because of reviewer agreement or confidence.
 
-**Staged/Uncommitted mode** — pipe diff to `/codex:rescue` (native reviewer needs branch diff):
-```
-Agent(
-  description: "Codex peer review",
-  run_in_background: true,
-  prompt: "Collect the working tree diff:
-    - staged: git diff --cached
-    - uncommitted: git diff --cached && git diff
-    Then invoke /codex:rescue with the task:
-      'Review this diff as a strict peer reviewer. Focus on: logic bugs, security
-      vulnerabilities, error handling gaps, performance concerns, and type safety.
-      For each finding: severity (CRITICAL/WARNING/INFO), file:line, problem,
-      suggested fix. Be concise — issues only, no praise.'
-    Include the full diff in the prompt.
-    Return the raw Codex output without interpretation."
-)
-```
+## Resolve findings
 
-**Do not wait** for the background Agent — proceed immediately to Step 1. The Codex results will be integrated at Step 5.
+- In fix-authorized work, apply confirmed corrections within scope, including logic changes whose intended behavior is established.
+- Follow the global authorization boundaries for API or schema changes, destructive actions, and material scope changes. Ask only when a required decision remains unresolved; do not ask separately for every logic edit.
+- For review-only work, report defects and proposed corrections without making edits.
+- Reject incorrect feedback with concrete evidence. Avoid adding speculative abstractions or behavior to satisfy a reviewer.
 
-If the codex plugin is not available, log a warning and skip (do not abort the review).
+After corrections, inspect the final diff and validate according to the global test mode and required project checks. Do not repeat checks without a relevant change or unresolved concern.
 
-## Step 1: Scope Check
+## Completion
 
-Read the full diff before any analysis:
-
-**Branch mode:**
-```bash
-git diff origin/$BASE...HEAD
-git log origin/$BASE...HEAD --oneline
-```
-
-**Uncommitted mode:**
-```bash
-git diff --cached   # staged changes
-git diff            # unstaged changes
-```
-
-Summarize: **what changed, how many files, estimated scope** (small <50 lines, medium 50-300, large 300+).
-
-### 1.1 Scope Drift Detection
-
-Branch mode only: compare commit messages against actual diff. Flag if the diff does things the commits don't mention, or commits promise things the diff doesn't deliver.
-
-## Step 2: Two-Pass Review
-
-### Pass 1 — CRITICAL (blockers, must fix before merge)
-
-| Category | What to Check |
-|----------|---------------|
-| **Data Safety** | SQL injection, unvalidated input in queries, missing parameterization |
-| **Race Conditions** | Shared mutable state, missing locks, TOCTOU, concurrent access patterns |
-| **Security Boundaries** | User input trust, auth checks, XSS vectors, secret exposure |
-| **Error Handling** | Swallowed errors, missing error paths, unhandled promise rejections |
-| **Breaking Changes** | API contract changes, type signature changes, removed exports |
-
-### Pass 2 — INFORMATIONAL (improve quality, non-blocking)
-
-| Category | What to Check |
-|----------|---------------|
-| **Dead Code** | Unused imports, unreachable branches, commented-out code |
-| **Magic Values** | Unexplained numbers/strings that should be named constants |
-| **Test Gaps** | New logic without test coverage, edge cases untested |
-| **Complexity** | Functions doing too much, deep nesting, unclear naming |
-| **Consistency** | Pattern deviations from surrounding code, style inconsistencies |
-| **Performance** | N+1 queries, unnecessary re-renders, missing memoization |
-
-Apply `code-quality` skill standards: deep modules, information hiding, readability > correctness > performance.
-
-### Review Output Format
-
-For each finding:
-
-```
-[CRITICAL|INFO] <category> — <file>:<line>
-  Problem: <one sentence>
-  Evidence: <code snippet or reasoning>
-  Action: AUTO-FIX | ASK | NOTE
-```
-
-## Step 3: Fix-First Heuristic
-
-Classify each finding:
-
-**AUTO-FIX** (apply without asking):
-- Unused imports or dead code removal
-- Missing error handling that has one obvious correct form
-- Typos in strings, comments, variable names
-- Formatting inconsistencies
-- Stale comments that contradict current code
-
-**ASK** (present to user for decision):
-- Logic changes, even "obvious" ones
-- Architectural concerns
-- Trade-off decisions (performance vs readability)
-- Anything where two reasonable engineers could disagree
-
-**NOTE** (report only, no action):
-- Pre-existing issues outside the current diff
-- Style preferences without clear right answer
-- Future improvement suggestions
-
-### Execution
-
-If `--report-only`: output all findings, stop.
-If `--fix`: apply all AUTO-FIX items, report ASK and NOTE items.
-Default: apply AUTO-FIX items, present ASK items one at a time via user question, report NOTE items.
-
-For each AUTO-FIX applied:
-1. Make the edit
-2. Log: `[AUTO-FIXED] <category> — <file>:<line> — <what changed>`
-
-For each ASK item:
-1. Present the problem, evidence, and proposed fix
-2. Wait for user response
-3. Apply or skip based on response
-
-## Step 4: Receiving Review Feedback
-
-When processing review feedback (from user, PR comments, or other reviewers):
-
-**Iron Rule: Verify before implementing.**
-
-1. **Read the feedback** — understand what's being suggested
-2. **Verify technical correctness** — is the suggestion actually right?
-3. **Check for YAGNI** — does this add speculative complexity?
-4. **Push back if wrong** — respectfully explain why, with evidence
-
-Never apply feedback just because it came from a reviewer. Never respond with performative agreement ("You're absolutely right!"). Either the feedback improves the code or it doesn't.
-
-## Step 5: Summary
-
-After review is complete, output:
-
-```
-## Review Summary
-
-Scope: <small/medium/large> (<N> files, <M> lines changed)
-Scope drift: <none | description>
-
-CRITICAL: <N> found, <M> fixed, <K> need decision
-INFO:     <N> found, <M> fixed, <K> noted
-
-Changes made:
-- [AUTO-FIXED] <list>
-- [USER-APPROVED] <list>
-
-Remaining:
-- [ASK] <items awaiting decision>
-- [NOTE] <items for awareness>
-```
-
-### Peer Review Integration (if --peer)
-
-If a background peer-review Agent was spawned in Step 0.5, check if it has completed by now. If so, parse the structured output from `/codex:review` (verdict, findings, next_steps) and append:
-
-```
-## Peer Review (Codex via codex-plugin-cc)
-
-Verdict: <pass | fail | conditional>
-Findings: <N total, grouped by severity>
-
-{findings organized by severity — include file:line, confidence, description}
-
-### Cross-Reference
-- **Both flagged**: <issues found by both Claude and Codex — highest priority>
-- **Codex only**: <issues only Codex found — evaluate and note agree/disagree with confidence>
-- **Claude only**: <issues only Claude found>
-```
-
-Apply the same Iron Rule from Step 4: verify Codex findings for technical correctness before recommending action. Disagree with evidence when Codex is wrong. Weight Codex findings by their reported confidence level — low-confidence findings need extra scrutiny.
+Lead with actionable remaining findings, ordered by impact. Otherwise state that no actionable defects were found within the reviewed scope. Summarize fixes made, checks actually performed, and material limitations; absence of findings is not proof that no bugs exist. Keep the report proportional to the change and do not imply a peer review ran when it did not.

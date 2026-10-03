@@ -1,37 +1,22 @@
-# Deepening
+# Deepening a Cluster
 
-How to deepen a cluster of shallow modules safely, given its dependencies. Assumes the vocabulary in [SKILL.md](SKILL.md) — **module**, **interface**, **seam**, **adapter**.
+Use this guide when callers repeatedly coordinate behavior that could belong to one module. Start with the principles in [SKILL.md](SKILL.md). Consolidation should reduce a demonstrated maintenance cost, not simply combine files.
 
-## Dependency categories
+## Choose boundaries from dependencies
 
-When assessing a candidate for deepening, classify its dependencies. The category determines how the deepened module is tested across its seam.
+| Dependency | Design considerations |
+|------------|-----------------------|
+| In-process computation or state | Keep related policy together; retain separate ownership where lifetimes or invariants differ |
+| Locally substitutable infrastructure | Reuse a compatible existing stand-in when helpful; account for differences from production |
+| Remote services you own | Keep transport details separate from domain decisions when contracts, failures, or verification justify it |
+| Third-party services | Isolate vendor details and failure semantics where they would otherwise spread across callers |
 
-### 1. In-process
+A port or injected function can control I/O and support verification, but it is not mandatory for every dependency. Prefer the smallest boundary that provides a concrete benefit. A single production adapter can justify a seam when it isolates vendor or lifecycle coupling; multiple adapters alone do not prove a good abstraction.
 
-Pure computation, in-memory state, no I/O. Always deepenable — merge the modules and test through the new interface directly. No adapter needed.
+Keep internal seams private unless callers need to configure them. Do not expose a test-only dependency as part of the public contract by default.
 
-### 2. Local-substitutable
+## Preserve behavioral coverage
 
-Dependencies that have local test stand-ins (PGLite for Postgres, in-memory filesystem). Deepenable if the stand-in exists. The deepened module is tested with the stand-in running in the test suite. The seam is internal; no port at the module's external interface.
+Follow the global AGENTS.md test mode. When changing module boundaries, prefer assertions on observable outcomes and keep focused tests for useful internal contracts. Remove obsolete tests only after checking that their distinct behavior and edge cases remain covered or are intentionally removed by the task.
 
-### 3. Remote but owned (Ports & Adapters)
-
-Your own services across a network boundary (microservices, internal APIs). Define a **port** (interface) at the seam. The deep module owns the logic; the transport is injected as an **adapter**. Tests use an in-memory adapter. Production uses an HTTP/gRPC/queue adapter.
-
-Recommendation shape: *"Define a port at the seam, implement an HTTP adapter for production and an in-memory adapter for testing, so the logic sits in one deep module even though it's deployed across a network."*
-
-### 4. True external (Mock)
-
-Third-party services (Stripe, Twilio, etc.) you don't control. The deepened module takes the external dependency as an injected port; tests provide a mock adapter.
-
-## Seam discipline
-
-- **One adapter means a hypothetical seam. Two adapters means a real one.** Don't introduce a port unless at least two adapters are justified (typically production + test). A single-adapter seam is just indirection.
-- **Internal seams vs external seams.** A deep module can have internal seams (private to its implementation, used by its own tests) as well as the external seam at its interface. Don't expose internal seams through the interface just because tests use them.
-
-## Testing strategy: replace, don't layer
-
-- Old unit tests on shallow modules become waste once tests at the deepened module's interface exist — delete them.
-- Write new tests at the deepened module's interface. The **interface is the test surface**.
-- Tests assert on observable outcomes through the interface, not internal state.
-- Tests should survive internal refactors — they describe behaviour, not implementation. If a test has to change when the implementation changes, it's testing past the interface.
+Do not replace all existing unit tests with a larger test merely because the module became deeper. Avoid redundant layers of tests that assert the same mechanics; retain complementary checks when they catch different failures. Respect global authorization rules for large deletions and public contract changes.

@@ -1,17 +1,19 @@
 # React Compiler
 
-React Compiler automatically optimizes React apps at build time by adding memoization. It eliminates the need for manual `memo()`, `useMemo()`, and `useCallback()` in most cases.
+React Compiler can add memoization at build time when configured for compatible code. Confirm the installed React version, compiler version, framework integration, and compilation coverage before relying on it. Adoption is a separate build-tooling decision, not an automatic consequence of using a particular React version.
+
+The configuration examples below are illustrative. Check current official React and framework documentation for the installed toolchain before applying them.
 
 ## What It Does
 
 ```javascript
-// Before: Manual memoization (error-prone)
+// Manual memoization example
 const ExpensiveComponent = memo(function({ data, onClick }) {
   const processed = useMemo(() => expensiveProcess(data), [data]);
   const handleClick = useCallback((item) => onClick(item.id), [onClick]);
 
-  return processedData.map(item => (
-    <Item key={item.id} onClick={() => handleClick(item)} /> // 🔴 Breaks memo!
+  return processed.map(item => (
+    <Item key={item.id} onClick={() => handleClick(item)} />
   ));
 });
 
@@ -20,23 +22,23 @@ function ExpensiveComponent({ data, onClick }) {
   const processed = expensiveProcess(data);
   const handleClick = (item) => onClick(item.id);
 
-  return processedData.map(item => (
-    <Item key={item.id} onClick={() => handleClick(item)} /> // ✅ Optimized
+  return processed.map(item => (
+    <Item key={item.id} onClick={() => handleClick(item)} />
   ));
 }
 ```
 
-**Key insight**: Compiler catches subtle bugs like arrow functions in JSX that break manual memoization.
+An inline callback is not a correctness bug. It matters to performance when changing function identity prevents a useful optimization; verify that relationship before changing it.
 
 ## Should You Use It?
 
 | Scenario | Recommendation |
 |----------|----------------|
-| New React 19 project | ✅ Enable by default |
-| Existing codebase with strict mode | ✅ Good candidate |
-| Heavy manual memoization | ✅ Big wins, remove boilerplate |
-| Breaking Rules of React | ⚠️ Fix violations first |
-| Library code | ⚠️ Test thoroughly |
+| Adoption is requested or addresses an identified need | Check supported integration and evaluate a focused rollout |
+| Compiler is already configured | Confirm the affected code is compiled before relying on its optimizations |
+| Heavy manual memoization | Preserve it during adoption; evaluate any cleanup separately |
+| Breaking Rules of React | Fix relevant violations before relying on compilation |
+| Library code | Check the supported consumer and build configurations |
 
 ## Installation
 
@@ -127,10 +129,10 @@ function UserList({ users, onSelect }) {
 }
 ```
 
-### Without Compiler (current best practice)
+### Without Compiler, When Profiling Justifies Memoization
 
 ```javascript
-// Manual optimization still needed
+// Use this pattern only for a demonstrated rendering cost
 const UserList = memo(function({ users, onSelect }) {
   const sorted = useMemo(
     () => users.toSorted((a, b) => a.name.localeCompare(b.name)),
@@ -155,15 +157,9 @@ const UserList = memo(function({ users, onSelect }) {
 
 ## What About Existing memo/useMemo/useCallback?
 
-**Safe to keep**: Compiler skips already-memoized code. No need to remove.
+Keep existing memoization during adoption. Do not assume all compiled code is optimized or that each manual memo is redundant.
 
-**Can remove**: After compiler adoption, manual memoization becomes redundant. Remove for cleaner code.
-
-**Recommendation**:
-1. Enable compiler
-2. Verify app works correctly
-3. Gradually remove manual memoization in new code
-4. Optionally clean up old code
+Remove an existing memo only when the affected code is covered by compilation, its identity behavior is understood, and relevant behavior and performance checks support the change. Avoid repository-wide memo cleanup as a side effect of unrelated work.
 
 ## Rules of React (Compiler Prerequisites)
 
@@ -221,11 +217,6 @@ function ProblematicComponent() {
 | Stale data | Breaking immutability rules |
 | Missing updates | Side effects in render phase |
 
-## Quick Reference
+## Verification
 
-| Before Compiler | After Compiler |
-|-----------------|----------------|
-| `memo(Component)` | Just `Component` |
-| `useMemo(() => compute(), [deps])` | Just `compute()` |
-| `useCallback(fn, [deps])` | Just `fn` |
-| Careful with inline functions | Write naturally |
+Check compilation diagnostics for the affected code, exercise the relevant behavior, and compare the identified performance problem before and after adoption. Preserve a focused scope when compilation is skipped or results are inconclusive.
