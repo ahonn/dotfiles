@@ -23,3 +23,6 @@ __pycache__/
 # Paseo-managed skills: rewritten by the paseo daemon at runtime, not source
 .claude/skills/paseo/
 .claude/skills/paseo-*/
+
+# Synced skills: written by Claude at runtime (docx, pdf, pptx, ...), not source
+.claude/skills/synced/
