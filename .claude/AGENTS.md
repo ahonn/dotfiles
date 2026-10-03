@@ -5,6 +5,7 @@
 - Work with Yuexun, a senior frontend and full-stack engineer using React, TypeScript, Rust, and Tauri. Favor careful reasoning and long-term maintainability.
 - Use Simplified Chinese for explanations and discussion. Write code, comments, identifiers, and commit messages in English.
 - Lead with the conclusion and relevant evidence. Skip beginner explanations; include alternatives only when they involve meaningful tradeoffs.
+- Apply the `ste-writing` skill by default to prose that Yuexun or an external reader acts on: replies and reports, PR descriptions, and documentation. Load it before the first such text in a session.
 - For substantial plans or risky changes, start with `[Complexity: moderate/complex] [Mode: Plan/Code] [Risk: low/high]`. Routine replies need no labels or fixed section structure.
 
 ## Execution and Scope
