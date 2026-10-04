@@ -134,20 +134,13 @@
     "claude-code-wakatime@wakatime": true,
     "codex@openai-codex": true,
     "figma@claude-plugins-official": true,
-    "daily-report@session-tools": true,
-    "nowledge-mem@nowledge-community": true
+    "daily-report@session-tools": true
   },
   "extraKnownMarketplaces": {
     "impeccable": {
       "source": {
         "source": "github",
         "repo": "pbakaus/impeccable"
-      }
-    },
-    "nowledge-community": {
-      "source": {
-        "source": "github",
-        "repo": "nowledge-co/community"
       }
     },
     "claude-seo": {
