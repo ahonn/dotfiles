@@ -121,8 +121,8 @@
   },
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
+    "sentry@claude-plugins-official": false,
+    "context7@claude-plugins-official": false,
     "expo-app-design@expo-plugins": true,
     "expo-deployment@expo-plugins": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
@@ -133,7 +133,7 @@
     "claude-mermaid-ascii@claude-mermaid-ascii": true,
     "claude-code-wakatime@wakatime": true,
     "codex@openai-codex": true,
-    "figma@claude-plugins-official": true,
+    "figma@claude-plugins-official": false,
     "daily-report@session-tools": true
   },
   "extraKnownMarketplaces": {
