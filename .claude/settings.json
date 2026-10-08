@@ -4,8 +4,8 @@
     "**/.claude/AGENTS.md"
   ],
   "env": {
-    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "opus"
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "attribution": {
     "commit": "",
@@ -181,6 +181,9 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
   "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    },
     "claude-fable-5-1": {
       "effortLevel": "high"
     }
