@@ -1,26 +1,17 @@
----
-name: seo-audit-full
-description: >-
-  Advanced full SEO audit skill. Runs its own full workflow from local scripts,
-  including the basic SEO checks plus PageSpeed, social metadata, and advanced
-  review modules when available.
-metadata:
-  author: Jeff
-  version: "2.1"
----
+# seo-audit full mode — Advanced Full SEO Audit
 
-# seo-audit-full — Advanced Full SEO Audit
-
-This skill runs a full single-page SEO audit from the `seo-audit-full` directory.
-It does not route to `seo-audit` when only a URL is provided.
+Version 2.1 of the full audit by Jeff. It runs a full single-page SEO audit.
+Paths in this file are relative to the `seo-audit` skill root, the parent of
+this `full/` directory. A URL-only request in full mode stays in full mode; do
+not fall back to basic mode.
 
 ---
 
-## When to Use This Skill
+## When to Use Full Mode
 
-Use `seo-audit-full` when the user asks for:
+Use full mode when the user asks for:
 
-- "seo-audit-full"
+- "seo-audit full"
 - "full SEO audit"
 - "advanced SEO audit"
 - "technical SEO audit"
@@ -54,7 +45,7 @@ If you do not provide one, I will stop before running the full audit because
 PageSpeed is a required full-audit module.
 ```
 
-Do not run `seo-audit-full` PageSpeed checks without a PageSpeed API key supplied
+Do not run full-mode PageSpeed checks without a PageSpeed API key supplied
 by `--api-key`, `PAGESPEED_API_KEY`, or `GOOGLE_PAGESPEED_API_KEY`. If the key is
 missing, stop and ask the user to configure it instead of rendering a full report
 with missing PageSpeed data.
@@ -65,17 +56,17 @@ with missing PageSpeed data.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  seo-audit-full Workflow                                    │
+│  seo-audit full mode Workflow                               │
 │                                                             │
-│  Phase 1: Run core scripts (./scripts/)                     │
+│  Phase 1: Run core scripts                                  │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │  check-site.py      → robots.txt, sitemap, 404, URL  │   │
-│  │  check-page.py      → title, H1, meta desc, slug     │   │
-│  │  check-schema.py    → JSON-LD validation              │   │
-│  │  fetch-page.py      → raw HTML for analysis           │   │
+│  │  full/scripts/check-site.py   → robots, sitemap, 404 │   │
+│  │  scripts/check-page.py        → title, H1, meta, slug│   │
+│  │  full/scripts/check-schema.py → JSON-LD validation   │   │
+│  │  scripts/fetch-page.py        → raw HTML for analysis│   │
 │  └──────────────────────────────────────────────────────┘   │
 │                          ↓                                  │
-│  Phase 2: Run performance + full-only scripts (./scripts/)  │
+│  Phase 2: Run performance + full-only scripts (full/scripts)│
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │  check-pagespeed.py → Lighthouse scores + metrics     │   │
 │  │  check-social.py    → OG Tags + Twitter Card          │   │
@@ -96,7 +87,7 @@ with missing PageSpeed data.
 ## Output
 
 Produce an **Advanced Full SEO Audit Report** by filling the template at
-[assets/report-template.html](assets/report-template.html),
+[full/assets/report-template.html](assets/report-template.html),
 then **save it to a file — never print raw HTML to the terminal**.
 
 **File naming:** `reports/<hostname>-<slug>-full-audit.html`
@@ -131,16 +122,19 @@ If yes → run: `open reports/example-com-full-audit.html`
 
 ## Scripts
 
-Run full scripts from this directory. All output is structured JSON — use it
-directly as evidence.
+Run the scripts from the `seo-audit` skill root. Full mode uses its own
+`check-site.py` and `check-schema.py` from `full/scripts/`, because they add
+staging-subdomain, sitemap-inventory, and localized-schema checks. It shares
+`check-page.py` and `fetch-page.py` with basic mode in `scripts/`. All output is
+structured JSON — use it directly as evidence.
 
 **Dependencies:** `pip install requests`
 
 ### Phase 1: Core scripts
 
 ```bash
-# 1. site-level checks (robots.txt + sitemap.xml + 404 + URL canonicalization)
-python scripts/check-site.py https://example.com
+# 1. site-level checks (staging subdomains + robots.txt + sitemap.xml + 404 + URL canonicalization)
+python full/scripts/check-site.py https://example.com
 
 # 2. page-level checks (H1, title, meta description, canonical, URL slug)
 python scripts/check-page.py https://example.com --keyword "primary keyword"
@@ -149,20 +143,20 @@ python scripts/check-page.py https://example.com --keyword "primary keyword"
 python scripts/fetch-page.py https://example.com --output /tmp/page.html
 
 # 4. JSON-LD schema validation
-python scripts/check-schema.py --file /tmp/page.html
+python full/scripts/check-schema.py --file /tmp/page.html
 ```
 
 ### Phase 2: Full-only scripts
 
 ```bash
 # 5. PageSpeed / Lighthouse checks
-python scripts/check-pagespeed.py https://example.com --strategy mobile --timeout 180 --api-key "USER_PROVIDED_KEY"
+python full/scripts/check-pagespeed.py https://example.com --strategy mobile --timeout 180 --api-key "USER_PROVIDED_KEY"
 # If no key was provided, do not run this command. Ask the user to configure a PageSpeed API key first.
 
 # 6. Social tags: OG + Twitter Card validation
-python scripts/check-social.py --file /tmp/page.html
+python full/scripts/check-social.py --file /tmp/page.html
 # Or directly from URL:
-python scripts/check-social.py https://example.com
+python full/scripts/check-social.py https://example.com
 ```
 
 Each script exits with code `0` (all pass/warn) or `1` (any fail/error).
@@ -407,8 +401,9 @@ For Priority Actions, add effort/impact tags:
 
 ## Reference Files
 
-- Detailed audit modules and field definitions: [references/REFERENCE.md](references/REFERENCE.md)
-- Final HTML report template: [assets/report-template.html](assets/report-template.html)
-- PageSpeed validation script: [scripts/check-pagespeed.py](scripts/check-pagespeed.py)
-- Social tags validation script: [scripts/check-social.py](scripts/check-social.py)
-- Core scripts: [scripts/](scripts/) (check-site, check-page, check-schema, fetch-page)
+- Detailed audit modules and field definitions: [full/references/REFERENCE.md](references/REFERENCE.md)
+- Final HTML report template: [full/assets/report-template.html](assets/report-template.html)
+- PageSpeed validation script: [full/scripts/check-pagespeed.py](scripts/check-pagespeed.py)
+- Social tags validation script: [full/scripts/check-social.py](scripts/check-social.py)
+- Full-mode core scripts: [full/scripts/](scripts/) (check-site, check-schema)
+- Shared core scripts: [scripts/](../scripts/) (check-page, fetch-page)

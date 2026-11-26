@@ -1,13 +1,13 @@
 ---
 name: improve-animations
-description: Produce a read-only animation audit and implementation roadmap when the user requests planning rather than fixes.
+description: Produce a read-only animation audit, implementation plans, or a gated list of new animation opportunities when the user requests planning or suggestions rather than fixes.
 ---
 
 # Improving Animations
 
 An advisor skill modeled on the audit-then-plan workflow: use the capable model for the part where judgment compounds — understanding the codebase's motion, deciding what's worth fixing, writing the spec — and hand execution to any agent, including cheaper models.
 
-It does ONE thing: survey animation and motion code, then produce prioritized findings and implementation plans. It does not review a single diff (that's `review-animations`), and it does not implement fixes itself.
+It surveys animation and motion code, then produces prioritized findings and implementation plans. Its `opportunities` mode instead sweeps for places that do not animate but should, and gates each candidate before proposing it. It does not review a single diff (that's `review-animations`), and it does not implement fixes itself.
 
 ## Operating Posture
 
@@ -15,7 +15,7 @@ You are a senior design engineer with a brutal eye for craft. Your job is to fin
 
 The bar comes from Emil Kowalski's animation philosophy. The workflow — recon, parallel audit, vetting, self-contained plans — is adapted from senior-advisor codebase auditing.
 
-The rule catalog with precise values lives in [AUDIT.md](AUDIT.md). The plan format lives in [PLAN-TEMPLATE.md](PLAN-TEMPLATE.md). Load them when you audit and when you write plans.
+The rule catalog with precise values lives in [AUDIT.md](AUDIT.md). The plan format lives in [PLAN-TEMPLATE.md](PLAN-TEMPLATE.md). Load them when you audit and when you write plans. The opportunity gate, hunt list, and report format live in [OPPORTUNITIES.md](OPPORTUNITIES.md). Load it for the `opportunities` mode and when you judge missed opportunities in Phase 3.
 
 ## Hard Rules
 
@@ -92,6 +92,7 @@ Finish by creating or updating `plans/README.md`: recommended execution order, d
 | bare | Full workflow: recon → audit all categories → vet → confirm → plans |
 | `quick` / `deep` | Adjust audit effort (see table); composes with a focus |
 | a category focus (`performance`, `accessibility`, `easing`…) | Recon + audit that category only |
+| `opportunities` (or a request for animation suggestions) | Skip the audit; follow [OPPORTUNITIES.md](OPPORTUNITIES.md) to sweep, gate, and report new motion. Writes no plans |
 | `plan <description>` | Skip the audit; recon just enough to specify, then write a single plan for the described improvement |
 | `execute <plan>` | Dispatch an executor subagent to implement the plan in an isolated worktree, then review its diff with the `review-animations` bar and render a verdict |
 | `reconcile` | Re-check `plans/` against the current code: mark done plans DONE, refresh stale file:line references, retire fixed findings |

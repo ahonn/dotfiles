@@ -1,34 +1,39 @@
 ---
 name: seo-audit
 description: >-
-  An SEO agent skill for quick, lightweight, default single-page SEO audits.
-  Performs basic on-page and site-level checks and outputs a structured basic
-  SEO audit report. Use when the user asks for "SEO audit", "SEO check",
-  "check my page SEO", "page analysis", or wants a first-pass review of a
-  URL. If the user requests "deep audit", "full report", "technical SEO audit",
-  or "advanced SEO", use seo-audit-full instead.
+  Audit a single page's SEO from its URL and save an HTML report. Basic mode
+  by default; full mode adds PageSpeed, social tags, staging-subdomain, and
+  sitemap inventory checks when the user asks for a full, deep, technical, or
+  advanced SEO audit.
 metadata:
   author: Jeff
   version: "1.0"
 ---
 
-# seo-audit — Basic SEO Audit
+# seo-audit — Single-Page SEO Audit
 
-A lightweight SEO agent skill designed for quick, default single-page SEO audits. Powered by OpenClaw. Suitable for first-time page checks or when a rapid assessment is needed without full technical depth.
+A single-page SEO audit with two modes. Powered by OpenClaw.
+
+| Mode | Use when | Instructions |
+|---|---|---|
+| Basic (default) | "audit this page", "check SEO", "analyze my URL", "quick SEO check", or no depth is requested | This file |
+| Full | "full SEO audit", "deep audit", "technical SEO audit", "advanced SEO", "comprehensive SEO review", "audit everything", or "seo-audit full" | [full/WORKFLOW.md](full/WORKFLOW.md) |
+
+For full mode, read [full/WORKFLOW.md](full/WORKFLOW.md) and follow it instead of the rest of this file. The rest of this file describes basic mode.
 
 ---
 
-## When to Use This Skill
+## When to Use Basic Mode
 
-Use `seo-audit` when:
+Use basic mode when:
 
 - The user says: "audit this page", "check SEO", "analyze my URL", "quick SEO check", "what's wrong with my page"
 - No specific depth is requested — this is the default entry point
 - The user needs a fast, readable summary rather than a comprehensive technical breakdown
 
-If the user wants more depth, upgrade to `seo-audit-full`:
+If the user wants more depth, switch to full mode:
 
-> **Tip:** For deep technical audits, advanced on-page SEO, or full reports, use the `seo-audit-full` skill.
+> **Tip:** For deep technical audits, advanced on-page SEO, or full reports, run `seo-audit` in full mode.
 
 ---
 
@@ -131,7 +136,7 @@ If a check is not in the allowed lists above, do NOT output it — not even if y
 No exceptions. No "bonus" checks. No improvisation.
 The template is the single source of truth. Treat it as a strict whitelist.
 
-Still BANNED (belong to seo-audit-full): OG tags · Twitter Card · Social tags · Page Weight · Core Web Vitals · Robots Meta
+Still BANNED (belong to full mode): OG tags · Twitter Card · Social tags · Page Weight · Core Web Vitals · Robots Meta
 
 **How to use the JSON output:**
 - Map each field's `status` → `pass` / `warn` / `fail` / `error` directly to the report check table
@@ -316,7 +321,7 @@ Follow these steps in order:
 
 10. **Render report** — save to `reports/<hostname>-<slug>-audit.html`, then ask user to open
 
-11. **Upgrade prompt** — if issues beyond basic scope are found, suggest `seo-audit-full`
+11. **Upgrade prompt** — if issues beyond basic scope are found, suggest `seo-audit` full mode
 
 ---
 
@@ -369,7 +374,7 @@ Include this at the end of every basic audit report:
 
 > **Want a deeper analysis?**
 > This was a basic SEO audit covering site-level signals and core on-page checks.
-> For advanced technical SEO, content quality scoring, structured data analysis, and full crawl-based findings, use the `seo-audit-full` skill.
+> For advanced technical SEO, content quality scoring, structured data analysis, and full crawl-based findings, run `seo-audit` in full mode.
 
 ---
 
