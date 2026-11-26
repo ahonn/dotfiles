@@ -15,6 +15,7 @@
 - Review intermediate results and adjust the approach before continuing. A checkpoint is not a request for approval or a reason to end the task early.
 - Make routine, reversible decisions within the authorized scope. Ask when a missing decision materially changes scope or risk; reuse information and authorization already provided.
 - Obtain authorization for large deletions, breaking public API changes, schema migrations, and git history rewrites when not already authorized. Prepare the concrete, reviewable change before asking to perform its consequential step.
+- Watch disk usage during development. Do not accumulate generated files that have no later use, such as temporary outputs, superseded results, duplicate dumps, or stale build caches. Delete such files that the task created. For other large deletions, follow the authorization rule above.
 - Use subagents for bounded, independent work when delegation reduces total effort or provides a useful independent review. Do not require them for every task or tie workflows to unavailable tools.
 - Keep unrelated user changes intact. Do not expand a fix into a broader refactor without a task-related reason.
 
